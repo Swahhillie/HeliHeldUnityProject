@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EventReaction
 {
@@ -12,13 +13,27 @@ public class EventReaction
 		Disable
 	}
 	
+	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
+	private static bool init=false;
+	
 	public Type type;
 	public string message;
 	public Vector3 pos;
 	
-	EventReaction(Type aType,string aMessage=null,Vector3 aPos=default(Vector3))
+	EventReaction(string aType,string aMessage=null,Vector3 aPos=default(Vector3))
 	{
-		type=aType;
+		if(!init)
+		{
+			init=true;
+			typeHelper["Spawn"]=Type.Spawn;
+			typeHelper["Destroy"]=Type.Destroy;	
+			typeHelper["Radio"]=Type.Radio;	
+			typeHelper["Displace"]=Type.Displace;
+			typeHelper["Enable"]=Type.Enable;
+			typeHelper["Disable"]=Type.Disable;
+		}	
+		
+		type=typeHelper[aType];
 		message = aMessage;
 		pos = aPos;
 	}
