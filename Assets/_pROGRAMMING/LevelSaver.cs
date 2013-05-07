@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Xml;
+using System.Collections.Generic;
 
 public class LevelSaver : MonoBehaviour {
 
@@ -54,11 +55,46 @@ public class LevelSaver : MonoBehaviour {
 		testChild.AppendChild(obj);
 		root.AppendChild(testChild);
 		
+		XMLVisitor xmlVisitor = new XMLVisitor(doc);
 		
-		XmlWriter writer = new XmlTextWriter(Application.dataPath + "\\" +outputFile, System.Text.Encoding.ASCII);
+//		IVisitable[] safeable;
+		GameObject[] allGos = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+		
+		int safeLayer = LayerMask.NameToLayer("SaveLayer");
+		
+		//finding all gos that are in the safelayer and have no parents
+		GameObject[] toSaveGo = System.Array.FindAll<GameObject>(allGos, x => x.layer == safeLayer && x.transform.parent == null);
+	
+		Debug.Log("Gameobjects to save count = " + toSaveGo.Length);
+				
+		int i = 0;
+		foreach(GameObject go in toSaveGo){
+			
+			go.name = go.name + "_" + i + "_"; //give all gos that will be safed a unique names
+			
+			i++;
+		}
+		foreach(GameObject go in toSaveGo){
+			xmlVisitor.OpenNewObject(go); // open a new gameobject to append the components to
+			
+			List<IVisitable> toSave = new List<IVisitable>();
+			toSave.AddRange(go.GetInterfacesInChildren<IVisitable>()); // add all visitables to the list of what the visitor will pass
+			
+			foreach(IVisitable visitable in toSave){
+				visitable.AcceptVisitor(xmlVisitor); // add each component to the active gameObject
+			}
+		
+		}
+		
+		
+		
+//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
+		XmlTextWriter writer = new XmlTextWriter(Application.dataPath + "\\" +outputFile, System.Text.Encoding.ASCII);
+		writer.Formatting = Formatting.Indented;
 		//doc.Save(Application.dataPath + "\\" +outputFile);
 		doc.Save(writer);
 		writer.Close();
+		
 		
 		//doc.WriteContentTo(writer);
 		
