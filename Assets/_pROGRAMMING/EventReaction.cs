@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 
 public class EventReaction
 {
 	public enum Type{
 		Spawn,
 		Destroy,
-		Radio,
+		Say,
 		Displace,
 		Enable,
 		Disable
@@ -17,24 +18,23 @@ public class EventReaction
 	private static bool init=false;
 	
 	public Type type;
-	public string message;
+	public string messageName;
 	public Vector3 pos;
 	
-	EventReaction(string aType,string aMessage=null,Vector3 aPos=default(Vector3))
+	EventReaction(XmlNode node)
 	{
 		if(!init)
 		{
 			init=true;
 			typeHelper["Spawn"]=Type.Spawn;
 			typeHelper["Destroy"]=Type.Destroy;	
-			typeHelper["Radio"]=Type.Radio;	
+			typeHelper["Say"]=Type.Say;	
 			typeHelper["Displace"]=Type.Displace;
 			typeHelper["Enable"]=Type.Enable;
 			typeHelper["Disable"]=Type.Disable;
 		}	
 		
-		type=typeHelper[aType];
-		message = aMessage;
-		pos = aPos;
+		messageName=node["MessageName"].InnerText;
+		type = typeHelper[node["Type"].InnerText];
 	}
 }
