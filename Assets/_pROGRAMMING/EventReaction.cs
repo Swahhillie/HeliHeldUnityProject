@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-
+[System.SerializableAttribute()]
 public class EventReaction
 {
 	public enum Type{
@@ -21,7 +21,7 @@ public class EventReaction
 	public string messageName;
 	public Vector3 pos;
 	
-	EventReaction(XmlNode node)
+	public EventReaction(XmlNode node)
 	{
 		if(!init)
 		{

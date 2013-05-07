@@ -117,7 +117,10 @@ public class Level
 		Trigger tr = go.GetOrAddComponent<Trigger> ();
 		
 		TriggerType triggerType = ConfigLoader.triggerTypes [triggerXml ["Type"].InnerText];
-		string eventName = triggerXml ["EventName"].InnerText;
+		
+		XmlNode reactionXml = triggerXml["Reaction"];
+		
+		EventReaction eventReaction = new EventReaction(reactionXml);
 		float radius = 0;		
 		if (triggerType == TriggerType.OnTriggerEnter || triggerType == TriggerType.OnTriggerExit) {
 			radius = float.Parse (triggerXml ["Radius"].InnerText);
@@ -129,7 +132,7 @@ public class Level
 		}
 		List<MissionObjectBase> missionObject = new List<MissionObjectBase>(); //go.GetComponent<MissionObjectBase>();
 		if(missionObject == null)Debug.LogError("A trigger was added while there is no mission object to activate it on");
-		tr.AddTriggerValue (eventName, triggerType, missionObject, radius, time);
+		tr.AddTriggerValue (eventReaction, triggerType, missionObject, radius, time);
 		
 		
 		

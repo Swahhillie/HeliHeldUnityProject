@@ -4,15 +4,15 @@ using System.Collections.Generic;
 [System.Serializable()]
 public class TriggerValue
 {
-	public string eventName;
+	public EventReaction eventReaction;
 	public float radius;
 	public TriggerType type;
 	public float timeRemaining;
 	public List<MissionObjectBase> listeners;
 	
-	public TriggerValue (string eventName, TriggerType type, List<MissionObjectBase> listeners, float radius, float time)
+	public TriggerValue (EventReaction eventReaction, TriggerType type, List<MissionObjectBase> listeners, float radius, float time)
 	{
-		this.eventName = eventName;
+		this.eventReaction = eventReaction;
 		this.radius = radius;
 		this.type = type;
 		this.timeRemaining = time;
@@ -20,7 +20,7 @@ public class TriggerValue
 	}
 	public void Activate(){
 		foreach(MissionObjectBase obj in listeners)
-			obj.OnTriggered(this.eventName, this.type);
+			obj.OnTriggered(this.eventReaction, this.type);
 	}
 //	public string eventName {
 //		get{ return _eventName;}
@@ -49,10 +49,10 @@ public class Trigger : MonoBehaviour
 	
 	public delegate void TriggerCallback(TriggerValue t);
 	
-	public void AddTriggerValue (string eventName, TriggerType type, List<MissionObjectBase> missionObjects, float radius = 0, float time = 0)//,List<SpecMission> Missions)
+	public void AddTriggerValue (EventReaction eventReaction, TriggerType type, List<MissionObjectBase> missionObjects, float radius = 0, float time = 0)//,List<SpecMission> Missions)
 	{
 		//Debug.Log(aName+aRadius+aType+aTime);
-		TriggerValue t = new TriggerValue (eventName, type, missionObjects, radius, time);
+		TriggerValue t = new TriggerValue (eventReaction, type, missionObjects, radius, time);
 
 
 		if (type == TriggerType.OnTriggerEnter || type == TriggerType.OnTriggerExit) {
