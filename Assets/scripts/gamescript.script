@@ -1,0 +1,163 @@
+helispeed=100
+flightheight=200
+buttontime=2
+rainstrength=10;
+
+MainMenu{
+	button;label=1Speler;pos=3240,160,3750;rot=0,285,0;scale=30,5,1;action=level,Level0
+	button;label=VerticalSlice;pos=3240,150,3750;rot=0,285,0;scale=30,5,1;action=level,Level3
+	button;label=Editor;pos=3240,140,3750;rot=0,285,0;scale=30,5,1;action=editor
+}
+
+Level0{
+	info;mission=1,1;nextLevel=level,Level1
+	trigger;name=TimedTrigger;eventname=Training;type=2;time=2
+	trigger;name=TSpawnShip1;pos=2819,32,406;eventname=Radar;type=1;radius=50
+	trigger;name=TLocateBoat;pos=1783.58,0,1721.12;eventname=FindBoat;type=0;radius=100
+	trigger;name=TReturnToBoat;pos=1270.02,0,1457.4;eventname=ReturnBoat;type=1;radius=70
+	trigger;name=TFoundBoat;pos=2304.08,0,1256.14;eventname=AboveBoat;type=1;radius=5
+	trigger;name=TInfraRed;eventname=IR;type=2;time=20
+	trigger;name=TReturnToBase;eventname=SavedTrainingCastaway;type=1
+	
+	ship;name=trainingship;pos=1901.56,0,1332.48;rot=0,0,0;spawn=1;event=Training,1
+	
+	castaway;name=trainingcastaway;pos=1901,0,1340;rot=90,138,0;spawn=1;action=2,SavedCastaway
+}
+
+Level1{
+	info;mission=1,3;nextLevel=level,Level2
+	
+	trigger;name=testTrigger;pos=1672.54,0,881.38;eventname=Test;type=2;time=5;radius=20
+	trigger;name=spawnTrigger;pos=1672.54,0,881.38;eventname=Spawned;type=0;radius=200
+	
+	ship;pos=3360,24.5,2895;rot=0,0,0;spawn=1;action=1,Destroyed;action=0,Spawned;lifetime=10;
+	ship;name=navyboatvrmvrm;pos=2760,33.5,3215;rot=0,0,0;spawn=1ship;pos=3910,54.5,3847;rot=0,0,0;spawn=1
+	ship;pos=1968,53.5,3835;rot=0,0,0;event=Test,0;spawn=0ship;pos=1968,53.5,2929;rot=0,0,0;event=Spawned,0;spawn=0
+	
+	castaway;name=dennis;pos=2686.5,25.5,3255;rot=90,138,0;spawn=1;action=2,SavedCastaway
+	castaway;pos=2827,25.5,3232.5;rot=48,287,299;spawn=1;action=2,SavedCastaway
+	castaway;pos=2778,22.5,3163;rot=8,220,130;spawn=1;action=2,SavedCastaway
+	castaway;pos=2692,22.5,3163;rot=90,138,0;spawn=1;action=2,SavedCastaway
+}
+
+Level2{
+	info;mission=2,3;nextLevel=level,Level3
+	
+	trigger;name=lvl2Trigger;pos=1000,0,400;eventname=Test;type=2;time=5;radius=20
+	
+	
+	ship;pos=1968,53.5,3835;rot=0,0,0;event=Test,0;spawn=0
+	ship;pos=1968,53.5,2929;rot=0,0,0;event=Test,0;spawn=0
+	castaway;name=dennis2;pos=2686.5,25.5,3255;rot=90,138,0;action=2,SavedCastaway
+	castaway;pos=2778,22.5,3163;rot=8,220,130;action=2,SavedCastaway
+	castaway;pos=2692,22.5,3163;rot=90,138,0;action=2,SavedCastaway
+}
+
+Level3{
+	
+	info;mission=3,3;nextLevel=interface,MainMenu
+	
+	trigger;name=TLocateBoat;pos=1006.3,0,1873.8;eventname=FindBoat;type=0;radius=75
+	trigger;name=TLocateBoat;pos=2664.96,0,2803.76;eventname=FindBoat;type=0;radius=75
+	trigger;name=TLocateBoat;pos=2630.26,0,3740.66;eventname=FindBoat;type=0;radius=75
+	trigger;name=TAboveLand;pos=3018.9,0,2193.04;eventname=AboveLand;type=0;radius=75
+	trigger;name=TReturnBoat;pos=2137.52,0,1346.36;eventname=ReturnBoat;type=1;radius=25
+	
+	ship;name=ship1;pos=589.9,53.5,3768.42;rot=0,0,0;spawn=1
+	ship;name=ship2;pos=2644.14,53.5,2776;rot=0,0,0;spawn=0;event=spawnship2,0;action=0,Test;action=1,Destroyed;lifetime=100
+	ship;name=ship3;pos=2630.26,53.5,3747.6;rot=0,0,0;spawn=0;event=spawnship3,0
+	
+	castaway;name=daniel;pos=41.64,53.5,13.88;rot=0,0,0;spawn=1;action=2,SavedCastaway;action=2,spawnship2
+	castaway;name=dyon;pos=2692.72,53.5,2782.94;rot=0,0,0;spawn=0;event=spawnship2,0;action=0,Test;action=3,Drowned;action=2,spawnship3;lifetime=50;action=2,SavedCastaway
+	castaway;name=dennis;pos=2553.92,53.5,3796.18;rot=0,0,0;spawn=0;event=spawnship3,0;action=2,SavedCastaway
+}
+
+event spawnship2{
+message=Er_is_nog_een_schip_in_je_buurt,_vind_hem_en_red_de_drenkelin
+mission=0,0
+}
+
+event spawnship3{
+message=Er_is_nog_een_schip_in_je_buurt,_vind_hem_en_red_de_drenkelin
+mission=0,0
+}
+
+event AboveLand{
+message=Je_vliegt_boven_land,_draai
+mission=0,0
+}
+
+event Training{
+message=Hallo!_Wat_fijn_dat_je_wilt_helpen_met_deze_missie!_Er_zijn_veel_schepen_in_nood!_Je_moet_weten_dat_dit_de_radar_is._Hiermee_kun_je_schepen_vinden._Achter_je_zit_de_infrarood_camera._Die_ziet_warmte_en_daarmee_kun_je_mensen_vinden_in_het_water!_Maar_laten_we_eerst_opstijgen._Vouw_je_handen_voor_je_b
+mission=0,0
+}
+
+event LiftOff{
+message=Goed_gedaan!_Ik_zal_je_nu_uitleggen_hoe_je_kunt_vliegen._Als_je_je_gevouwen_handen_naar_beneden_wijst,_ga_je_vooruit._Probeer_maar_e
+mission=0,0
+}
+
+event Move{
+message=Goed_gedaan!_Als_je_naar_links_of_naar_rechts_wilt,_moet_je_je_lichaam_die_kant_op_buigen._Probeer_maar_eens!_Buig_naar_links_en_dan_naar_rec
+mission=0,0
+}
+
+event SavedTrainingCastaway{
+message=Goed_gedaan!_Vlieg_nu_terug_naar_de_basis._Vouw_eerst_je_handen_weer_voor_je_buik_om_de_helicopter_te_kunnen_besturen._Op_de_radar_zie_je_een_pijl._Die_pijl_wijst_altijd_naar_je_basis_schip._Kun_je_de_boot_terug_vin
+mission=0,0
+}
+
+event Radar{
+message=Goedzo!_Nu_weet_je_hoe_je_moet_vliegen._Kijk_eens_op_de_radar?_Daar_zie_je_een_gele_stip._Dat_betekend_dat_de_radar_daar_een_boot_heeft_gevonden._Kun_je_daar_naartoe_vlie
+mission=0,0
+}
+
+event FindBoat{
+message=Je_bent_in_de_buurt_van_een_boot,_probeer_boven_de_boot_te_vlie
+mission=0,0
+}
+
+event ReturnBoat{
+message=Draai_om,_je_hebt_de_boot_gem
+mission=0,0
+}
+
+event AboveBoat{
+message=Je_hebt_de_boot_gevonden!_Spreid_je_armen,_zodat_je_op_de_infrarood_camera_kunt_zoeken_naar_de_drenkel
+mission=0,0
+}
+
+event IR{
+message=Hier_kun_je_zien_of_er_mensen_in_het_water_liggen._De_infrarood_camera_ziet_warmte_van_de_mensen._Als_je_iemand_moet_redden_zie_je_diegene_als_een_rood_figuur_op_je_beeld._Kun_je_iemand_vinden?_Beweeg_je_arm_om_de_camera_te_bewegen._Probeer_de_drenkeling_in_het_midden_van_de_camera_te_krij
+mission=0,0
+}
+
+event Test{
+message=Er_staat_een_boot_in_brand,_zoek_de_boot_nu_direct_op_en_red_de_men
+mission=0,0
+}
+
+event SavedCastaway{
+message=Je_hebt_de_drenkeling_ge
+mission=0,0
+}
+
+event Destroyed{
+message=Je_was_niet_snel_genoeg,_de_boot_is_gezon
+mission=0,0
+}
+
+event Drowned{
+message=Je_was_niet_snel_genoeg,_de_drenkeling_is_weggedre
+mission=0,0
+}
+
+event Spawned{
+message=Shipspa
+mission=0,0
+}
+
+
+function foo{
+System.String[]
+}

@@ -1,0 +1,109 @@
+<HeliHeld>
+	<Menu name = "MainMenu">
+		<Button>
+			<Label>1</Label>
+			<Pos>3259.96,152,3724.76</Pos>
+			<Rot>0,0,0</Rot>
+			<Function>LoadLevel1</Function>
+		</Button>
+		<Button>
+			<Label>VerticalSlice</Label>
+			<Pos>3259,150,3724</Pos>
+			<Rot>0,0,0</Rot>
+			<Function>LoadVerticalSlice</Function>
+		</Button>
+	</Menu>
+	<Menu name = "Shop">
+		<Button>
+			<Label>BuyStuff!</Label>
+			<Pos>3240,150,3750</Pos>
+			<Rot>0,285,0</Rot>
+			<Scale>30,5,1</Scale>
+			<Function>LoadVerticalSlice</Function>
+		</Button>
+	</Menu>
+	
+	
+	<Levels>
+		<Level name = "level3">
+			<Objects>
+				<Object>
+					<Name>TLocateBoat</Name>
+					<Pos>1006.3,0,1873.8</Pos>
+					<Rot>0,0,0</Rot>
+					
+					<Trigger>					
+						<EventName>FindBoat</EventName>
+						<Type>TriggerEnter</Type>
+						<Radius>75</Radius>						
+						
+						<Reaction>
+							<Type>Say</Type>
+							<Message>Hallo</Message>
+						</Reaction>
+						<Reaction>
+							<Type>Say</Type>
+							<MessageName>Hallo</MessageName>
+						</Reaction>
+					</Trigger>
+					
+				</Object>
+				<Object>
+					<Name>TLocateBoat</Name>
+					<Pos>2664.96,0,2803.76</Pos>
+					<Rot>0,0,0</Rot>	
+					<Trigger>	
+						<EventName>FindBoat</EventName>
+						<Type>TriggerEnter</Type>
+						<Radius>75</Radius>									
+					</Trigger>
+
+					<Ship>
+						<Prefab>dinkyPrefab</Prefab>
+
+					</Ship>
+				</Object>
+				
+				<Object>	
+					<Name>dyon</Name>
+					<Pos>2553.92,53.5,3796.18</Pos>
+					<Rot>0,0,0</Rot>
+					<Castaway>				
+						<Spawn>0</Spawn>
+						<Prefab>CastawayPrefab</Prefab>
+					</Castaway>
+				</Object>
+				<Object>
+					<Name>daniel</Name>
+					<Pos>41.64,53.5,13.88</Pos>
+					<Rot>0,0,0</Rot>
+					<Castaway>		
+						<Prefab>castawayPrefab</Prefab>
+					</Castaway>
+				</Object>
+
+			</Objects>
+		</Level>
+	</Levels>
+	
+	<Messages>
+		<Message>
+			<Name> Hallo</Name>
+			<Message>Hallo daar speler.</Message>
+		</Message>
+		<Message>
+			<Name> Move</Name>
+			<Message>Goed gedaan! Vlieg nu terug naar de basis. Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Message>
+			
+		</Message>
+	</Messages>
+	<Settings>
+		<Setting name="flightHeight" value="200"></Setting>
+		<Setting name="buttonTime" value="2"></Setting>
+		<Setting name="rainStrength" value="10"></Setting>
+		<Setting name="heliSpeed" value="100"></Setting>
+		<Setting name="capsuleHeight" value = "100"></Setting>
+	</Settings>
+	
+	
+</HeliHeld>
