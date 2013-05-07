@@ -13,4 +13,7 @@ public class Castaway : MissionObjectBase
 	override public void OnTriggered(EventReaction evr, TriggerType triggerType){
 		
 	}
+	override public void AcceptVisitor(Visitor v){
+		v.Visit(this);
+	}
 }

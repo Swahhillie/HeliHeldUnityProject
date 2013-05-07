@@ -10,5 +10,8 @@ public class Ship : MissionObjectBase
 	override protected void UpdateConcrete(){
 		//update for mission object base must be implemented here. not in Update()	
 	}
+	override public void AcceptVisitor(Visitor v){
+		v.Visit(this);
+	}
 
 }

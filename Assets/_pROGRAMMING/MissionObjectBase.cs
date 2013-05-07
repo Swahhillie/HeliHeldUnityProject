@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class MissionObjectBase : MonoBehaviour, ITriggeredObject {
+public abstract class MissionObjectBase : MonoBehaviour, ITriggeredObject, IVisitable {
 
 
 	protected float maxlifetime=0;
@@ -91,5 +91,6 @@ public abstract class MissionObjectBase : MonoBehaviour, ITriggeredObject {
 	public MissionObject type{
 		get{return _type;}
 	}
+	abstract public void AcceptVisitor(Visitor v);
 	
 }

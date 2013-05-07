@@ -42,7 +42,7 @@ public class TriggerValue
 
 }
 
-public class Trigger : MonoBehaviour
+public class Trigger : MonoBehaviour, IVisitable
 {
 	//private List<SpecMission> specmissions = new List<SpecMission>();
 	public List<TriggerValue> triggers = new List<TriggerValue>(); // used to define multiple triggers in one component
@@ -73,7 +73,9 @@ public class Trigger : MonoBehaviour
 		}
 		triggers.Add (t);
 	}
-	
+	public void AcceptVisitor(Visitor v){
+		v.Visit(this);
+	}
 	void Update ()
 	{
 		TriggerValue trigger = triggers.Find (t => t.type == TriggerType.OnOutOfLive);
