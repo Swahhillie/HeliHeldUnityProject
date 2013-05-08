@@ -7,12 +7,11 @@ public class Helicopter : MonoBehaviour
 	public SkeletonWrapper skelWrap;
 	
 	public float maxSpeed = 2.0f;
-	public float acceleration = 0.2f;
-	public float drag = .1f;
+	public float acceleration = 0.2f; // acceleration per second
+	public float drag = .1f; // fraction of the velocity that is lost every second
 	public float waterHeight = 20.0f; // height of the water. it has no collider so it cannot be raycast
-	public float flyHeightMin = 20.0f;
-	public float flyHeightMax = 40.0f;
-	public float avoidRadius = 20.0f;
+	public float flyHeightMax = 40.0f; // maximum altitude of the helicopter. later used to stop the helicopter from flying over very high mountains
+	public float avoidRadius = 20.0f; //Repulsor bubble around the helicopter
 	public float rotationSpeed = 360.0f; // 360 = 1 rotation per second
 	public float decendRate = .2f;
 	
