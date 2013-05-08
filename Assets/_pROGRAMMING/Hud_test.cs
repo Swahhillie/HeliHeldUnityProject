@@ -13,7 +13,7 @@ public class Hud_test : MonoBehaviour {
 	
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.A))
+		if(Input.GetKeyDown(KeyCode.Alpha1))
 		{
 			HudScript test = this.GetComponent<HudScript>();
 			test.ToggleHud();
