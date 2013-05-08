@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Levels>
-  <Level name="WupWup">
-    <Object>hallo, this is an object node</Object>
+  <Level name="yurudi">
     <Object>
       <Name>castawayTemp_0_</Name>
       <Pos>(2819.1, 50.9, 725.5)</Pos>
       <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Castaway>
+        <Spawn>0</Spawn>
+        <PrefabName>
+        </PrefabName>
+      </Castaway>
+      <Trigger>
+        <EventReaction>EventReaction</EventReaction>
+        <Radius>60</Radius>
+        <Type>OnTriggerEnter</Type>
+      </Trigger>
     </Object>
   </Level>
 </Levels>

@@ -12,14 +12,37 @@ public class XMLVisitor : Visitor {
 	}
 	override public void Visit(Trigger v){
 		Debug.Log("Visiting a trigger");
+		
+		v.CreateXml(ref _writeTarget, ref _activeObject);
+		
 	}
 	
 	override public void Visit(Castaway v){
 		Debug.Log("Visiting a Castaway");
+		XmlNode castawayXml = _writeTarget.CreateNode(XmlNodeType.Element, "Castaway", null);
+		XmlNode spawnXml = _writeTarget.CreateNode(XmlNodeType.Element, "Spawn", null);
+		spawnXml.InnerText = v.spawn.ToString();
+		castawayXml.AppendChild(spawnXml);
+		
+		XmlNode prefabNameXml = _writeTarget.CreateNode(XmlNodeType.Element, "PrefabName", null);
+		prefabNameXml.InnerText = v.prefabName;
+		castawayXml.AppendChild(prefabNameXml);
+		
+		_activeObject.AppendChild(castawayXml);
 	}
 	
 	override public void Visit(Ship v){
 		Debug.Log("Visiting a Ship");
+		XmlNode shipXml = _writeTarget.CreateNode(XmlNodeType.Element, "Ship", null);
+		XmlNode spawnXml = _writeTarget.CreateNode(XmlNodeType.Element, "Spawn", null);
+		spawnXml.InnerText = v.spawn.ToString();
+		shipXml.AppendChild(spawnXml);
+		
+		XmlNode prefabNameXml = _writeTarget.CreateNode(XmlNodeType.Element, "PrefabName", null);
+		prefabNameXml.InnerText = v.prefabName;
+		shipXml.AppendChild(prefabNameXml);
+		
+		_activeObject.AppendChild(shipXml);
 	}
 	
 	

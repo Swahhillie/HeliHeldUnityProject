@@ -9,7 +9,9 @@ public abstract class MissionObjectBase : MonoBehaviour, ITriggeredObject, IVisi
 	protected float lifetime=0;
 	protected bool spawned=false;
 	protected bool saved=false;
+	public int spawn = 0;
 	protected MissionObject _type;
+	public string prefabName;
 	//protected Dictionary<string,Reaction> evt = new Dictionary<string,Reaction>();
 	//protected Dictionary<int,List<string>> action = new Dictionary<int, List<string>>();
 	

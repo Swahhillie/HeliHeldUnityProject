@@ -60,7 +60,7 @@ public class Helicopter : MonoBehaviour
 		}
 		//no hits below helicopter
 		if(hits.Length > 0){
-			Debug.Log(closestHit.transform.name);
+//k			Debug.Log(closestHit.transform.name);
 			Debug.DrawLine(transform.position, closestHit.point, Color.red);
 			closestPoint = closestHit.distance;
 		}

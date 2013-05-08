@@ -49,10 +49,6 @@ public class LevelSaver : MonoBehaviour {
 		XmlElement tc = (XmlElement)testChild;//
 		tc.SetAttribute("name", levelName);
 		
-				
-		XmlNode obj = doc.CreateNode(XmlNodeType.Element, "Object", "");
-		obj.InnerText = "hallo, this is an object node";
-		testChild.AppendChild(obj);
 		root.AppendChild(testChild);
 		
 		XMLVisitor xmlVisitor = new XMLVisitor(doc);
