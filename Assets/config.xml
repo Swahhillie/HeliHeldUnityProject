@@ -37,10 +37,10 @@
 						<Type>TriggerEnter</Type>
 						<Radius>75</Radius>						
 						
-						<Reaction>
+						<EventReaction>
 							<Type>Say</Type>
 							<MessageName>Hallo</MessageName>
-						</Reaction>
+						</EventReaction>
 					</Trigger>
 					
 				</Object>
@@ -52,10 +52,10 @@
 						<EventName>FindBoat</EventName>
 						<Type>TriggerEnter</Type>
 						<Radius>75</Radius>
-						<Reaction>
+						<EventReaction>
 							<Type>Say</Type>
 							<MessageName>"Hallo"</MessageName>
-						</Reaction>
+						</EventReaction>
 					</Trigger>
 
 					<Ship>

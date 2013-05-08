@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 [System.Serializable()]
 public class TriggerValue
 {
@@ -88,7 +89,23 @@ public class Trigger : MonoBehaviour, IVisitable
 		}
 		
 	}
-	
+	public void CreateXml(ref XmlDocument doc, ref XmlNode objNode){
+		foreach(TriggerValue t in triggers){
+			XmlNode triggerXml = doc.CreateNode(XmlNodeType.Element, "Trigger",null);
+			objNode.AppendChild(triggerXml);
+			
+			XmlNode reactionXml = doc.CreateNode(XmlNodeType.Element, "EventReaction", null);
+			reactionXml.InnerText = t.eventReaction.ToString();
+			XmlNode radiusXml = doc.CreateNode(XmlNodeType.Element, "Radius", null);
+			radiusXml.InnerText =	t.radius.ToString();
+			XmlNode typeXml = doc.CreateNode(XmlNodeType.Element, "Type", null);
+			typeXml.InnerText = t.type.ToString();
+			
+			triggerXml.AppendChild(reactionXml);
+			triggerXml.AppendChild(radiusXml);
+			triggerXml.AppendChild(typeXml);
+		}
+	}
 	void OnTriggerEnter ()
 	{
 		
