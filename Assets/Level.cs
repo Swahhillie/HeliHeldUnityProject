@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 
-
-
 public class Level
 {
 	public Level (string name, XmlNode xml)
@@ -19,7 +17,6 @@ public class Level
 	public List<GameObject> levelElements; //list of all gameobjects that will be active in this level.
 	public GameObject lvlRoot;
 	private bool _isLoaded = false;
-	
 	private int _castawayCount = 0;
 	private int _shipCount = 0;
 
@@ -34,7 +31,8 @@ public class Level
 		XmlNodeList elements = lvlXml ["Objects"].ChildNodes;
 		
 		StringBuilder report = new StringBuilder ();
-		foreach (XmlNode e in elements) {//looping over all <object>
+		foreach (XmlNode e in elements)
+		{//looping over all <object>
 			//create all the objects here
 			GameObject go = new GameObject (e ["Name"].InnerText);
 			
@@ -52,7 +50,8 @@ public class Level
 			
 			//check if this should have a ship attached
 			XmlNode shipXml = e ["Ship"];
-			if (shipXml != null) {
+			if (shipXml != null)
+			{
 				AddShip (shipXml, ref go);
 				_shipCount ++;
 				report.Append ("Ship,");
@@ -60,7 +59,8 @@ public class Level
 			
 			//check for a castaway
 			XmlNode castaXml = e ["Castaway"];
-			if (castaXml != null) {
+			if (castaXml != null)
+			{
 				AddCastaway (castaXml, ref go);			
 				_castawayCount ++;
 				report.Append ("Castaway,");
@@ -68,7 +68,8 @@ public class Level
 			
 			
 			XmlNode triggerXml = e ["Trigger"];
-			if (triggerXml != null) {
+			if (triggerXml != null)
+			{
 				//there is a trigger xml node in this object. add it to the object.
 				AddTrigger (triggerXml, ref go);	
 				report.Append ("Trigger,");	
@@ -82,26 +83,34 @@ public class Level
 		_isLoaded = true;
 		Debug.Log (report.ToString ());
 	}
-	public int castawayCount{
-		get{return _castawayCount;}
+
+	public int castawayCount {
+		get{ return _castawayCount;}
 	}
-	public int shipCount{
-		get{return _shipCount;}
+
+	public int shipCount {
+		get{ return _shipCount;}
 	}
-	public void RemoveLevelElement(MissionObjectBase obj) //ships and castaways
+
+	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
 	{
-		GameObject elementToRemove = levelElements.Find( x => x.GetComponentInChildren<MissionObjectBase>() == obj);
-		if(obj.type == MissionObject.Ship){
+		GameObject elementToRemove = levelElements.Find (x => x.GetComponentInChildren<MissionObjectBase> () == obj);
+		if (obj.type == MissionObject.Ship)
+		{
 			_shipCount--;
 		}
-		if(obj.type == MissionObject.Castaway){
+		if (obj.type == MissionObject.Castaway)
+		{
 			_castawayCount --;
 		}
 	}
-	public void UnLoadLevel(){
-		Debug.Log("Unloading level " + levelName);
-		for(int i = levelElements.Count -1; i >= 0; i --){
-			GameObject.Destroy(levelElements[i]);
+
+	public void UnLoadLevel ()
+	{
+		Debug.Log ("Unloading level " + levelName);
+		for (int i = levelElements.Count -1; i >= 0; i --)
+		{
+			GameObject.Destroy (levelElements [i]);
 		}
 		_isLoaded = false;
 		_castawayCount = 0;
@@ -118,21 +127,41 @@ public class Level
 		
 		TriggerType triggerType = ConfigLoader.triggerTypes [triggerXml ["Type"].InnerText];
 		
-		XmlNode reactionXml = triggerXml["Reaction"];
 		
-		EventReaction eventReaction = new EventReaction(reactionXml);
-		float radius = 0;		
-		if (triggerType == TriggerType.OnTriggerEnter || triggerType == TriggerType.OnTriggerExit) {
-			radius = float.Parse (triggerXml ["Radius"].InnerText);
+		XmlNodeList reactionList = triggerXml.SelectNodes ("EventReaction");
+		List<EventReaction> eventReactions = new List<EventReaction> ();
+		
+		//parse the reactions
+		foreach (XmlNode reactionXml in reactionList)
+		{
+		
+			EventReaction eventReaction = new EventReaction (reactionXml);
+			
+			eventReactions.Add (eventReaction);
+			
+			eventReaction.listeners = new List<TriggeredObject> (); //go.GetComponent<MissionObjectBase>();
+			XmlNodeList listenerNamesList = reactionXml.SelectNodes("Listener");
+			List<string> listenerNames = new List<string>();
+			foreach(XmlNode listenerNode in listenerNamesList){
+				listenerNames.Add(listenerNode.InnerText);
+			}
+			
+			
+			tr.StartCoroutine(ConfigLoader.FindListeners(eventReaction, listenerNames.ToArray()));
 			
 		}
+		float radius = 0;		
+		if (triggerType == TriggerType.OnTriggerEnter || triggerType == TriggerType.OnTriggerExit)
+		{
+			radius = float.Parse (triggerXml ["Radius"].InnerText);
+				
+		}
 		float time = 0;
-		if (triggerType == TriggerType.OnOutOfLive) {
+		if (triggerType == TriggerType.OnOutOfLive)
+		{
 			time = float.Parse (triggerXml ["Time"].InnerText);
 		}
-		List<MissionObjectBase> missionObject = new List<MissionObjectBase>(); //go.GetComponent<MissionObjectBase>();
-		if(missionObject == null)Debug.LogError("A trigger was added while there is no mission object to activate it on");
-		tr.AddTriggerValue (eventReaction, triggerType, missionObject, radius, time);
+		tr.AddTriggerValue (eventReactions, triggerType, radius, time);
 		
 		
 		
@@ -143,14 +172,15 @@ public class Level
 	
 		
 	}
-
+	
 	private static void AddShip (XmlNode shipXml, ref GameObject go)
 	{
 		//add component ship here and set the proper values
 		Ship ship = go.GetOrAddComponent<Ship> ();
 		
 		//add the data to the ship here
-		string prefabName = shipXml ["Prefab"].InnerText;
+		string prefabName = shipXml ["PrefabName"].InnerText;
+		ship.prefabName = prefabName;
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName))as GameObject;
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
@@ -161,7 +191,8 @@ public class Level
 	{
 		// add component castaway here and set the values
 		Castaway castaway = go.GetOrAddComponent<Castaway> ();
-		string prefabName = cawXml ["Prefab"].InnerText;
+		string prefabName = cawXml ["PrefabName"].InnerText;
+		castaway.prefabName = prefabName;
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class MissionObjectBase : MonoBehaviour, ITriggeredObject, IVisitable {
+public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 
 
 	protected float maxlifetime=0;
@@ -28,10 +28,8 @@ public abstract class MissionObjectBase : MonoBehaviour, ITriggeredObject, IVisi
 
 	
 	}
-
-
-	virtual public void OnTriggered(EventReaction evr, TriggerType triggerType){
-		Debug.Log(name + " trigger was activated by " + triggerType + " with event " + evr.type);
+	override public void OnTriggered(EventReaction evr){
+		//override for behaviour
 	}
 /*	
 	protected virtual void CreateModel(string toLoad = "")

@@ -5,23 +5,21 @@ using System.Xml;
 [System.Serializable()]
 public class TriggerValue
 {
-	public EventReaction eventReaction;
+	public List<EventReaction> eventReactions;
 	public float radius;
 	public TriggerType type;
 	public float timeRemaining;
-	public List<MissionObjectBase> listeners;
 	
-	public TriggerValue (EventReaction eventReaction, TriggerType type, List<MissionObjectBase> listeners, float radius, float time)
+	public TriggerValue (List<EventReaction> eventReactions, TriggerType type, float radius, float time)
 	{
-		this.eventReaction = eventReaction;
+		this.eventReactions = eventReactions;
 		this.radius = radius;
 		this.type = type;
 		this.timeRemaining = time;
-		this.listeners = listeners;
 	}
 	public void Activate(){
-		foreach(MissionObjectBase obj in listeners)
-			obj.OnTriggered(this.eventReaction, this.type);
+		foreach(EventReaction evr in eventReactions)
+			evr.Activate();
 	}
 //	public string eventName {
 //		get{ return _eventName;}
@@ -50,10 +48,10 @@ public class Trigger : MonoBehaviour, IVisitable
 	
 	public delegate void TriggerCallback(TriggerValue t);
 	
-	public void AddTriggerValue (EventReaction eventReaction, TriggerType type, List<MissionObjectBase> missionObjects, float radius = 0, float time = 0)//,List<SpecMission> Missions)
+	public void AddTriggerValue (List<EventReaction> eventReactions, TriggerType type, float radius = 0, float time = 0)//,List<SpecMission> Missions)
 	{
 		//Debug.Log(aName+aRadius+aType+aTime);
-		TriggerValue t = new TriggerValue (eventReaction, type, missionObjects, radius, time);
+		TriggerValue t = new TriggerValue (eventReactions, type, radius, time);
 
 
 		if (type == TriggerType.OnTriggerEnter || type == TriggerType.OnTriggerExit) {
@@ -89,23 +87,7 @@ public class Trigger : MonoBehaviour, IVisitable
 		}
 		
 	}
-	public void CreateXml(ref XmlDocument doc, ref XmlNode objNode){
-		foreach(TriggerValue t in triggers){
-			XmlNode triggerXml = doc.CreateNode(XmlNodeType.Element, "Trigger",null);
-			objNode.AppendChild(triggerXml);
-			
-			XmlNode reactionXml = doc.CreateNode(XmlNodeType.Element, "EventReaction", null);
-			reactionXml.InnerText = t.eventReaction.ToString();
-			XmlNode radiusXml = doc.CreateNode(XmlNodeType.Element, "Radius", null);
-			radiusXml.InnerText =	t.radius.ToString();
-			XmlNode typeXml = doc.CreateNode(XmlNodeType.Element, "Type", null);
-			typeXml.InnerText = t.type.ToString();
-			
-			triggerXml.AppendChild(reactionXml);
-			triggerXml.AppendChild(radiusXml);
-			triggerXml.AppendChild(typeXml);
-		}
-	}
+	
 	void OnTriggerEnter ()
 	{
 		

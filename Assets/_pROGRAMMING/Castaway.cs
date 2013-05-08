@@ -10,10 +10,11 @@ public class Castaway : MissionObjectBase
 	override protected void UpdateConcrete(){
 		//update for mission object base must be implemented here. not in Update()	
 	}
-	override public void OnTriggered(EventReaction evr, TriggerType triggerType){
-		
-	}
+	
 	override public void AcceptVisitor(Visitor v){
 		v.Visit(this);
+	}
+	override public void OnTriggered(EventReaction evr){
+	
 	}
 }

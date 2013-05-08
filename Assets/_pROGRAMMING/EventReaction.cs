@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 [System.SerializableAttribute()]
-public class EventReaction
+public class EventReaction 
 {
 	public enum Type{
 		Spawn,
@@ -20,6 +20,7 @@ public class EventReaction
 	public Type type;
 	public string messageName;
 	public Vector3 pos;
+	public List<TriggeredObject> listeners;
 	
 	public EventReaction(XmlNode node)
 	{
@@ -37,4 +38,10 @@ public class EventReaction
 		messageName=node["MessageName"].InnerText;
 		type = typeHelper[node["Type"].InnerText];
 	}
+	public void Activate(){
+		foreach(TriggeredObject obj in listeners){
+			obj.OnTriggered(this);
+		}
+	}
+
 }

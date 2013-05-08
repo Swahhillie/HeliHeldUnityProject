@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public interface ITriggeredObject {
+public abstract class TriggeredObject : MonoBehaviour{
 	//dennis will implement a reaction class
-	void OnTriggered(EventReaction eventReaction, TriggerType triggerType);
+	public abstract void OnTriggered(EventReaction eventReaction);
 }

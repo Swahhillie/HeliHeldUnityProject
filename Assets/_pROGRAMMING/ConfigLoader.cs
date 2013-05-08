@@ -152,6 +152,10 @@ public class ConfigLoader : MonoBehaviour
 		}
 		
 		//migrate these to the enums class, this will make it easier to serialize data
+		foreach(TriggerType t in System.Enum.GetValues(typeof(TriggerType))){
+			triggerTypes.Add(t.ToString(), t);
+		}
+		/*
 		triggerTypes ["None"] = TriggerType.None;
 		triggerTypes ["TriggerEnter"] = TriggerType.OnTriggerEnter;
 		triggerTypes ["TriggerExit"] = TriggerType.OnTriggerExit;
@@ -160,13 +164,18 @@ public class ConfigLoader : MonoBehaviour
 		triggerTypes ["Rescue"] = TriggerType.OnRescued;
 		triggerTypes ["OutOfLive"] = TriggerType.OnOutOfLive;
 		triggerTypes ["Activate"] = TriggerType.OnActivate;
+		*/
+		foreach(Reaction t in System.Enum.GetValues(typeof(Reaction))){
+			reactionTypes.Add(t.ToString(), t);
+		}
 		
+		/*
 		reactionTypes ["None"] = Reaction.None;
 		reactionTypes ["Destroy"] = Reaction.Destroy;
 		reactionTypes ["Spawn"] = Reaction.Spawn;
 		reactionTypes ["Rescued"] = Reaction.Rescued;
 		reactionTypes ["OutOfLive"] = Reaction.OutOfLive;
-
+		 */
 
 		
 		StreamReader reader = new StreamReader (Application.dataPath + "\\" + configFilePath);
@@ -301,6 +310,18 @@ public class ConfigLoader : MonoBehaviour
 		} else {
 			Debug.LogError ("Couldnt get setting " + fieldName + " from settings map ");
 			return false;
+		}
+	}
+	public static IEnumerator FindListeners(EventReaction evr, string[] names)
+	{
+		yield return null;
+		foreach(string name in names){
+			Debug.Log("Looking for listener object with name " + name);
+			GameObject go = GameObject.Find(name);
+			Debug.Log("Found " + go, go);
+			TriggeredObject trObj = go.GetComponent<TriggeredObject>();
+			evr.listeners.Add(trObj);
+			
 		}
 	}
 

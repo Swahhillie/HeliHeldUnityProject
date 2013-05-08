@@ -13,5 +13,6 @@ public class Ship : MissionObjectBase
 	override public void AcceptVisitor(Visitor v){
 		v.Visit(this);
 	}
+	
 
 }

@@ -64,9 +64,11 @@ public class LevelSaver : MonoBehaviour {
 		Debug.Log("Gameobjects to save count = " + toSaveGo.Length);
 				
 		int i = 0;
+		//System.Array.ForEach<GameObject>(toSaveGo, x => x.name = x.name + "_"+ i.ToString("000") + "_");
+		
 		foreach(GameObject go in toSaveGo){
 			
-			go.name = go.name + "_" + i + "_"; //give all gos that will be safed a unique names
+			go.name = go.name + "_" + i.ToString("000") + "_"; //give all gos that will be safed a unique names
 			
 			i++;
 		}
@@ -80,6 +82,11 @@ public class LevelSaver : MonoBehaviour {
 				visitable.AcceptVisitor(xmlVisitor); // add each component to the active gameObject
 			}
 		
+		}
+		
+		//cleanup names
+		foreach(GameObject go in toSaveGo){
+			go.name = go.name.Substring(0, go.name.Length - 5); // leave the number out of it
 		}
 		
 		

@@ -1,18 +1,71 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Levels>
-  <Level name="yurudi">
+  <Level name="level3Remade">
     <Object>
-      <Name>castawayTemp_0_</Name>
+      <Name>daniel_000_</Name>
+      <Pos>(41.6, 53.5, 13.9)</Pos>
+      <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Castaway>
+        <Spawn>0</Spawn>
+        <PrefabName>castawayPrefab</PrefabName>
+      </Castaway>
+    </Object>
+    <Object>
+      <Name>dyon_001_</Name>
+      <Pos>(2553.9, 53.5, 3796.2)</Pos>
+      <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Castaway>
+        <Spawn>0</Spawn>
+        <PrefabName>CastawayPrefab</PrefabName>
+      </Castaway>
+    </Object>
+    <Object>
+      <Name>TLocateBoat_002_</Name>
+      <Pos>(2665.0, 0.0, 2803.8)</Pos>
+      <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Ship>
+        <Spawn>0</Spawn>
+        <PrefabName>dinkyPrefab</PrefabName>
+      </Ship>
+      <Trigger>
+        <EventReaction>
+          <Type>Say</Type>
+          <Pos>(0.0, 0.0, 0.0)</Pos>
+          <MessageName>"Hallo"</MessageName>
+        </EventReaction>
+        <Radius>75</Radius>
+        <Type>OnTriggerEnter</Type>
+      </Trigger>
+    </Object>
+    <Object>
+      <Name>TLocateBoat_003_</Name>
+      <Pos>(1006.3, 0.0, 1873.8)</Pos>
+      <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Trigger>
+        <EventReaction>
+          <Type>Say</Type>
+          <Pos>(0.0, 0.0, 0.0)</Pos>
+          <MessageName>Hallo</MessageName>
+        </EventReaction>
+        <Radius>75</Radius>
+        <Type>OnTriggerEnter</Type>
+      </Trigger>
+    </Object>
+    <Object>
+      <Name>castawayTemp_004_</Name>
       <Pos>(2819.1, 50.9, 725.5)</Pos>
       <Rot>(0.0, 0.0, 0.0)</Rot>
       <Castaway>
         <Spawn>0</Spawn>
-        <PrefabName>
-        </PrefabName>
+        <PrefabName>CastawayPrefab</PrefabName>
       </Castaway>
       <Trigger>
-        <EventReaction>EventReaction</EventReaction>
-        <Radius>60</Radius>
+        <EventReaction>
+          <Type>Say</Type>
+          <Pos>(0.0, 0.0, 0.0)</Pos>
+          <MessageName>Hallo</MessageName>
+        </EventReaction>
+        <Radius>50</Radius>
         <Type>OnTriggerEnter</Type>
       </Trigger>
     </Object>

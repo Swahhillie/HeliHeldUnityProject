@@ -34,7 +34,7 @@
 					
 					<Trigger>					
 						<EventName>FindBoat</EventName>
-						<Type>TriggerEnter</Type>
+						<Type>OnTriggerEnter</Type>
 						<Radius>75</Radius>						
 						
 						<EventReaction>
@@ -45,21 +45,22 @@
 					
 				</Object>
 				<Object>
-					<Name>TLocateBoat</Name>
+					<Name>DinkyAndTrigger</Name>
 					<Pos>2664.96,0,2803.76</Pos>
 					<Rot>0,0,0</Rot>	
 					<Trigger>	
 						<EventName>FindBoat</EventName>
-						<Type>TriggerEnter</Type>
+						<Type>OnTriggerEnter</Type>
 						<Radius>75</Radius>
 						<EventReaction>
 							<Type>Say</Type>
-							<MessageName>"Hallo"</MessageName>
+							<MessageName>Hallo</MessageName>
+							<Listener>DinkyAndTrigger</Listener>
 						</EventReaction>
 					</Trigger>
 
 					<Ship>
-						<Prefab>dinkyPrefab</Prefab>
+						<PrefabName>dinkyPrefab</PrefabName>
 
 					</Ship>
 				</Object>
@@ -70,7 +71,7 @@
 					<Rot>0,0,0</Rot>
 					<Castaway>				
 						<Spawn>0</Spawn>
-						<Prefab>CastawayPrefab</Prefab>
+						<PrefabName>CastawayPrefab</PrefabName>
 					</Castaway>
 				</Object>
 				<Object>
@@ -78,7 +79,7 @@
 					<Pos>41.64,53.5,13.88</Pos>
 					<Rot>0,0,0</Rot>
 					<Castaway>		
-						<Prefab>castawayPrefab</Prefab>
+						<PrefabName>castawayPrefab</PrefabName>
 					</Castaway>
 				</Object>
 
