@@ -139,6 +139,7 @@ public class ConfigLoader : MonoBehaviour
 	static private Dictionary<string, Menu> menus = new Dictionary<string, Menu> ();
 	public static Dictionary<string, TriggerType> triggerTypes = new Dictionary<string, TriggerType> (); // use this to quickly get Action enum value from the string representation
 	public static Dictionary<string, Reaction> reactionTypes = new Dictionary<string, Reaction> ();
+	public static Dictionary<string, Message> messages = new Dictionary<string,Message>();
 	public static ConfigLoader instance = null;
 	public Level activeLevel;
 	
@@ -192,6 +193,9 @@ public class ConfigLoader : MonoBehaviour
 		
 		ParseMenus (xml);
 		
+		
+		ParseMessages(xml);
+		
 		menus ["MainMenu"].LoadMenu ();
 		
 	}
@@ -236,9 +240,6 @@ public class ConfigLoader : MonoBehaviour
 			//fill a single level with gos;
 		}
 		Debug.Log (report);
-		
-
-	
 	}
 
 	void ParseMenus (XmlDocument xml)
@@ -249,6 +250,15 @@ public class ConfigLoader : MonoBehaviour
 			Menu m = new Menu (menuName, menuXml);
 			menus [menuName] = m;
 			
+		}
+	}
+	
+	void ParseMessages (XmlDocument xml)
+	{
+		XmlNodeList messageList = xml.GetElementsByTagName ("Message");
+		foreach (XmlNode messageXml in messageList) 
+		{
+			messages[messageXml["Name"].InnerText] = new Message(messageXml);
 		}
 	}
 

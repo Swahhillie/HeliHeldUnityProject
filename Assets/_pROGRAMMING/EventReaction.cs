@@ -33,9 +33,9 @@ public class EventReaction
 			typeHelper["Displace"]=Type.Displace;
 			typeHelper["Enable"]=Type.Enable;
 			typeHelper["Disable"]=Type.Disable;
-		}	
-		
-		messageName=node["MessageName"].InnerText;
+		}
+
+		messageName = node["MessageName"].InnerText;
 		type = typeHelper[node["Type"].InnerText];
 	}
 	public void Activate(){

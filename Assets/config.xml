@@ -89,13 +89,14 @@
 	
 	<Messages>
 		<Message>
-			<Name> Hallo</Name>
-			<Message>Hallo daar speler.</Message>
+			<Name>Hallo</Name>
+			<Text>Hallo daar speler.</Text>
+			<Audio>Hello</Audio>
 		</Message>
 		<Message>
-			<Name> Move</Name>
-			<Message>Goed gedaan! Vlieg nu terug naar de basis. Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Message>
-			
+			<Name>Move</Name>
+			<Text>Goed gedaan! Vlieg nu terug naar de basis. Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
+			<Audio>Hello</Audio>			
 		</Message>
 	</Messages>
 	<Settings>

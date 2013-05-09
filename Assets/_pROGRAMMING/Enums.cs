@@ -24,3 +24,8 @@ public enum MissionObject{
 	Ship,
 	Castaway
 }
+
+public enum Language{
+	Dutch,
+	English
+}

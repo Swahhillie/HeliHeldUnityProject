@@ -1,22 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class HudScript : MonoBehaviour 
+public class HudScript : TriggeredObject  
 {
 	private float _width;	
 	private string _message;
 	private bool _active;
-	
-	
-	public string message
-	{
-		get{return _message;}
-		set
-		{ 
-			_message=value;
-			StartCoroutine("ActivateHud");
-		}
-	}
 	
 	public float width
 	{
@@ -30,17 +19,8 @@ public class HudScript : MonoBehaviour
 		TextMesh tMesh = this.GetComponent<TextMesh>();
 		tMesh.font.material.color=Color.green;
 		tMesh.text="";
-		/*int i=0;
-		int end =_message.Length;
-		do
-		{	
-			tMesh.text+=_message[i];
-			++i;
-			yield return new WaitForSeconds(time);
-		}
-		while(i<end);
-		*/
-		for(int i = 0; i < _message.Length; i++){
+		for(int i = 0; i < _message.Length; i++)
+		{
 			tMesh.text+= _message[i];
 			yield return new WaitForSeconds(time);
 		}
@@ -91,5 +71,20 @@ public class HudScript : MonoBehaviour
 			yield return new WaitForSeconds(0.01f);
 		}
 				
+	}
+	
+	override public void OnTriggered(EventReaction evr)
+	{
+		if(evr.type==EventReaction.Type.Say)
+		{
+			Message message;
+			if(!ConfigLoader.messages.TryGetValue(evr.messageName,out message))
+			{
+				Debug.Log("Missing Message: "+evr.messageName);
+			}	
+			_message = message.text;
+			StopAllCoroutines();
+			StartCoroutine("ActivateHud");
+		}
 	}
 }
