@@ -14,7 +14,8 @@ public class Helicopter : MonoBehaviour
 	public float avoidRadius = 20.0f; //Repulsor bubble around the helicopter
 	public float rotationSpeed = 360.0f; // 360 = 1 rotation per second
 	public float decendRate = .2f;
-	
+	public float leanSpeed = -25.0f; //degrees the helicopter tilts per second
+	public float rightSpeed = .6f; //how many seconds it takes for the helicopter to completly right itself after rotation
 	//public float raiseSpeed= .1f; // should be applied to normalized direction vector, so loww
 	
 	private Vector3 velocity;
@@ -38,9 +39,13 @@ public class Helicopter : MonoBehaviour
 	}
 	public float closestPoint = 0;
 	public float distanceToWater = 0;
+	
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer(float x){
 		transform.Rotate(Vector3.up, x * rotationSpeed * Time.deltaTime); //rotate over the y axis
+		
+		Quaternion goalRotation = Quaternion.AngleAxis(x * leanSpeed * Time.deltaTime, transform.forward) * transform.rotation; //lean over to a side
+		transform.rotation = Quaternion.Slerp(goalRotation , Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation, Time.deltaTime * rightSpeed);// bring upright overtime
 	}
 	public void Accelerate(Vector3 direction)
 	{
