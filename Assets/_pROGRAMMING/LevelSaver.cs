@@ -3,6 +3,8 @@ using System.Collections;
 using System.Xml;
 using System.Collections.Generic;
 
+
+
 public class LevelSaver : MonoBehaviour {
 
 	// Use this for initialization
@@ -15,9 +17,18 @@ public class LevelSaver : MonoBehaviour {
 	public string levelBase = "levelBase.xml";
 	public string outputFile = "levelOutput.xml";
 	
+	public List<Button3D> menuToSave;
+	public bool saveMenu = false;
+	public string menuName = "";
+	
 	void Start () {
 		levelName = ""; // stops the editor from remembering
+		menuName = "";
+		saveMenu = false;
 		shouldSave = false;
+		menuToSave.Clear();
+		
+		
 	}
 	
 	// Update is called once per frame
@@ -32,6 +43,16 @@ public class LevelSaver : MonoBehaviour {
 				SaveLevel();
 			}
 			
+		}
+		if(saveMenu == true){
+			saveMenu = false;
+			if(menuName == ""){
+				Debug.LogError("Enter a menu name first");
+				return;
+			}
+			else{
+				SaveMenu();
+			}
 		}
 	
 	}
@@ -101,5 +122,32 @@ public class LevelSaver : MonoBehaviour {
 		
 		//doc.WriteContentTo(writer);
 		
+	}
+	
+	private void SaveMenu(){
+		Debug.Log("Saving menu " + menuName);
+		
+		
+		XmlDocument doc = new XmlDocument();
+		doc.Load(Application.dataPath + "\\" +levelBase);
+		
+		XmlNode root = doc.DocumentElement;
+		
+		XmlNode testChild = doc.CreateNode(XmlNodeType.Element,"Menu", "");
+		
+		
+		XmlElement tc = (XmlElement)testChild;//
+		tc.SetAttribute("name", menuName);
+		
+		root.AppendChild(testChild);
+		
+		XMLVisitor xmlVisitor = new XMLVisitor(doc);
+		menuToSave.ForEach(x => x.AcceptVisitor(xmlVisitor));
+		
+		XmlTextWriter writer = new XmlTextWriter(Application.dataPath + "\\" +outputFile, System.Text.Encoding.ASCII);
+		writer.Formatting = Formatting.Indented;
+		//doc.Save(Application.dataPath + "\\" +outputFile);
+		doc.Save(writer);
+		writer.Close();
 	}
 }

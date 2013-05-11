@@ -9,7 +9,11 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 	protected float lifetime=0;
 	protected bool spawned=false;
 	protected bool saved=false;
-	public int spawn = 0;
+	public enum SpawnType{
+		Start = 0,
+		Later = 1
+	}
+	public SpawnType spawn = SpawnType.Start;
 	protected MissionObject _type;
 	public string prefabName;
 	//protected Dictionary<string,Reaction> evt = new Dictionary<string,Reaction>();

@@ -119,6 +119,35 @@ public class XMLVisitor : Visitor
 		_writeTarget.GetElementsByTagName ("Level") [0].AppendChild (_activeObject);
 				
 	}
+	override public void Visit(Button3D v){
+		GameObject go  = v.gameObject;
+		
+		_activeObject = _writeTarget.CreateNode (XmlNodeType.Element, "Button", null);
+		//name
+		XmlNode nameXml = _writeTarget.CreateNode (XmlNodeType.Element, "Name", null);
+		nameXml.InnerText = go.name;
+		_activeObject.AppendChild (nameXml);
+		
+		//label
+		XmlNode labelXml = _writeTarget.CreateNode (XmlNodeType.Element, "Label", null);
+		labelXml.InnerText = v.textMesh.text;
+		_activeObject.AppendChild (labelXml);
+		//position
+		XmlNode posXml = _writeTarget.CreateNode (XmlNodeType.Element, "Pos", null);
+		posXml.InnerText = go.transform.position.ToString ();
+		_activeObject.AppendChild (posXml);
+		//rotation
+		XmlNode rotXml = _writeTarget.CreateNode (XmlNodeType.Element, "Rot", null);
+		rotXml.InnerText = go.transform.eulerAngles.ToString ();
+		_activeObject.AppendChild (rotXml);
+		
+		XmlNode functionXml = _writeTarget.CreateNode(XmlNodeType.Element, "Function", null);
+		functionXml.InnerText = v.command;
+		_activeObject.AppendChild (functionXml);
+		
+		_writeTarget.GetElementsByTagName ("Menu") [0].AppendChild (_activeObject);
+		
+	}
 
 	public XmlNode GetXmlResult ()
 	{

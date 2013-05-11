@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class Button3D : MonoBehaviour {
+public class Button3D : MonoBehaviour, IVisitable {
 
 	public delegate void Callback(string command);
 	Callback callback = null;
-	string command;
+	public string command;
 	
 	
 	
@@ -40,5 +40,8 @@ public class Button3D : MonoBehaviour {
 			if(_tMesh == null)_tMesh = gameObject.GetComponent<TextMesh>();
 			return  _tMesh;
 		}
+	}
+	public void AcceptVisitor(Visitor v){
+		v.Visit(this);
 	}
 }
