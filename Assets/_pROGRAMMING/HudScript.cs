@@ -77,11 +77,8 @@ public class HudScript : TriggeredObject
 	{
 		if(evr.type==EventReaction.Type.Say)
 		{
-			Message message;
-			if(!ConfigLoader.messages.TryGetValue(evr.messageName,out message))
-			{
-				Debug.Log("Missing Message: "+evr.messageName);
-			}	
+			Message message = ConfigLoader.GetMessage(evr.messageName);
+			
 			_message = message.text;
 			StopAllCoroutines();
 			StartCoroutine("ActivateHud");

@@ -73,7 +73,7 @@ public class Trigger : MonoBehaviour, IVisitable
 	public delegate void TriggerCallback(TriggerValue t);
 	
 	public void Start(){
-		Debug.Log("Changing trigger to save layer");
+		Debug.Log("Changing " + this.name + " to save layer");
 		gameObject.layer = LayerMask.NameToLayer("SaveLayer");
 	}
 	

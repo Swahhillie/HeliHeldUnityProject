@@ -18,7 +18,12 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 	private void Awake(){
 		_type = MissionObject.None;
 		AwakeConcrete();
-	}	
+	}
+	public void Start(){
+		Debug.Log("Changing " + this.name + " to save layer", this.gameObject);
+		gameObject.layer = LayerMask.NameToLayer("SaveLayer");
+	}
+		
 	protected abstract void AwakeConcrete();
 	public virtual void SetVariables( int spawn, float aLifetime)
 	{
@@ -30,6 +35,25 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 	}
 	override public void OnTriggered(EventReaction evr){
 		//override for behaviour
+		Debug.Log(gameObject.name + " received eventReaction of type : " + evr.type);
+		switch(evr.type){
+			case EventReaction.Type.Destroy:
+				
+				GameObject.Destroy(gameObject);
+				break;
+			case EventReaction.Type.Displace:
+				transform.position = evr.pos;
+				break;
+			case EventReaction.Type.Enable:
+				gameObject.SetActive(true);
+				break;
+			case EventReaction.Type.Disable:
+				gameObject.SetActive(false);
+				break;
+			default:
+				Debug.Log("Mission Object base does not implement " + evr.type + " eventreaction");
+				break;
+		}
 	}
 /*	
 	protected virtual void CreateModel(string toLoad = "")

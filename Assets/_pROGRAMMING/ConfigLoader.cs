@@ -255,6 +255,7 @@ public class ConfigLoader : MonoBehaviour
 	
 	void ParseMessages (XmlDocument xml)
 	{
+		
 		XmlNodeList messageList = xml.GetElementsByTagName ("Message");
 		foreach (XmlNode messageXml in messageList) 
 		{
@@ -321,6 +322,17 @@ public class ConfigLoader : MonoBehaviour
 			Debug.LogError ("Couldnt get setting " + fieldName + " from settings map ");
 			return false;
 		}
+	}
+	public static Message GetMessage(string messageName){
+		Message message = null;
+		if(!ConfigLoader.messages.TryGetValue(messageName,out message))
+		{
+			Debug.LogError("Missing Message: " + messageName + ", fabricating a placeholder");
+			message = messages["DefaultMessage"];
+			
+			
+		}
+		return message;	
 	}
 	public static IEnumerator FindListeners(EventReaction evr, string[] names)
 	{

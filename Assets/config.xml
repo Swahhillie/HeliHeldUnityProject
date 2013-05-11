@@ -98,6 +98,12 @@
 			<Text>Goed gedaan! Vlieg nu terug naar de basis. Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
 			<Audio>Hello</Audio>			
 		</Message>
+		<Message>
+			<Name>DefaultMessage</Name>
+			<Text>PLACEHOLDER MESSAGE</Text>
+			<Audio>Hello</Audio>			
+		</Message>
+		
 	</Messages>
 	<Settings>
 		<Setting name="flightHeight" value="200"></Setting>
