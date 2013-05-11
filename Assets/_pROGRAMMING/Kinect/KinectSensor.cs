@@ -65,7 +65,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	private bool newDepth = false;
 	[HideInInspector]
 	private short[] depthPlayerData;
-	
+	public bool connected = false;
 	//image stream handles for the kinect
 	private IntPtr colorStreamHandle;
 	private IntPtr depthStreamHandle;
@@ -138,9 +138,11 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			KinectSensor.Instance = this;
 			
 			NativeMethods.NuiSetDeviceStatusCallback(new NuiStatusProc());
+			connected = true;
 		}
 		catch (Exception e)
 		{
+			connected = false;
 			Debug.Log(e.Message);
 		}
 	}
