@@ -20,6 +20,7 @@ public class Menu
 	private bool _isActive = false;
 	bool isStarted = false;
 	private float hoverStart; // time at wich the player started hovering over a button;
+	public GameObject selectionPlane;
 	
 	void Start ()
 	{
@@ -29,7 +30,7 @@ public class Menu
 		
 		ConfigLoader.GetValue ("buttonTime", ref buttonTimer);
 		mouse = GameObject.Find ("Mouse").GetComponent<KinectMouse> ();
-		
+		selectionPlane = GameObject.Find("hoverSelectionPlane");
 		
 	}
 
@@ -98,7 +99,19 @@ public class Menu
 					hoverStart = Time.time;
 					hoveringOver = -1;
 				}
+				else{
+					selectionPlane.transform.position = b.transform.position;
+					selectionPlane.transform.up = -b.transform.forward;
+					float elapsed = Time.time - hoverStart;
+					float percent = elapsed / buttonTimer;
+					Debug.Log(percent);
+					selectionPlane.renderer.material.SetFloat("_Cutoff", percent);
+				}
 			
+			}
+			else{
+				hoveringOver = -1;
+				selectionPlane.transform.position = Vector3.zero;
 			}
 		}
 	}
