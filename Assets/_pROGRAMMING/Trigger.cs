@@ -106,7 +106,10 @@ public class Trigger : MonoBehaviour, IVisitable
 	}
 	public void OnDrawGizmos(){
 		//draw the radius of all triggers
+<<<<<<< HEAD
 		Gizmos.color = new Color(0, 1, 0, 1);
+=======
+>>>>>>> Editor Utility to save to xml file
 		triggers.FindAll(x=>x.type == TriggerType.OnTriggerEnter || x.type == TriggerType.OnTriggerExit)
 			.ForEach(x=> Gizmos.DrawWireSphere(transform.position, x.radius));
 	}
