@@ -104,6 +104,11 @@ public class Trigger : MonoBehaviour, IVisitable
 		}
 		triggers.Add (t);
 	}
+	public void OnDrawGizmos(){
+		//draw the radius of all triggers
+		triggers.FindAll(x=>x.type == TriggerType.OnTriggerEnter || x.type == TriggerType.OnTriggerExit)
+			.ForEach(x=> Gizmos.DrawWireSphere(transform.position, x.radius));
+	}
 	public void AcceptVisitor(Visitor v){
 		v.Visit(this);
 	}
