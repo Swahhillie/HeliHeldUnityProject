@@ -274,8 +274,8 @@ public class ConfigLoader : MonoBehaviour
 	public static Vector3 ParseVec3 (string s)
 	{
 		//Split by comma and create a vector 3
-		s.Replace("(", null);
-		s.Replace(")", null);
+		s = s.Replace("(", null);
+		s = s.Replace(")", null);
 		string[] elements = s.Split (',');
 		if (elements.Length != 3)
 			Debug.LogError ("Passed Vector3 that does not have 3 elements");

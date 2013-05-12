@@ -137,6 +137,8 @@ public class LevelSaver : MonoBehaviour
 		
 		root.AppendChild (testChild);
 		
+		XmlNode objectsXml = doc.CreateNode (XmlNodeType.Element, "Objects", "");
+		testChild.AppendChild(objectsXml);
 		XMLVisitor xmlVisitor = new XMLVisitor (doc);
 		
 //		IVisitable[] safeable;

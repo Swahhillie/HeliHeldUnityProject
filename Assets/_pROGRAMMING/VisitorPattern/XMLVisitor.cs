@@ -64,6 +64,7 @@ public class XMLVisitor : Visitor
 			listenerXml.InnerXml = listener.gameObject.name;
 			listenersXml.AppendChild(listenerXml);
 		}
+		evrXml.AppendChild(listenersXml);
 	}
 	
 	override public void Visit (Castaway v)
@@ -116,7 +117,7 @@ public class XMLVisitor : Visitor
 		rotXml.InnerText = go.transform.eulerAngles.ToString ();
 		_activeObject.AppendChild (rotXml);
 		
-		_writeTarget.GetElementsByTagName ("Level") [0].AppendChild (_activeObject);
+		_writeTarget.GetElementsByTagName ("Objects") [0].AppendChild (_activeObject);
 				
 	}
 	override public void Visit(Button3D v){
