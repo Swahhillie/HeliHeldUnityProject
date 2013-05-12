@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Levels>
-  <Menu name="test menu please ignore">
-    <Button>
-      <Name>load</Name>
-      <Label>load buton</Label>
-      <Pos>(3135.3, 28.0, 3742.9)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>
-      </Function>
-    </Button>
-    <Button>
-      <Name>button3DPrefab</Name>
-      <Label>Hello World</Label>
-      <Pos>(3135.3, 24.2, 3742.9)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>
-      </Function>
-    </Button>
-  </Menu>
+  <Menu name="Derpaton!" />
 </Levels>
