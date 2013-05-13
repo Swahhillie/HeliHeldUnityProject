@@ -156,7 +156,9 @@ public class Helicopter : MonoBehaviour
 				{
 					//the mib is in rescue zone of the helicopter
 					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.green);
-					rescueSuccess = true;
+					
+					//the mission object is given a chance to fail the rescue;
+					rescueSuccess = closestMib.AttemptRescue();
 					
 				}
 				else

@@ -163,6 +163,11 @@ public class Trigger : MonoBehaviour, IVisitable
 		}
 		*/	
 	}
+	public void OnRescue()
+	{
+		//called by a mission object base when it is rescued
+		triggers.FindAll(t => t.type == TriggerType.OnRescued).ForEach(x=> TriggerActivate(x));
+	}
 	private void TriggerActivate(TriggerValue trigger){
 		//called if a trigger is activated, calls all the functions that are listening
 		trigger.Activate();
