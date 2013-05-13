@@ -59,6 +59,21 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 				break;
 		}
 	}
+	public bool AttemptRescue()
+	{
+		//Attempt rescue is called by the helicopter if it is in position and the player makes a rescue attempt.
+		
+		bool rescueSuccess = false;
+		//some functionality here to determine if the rescue should fail or succeed
+		rescueSuccess = true;
+		
+		//if this object has a trigger attached to it that goes off on rescue. Make sure that it is called.
+		Trigger t = gameObject.GetComponent<Trigger>();
+		if(t != null){
+			t.OnRescue();
+		}
+		return rescueSuccess;
+	}
 /*	
 	protected virtual void CreateModel(string toLoad = "")
 	{
