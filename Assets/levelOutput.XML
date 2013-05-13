@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="us-ascii"?>
+<<<<<<< HEAD
 <HeliHeld>
   <Level name="newXml">
 <<<<<<< HEAD
@@ -55,3 +56,8 @@
 >>>>>>> Small updates
   </Level>
 </HeliHeld>
+=======
+<Levels>
+  <Menu name="Menu2" />
+</Levels>
+>>>>>>> Github wants me to commit this
