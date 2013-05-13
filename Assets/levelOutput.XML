@@ -3,64 +3,53 @@
   <Level name="level3">
     <Objects>
       <Object>
-        <Name>castawayTemp_000_</Name>
-        <Pos>(2819.1, 50.9, 725.5)</Pos>
+        <Name>TriggerTimer_000_</Name>
+        <Pos>(2820.0, 128.2, 364.5)</Pos>
         <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
+        <Trigger>
+          <EventReaction>
+            <Type>Say</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>ToLate</MessageName>
+            <Listeners>
+              <Listener>HudObject</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>0</Radius>
+          <Type>Timer</Type>
+          <RepeatCount>1</RepeatCount>
+          <TimeToTrigger>10</TimeToTrigger>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+      </Object>
+      <Object>
+        <Name>TriggerInitial_001_</Name>
+        <Pos>(2820.0, 128.2, 364.5)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
         <Trigger>
           <EventReaction>
             <Type>Say</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
-              <Listener>castawayTemp_000_</Listener>
+              <Listener>HudObject</Listener>
             </Listeners>
           </EventReaction>
-          <Radius>50</Radius>
+          <EventReaction>
+            <Type>StartTimer</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>
+            </MessageName>
+            <Listeners>
+              <Listener>TriggerTimer_000_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>86.12</Radius>
           <Type>OnTriggerEnter</Type>
-          <RepeatCount>0</RepeatCount>
+          <RepeatCount>1</RepeatCount>
+          <TimeToTrigger>0</TimeToTrigger>
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
-      </Object>
-      <Object>
-        <Name>castawayTemp_001_</Name>
-        <Pos>(2819.1, 50.9, 1008.4)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Trigger>
-          <EventReaction>
-            <Type>Disable</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-              <Listener>castawayTemp_001_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>50</Radius>
-          <Type>Counting</Type>
-          <RepeatCount>1</RepeatCount>
-          <CountToTrigger>3</CountToTrigger>
-        </Trigger>
-        <Trigger>
-          <EventReaction>
-            <Type>Count</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-              <Listener>castawayTemp_001_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>50</Radius>
-          <Type>OnRescued</Type>
-          <RepeatCount>1</RepeatCount>
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
       </Object>
     </Objects>
   </Level>

@@ -157,11 +157,7 @@ public class Level
 			radius = float.Parse (triggerXml ["Radius"].InnerText);
 				
 		}
-		float time = 0;
-		if (triggerType == TriggerType.OnOutOfLive)
-		{
-			time = float.Parse (triggerXml ["Time"].InnerText);
-		}
+		float time = float.Parse (triggerXml ["TimeToTrigger"].InnerText);	
 		
 		int repeatCount = int.Parse(triggerXml["RepeatCount"].InnerText);
 		

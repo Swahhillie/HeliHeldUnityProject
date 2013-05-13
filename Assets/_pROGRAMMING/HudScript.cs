@@ -45,7 +45,7 @@ public class HudScript : TriggeredObject
 		for(int i=(int)(this.transform.localScale.x*10.0f);i<=10;++i)
 		{
 			this.transform.localScale=new Vector3((float)i/10,this.transform.localScale.y,0.0f);
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(0.01f); 
 		}
 		for(int i=(int)(this.transform.localScale.y*10.0f);i<=10;++i)
 		{
@@ -78,7 +78,6 @@ public class HudScript : TriggeredObject
 		if(evr.type==EventReaction.Type.Say)
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
-			
 			_message = message.text;
 			StopAllCoroutines();
 			StartCoroutine("ActivateHud");

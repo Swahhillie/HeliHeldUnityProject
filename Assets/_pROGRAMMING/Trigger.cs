@@ -18,7 +18,7 @@ public class TriggerValue
 	private int currentTriggeredCount = 0; //how many times has the trigger been added to.
 	
 	public List<EventReaction> eventReactions;
-	
+	private bool _timerStarted = false;
 	public TriggerValue (List<EventReaction> eventReactions, TriggerType type, float radius, float time, int triggerCount, int repeatCount)
 	{
 		this.eventReactions = eventReactions;
@@ -29,7 +29,15 @@ public class TriggerValue
 		this.countToTrigger = triggerCount;
 		this.maxRepeatCount = repeatCount;
 	}
-
+	public void StartTimer()
+	{
+		_timerStarted = true;
+	}
+	public void StopTimer()
+	{
+		_timerStarted = false;
+		_timeRemaining = timeToTrigger;
+	}
 	public void Activate ()
 	{
 		
@@ -41,16 +49,19 @@ public class TriggerValue
 						//activate the evrs
 					
 						//reset the counter, if the trigger has a repeat count it should start counting again
+						Debug.Log("Counter trigger set off");
 						currentTriggeredCount = 0;
 					
 					} else {
 						//one has been added to the trigger count
+						Debug.Log("Counter trigger ticked");
 						return;
 					}
 				}
 			}
-		
+			Debug.Log("Trigger set off, Firing eventreactions");
 			foreach (EventReaction evr in eventReactions) {
+				
 				evr.Activate ();
 			}
 			currentRepeatCount ++;
@@ -59,6 +70,7 @@ public class TriggerValue
 
 	public void Update ()
 	{
+		
 		if (isRunning) {
 			_timeRemaining -= Time.deltaTime;
 			if (_timeRemaining < 0) {//activate the trigger and reset it.
@@ -66,6 +78,7 @@ public class TriggerValue
 				_timeRemaining = timeToTrigger;
 			}
 		}
+
 	}
 
 	public float timeRemaining {
@@ -73,7 +86,16 @@ public class TriggerValue
 	}
 
 	public bool isRunning {
-		get{ return currentRepeatCount < maxRepeatCount;}
+		get
+		{
+		 if(type == TriggerType.Timer && _timerStarted == false){
+		 	return false;
+		 }
+		 else{
+		 	return currentRepeatCount < maxRepeatCount;
+		 }
+		 
+		}
 	}
 //	public string eventName {
 //		get{ return _eventName;}
@@ -151,7 +173,8 @@ public class Trigger : TriggeredObject, IVisitable
 
 	void Update ()
 	{
-		triggers.FindAll (t => t.type == TriggerType.OnOutOfLive).ForEach (x => x.Update ());
+		//update timed triggers
+		triggers.FindAll (t => t.type == TriggerType.Timer).ForEach (x => x.Update ());
 		
 	}
 	
@@ -207,10 +230,13 @@ public class Trigger : TriggeredObject, IVisitable
 	
 	override public void OnTriggered (EventReaction evr)
 	{
-		Debug.Log ("Triggered was triggered, this is usefull for counting");
+		Debug.Log ("Trigger receveid event with eventType: " + evr.type.ToString(), this);
 		switch (evr.type) {
 		case EventReaction.Type.Count:
 			triggers.FindAll (t => t.type == TriggerType.Counting).ForEach (x => TriggerActivate (x));
+			break;
+		case EventReaction.Type.StartTimer:
+			triggers.FindAll(t=> t.type == TriggerType.Timer).ForEach(x => x.StartTimer());
 			break;
 			
 		default:

@@ -5,8 +5,7 @@ public enum Reaction{
 	None,
 	Destroy,
 	Spawn,
-	Rescued,
-	OutOfLive
+	Rescued
 }
 
 public enum TriggerType{
@@ -16,8 +15,8 @@ public enum TriggerType{
 	OnDeath,
 	OnSpawn,
 	OnRescued,
-	OnOutOfLive,
 	Counting,
+	Timer,
 	OnActivate
 }
 public enum MissionObject{

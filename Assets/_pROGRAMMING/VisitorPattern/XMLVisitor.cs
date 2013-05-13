@@ -64,6 +64,8 @@ public class XMLVisitor : Visitor
 			//saving the repeat count and the trigger count
 			XmlNode repeatCountXml = _writeTarget.CreateNode (XmlNodeType.Element, "RepeatCount", null);
 			repeatCountXml.InnerText = t.maxRepeatCount.ToString ();
+			XmlNode timeToTriggerXml = _writeTarget.CreateNode (XmlNodeType.Element, "TimeToTrigger", null);
+			timeToTriggerXml.InnerText = t.timeToTrigger.ToString();
 			XmlNode triggerCountXml = _writeTarget.CreateNode (XmlNodeType.Element, "CountToTrigger", null);
 			triggerCountXml.InnerText = t.countToTrigger.ToString ();
 			
@@ -71,11 +73,12 @@ public class XMLVisitor : Visitor
 			triggerXml.AppendChild (radiusXml);
 			triggerXml.AppendChild (typeXml);
 			triggerXml.AppendChild (repeatCountXml);
+			triggerXml.AppendChild (timeToTriggerXml);
 			triggerXml.AppendChild (triggerCountXml);
 			
 		}
 	}
-
+	
 	private void AddEventReaction (ref XmlNode evrXml, EventReaction evr)
 	{
 		
@@ -102,33 +105,42 @@ public class XMLVisitor : Visitor
 	override public void Visit (Castaway v)
 	{
 		Debug.Log ("Visiting a Castaway");
-		XmlNode castawayXml = _writeTarget.CreateNode (XmlNodeType.Element, "Castaway", null);
-		XmlNode spawnXml = _writeTarget.CreateNode (XmlNodeType.Element, "Spawn", null);
-		spawnXml.InnerText = v.spawn.ToString ();
-		castawayXml.AppendChild (spawnXml);
+				
+		CreateMissionObjectBaseXml("Castaway", v);
 		
-		XmlNode prefabNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "PrefabName", null);
-		prefabNameXml.InnerText = v.prefabName;
-		castawayXml.AppendChild (prefabNameXml);
 		
-		_activeObject.AppendChild (castawayXml);
 	}
 	
 	override public void Visit (Ship v)
 	{
 		Debug.Log ("Visiting a Ship");
-		XmlNode shipXml = _writeTarget.CreateNode (XmlNodeType.Element, "Ship", null);
-		XmlNode spawnXml = _writeTarget.CreateNode (XmlNodeType.Element, "Spawn", null);
-		spawnXml.InnerText = v.spawn.ToString ();
-		shipXml.AppendChild (spawnXml);
 		
-		XmlNode prefabNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "PrefabName", null);
-		prefabNameXml.InnerText = v.prefabName;
-		shipXml.AppendChild (prefabNameXml);
+	
+		CreateMissionObjectBaseXml("Ship", v);
 		
-		_activeObject.AppendChild (shipXml);
+		
+		
+	}
+	override public void Visit(Beacon beacon)
+	{
+		Debug.Log("Visiting a Beacon");
+		CreateMissionObjectBaseXml("Beacon", beacon);	
 	}
 	
+	private void CreateMissionObjectBaseXml(string name , MissionObjectBase mb)
+	{
+		XmlNode target = _writeTarget.CreateNode (XmlNodeType.Element, name, null);
+		
+		XmlNode spawnXml = _writeTarget.CreateNode (XmlNodeType.Element, "Spawn", null);
+		spawnXml.InnerText = mb.spawn.ToString ();
+		target.AppendChild (spawnXml);
+		
+		XmlNode prefabNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "PrefabName", null);
+		prefabNameXml.InnerText = mb.prefabName;
+		target.AppendChild (prefabNameXml);
+		
+		_activeObject.AppendChild (target);
+	}
 	public void OpenNewObject (GameObject go)
 	{
 		Debug.Log ("Saving new object with name " + go.name);

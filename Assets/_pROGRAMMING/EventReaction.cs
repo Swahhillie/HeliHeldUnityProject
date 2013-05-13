@@ -12,6 +12,7 @@ public class EventReaction
 		Displace,
 		Enable,
 		Disable,
+		StartTimer,
 		Count
 	}
 	
@@ -39,6 +40,7 @@ public class EventReaction
 	}
 	public void Activate(){
 		foreach(TriggeredObject obj in listeners){
+			Debug.Log("Fired eventreaction: " + type + " --> " + obj.name);
 			obj.OnTriggered(this);
 		}
 	}
