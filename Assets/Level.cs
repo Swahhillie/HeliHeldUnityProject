@@ -67,14 +67,15 @@ public class Level
 			}
 			
 			
-			XmlNode triggerXml = e ["Trigger"];
-			if (triggerXml != null)
-			{
+			//XmlNode triggerXml = e ["Trigger"];
+			foreach(XmlNode triggerXml in e.SelectNodes("Trigger")){
+				if (triggerXml != null)
+				{
 				//there is a trigger xml node in this object. add it to the object.
-				AddTrigger (triggerXml, ref go);	
-				report.Append ("Trigger,");	
+					AddTrigger (triggerXml, ref go);	
+					report.Append ("Trigger,");	
+				}
 			}
-			
 			levelElements.Add (go);
 			report.Append ("]\n");
 			
@@ -140,7 +141,7 @@ public class Level
 			eventReactions.Add (eventReaction);
 			
 			eventReaction.listeners = new List<TriggeredObject> (); //go.GetComponent<MissionObjectBase>();
-			XmlNodeList listenerNamesList = reactionXml.SelectNodes("Listener");
+			XmlNodeList listenerNamesList = reactionXml.SelectNodes("Listeners/Listener");
 			List<string> listenerNames = new List<string>();
 			foreach(XmlNode listenerNode in listenerNamesList){
 				listenerNames.Add(listenerNode.InnerText);
@@ -161,7 +162,12 @@ public class Level
 		{
 			time = float.Parse (triggerXml ["Time"].InnerText);
 		}
-		tr.AddTriggerValue (eventReactions, triggerType, radius, time);
+		
+		int repeatCount = int.Parse(triggerXml["RepeatCount"].InnerText);
+		
+		int triggerCount = int.Parse(triggerXml["CountToTrigger"].InnerText);
+		
+		tr.AddTriggerValue (eventReactions, triggerType, radius, time, triggerCount, repeatCount);
 		
 		
 		

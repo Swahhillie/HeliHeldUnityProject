@@ -11,7 +11,8 @@ public class EventReaction
 		Say,
 		Displace,
 		Enable,
-		Disable
+		Disable,
+		Count
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
@@ -26,13 +27,11 @@ public class EventReaction
 	{
 		if(!init)
 		{
+			foreach(Type t in System.Enum.GetValues(typeof(Type))){
+				typeHelper.Add(t.ToString(), t);
+			}
 			init=true;
-			typeHelper["Spawn"]=Type.Spawn;
-			typeHelper["Destroy"]=Type.Destroy;	
-			typeHelper["Say"]=Type.Say;	
-			typeHelper["Displace"]=Type.Displace;
-			typeHelper["Enable"]=Type.Enable;
-			typeHelper["Disable"]=Type.Disable;
+			
 		}
 
 		messageName = node["MessageName"].InnerText;

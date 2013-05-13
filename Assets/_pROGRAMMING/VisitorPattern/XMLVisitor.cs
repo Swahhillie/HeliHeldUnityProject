@@ -61,9 +61,17 @@ public class XMLVisitor : Visitor
 			XmlNode typeXml = _writeTarget.CreateNode (XmlNodeType.Element, "Type", null);
 			typeXml.InnerText = t.type.ToString ();
 			
+			//saving the repeat count and the trigger count
+			XmlNode repeatCountXml = _writeTarget.CreateNode (XmlNodeType.Element, "RepeatCount", null);
+			repeatCountXml.InnerText = t.maxRepeatCount.ToString ();
+			XmlNode triggerCountXml = _writeTarget.CreateNode (XmlNodeType.Element, "CountToTrigger", null);
+			triggerCountXml.InnerText = t.countToTrigger.ToString ();
+			
 			
 			triggerXml.AppendChild (radiusXml);
 			triggerXml.AppendChild (typeXml);
+			triggerXml.AppendChild (repeatCountXml);
+			triggerXml.AppendChild (triggerCountXml);
 			
 		}
 	}
