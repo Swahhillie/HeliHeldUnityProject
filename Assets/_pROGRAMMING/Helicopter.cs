@@ -114,7 +114,7 @@ public class Helicopter : MonoBehaviour
 	public bool AttemptRescue(){
 	
 		bool rescueSuccess = false;
-		Debug.Log("Attempting a rescue");
+		string rescueReport = "Heli attempting a rescue:";
 		if((ConfigLoader.instance == null ) || ConfigLoader.instance.activeLevel == null){
 			Debug.LogError("Making a rescue attempt without having loaded a level");
 			return false;
@@ -158,22 +158,30 @@ public class Helicopter : MonoBehaviour
 					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.green);
 					
 					//the mission object is given a chance to fail the rescue;
+					rescueReport += "Helicopter side = success";
 					rescueSuccess = closestMib.AttemptRescue();
+					rescueReport += ", Mib side = " + (rescueSuccess? "success " : "failed ");
 					
 				}
 				else
 				{
 					// the mib is not in the rescue zone of the helicopter, it is too far to a side
 					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.red);	
+					rescueReport += "Rescue failed (The mission object is not in the correct position, hoverprecision)";
 				}
 				
 				
 			}
+			else
+			{
+				rescueReport += "Rescue failed (There are no rescuables in range, rescueRadius)";
+			}
 			
 		}
 		else{
-			Debug.Log("There are no mission objects to rescue");
+			rescueReport += "Rescue failed (There are no rescuables)";
 		}
+		Debug.Log(rescueReport);
 		 return rescueSuccess;
 		
 	}
@@ -187,6 +195,7 @@ public class Helicopter : MonoBehaviour
 			skelWrap.pollSkeleton();
 			
 		hoverPrecision = Mathf.Clamp(hoverPrecision, -1.0f, 1.0f);
+		if(Input.GetKeyDown(KeyCode.Alpha2))AttemptRescue();
 	}
 
 }
