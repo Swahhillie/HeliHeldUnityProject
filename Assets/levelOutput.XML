@@ -2,6 +2,7 @@
 <HeliHeld>
   <Level name="newXml">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Objects />
 =======
     <Objects>
@@ -49,5 +50,8 @@
       </Object>
     </Objects>
 >>>>>>> Editor Utility to save to xml file
+=======
+    <Objects />
+>>>>>>> Small updates
   </Level>
 </HeliHeld>
