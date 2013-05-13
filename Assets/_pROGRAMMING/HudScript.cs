@@ -78,7 +78,6 @@ public class HudScript : TriggeredObject
 		if(evr.type==EventReaction.Type.Say)
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
-			
 			_message = message.text;
 			StopAllCoroutines();
 			StartCoroutine("ActivateHud");

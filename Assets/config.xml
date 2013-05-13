@@ -46,7 +46,7 @@
 				</Object>
 				<Object>
 					<Name>DinkyAndTrigger</Name>
-					<Pos>2664.96,0,2803.76</Pos>
+					<Pos>2819,130,362</Pos>
 					<Rot>0,0,0</Rot>	
 					<Trigger>	
 						<EventName>FindBoat</EventName>
@@ -55,7 +55,7 @@
 						<EventReaction>
 							<Type>Say</Type>
 							<MessageName>Hallo</MessageName>
-							<Listener>DinkyAndTrigger</Listener>
+							<Listener>HudObject</Listener>
 						</EventReaction>
 					</Trigger>
 

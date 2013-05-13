@@ -58,6 +58,35 @@
 </HeliHeld>
 =======
 <Levels>
+<<<<<<< HEAD
   <Menu name="Menu2" />
 </Levels>
 >>>>>>> Github wants me to commit this
+=======
+  <Level name="LevelHudTest">
+    <Objects>
+      <Object>
+        <Name>castawayTemp_000_</Name>
+        <Pos>(2819.1, 50.9, 725.5)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+        <Trigger>
+          <EventReaction>
+            <Type>Say</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>Hallo</MessageName>
+            <Listeners>
+              <Listener>HudObject</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>150</Radius>
+          <Type>OnTriggerEnter</Type>
+        </Trigger>
+      </Object>
+    </Objects>
+  </Level>
+</Levels>
+>>>>>>> working hud
