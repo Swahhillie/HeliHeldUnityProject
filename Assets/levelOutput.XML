@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="us-ascii"?>
+<<<<<<< HEAD
+<Levels>
+  <Menu name="Menu2" />
+</Levels>
+=======
 <HeliHeld>
   <Level name="newXml">
     <Objects />
   </Level>
 </HeliHeld>
+>>>>>>> refs/heads/CastawayDetectionControls
