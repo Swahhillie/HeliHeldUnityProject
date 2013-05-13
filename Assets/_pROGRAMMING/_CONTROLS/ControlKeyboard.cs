@@ -14,5 +14,7 @@ public class ControlKeyboard : ControlBase
 		
 		heli.Steer(steer);
 		heli.Accelerate(dir);
+		
+		cursorPosition = Input.mousePosition;
 	}
 }

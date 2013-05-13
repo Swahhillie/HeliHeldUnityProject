@@ -22,12 +22,15 @@ public class Helicopter : MonoBehaviour
 	void Awake ()
 	{
 		ControlBase cb = null;
-		try {
-			if (skelWrap.pollSkeleton ()) {
-				cb = gameObject.AddComponent<ControlKinect> ();
-			}
-		} catch {
-			cb = gameObject.AddComponent<ControlKeyboard> ();
+		
+		if(skelWrap.devOrEmu.device.connected)
+		{
+			cb = gameObject.AddComponent<ControlKinect>();
+			cb.skelWrap = skelWrap;
+		}
+		else
+		{
+			cb = gameObject.AddComponent<ControlKeyboard>();
 		}
 		
 		cb.heli = this; //give controller a reference to this for controls
@@ -97,6 +100,8 @@ public class Helicopter : MonoBehaviour
 		transform.position += velocity * Time.deltaTime; //misschien niet de deltatime hier maar in de controller. waarschijn lijk wel though
 		velocity *= 1 - drag * Time.deltaTime;
 		
+		if(this.GetComponent<ControlKinect>())
+			skelWrap.pollSkeleton();
 	}
 
 }
