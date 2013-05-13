@@ -180,6 +180,7 @@ public class Level
 		
 		//add the data to the ship here
 		string prefabName = shipXml ["PrefabName"].InnerText;
+		ship.spawn = (MissionObjectBase.SpawnType)System.Enum.Parse(typeof(MissionObjectBase.SpawnType), shipXml["Spawn"].InnerText) ;
 		ship.prefabName = prefabName;
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName))as GameObject;
 		model.transform.parent = go.transform;
@@ -191,11 +192,21 @@ public class Level
 	{
 		// add component castaway here and set the values
 		Castaway castaway = go.GetOrAddComponent<Castaway> ();
+		castaway.spawn = (MissionObjectBase.SpawnType)System.Enum.Parse(typeof(MissionObjectBase.SpawnType), cawXml["Spawn"].InnerText);
+		
+	
 		string prefabName = cawXml ["PrefabName"].InnerText;
 		castaway.prefabName = prefabName;
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
+		
+		if(castaway.spawn == MissionObjectBase.SpawnType.Start){
+			go.SetActive(true);
+		}
+		else{
+			go.SetActive(false);
+		}
 	}
 
 
