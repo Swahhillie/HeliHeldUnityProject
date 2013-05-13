@@ -6,15 +6,18 @@ using System.Xml;
 [System.Serializable()]
 public class TriggerValue
 {
-	public List<EventReaction> eventReactions;
-	public float radius;
+	
+	
 	public TriggerType type;
+	public float radius;
 	public float timeToTrigger;
 	private float _timeRemaining;
 	public int maxRepeatCount = 1; // how many times should this trigger go off
 	private int currentRepeatCount = 0; // howw many times has the trigger gone off
 	public int countToTrigger = 1; // how many times does this have to be set off before it activates	
 	private int currentTriggeredCount = 0; //how many times has the trigger been added to.
+	
+	public List<EventReaction> eventReactions;
 	
 	public TriggerValue (List<EventReaction> eventReactions, TriggerType type, float radius, float time, int triggerCount, int repeatCount)
 	{
