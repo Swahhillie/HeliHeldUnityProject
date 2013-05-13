@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Helicopter : MonoBehaviour
 {
@@ -16,9 +17,16 @@ public class Helicopter : MonoBehaviour
 	public float leanSpeed = -25.0f; //degrees the helicopter tilts per second
 	public float rightSpeed = .6f; //how many seconds it takes for the helicopter to completly right itself after rotation
 	//public float raiseSpeed= .1f; // should be applied to normalized direction vector, so loww
+
+	public float hoverPrecision = .70f; // determines where the castaway must be in relation to the helicopter. 1 == Directly below, no margin for error, 0 == anywhere below the helicopter, -1 == Anywhere.
+	public LayerMask terrainLayer;
+	
+	public float rescueRadius = 50.0f; //max distance an object can be away from the helicopter for rescueing
 	
 	private Vector3 velocity;
 	
+	
+	public bool debugLines = true;
 	void Awake ()
 	{
 		ControlBase cb = null;
@@ -35,7 +43,14 @@ public class Helicopter : MonoBehaviour
 		
 		cb.heli = this; //give controller a reference to this for controls
 	}
-
+	public void Start()
+	{
+		if(rescueRadius < avoidRadius)
+		{
+			Debug.LogWarning(@"Helicopter avoid radius is bigger than rescue radius, 
+			Objects on terrain will not get rescued because the helicopter will fly to high");
+		}
+	}
 	public float closestPoint = 0;
 	public float distanceToWater = 0;
 	
@@ -66,13 +81,13 @@ public class Helicopter : MonoBehaviour
 		//no hits below helicopter
 		if (hits.Length > 0) {
 //k			Debug.Log(closestHit.transform.name);
-			Debug.DrawLine (transform.position, closestHit.point, Color.red);
+			if(debugLines)Debug.DrawLine (transform.position, closestHit.point, Color.red);
 			closestPoint = closestHit.distance;
 		}
 			
 		distanceToWater = transform.position.y - waterHeight;
 		if (distanceToWater < avoidRadius) {//avoid water first
-			Debug.DrawLine (transform.position, transform.position - new Vector3 (0, distanceToWater, 0), Color.magenta);
+			if(debugLines)Debug.DrawLine (transform.position, transform.position - new Vector3 (0, distanceToWater, 0), Color.magenta);
 			direction += Vector3.up; //water is always below the helicopter
 			closestPoint = distanceToWater;
 		} else if (closestHit.distance < avoidRadius && hits.Length > 0) { // if there are hits below helicopter, move away from those hits
@@ -92,16 +107,95 @@ public class Helicopter : MonoBehaviour
 		velocity = Vector3.ClampMagnitude (velocity, maxSpeed);
 	}
 
-	public LayerMask terrainLayer;
-
+	private void OnDrawGizmos(){
+		Gizmos.color = Color.cyan;
+		if(debugLines)Gizmos.DrawWireSphere(transform.position, rescueRadius);
+	}
+	public bool AttemptRescue(){
+	
+		bool rescueSuccess = false;
+		string rescueReport = "Heli attempting a rescue:";
+		if((ConfigLoader.instance == null ) || ConfigLoader.instance.activeLevel == null){
+			Debug.LogError("Making a rescue attempt without having loaded a level");
+			return false;
+		}
+		
+		//getting all the objects that have mission object base attached
+		List<MissionObjectBase> missionObjects = new List<MissionObjectBase>();
+		foreach(var go in ConfigLoader.instance.activeLevel.levelElements)
+		{
+			missionObjects.AddRange(go.GetComponentsInChildren<MissionObjectBase>());
+		}
+		
+		if(missionObjects.Count > 0){
+		//finding wich objects are in range
+			float closest = Mathf.Infinity;
+			MissionObjectBase closestMib = null;
+			foreach(var mib in missionObjects)
+			{
+				float dist = Vector3.SqrMagnitude(mib.transform.position - this.transform.position);
+				if(dist  < closest)
+				{
+					closest = dist;
+					closestMib = mib;
+					
+				}
+			}
+			//check the max radius
+			
+			if(closest < rescueRadius * rescueRadius)//check if the mib is within the rescueRadius
+			{
+				
+				
+				
+				//check if the mib is positioned withing the hoverprecision of the helicopter
+				Vector3 vecToMib = Vector3.Normalize( closestMib.transform.position - transform.position);
+				float d = Vector3.Dot(vecToMib, Vector3.down);
+			
+				if(d > hoverPrecision)
+				{
+					//the mib is in rescue zone of the helicopter
+					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.green);
+					
+					//the mission object is given a chance to fail the rescue;
+					rescueReport += "Helicopter side = success";
+					rescueSuccess = closestMib.AttemptRescue();
+					rescueReport += ", Mib side = " + (rescueSuccess? "success " : "failed ");
+					
+				}
+				else
+				{
+					// the mib is not in the rescue zone of the helicopter, it is too far to a side
+					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.red);	
+					rescueReport += "Rescue failed (The mission object is not in the correct position, hoverprecision)";
+				}
+				
+				
+			}
+			else
+			{
+				rescueReport += "Rescue failed (There are no rescuables in range, rescueRadius)";
+			}
+			
+		}
+		else{
+			rescueReport += "Rescue failed (There are no rescuables)";
+		}
+		Debug.Log(rescueReport);
+		 return rescueSuccess;
+		
+	}
 	void Update ()
 	{
-		Debug.DrawRay (transform.position, velocity, Color.cyan);
+		if(debugLines)Debug.DrawRay (transform.position, velocity, Color.cyan);
 		transform.position += velocity * Time.deltaTime; //misschien niet de deltatime hier maar in de controller. waarschijn lijk wel though
 		velocity *= 1 - drag * Time.deltaTime;
 		
 		if(this.GetComponent<ControlKinect>())
 			skelWrap.pollSkeleton();
+			
+		hoverPrecision = Mathf.Clamp(hoverPrecision, -1.0f, 1.0f);
+		if(Input.GetKeyDown(KeyCode.Alpha2))AttemptRescue();
 	}
 
 }

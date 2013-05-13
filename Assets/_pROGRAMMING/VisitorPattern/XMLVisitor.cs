@@ -8,9 +8,33 @@ public class XMLVisitor : Visitor
 	private XmlDocument _writeTarget;
 	private XmlNode _activeObject; //object the current components should be added to
 	
+	private string levelBase = "levelBase.xml";
+	private string outputFile = "levelOutput.xml";
+	
 	public XMLVisitor (XmlDocument target)
 	{
 		_writeTarget = target;
+	}
+	public XMLVisitor(string levelName, bool level = true){
+		
+		_writeTarget = new XmlDocument ();
+		_writeTarget.Load (Application.dataPath + "\\" + levelBase);
+		
+		XmlNode root = _writeTarget.DocumentElement;
+		
+		XmlNode testChild;
+		if(level)testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Level", "");
+		else testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Menu", "");
+	
+		XmlElement tc = (XmlElement)testChild;//
+		tc.SetAttribute ("name", levelName);
+		
+		root.AppendChild (testChild);
+		
+		if(level){
+			XmlNode objectsXml = _writeTarget.CreateNode (XmlNodeType.Element, "Objects", "");
+			testChild.AppendChild(objectsXml);	
+		}
 	}
 
 	override public void Visit (Trigger v)
@@ -149,7 +173,16 @@ public class XMLVisitor : Visitor
 		_writeTarget.GetElementsByTagName ("Menu") [0].AppendChild (_activeObject);
 		
 	}
-
+	public string Write(){
+	//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
+		XmlTextWriter writer = new XmlTextWriter (Application.dataPath + "\\" + outputFile, System.Text.Encoding.ASCII);
+		writer.Formatting = Formatting.Indented;
+		//doc.Save(Application.dataPath + "\\" +outputFile);
+		_writeTarget.Save (writer);
+		writer.Close ();
+		return Application.dataPath + "\\" + outputFile;
+	}
+		
 	public XmlNode GetXmlResult ()
 	{
 		return _writeTarget;

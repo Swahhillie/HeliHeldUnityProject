@@ -152,8 +152,8 @@ public class LevelSaver : MonoBehaviour
 		Debug.Log ("Gameobjects to save count = " + toSaveGo.Length);
 				
 		int i = 0;
-		//System.Array.ForEach<GameObject>(toSaveGo, x => x.name = x.name + "_"+ i.ToString("000") + "_");
 		
+		//System.Array.ForEach<GameObject>(toSaveGo, (x) => {x.name = go.name + " " + i.ToString("000") + " "; i++;});
 		foreach (GameObject go in toSaveGo) {
 			
 			go.name = go.name + "_" + i.ToString ("000") + "_"; //give all gos that will be safed a unique names
@@ -177,15 +177,14 @@ public class LevelSaver : MonoBehaviour
 			go.name = go.name.Substring (0, go.name.Length - 5); // leave the number out of it
 		}
 		
-		
-		
-//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
+		//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
 		XmlTextWriter writer = new XmlTextWriter (Application.dataPath + "\\" + outputFile, System.Text.Encoding.ASCII);
 		writer.Formatting = Formatting.Indented;
 		//doc.Save(Application.dataPath + "\\" +outputFile);
 		doc.Save (writer);
 		writer.Close ();
 		
+	
 		
 		//doc.WriteContentTo(writer);
 		

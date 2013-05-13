@@ -104,6 +104,12 @@ public class Trigger : MonoBehaviour, IVisitable
 		}
 		triggers.Add (t);
 	}
+	public void OnDrawGizmos(){
+		//draw the radius of all triggers
+		Gizmos.color = new Color(0, 1, 0, 1);
+		triggers.FindAll(x=>x.type == TriggerType.OnTriggerEnter || x.type == TriggerType.OnTriggerExit)
+			.ForEach(x=> Gizmos.DrawWireSphere(transform.position, x.radius));
+	}
 	public void AcceptVisitor(Visitor v){
 		v.Visit(this);
 	}
@@ -149,6 +155,11 @@ public class Trigger : MonoBehaviour, IVisitable
 				
 		}
 		*/	
+	}
+	public void OnRescue()
+	{
+		//called by a mission object base when it is rescued
+		triggers.FindAll(t => t.type == TriggerType.OnRescued).ForEach(x=> TriggerActivate(x));
 	}
 	private void TriggerActivate(TriggerValue trigger){
 		//called if a trigger is activated, calls all the functions that are listening
