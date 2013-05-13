@@ -15,7 +15,10 @@ public class ControlBase : MonoBehaviour
 	
 	private Dictionary<int, bool> actions; //true if active/used
 	
+	public Vector2 cursorPosition;
+	
 	public Helicopter heli;
+	public SkeletonWrapper skelWrap;
 	
 //	public ControlBase()
 //	{

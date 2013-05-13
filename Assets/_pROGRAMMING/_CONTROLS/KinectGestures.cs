@@ -11,16 +11,19 @@ public class KinectGestures
 		Right
 	};
 	
-	public Hand activeHand = Hand.Right;
-	public float distHandsApart = 0.3f;
-	private bool handsApart = true;
+	public static Hand activeHand = Hand.Right;
+	public static float distHandsApart = 0.3f;
+	private static bool handsApart = true;
 	
-	private Vector3 handPos;
-	private Vector2 cursorPos;
+	private static Vector3 handPos;
+	private static Vector3 elbowPos;
+	private static Vector2 cursorPos;
 	
-	int iHandR;
-	int iHandL;
-	int iShouldC;
+	static int iHandR;
+	static int iHandL;
+	static int iElbowR;
+	static int iElbowL;
+	static int iShouldC;
 		
 	public KinectGestures(SkeletonWrapper aSkelWrap)
 	{
@@ -31,11 +34,11 @@ public class KinectGestures
 		iShouldC = (int)Kinect.NuiSkeletonPositionIndex.ShoulderCenter;
 	}
 	
-	public Vector2 cursorPosition {
+	public static Vector2 cursorPosition {
 		get{ return cursorPos;}
 	}
 	
-	bool GetHandsApart()
+	public bool GetHandsApart()
 	{
 		float dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.HandRight);
 		if(dist < distHandsApart)
@@ -43,7 +46,7 @@ public class KinectGestures
 		return false;
 	}
 	
-	Vector2 GetCursorPosition()
+	public Vector2 GetCursorPosition()
 	{
 		if (activeHand == Hand.Right)
 			handPos = skelWrap.bonePos [0, iHandR];
@@ -60,8 +63,13 @@ public class KinectGestures
 		return new Vector2 (Screen.width * distX, Screen.height * distY);
 	}
 
-	float GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex bone1, Kinect.NuiSkeletonPositionIndex bone2)
+	public float GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex bone1, Kinect.NuiSkeletonPositionIndex bone2)
 	{
 		return Vector3.Distance(skelWrap.bonePos[0, (int)bone1],skelWrap.bonePos[0, (int)bone2]);
+	}
+	
+	public Vector3 GetBoneDifference(Kinect.NuiSkeletonPositionIndex bone1, Kinect.NuiSkeletonPositionIndex bone2)
+	{
+		return skelWrap.bonePos[0, (int)bone1] - skelWrap.bonePos[0, (int)bone2];
 	}
 }
