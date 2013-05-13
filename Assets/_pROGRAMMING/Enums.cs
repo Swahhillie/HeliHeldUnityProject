@@ -17,6 +17,7 @@ public enum TriggerType{
 	OnSpawn,
 	OnRescued,
 	OnOutOfLive,
+	Counting,
 	OnActivate
 }
 public enum MissionObject{

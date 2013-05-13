@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <HeliHeld>
   <Level name="newXml">
 <<<<<<< HEAD
@@ -15,12 +16,22 @@
           <Spawn>Start</Spawn>
           <PrefabName>castawayPrefab</PrefabName>
         </Castaway>
+=======
+<HeliHeld>
+  <Level name="level3">
+    <Objects>
+      <Object>
+        <Name>castawayTemp_000_</Name>
+        <Pos>(2819.1, 50.9, 1008.4)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+>>>>>>> Changes to make triggers more flexible
         <Trigger>
           <EventReaction>
             <Type>Say</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
+<<<<<<< HEAD
               <Listener>castawayExample_000_</Listener>
             </Listeners>
           </EventReaction>
@@ -31,6 +42,38 @@
       <Object>
         <Name>castawayExample_001_</Name>
         <Pos>(2792.3, 0.7, 773.5)</Pos>
+=======
+              <Listener>castawayTemp_000_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>50</Radius>
+          <Type>Counting</Type>
+          <RepeatCount>1</RepeatCount>
+          <CountToTrigger>3</CountToTrigger>
+        </Trigger>
+        <Trigger>
+          <EventReaction>
+            <Type>Count</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>Hallo</MessageName>
+            <Listeners>
+              <Listener>castawayTemp_000_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>50</Radius>
+          <Type>OnRescued</Type>
+          <RepeatCount>1</RepeatCount>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+      </Object>
+      <Object>
+        <Name>castawayTemp_001_</Name>
+        <Pos>(2819.1, 50.9, 725.5)</Pos>
+>>>>>>> Changes to make triggers more flexible
         <Rot>(0.0, 0.0, 0.0)</Rot>
         <Castaway>
           <Spawn>Start</Spawn>
@@ -42,11 +85,16 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
+<<<<<<< HEAD
               <Listener>castawayExample_001_</Listener>
+=======
+              <Listener>castawayTemp_001_</Listener>
+>>>>>>> Changes to make triggers more flexible
             </Listeners>
           </EventReaction>
           <Radius>50</Radius>
           <Type>OnTriggerEnter</Type>
+<<<<<<< HEAD
         </Trigger>
       </Object>
     </Objects>
@@ -90,3 +138,12 @@
   </Level>
 </Levels>
 >>>>>>> working hud
+=======
+          <RepeatCount>0</RepeatCount>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+      </Object>
+    </Objects>
+  </Level>
+</HeliHeld>
+>>>>>>> Changes to make triggers more flexible

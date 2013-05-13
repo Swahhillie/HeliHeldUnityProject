@@ -323,6 +323,17 @@ public class ConfigLoader : MonoBehaviour
 			return false;
 		}
 	}
+	public static bool GetValue(string fieldName, ref Vector3 target)
+	{
+		string str;
+		if (settings.TryGetValue (fieldName, out str)) {
+			target = ConfigLoader.ParseVec3(str);
+			return true;
+		} else {
+			Debug.LogError ("Couldnt get setting " + fieldName + " from settings map ");
+			return false;
+		}
+	}
 	public static Message GetMessage(string messageName){
 		Message message = null;
 		if(!ConfigLoader.messages.TryGetValue(messageName,out message))
@@ -334,15 +345,18 @@ public class ConfigLoader : MonoBehaviour
 		}
 		return message;	
 	}
+	
 	public static IEnumerator FindListeners(EventReaction evr, string[] names)
 	{
+		foreach(string name in names)Debug.Log("Looking for listener object with name " + name);
 		yield return null;
+		
 		foreach(string name in names){
-			Debug.Log("Looking for listener object with name " + name);
+			
 			GameObject go = GameObject.Find(name);
 			Debug.Log("Found " + go, go);
-			TriggeredObject trObj = go.GetComponent<TriggeredObject>();
-			evr.listeners.Add(trObj);
+			TriggeredObject[] trObj = go.GetComponents<TriggeredObject>();
+			evr.listeners.AddRange(trObj);
 			
 		}
 	}
