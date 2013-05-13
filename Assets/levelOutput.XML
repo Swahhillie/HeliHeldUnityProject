@@ -22,9 +22,16 @@
     <Objects>
       <Object>
         <Name>castawayTemp_000_</Name>
-        <Pos>(2819.1, 50.9, 1008.4)</Pos>
+        <Pos>(2819.1, 50.9, 725.5)</Pos>
         <Rot>(0.0, 0.0, 0.0)</Rot>
+<<<<<<< HEAD
 >>>>>>> Changes to make triggers more flexible
+=======
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+>>>>>>> Setting up level1
         <Trigger>
           <EventReaction>
             <Type>Say</Type>
@@ -47,24 +54,30 @@
             </Listeners>
           </EventReaction>
           <Radius>50</Radius>
+          <Type>OnTriggerEnter</Type>
+          <RepeatCount>0</RepeatCount>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+      </Object>
+      <Object>
+        <Name>castawayTemp_001_</Name>
+        <Pos>(2819.1, 50.9, 1008.4)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Trigger>
+          <EventReaction>
+            <Type>Disable</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>Hallo</MessageName>
+            <Listeners>
+              <Listener>castawayTemp_001_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>50</Radius>
           <Type>Counting</Type>
           <RepeatCount>1</RepeatCount>
           <CountToTrigger>3</CountToTrigger>
         </Trigger>
-        <Trigger>
-          <EventReaction>
-            <Type>Count</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-              <Listener>castawayTemp_000_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>50</Radius>
-          <Type>OnRescued</Type>
-          <RepeatCount>1</RepeatCount>
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
+<<<<<<< HEAD
         <Castaway>
           <Spawn>Start</Spawn>
           <PrefabName>castawayPrefab</PrefabName>
@@ -79,9 +92,11 @@
           <Spawn>Start</Spawn>
           <PrefabName>castawayPrefab</PrefabName>
         </Castaway>
+=======
+>>>>>>> Setting up level1
         <Trigger>
           <EventReaction>
-            <Type>Say</Type>
+            <Type>Count</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
@@ -93,6 +108,7 @@
             </Listeners>
           </EventReaction>
           <Radius>50</Radius>
+<<<<<<< HEAD
           <Type>OnTriggerEnter</Type>
 <<<<<<< HEAD
         </Trigger>
@@ -140,8 +156,16 @@
 >>>>>>> working hud
 =======
           <RepeatCount>0</RepeatCount>
+=======
+          <Type>OnRescued</Type>
+          <RepeatCount>1</RepeatCount>
+>>>>>>> Setting up level1
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
       </Object>
     </Objects>
   </Level>

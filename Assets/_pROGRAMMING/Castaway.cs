@@ -15,6 +15,6 @@ public class Castaway : MissionObjectBase
 		v.Visit(this);
 	}
 	override public void OnTriggered(EventReaction evr){
-	
+		base.OnTriggered(evr);
 	}
 }
