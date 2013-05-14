@@ -21,7 +21,7 @@ public class HudScript : TriggeredObject
 		tMesh.text="";
 		for(int i = 0; i < _message.Length; i++)
 		{
-			tMesh.text+= _message[i];
+			tMesh.text+= _message;
 			yield return new WaitForSeconds(time);
 		}
 	}

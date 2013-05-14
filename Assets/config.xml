@@ -101,12 +101,14 @@
 		</Message>
 		<Message>
 			<Name>Move</Name>
-			<Text>Goed gedaan! Vlieg nu terug naar de basis. Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
+			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
+			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
 			<Audio>Hello</Audio>			
 		</Message>
 		<Message>
 			<Name>ToLate</Name>
-			<Text>Te laat, mensen verdrinken, vind de andere boot. Daar liggen twee mensen in het water.</Text>
+			<Text>Te laat, mensen verdrinken, vind de andere boot. 
+			Daar liggen twee mensen in het water.</Text>
 			<Audio>Hello</Audio>			
 		</Message>
 		<Message>

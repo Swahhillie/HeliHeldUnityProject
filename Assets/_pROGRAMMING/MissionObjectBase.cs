@@ -49,6 +49,11 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		//override for behaviour
 		Debug.Log (gameObject.name + " received eventReaction of type : " + evr.type);
 		switch (evr.type) {
+		case EventReaction.Type.Spawn:
+			Debug.LogError("Spawn is not yet used", this);
+			//GameObject go = (GameObject)Instantiate(Resources.Load(evr.messageName), evr.pos, Quaternion.identity);
+			//ConfigLoader.instance.activeLevel.AddTemporary(go);
+			break;
 		case EventReaction.Type.Destroy:
 				
 			GameObject.Destroy (gameObject);
