@@ -22,28 +22,24 @@ public class ControlBase : MonoBehaviour
 		HandsApart
 	}
 	
-	public Dictionary<Action, float> actionTimers = new Dictionary<Action, float>()
-	{
-		{ Action.Radio, 0.0f },
-		{ Action.HandsTight, 0.0f },
-		{ Action.GoLeft, 0.0f },
-		{ Action.GoRight, 0.0f },
-		{ Action.GoForward, 0.0f },
-		{ Action.GoBack, 0.0f },
-		{ Action.HandsApart, 0.0f }
-	};
+	public Dictionary<Action, float> actionTimers = new Dictionary<Action, float>();
 	
-	public Dictionary<Action, bool> actionActive = new Dictionary<Action, bool>()
-	{
-		{ Action.Radio, false },
-		{ Action.HandsTight, false },
-		{ Action.GoLeft, false },
-		{ Action.GoRight, false },
-		{ Action.GoForward, false },
-		{ Action.GoBack, false },
-		{ Action.HandsApart, false }
-	};
+	public Dictionary<Action, bool> actionActive = new Dictionary<Action, bool>();
 	
+	private void Start()
+	{
+		StartConcrete();
+		foreach(Action t in System.Enum.GetValues(typeof(Action))){
+			actionTimers.Add(t, 0.0f);
+		}
+		foreach(Action t in System.Enum.GetValues(typeof(Action))){
+			actionActive.Add(t, false);
+		}
+		
+	}
+	protected virtual void StartConcrete(){
+		
+	}
 	public Vector2 cursorPosition;
 	
 	public Helicopter heli;
