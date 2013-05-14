@@ -27,8 +27,22 @@ public class Helicopter : MonoBehaviour
 	
 	
 	public bool debugLines = true;
-	void Awake ()
+	
+	private enum Helistate
 	{
+		IDLE,
+		FLY,
+		SAVE
+	}
+	
+	private Helistate prevState;
+	private Helistate state;
+	
+	public void Start()
+	{
+		prevState = Helistate.FLY;
+		state = Helistate.IDLE;
+		
 		ControlBase cb = null;
 		
 		if(skelWrap.devOrEmu.device.connected)
@@ -42,21 +56,22 @@ public class Helicopter : MonoBehaviour
 		}
 		
 		cb.heli = this; //give controller a reference to this for controls
-	}
-	public void Start()
-	{
+		
 		if(rescueRadius < avoidRadius)
 		{
 			Debug.LogWarning(@"Helicopter avoid radius is bigger than rescue radius, 
 			Objects on terrain will not get rescued because the helicopter will fly to high");
 		}
 	}
+	
 	public float closestPoint = 0;
 	public float distanceToWater = 0;
 	
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer (float x)
 	{
+		if(state != Helistate.FLY) return;
+		
 		transform.Rotate (Vector3.up, x * rotationSpeed * Time.deltaTime); //rotate over the y axis
 		
 		Quaternion goalRotation = Quaternion.AngleAxis (x * leanSpeed * Time.deltaTime, transform.forward) * transform.rotation; //lean over to a side
@@ -65,7 +80,7 @@ public class Helicopter : MonoBehaviour
 
 	public void Accelerate (Vector3 direction)
 	{
-		
+		if(state != Helistate.FLY) return;
 		
 		direction = transform.TransformDirection (direction); // make the direction in local space
 		
@@ -197,5 +212,35 @@ public class Helicopter : MonoBehaviour
 		hoverPrecision = Mathf.Clamp(hoverPrecision, -1.0f, 1.0f);
 		if(Input.GetKeyDown(KeyCode.Alpha2))AttemptRescue();
 	}
-
+	
+	public void EnterSaveMode()
+	{
+		if(true)//check if above mission object
+			SetState(Helistate.SAVE);
+		else
+			SetState(Helistate.IDLE);
+	}
+	
+	public void EnterFlyMode()
+	{
+		SetState(Helistate.FLY);
+	}
+	
+	public void ActivateRadio()
+	{
+		SetState(Helistate.IDLE);
+		GameObject.Find("HudObject").GetComponent<HudScript>().SetRadio(true);
+	}
+	
+	public void DeactivateRadio()
+	{
+		SetState(prevState);
+		GameObject.Find("HudObject").GetComponent<HudScript>().SetRadio(false);
+	}
+	
+	private void SetState(Helistate aState)
+	{
+		prevState = state;
+		state = aState;
+	}
 }

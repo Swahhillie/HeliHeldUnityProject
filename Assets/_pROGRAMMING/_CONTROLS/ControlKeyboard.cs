@@ -15,6 +15,11 @@ public class ControlKeyboard : ControlBase
 		heli.Steer(steer);
 		heli.Accelerate(dir);
 		
+		if(Input.GetKeyDown(KeyCode.Alpha1))
+			heli.ActivateRadio();
+		else if(Input.GetKeyDown(KeyCode.Alpha2))
+			heli.DeactivateRadio();
+		
 		cursorPosition = Input.mousePosition;
 	}
 }

@@ -33,7 +33,6 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	/// what point (relative to kinectCenter) should the sensor look at
 	/// </summary>
 	public Vector4 lookAt;
-	
 	/// <summary>
 	/// Variables used to pass to smoothing function. Values are set to default based on Action in Motion's Research
 	/// </summary>
@@ -65,7 +64,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	private bool newDepth = false;
 	[HideInInspector]
 	private short[] depthPlayerData;
-	public bool connected = false;
+	public bool connected;
 	//image stream handles for the kinect
 	private IntPtr colorStreamHandle;
 	private IntPtr depthStreamHandle;

@@ -21,8 +21,13 @@
   <Level name="level3">
     <Objects>
       <Object>
+<<<<<<< HEAD
         <Name>castawayTemp_000_</Name>
         <Pos>(2819.1, 50.9, 725.5)</Pos>
+=======
+        <Name>TriggerInitial_000_</Name>
+        <Pos>(2820.0, 128.2, 364.5)</Pos>
+>>>>>>> Heli Kinect controls update
         <Rot>(0.0, 0.0, 0.0)</Rot>
 <<<<<<< HEAD
 >>>>>>> Changes to make triggers more flexible
@@ -42,6 +47,7 @@
               <Listener>castawayExample_000_</Listener>
             </Listeners>
           </EventReaction>
+<<<<<<< HEAD
           <Radius>50</Radius>
           <Type>OnTriggerEnter</Type>
         </Trigger>
@@ -56,18 +62,38 @@
           <Radius>50</Radius>
           <Type>OnTriggerEnter</Type>
           <RepeatCount>0</RepeatCount>
+=======
+          <EventReaction>
+            <Type>StartTimer</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>
+            </MessageName>
+            <Listeners>
+              <Listener>TriggerTimer_001_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>86.12</Radius>
+          <Type>OnTriggerEnter</Type>
+          <RepeatCount>1</RepeatCount>
+          <TimeToTrigger>0</TimeToTrigger>
+>>>>>>> Heli Kinect controls update
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
       </Object>
       <Object>
+<<<<<<< HEAD
         <Name>castawayTemp_001_</Name>
         <Pos>(2819.1, 50.9, 1008.4)</Pos>
+=======
+        <Name>TriggerTimer_001_</Name>
+        <Pos>(2820.0, 128.2, 364.5)</Pos>
+>>>>>>> Heli Kinect controls update
         <Rot>(0.0, 0.0, 0.0)</Rot>
         <Trigger>
           <EventReaction>
             <Type>Disable</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
+            <MessageName>ToLate</MessageName>
             <Listeners>
               <Listener>castawayTemp_001_</Listener>
             </Listeners>
@@ -107,6 +133,7 @@
 >>>>>>> Changes to make triggers more flexible
             </Listeners>
           </EventReaction>
+<<<<<<< HEAD
           <Radius>50</Radius>
 <<<<<<< HEAD
           <Type>OnTriggerEnter</Type>
@@ -160,12 +187,27 @@
           <Type>OnRescued</Type>
           <RepeatCount>1</RepeatCount>
 >>>>>>> Setting up level1
+=======
+          <Radius>0</Radius>
+          <Type>Timer</Type>
+          <RepeatCount>1</RepeatCount>
+          <TimeToTrigger>10</TimeToTrigger>
+>>>>>>> Heli Kinect controls update
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
         <Castaway>
           <Spawn>Start</Spawn>
           <PrefabName>castawayPrefab</PrefabName>
         </Castaway>
+      </Object>
+      <Object>
+        <Name>beaconPrefab_002_</Name>
+        <Pos>(2797.9, 1.0, 839.8)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Beacon>
+          <Spawn>Start</Spawn>
+          <PrefabName>beaconPrefab</PrefabName>
+        </Beacon>
       </Object>
     </Objects>
   </Level>

@@ -13,6 +13,7 @@ public class KinectGestures
 	
 	public static Hand activeHand = Hand.Right;
 	public static float distHandsApart = 0.3f;
+	public static float distRadioGesture = 0.6f;
 	private static bool handsApart = true;
 	
 	private static Vector3 handPos;
@@ -42,6 +43,19 @@ public class KinectGestures
 	{
 		float dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.HandRight);
 		if(dist < distHandsApart)
+			return false;
+		return true;
+	}
+	
+	public bool GetRadioGesture()
+	{
+		float dist; 
+		if(activeHand == Hand.Right)
+			dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.Head);
+		else
+			dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.Head);
+		
+		if(dist < distRadioGesture)
 			return true;
 		return false;
 	}
@@ -53,7 +67,7 @@ public class KinectGestures
 		else
 			handPos = skelWrap.bonePos [0, iHandL];
 		
-		//2 and 1.6 are temp(!) hardcoded values
+		//2 and 1.6 are hardcoded values for positioning on screen. (temp)
 		float distX = (handPos.x * 2 - skelWrap.bonePos [0, iShouldC].x);
 		float distY = (handPos.y * 1.6f - skelWrap.bonePos [0, iShouldC].y);
 		
