@@ -2,14 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class MissionObjectBase : TriggeredObject, IVisitable {
+public abstract class MissionObjectBase : TriggeredObject, IVisitable
+{
 
 
-	protected float maxlifetime=0;
-	protected float lifetime=0;
-	protected bool spawned=false;
-	protected bool saved=false;
-	public enum SpawnType{
+	protected float maxlifetime = 0;
+	protected float lifetime = 0;
+	protected bool spawned = false;
+	protected bool saved = false;
+	public enum SpawnType
+	{
 		Start = 0,
 		Later = 1
 	}
@@ -19,47 +21,54 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 	//protected Dictionary<string,Reaction> evt = new Dictionary<string,Reaction>();
 	//protected Dictionary<int,List<string>> action = new Dictionary<int, List<string>>();
 	
-	private void Awake(){
+	private void Awake ()
+	{
 		_type = MissionObject.None;
-		AwakeConcrete();
+		AwakeConcrete ();
 	}
-	public void Start(){
-		Debug.Log("Changing " + this.name + " to save layer", this.gameObject);
-		gameObject.layer = LayerMask.NameToLayer("SaveLayer");
+
+	public void Start ()
+	{
+		Debug.Log ("Changing " + this.name + " to save layer", this.gameObject);
+		gameObject.layer = LayerMask.NameToLayer ("SaveLayer");
 	}
 		
-	protected abstract void AwakeConcrete();
-	public virtual void SetVariables( int spawn, float aLifetime)
+	protected abstract void AwakeConcrete ();
+
+	public virtual void SetVariables (int spawn, float aLifetime)
 	{
 
-		maxlifetime=aLifetime;
-		lifetime=maxlifetime;
+		maxlifetime = aLifetime;
+		lifetime = maxlifetime;
 
 	
 	}
-	override public void OnTriggered(EventReaction evr){
+
+	override public void OnTriggered (EventReaction evr)
+	{
 		//override for behaviour
-		Debug.Log(gameObject.name + " received eventReaction of type : " + evr.type);
-		switch(evr.type){
-			case EventReaction.Type.Destroy:
+		Debug.Log (gameObject.name + " received eventReaction of type : " + evr.type);
+		switch (evr.type) {
+		case EventReaction.Type.Destroy:
 				
-				GameObject.Destroy(gameObject);
-				break;
-			case EventReaction.Type.Displace:
-				transform.position = evr.pos;
-				break;
-			case EventReaction.Type.Enable:
-				gameObject.SetActive(true);
-				break;
-			case EventReaction.Type.Disable:
-				gameObject.SetActive(false);
-				break;
-			default:
-				Debug.Log("Mission Object base does not implement " + evr.type + " eventreaction");
-				break;
+			GameObject.Destroy (gameObject);
+			break;
+		case EventReaction.Type.Displace:
+			transform.position = evr.pos;
+			break;
+		case EventReaction.Type.Enable:
+			gameObject.SetActive (true);
+			break;
+		case EventReaction.Type.Disable:
+			gameObject.SetActive (false);
+			break;
+		default:
+			Debug.Log ("Mission Object base does not implement " + evr.type + " eventreaction");
+			break;
 		}
 	}
-	public bool AttemptRescue()
+
+	public bool AttemptRescue ()
 	{
 		//Attempt rescue is called by the helicopter if it is in position and the player makes a rescue attempt.
 		
@@ -68,9 +77,9 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 		rescueSuccess = true;
 		
 		//if this object has a trigger attached to it that goes off on rescue. Make sure that it is called.
-		Trigger t = gameObject.GetComponent<Trigger>();
-		if(t != null){
-			t.OnRescue();
+		Trigger t = gameObject.GetComponent<Trigger> ();
+		if (t != null) {
+			t.OnRescue ();
 		}
 		return rescueSuccess;
 	}
@@ -126,14 +135,34 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable {
 		
 	}
 	*/
-	private void Update(){
-		UpdateConcrete();
+	private void Update ()
+	{
+		UpdateConcrete ();
 	}
-	protected abstract void UpdateConcrete();
+
+	protected abstract void UpdateConcrete ();
 	
-	public MissionObject type{
-		get{return _type;}
+	public MissionObject type {
+		get{ return _type;}
 	}
-	abstract public void AcceptVisitor(Visitor v);
-	
+
+	abstract public void AcceptVisitor (Visitor v);
+
+	public IEnumerator Sleep2FramesAndDisable ()
+	{	
+		//frame 1: objects are created
+		//frame 2: objects are linked
+		//frame 3: some objects are disabled
+		
+		yield return null; //sleep over frame 1
+		yield return null; //sleep over frame 2
+		
+		//disable
+		if (spawn == MissionObjectBase.SpawnType.Start) {
+				
+		} else {
+			gameObject.SetActive (false);
+		}
+		
+	}
 }

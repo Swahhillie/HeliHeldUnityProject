@@ -358,7 +358,10 @@ public class ConfigLoader : MonoBehaviour
 			TriggeredObject[] trObj = go.GetComponents<TriggeredObject>();
 			evr.listeners.AddRange(trObj);
 			
+			
+			
 		}
+				
 	}
 
 	
