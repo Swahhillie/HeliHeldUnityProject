@@ -31,8 +31,7 @@ public class Level
 		XmlNodeList elements = lvlXml ["Objects"].ChildNodes;
 		
 		StringBuilder report = new StringBuilder ();
-		foreach (XmlNode e in elements)
-		{//looping over all <object>
+		foreach (XmlNode e in elements) {//looping over all <object>
 			//create all the objects here
 			GameObject go = new GameObject (e ["Name"].InnerText);
 			
@@ -50,8 +49,7 @@ public class Level
 			
 			//check if this should have a ship attached
 			XmlNode shipXml = e ["Ship"];
-			if (shipXml != null)
-			{
+			if (shipXml != null) {
 				AddShip (shipXml, ref go);
 				_shipCount ++;
 				report.Append ("Ship,");
@@ -59,8 +57,7 @@ public class Level
 			
 			//check for a castaway
 			XmlNode castaXml = e ["Castaway"];
-			if (castaXml != null)
-			{
+			if (castaXml != null) {
 				AddCastaway (castaXml, ref go);			
 				_castawayCount ++;
 				report.Append ("Castaway,");
@@ -68,10 +65,9 @@ public class Level
 			
 			
 			//XmlNode triggerXml = e ["Trigger"];
-			foreach(XmlNode triggerXml in e.SelectNodes("Trigger")){
-				if (triggerXml != null)
-				{
-				//there is a trigger xml node in this object. add it to the object.
+			foreach (XmlNode triggerXml in e.SelectNodes("Trigger")) {
+				if (triggerXml != null) {
+					//there is a trigger xml node in this object. add it to the object.
 					AddTrigger (triggerXml, ref go);	
 					report.Append ("Trigger,");	
 				}
@@ -96,12 +92,10 @@ public class Level
 	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
 	{
 		GameObject elementToRemove = levelElements.Find (x => x.GetComponentInChildren<MissionObjectBase> () == obj);
-		if (obj.type == MissionObject.Ship)
-		{
+		if (obj.type == MissionObject.Ship) {
 			_shipCount--;
 		}
-		if (obj.type == MissionObject.Castaway)
-		{
+		if (obj.type == MissionObject.Castaway) {
 			_castawayCount --;
 		}
 	}
@@ -109,8 +103,7 @@ public class Level
 	public void UnLoadLevel ()
 	{
 		Debug.Log ("Unloading level " + levelName);
-		for (int i = levelElements.Count -1; i >= 0; i --)
-		{
+		for (int i = levelElements.Count -1; i >= 0; i --) {
 			GameObject.Destroy (levelElements [i]);
 		}
 		_isLoaded = false;
@@ -133,27 +126,25 @@ public class Level
 		List<EventReaction> eventReactions = new List<EventReaction> ();
 		
 		//parse the reactions
-		foreach (XmlNode reactionXml in reactionList)
-		{
+		foreach (XmlNode reactionXml in reactionList) {
 		
 			EventReaction eventReaction = new EventReaction (reactionXml);
 			
 			eventReactions.Add (eventReaction);
 			
 			eventReaction.listeners = new List<TriggeredObject> (); //go.GetComponent<MissionObjectBase>();
-			XmlNodeList listenerNamesList = reactionXml.SelectNodes("Listeners/Listener");
-			List<string> listenerNames = new List<string>();
-			foreach(XmlNode listenerNode in listenerNamesList){
-				listenerNames.Add(listenerNode.InnerText);
+			XmlNodeList listenerNamesList = reactionXml.SelectNodes ("Listeners/Listener");
+			List<string> listenerNames = new List<string> ();
+			foreach (XmlNode listenerNode in listenerNamesList) {
+				listenerNames.Add (listenerNode.InnerText);
 			}
 			
 			
-			tr.StartCoroutine(ConfigLoader.FindListeners(eventReaction, listenerNames.ToArray()));
+			tr.StartCoroutine (ConfigLoader.FindListeners (eventReaction, listenerNames.ToArray ()));
 			
 		}
 		float radius = 0;		
-		if (triggerType == TriggerType.OnTriggerEnter || triggerType == TriggerType.OnTriggerExit)
-		{
+		if (triggerType == TriggerType.OnTriggerEnter || triggerType == TriggerType.OnTriggerExit) {
 			radius = float.Parse (triggerXml ["Radius"].InnerText);
 				
 		}
@@ -163,9 +154,9 @@ public class Level
 			time = float.Parse (triggerXml ["Time"].InnerText);
 		}
 		
-		int repeatCount = int.Parse(triggerXml["RepeatCount"].InnerText);
+		int repeatCount = int.Parse (triggerXml ["RepeatCount"].InnerText);
 		
-		int triggerCount = int.Parse(triggerXml["CountToTrigger"].InnerText);
+		int triggerCount = int.Parse (triggerXml ["CountToTrigger"].InnerText);
 		
 		tr.AddTriggerValue (eventReactions, triggerType, radius, time, triggerCount, repeatCount);
 		
@@ -182,38 +173,36 @@ public class Level
 	private static void AddShip (XmlNode shipXml, ref GameObject go)
 	{
 		//add component ship here and set the proper values
-		Ship ship = go.GetOrAddComponent<Ship> ();
-		
-		//add the data to the ship here
-		string prefabName = shipXml ["PrefabName"].InnerText;
-		ship.spawn = (MissionObjectBase.SpawnType)System.Enum.Parse(typeof(MissionObjectBase.SpawnType), shipXml["Spawn"].InnerText) ;
-		ship.prefabName = prefabName;
-		GameObject model = GameObject.Instantiate (Resources.Load (prefabName))as GameObject;
-		model.transform.parent = go.transform;
-		model.transform.localPosition = Vector3.zero;
+		Ship c = AddMissionBase<Ship> (shipXml, go);
 		
 	}
 
 	private static void AddCastaway (XmlNode cawXml, ref GameObject go)
 	{
-		// add component castaway here and set the values
-		Castaway castaway = go.GetOrAddComponent<Castaway> ();
-		castaway.spawn = (MissionObjectBase.SpawnType)System.Enum.Parse(typeof(MissionObjectBase.SpawnType), cawXml["Spawn"].InnerText);
+		Castaway c = AddMissionBase<Castaway> (cawXml, go);
+	}
+
+	private static void AddBeacon (XmlNode bNode, ref GameObject go)
+	{
+		Beacon b = AddMissionBase<Beacon> (bNode, go);
+	}
+
+	private static T AddMissionBase<T> (XmlNode baseNode, GameObject go) where T : MissionObjectBase
+	{
 		
-	
-		string prefabName = cawXml ["PrefabName"].InnerText;
-		castaway.prefabName = prefabName;
+		//basic setup for all mission object bases
+		T mib = go.GetOrAddComponent<T> ();
+		mib.spawn = (MissionObjectBase.SpawnType)System.Enum.Parse (typeof(MissionObjectBase.SpawnType), baseNode ["Spawn"].InnerText);
+		
+		string prefabName = baseNode ["PrefabName"].InnerText;
+		mib.prefabName = prefabName;
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
-		
-		if(castaway.spawn == MissionObjectBase.SpawnType.Start){
-			go.SetActive(true);
-		}
-		else{
-			go.SetActive(false);
-		}
+		mib.Sleep2FramesAndDisable();
+		return mib;
 	}
+	
 
 
 	

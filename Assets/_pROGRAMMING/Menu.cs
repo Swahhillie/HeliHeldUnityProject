@@ -104,7 +104,6 @@ public class Menu
 					selectionPlane.transform.up = -b.transform.forward;
 					float elapsed = Time.time - hoverStart;
 					float percent = elapsed / buttonTimer;
-					Debug.Log(percent);
 					selectionPlane.renderer.material.SetFloat("_Cutoff", percent);
 				}
 			
