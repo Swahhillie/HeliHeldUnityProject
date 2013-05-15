@@ -20,13 +20,11 @@ public class Helicopter : MonoBehaviour
 
 	public float hoverPrecision = .70f; // determines where the castaway must be in relation to the helicopter. 1 == Directly below, no margin for error, 0 == anywhere below the helicopter, -1 == Anywhere.
 	public LayerMask terrainLayer;
-	
 	public float rescueRadius = 50.0f; //max distance an object can be away from the helicopter for rescueing
 	
 	private Vector3 velocity;
-	
-	
 	public bool debugLines = true;
+	private Radio radio;
 	
 	private enum Helistate
 	{
@@ -38,30 +36,40 @@ public class Helicopter : MonoBehaviour
 	private Helistate prevState;
 	private Helistate state;
 	
-	public void Start()
+	public MissionObjectBase nearestRescuable = null;
+	public float dotToNearest;
+	private enum ControlType{
+		None,
+		Kinect,
+		Keyboard
+	}
+	private ControlType controlType = ControlType.None;
+	
+	public void Start ()
 	{
+		
+		radio = GetComponentInChildren<Radio>();
 		prevState = Helistate.FLY;
 		state = Helistate.IDLE;
 		
 		ControlBase cb = null;
 		
-		if(skelWrap.devOrEmu.device.connected)
-		{
-			cb = gameObject.AddComponent<ControlKinect>();
+		if (skelWrap.devOrEmu.device.connected) {
+			cb = gameObject.AddComponent<ControlKinect> ();
 			cb.skelWrap = skelWrap;
-		}
-		else
-		{
-			cb = gameObject.AddComponent<ControlKeyboard>();
+			controlType = ControlType.Kinect;
+		} else {
+			cb = gameObject.AddComponent<ControlKeyboard> ();
+			controlType = ControlType.Keyboard;
 		}
 		
 		cb.heli = this; //give controller a reference to this for controls
 		
-		if(rescueRadius < avoidRadius)
-		{
-			Debug.LogWarning(@"Helicopter avoid radius is bigger than rescue radius, 
+		if (rescueRadius < avoidRadius) {
+			Debug.LogWarning (@"Helicopter avoid radius is bigger than rescue radius, 
 			Objects on terrain will not get rescued because the helicopter will fly to high");
 		}
+		if(controlType == ControlType.Keyboard)state = Helistate.FLY;
 	}
 	
 	public float closestPoint = 0;
@@ -70,7 +78,8 @@ public class Helicopter : MonoBehaviour
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer (float x)
 	{
-		if(state != Helistate.FLY) return;
+		if (state != Helistate.FLY)
+			return;
 		
 		transform.Rotate (Vector3.up, x * rotationSpeed * Time.deltaTime); //rotate over the y axis
 		
@@ -80,7 +89,8 @@ public class Helicopter : MonoBehaviour
 
 	public void Accelerate (Vector3 direction)
 	{
-		if(state != Helistate.FLY) return;
+		if (state != Helistate.FLY)
+			return;
 		
 		direction = transform.TransformDirection (direction); // make the direction in local space
 		
@@ -96,13 +106,15 @@ public class Helicopter : MonoBehaviour
 		//no hits below helicopter
 		if (hits.Length > 0) {
 //k			Debug.Log(closestHit.transform.name);
-			if(debugLines)Debug.DrawLine (transform.position, closestHit.point, Color.red);
+			if (debugLines)
+				Debug.DrawLine (transform.position, closestHit.point, Color.red);
 			closestPoint = closestHit.distance;
 		}
 			
 		distanceToWater = transform.position.y - waterHeight;
 		if (distanceToWater < avoidRadius) {//avoid water first
-			if(debugLines)Debug.DrawLine (transform.position, transform.position - new Vector3 (0, distanceToWater, 0), Color.magenta);
+			if (debugLines)
+				Debug.DrawLine (transform.position, transform.position - new Vector3 (0, distanceToWater, 0), Color.magenta);
 			direction += Vector3.up; //water is always below the helicopter
 			closestPoint = distanceToWater;
 		} else if (closestHit.distance < avoidRadius && hits.Length > 0) { // if there are hits below helicopter, move away from those hits
@@ -122,123 +134,157 @@ public class Helicopter : MonoBehaviour
 		velocity = Vector3.ClampMagnitude (velocity, maxSpeed);
 	}
 
-	private void OnDrawGizmos(){
+	private void OnDrawGizmos ()
+	{
 		Gizmos.color = Color.cyan;
-		if(debugLines)Gizmos.DrawWireSphere(transform.position, rescueRadius);
+		if (debugLines)
+			Gizmos.DrawWireSphere (transform.position, rescueRadius);
 	}
-	public bool AttemptRescue(){
+
+	public bool AttemptRescue ()
+	{
 	
 		bool rescueSuccess = false;
 		string rescueReport = "Heli attempting a rescue:";
-		if((ConfigLoader.instance == null ) || ConfigLoader.instance.activeLevel == null){
-			Debug.LogError("Making a rescue attempt without having loaded a level");
+		
+		if ((ConfigLoader.instance == null) || ConfigLoader.instance.activeLevel == null) {
+			Debug.LogError ("Making a rescue attempt without having loaded a level");
 			return false;
 		}
 		
-		//getting all the objects that have mission object base attached
-		List<MissionObjectBase> missionObjects = new List<MissionObjectBase>();
-		foreach(var go in ConfigLoader.instance.activeLevel.levelElements)
+		if(dotToNearest > hoverPrecision)
 		{
-			missionObjects.AddRange(go.GetComponentsInChildren<MissionObjectBase>());
+			return (nearestRescuable.AttemptRescue());
 		}
+		//getting all the objects that have mission object base attached
 		
-		if(missionObjects.Count > 0){
-		//finding wich objects are in range
-			float closest = Mathf.Infinity;
-			MissionObjectBase closestMib = null;
-			foreach(var mib in missionObjects)
-			{
-				float dist = Vector3.SqrMagnitude(mib.transform.position - this.transform.position);
-				if(dist  < closest)
-				{
-					closest = dist;
-					closestMib = mib;
-					
-				}
-			}
-			//check the max radius
-			
-			if(closest < rescueRadius * rescueRadius)//check if the mib is within the rescueRadius
-			{
-				
-				
-				
-				//check if the mib is positioned withing the hoverprecision of the helicopter
-				Vector3 vecToMib = Vector3.Normalize( closestMib.transform.position - transform.position);
-				float d = Vector3.Dot(vecToMib, Vector3.down);
-			
-				if(d > hoverPrecision)
-				{
-					//the mib is in rescue zone of the helicopter
-					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.green);
-					
-					//the mission object is given a chance to fail the rescue;
-					rescueReport += "Helicopter side = success";
-					rescueSuccess = closestMib.AttemptRescue();
-					rescueReport += ", Mib side = " + (rescueSuccess? "success " : "failed ");
-					
-				}
-				else
-				{
-					// the mib is not in the rescue zone of the helicopter, it is too far to a side
-					if(debugLines)Debug.DrawLine(transform.position, closestMib.transform.position, Color.red);	
-					rescueReport += "Rescue failed (The mission object is not in the correct position, hoverprecision)";
-				}
-				
-				
-			}
-			else
-			{
-				rescueReport += "Rescue failed (There are no rescuables in range, rescueRadius)";
-			}
-			
-		}
-		else{
-			rescueReport += "Rescue failed (There are no rescuables)";
-		}
-		Debug.Log(rescueReport);
-		 return rescueSuccess;
+		
+		
+		return rescueSuccess;
+		
+		
 		
 	}
+
+	bool FindNearestInRange<T> (List<T> toSearch, Vector3 fromPos, float radius, out T result) where T : Component
+	{
+		result = null;
+		float closest = rescueRadius * rescueRadius;
+		foreach (var mib in toSearch) {
+			Transform tr = mib.transform;
+			float dist = Vector3.SqrMagnitude (tr.position - fromPos);
+			if (dist < closest) {
+				closest = dist;
+				result = mib;
+				
+			}
+		}
+		return result != null;
+		
+	}
+
+	float GetDotToRescuable (Transform missionObject)
+	{
+		
+		
+		//check if the mib is positioned withing the hoverprecision of the helicopter
+		Vector3 vecToMib = Vector3.Normalize (missionObject.position - transform.position);
+		return Vector3.Dot (vecToMib, Vector3.down);		
+
+	}
+
 	void Update ()
 	{
-		if(debugLines)Debug.DrawRay (transform.position, velocity, Color.cyan);
+		if (debugLines)
+			Debug.DrawRay (transform.position, velocity, Color.cyan);
 		transform.position += velocity * Time.deltaTime; //misschien niet de deltatime hier maar in de controller. waarschijn lijk wel though
 		velocity *= 1 - drag * Time.deltaTime;
 		
-		if(this.GetComponent<ControlKinect>())
-			skelWrap.pollSkeleton();
+		if (this.GetComponent<ControlKinect> ())
+			skelWrap.pollSkeleton ();
 			
-		hoverPrecision = Mathf.Clamp(hoverPrecision, -1.0f, 1.0f);
-		if(Input.GetKeyDown(KeyCode.Alpha2))AttemptRescue();
+		hoverPrecision = Mathf.Clamp (hoverPrecision, -1.0f, 1.0f);
+		
+		if(state == Helistate.SAVE)
+		{
+			
+			
+		
+			
+			if (FindNearestInRange <MissionObjectBase>(GetRescuables(), transform.position, rescueRadius, out nearestRescuable)) {
+				dotToNearest = GetDotToRescuable(nearestRescuable.transform);
+			}
+			if(Input.GetKeyDown(KeyCode.Alpha2))
+			{
+				AttemptRescue();
+			}
+		}
 	}
-	
-	public void EnterSaveMode()
+	public List<MissionObjectBase> GetRescuables()
 	{
-		if(true)//check if above mission object
-			SetState(Helistate.SAVE);
-		else
-			SetState(Helistate.IDLE);
+		List<MissionObjectBase> missionObjects = new List<MissionObjectBase> ();
+		if((ConfigLoader.instance != null) && ConfigLoader.instance.activeLevel != null){
+			foreach (var go in ConfigLoader.instance.activeLevel.levelElements) {
+				missionObjects.AddRange (go.GetComponentsInChildren<MissionObjectBase> ());
+			}
+		}
+		
+		return missionObjects;
 	}
 	
-	public void EnterFlyMode()
+	public void EnterSaveMode ()
 	{
-		SetState(Helistate.FLY);
+		MissionObjectBase mib = null;
+		if (FindNearestInRange<MissionObjectBase>(GetRescuables(), transform.position, rescueRadius, out mib))//check if above mission object
+			SetState (Helistate.SAVE);
+		else if(controlType == ControlType.Kinect)
+		{
+			SetState (Helistate.IDLE);
+		}
+		else if(controlType == ControlType.Keyboard)
+		{
+			SetState (Helistate.FLY);
+		}
+		
 	}
-	
-	public void ActivateRadio()
+	public void EnterIdleMode()
 	{
 		SetState(Helistate.IDLE);
-		GameObject.Find("HudObject").GetComponent<HudScript>().SetRadio(true);
 	}
-	
-	public void DeactivateRadio()
+	public void EnterFlyMode ()
 	{
-		SetState(prevState);
-		GameObject.Find("HudObject").GetComponent<HudScript>().SetRadio(false);
+		SetState (Helistate.FLY);
+		
 	}
 	
-	private void SetState(Helistate aState)
+	public void ActivateRadio ()
+	{
+		SetState (Helistate.IDLE);
+		radio.SetRadio(true);
+	}
+	
+	public void DeactivateRadio ()
+	{
+		SetState (prevState);
+		radio.SetRadio(false);
+	}
+	public void ToggleRadio()
+	{
+		//for use by keyboard
+		Debug.Log("Toggling radio");
+		if(state == Helistate.FLY || state == Helistate.SAVE)
+		{
+			SetState(Helistate.IDLE);
+			radio.SetRadio(true);
+		}
+		else if(state == Helistate.IDLE)
+		{
+			SetState(prevState);
+			radio.SetRadio(false);
+		}
+	}
+	
+	private void SetState (Helistate aState)
 	{
 		prevState = state;
 		state = aState;
