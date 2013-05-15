@@ -1,64 +1,30 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <HeliHeld>
-  <Level name="level3">
+  <Level name="RescueTest">
     <Objects>
       <Object>
-        <Name>TriggerInitial_000_</Name>
-        <Pos>(2820.0, 128.2, 364.5)</Pos>
+        <Name>castawayExample_000_</Name>
+        <Pos>(1729.1, 0.0, 823.4)</Pos>
         <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
         <Trigger>
           <EventReaction>
             <Type>Say</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
-              <Listener>HudObject</Listener>
+              <Listener>castawayExample_000_</Listener>
             </Listeners>
           </EventReaction>
-          <EventReaction>
-            <Type>StartTimer</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>
-            </MessageName>
-            <Listeners>
-              <Listener>TriggerTimer_001_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>86.12</Radius>
+          <Radius>50</Radius>
           <Type>OnTriggerEnter</Type>
-          <RepeatCount>1</RepeatCount>
+          <RepeatCount>0</RepeatCount>
           <TimeToTrigger>0</TimeToTrigger>
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
-      </Object>
-      <Object>
-        <Name>TriggerTimer_001_</Name>
-        <Pos>(2820.0, 128.2, 364.5)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Trigger>
-          <EventReaction>
-            <Type>Say</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>ToLate</MessageName>
-            <Listeners>
-              <Listener>HudObject</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>0</Radius>
-          <Type>Timer</Type>
-          <RepeatCount>1</RepeatCount>
-          <TimeToTrigger>10</TimeToTrigger>
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
-      </Object>
-      <Object>
-        <Name>beaconPrefab_002_</Name>
-        <Pos>(2797.9, 1.0, 839.8)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Beacon>
-          <Spawn>Start</Spawn>
-          <PrefabName>beaconPrefab</PrefabName>
-        </Beacon>
       </Object>
     </Objects>
   </Level>
