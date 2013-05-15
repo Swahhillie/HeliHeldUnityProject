@@ -5,14 +5,12 @@ using System.Xml;
 public class Message
 {
 	private string _text;
-	private AudioClip _audio;
+	private string _audio;
 	
 	public Message(XmlNode node)
 	{
 		_text = node["Text"].InnerText;
-		string audioFile = "_ART/Sounds/"+node["Audio"].InnerText+".wav";
-		
-		_audio = (AudioClip)Resources.Load(audioFile);
+		_audio = node["Audio"].InnerText;
 	}
 	
 	public string text
@@ -20,7 +18,7 @@ public class Message
 		get{return _text;}
 	}
 		
-	public AudioClip audio
+	public string audio
 	{
 		get {return _audio;}
 	}
