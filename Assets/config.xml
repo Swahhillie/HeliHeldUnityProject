@@ -205,7 +205,38 @@
       </Object>
     </Objects>
   </Level>
+<<<<<<< HEAD
 >>>>>>> Changes to make triggers more flexible
+=======
+    <Level name="RescueTest">
+    <Objects>
+      <Object>
+        <Name>castawayExample_000_</Name>
+        <Pos>(1729.1, 0.0, 823.4)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+        <Trigger>
+          <EventReaction>
+            <Type>Say</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>Hallo</MessageName>
+            <Listeners>
+              <Listener>castawayExample_000_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>50</Radius>
+          <Type>OnTriggerEnter</Type>
+          <RepeatCount>0</RepeatCount>
+          <TimeToTrigger>0</TimeToTrigger>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+      </Object>
+    </Objects>
+  </Level>
+>>>>>>> Improvements to heli controls and camera
 	</Levels>
 	
 	<Messages>

@@ -18,9 +18,10 @@
         </Castaway>
 =======
 <HeliHeld>
-  <Level name="level3">
+  <Level name="RescueTest">
     <Objects>
       <Object>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <Name>castawayTemp_000_</Name>
         <Pos>(2819.1, 50.9, 725.5)</Pos>
@@ -32,17 +33,26 @@
 <<<<<<< HEAD
 >>>>>>> Changes to make triggers more flexible
 =======
+=======
+        <Name>castawayExample_000_</Name>
+        <Pos>(1729.1, 0.0, 823.4)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+>>>>>>> Improvements to heli controls and camera
         <Castaway>
           <Spawn>Start</Spawn>
           <PrefabName>castawayPrefab</PrefabName>
         </Castaway>
+<<<<<<< HEAD
 >>>>>>> Setting up level1
+=======
+>>>>>>> Improvements to heli controls and camera
         <Trigger>
           <EventReaction>
             <Type>Say</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
+<<<<<<< HEAD
 <<<<<<< HEAD
               <Listener>castawayExample_000_</Listener>
             </Listeners>
@@ -70,16 +80,20 @@
             </MessageName>
             <Listeners>
               <Listener>TriggerTimer_001_</Listener>
+=======
+              <Listener>castawayExample_000_</Listener>
+>>>>>>> Improvements to heli controls and camera
             </Listeners>
           </EventReaction>
-          <Radius>86.12</Radius>
+          <Radius>50</Radius>
           <Type>OnTriggerEnter</Type>
-          <RepeatCount>1</RepeatCount>
+          <RepeatCount>0</RepeatCount>
           <TimeToTrigger>0</TimeToTrigger>
 >>>>>>> Heli Kinect controls update
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
       </Object>
+<<<<<<< HEAD
       <Object>
 <<<<<<< HEAD
         <Name>castawayTemp_001_</Name>
@@ -209,6 +223,8 @@
           <PrefabName>beaconPrefab</PrefabName>
         </Beacon>
       </Object>
+=======
+>>>>>>> Improvements to heli controls and camera
     </Objects>
   </Level>
 </HeliHeld>

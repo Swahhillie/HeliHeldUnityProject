@@ -6,8 +6,8 @@ public class ControlKeyboard : ControlBase
 	public float forceThresshold = .3f;
 	
 	public KeyCode liftKey = KeyCode.F;
-	public KeyCode idleKey = KeyCode.R;
-	public KeyCode saveKey = KeyCode.T;
+	public KeyCode idleKey = KeyCode.T;
+	public KeyCode saveKey = KeyCode.R;
 	public KeyCode radioKey = KeyCode.Alpha2;
 	void Update()
 	{
@@ -31,7 +31,7 @@ public class ControlKeyboard : ControlBase
 		
 		float steer = Input.GetAxis("Horizontal"); // a && d, left and right
 		dir.z = Input.GetAxis("Vertical"); // forward and backwwawrds
-		dir = dir.magnitude > forceThresshold ? Vector3.Normalize(dir) : Vector3.zero;
+		//dir = dir.magnitude > forceThresshold ? Vector3.Normalize(dir) : Vector3.zero;
 		
 		heli.Steer(steer);
 		heli.Accelerate(dir);
