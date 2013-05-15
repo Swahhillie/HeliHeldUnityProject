@@ -37,6 +37,7 @@
             <MessageName>Hallo</MessageName>
             <Listeners>
               <Listener>HudObject</Listener>
+		<Listener>Cube</Listener>
             </Listeners>
           </EventReaction>
           <EventReaction>
@@ -97,13 +98,13 @@
 		<Message>
 			<Name>Hallo</Name>
 			<Text>Hallo daar speler.</Text>
-			<Audio>test</Audio>
+			<Audio>Hallo</Audio>
 		</Message>
 		<Message>
 			<Name>Move</Name>
 			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-			<Audio>test</Audio>			
+			<Audio>Move</Audio>			
 		</Message>
 		<Message>
 			<Name>ToLate</Name>
