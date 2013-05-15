@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class HudScript : TriggeredObject  
+public class Radio : TriggeredObject  
 {
 	private float _width;	
-	private string _message;
+	private string _message = "";
 	private bool _active;
 	public float delay = 0.01f;
 	

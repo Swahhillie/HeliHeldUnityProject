@@ -142,6 +142,7 @@ public class ConfigLoader : MonoBehaviour
 	public static Dictionary<string, Message> messages = new Dictionary<string,Message>();
 	public static ConfigLoader instance = null;
 	public Level activeLevel;
+	public Menu activeMenu;
 	
 	void Awake ()
 	{
@@ -196,7 +197,7 @@ public class ConfigLoader : MonoBehaviour
 		
 		ParseMessages(xml);
 		
-		menus ["MainMenu"].LoadMenu ();
+		//menus ["MainMenu"].LoadMenu ();
 		
 	}
 
@@ -212,7 +213,18 @@ public class ConfigLoader : MonoBehaviour
 		activeLevel.LoadLevel ();
 		Debug.Log ("Loaded level success");
 	}
-
+	public void LoadMenu(string name)
+	{
+		if(activeMenu != null)
+		{
+			Debug.Log("Unloading menu");
+			activeMenu.UnLoadMenu();
+		}
+		Debug.Log("Loading menu" + name);
+		activeMenu = menus[name];
+		activeMenu.LoadMenu();
+		Debug.Log("Loaded menu success");
+	}
 	void ParseSettings (XmlDocument xml)
 	{
 		XmlNodeList settingsList = xml.GetElementsByTagName ("Setting");
@@ -265,10 +277,7 @@ public class ConfigLoader : MonoBehaviour
 
 	private void Update ()
 	{
-		//TEMPORARY
-		foreach (KeyValuePair<string, Menu> p in menus) {
-			p.Value.Update ();
-		}
+		activeMenu.Update();
 	}
 	//util
 	public static Vector3 ParseVec3 (string s)
@@ -354,10 +363,15 @@ public class ConfigLoader : MonoBehaviour
 		foreach(string name in names){
 			
 			GameObject go = GameObject.Find(name);
-			Debug.Log("Found " + go, go);
-			TriggeredObject[] trObj = go.GetComponents<TriggeredObject>();
-			evr.listeners.AddRange(trObj);
-			
+			if(go == null)
+			{
+				Debug.LogError("Could not find gameobject " + name);
+			}
+			else{
+				Debug.Log("Found " + go, go);
+				TriggeredObject[] trObj = go.GetComponents<TriggeredObject>();
+				evr.listeners.AddRange(trObj);
+			}
 			
 			
 		}

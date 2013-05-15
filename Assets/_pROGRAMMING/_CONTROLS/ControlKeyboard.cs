@@ -4,8 +4,29 @@ using System.Collections;
 public class ControlKeyboard : ControlBase
 {
 	public float forceThresshold = .3f;
+	
+	public KeyCode liftKey = KeyCode.F;
+	public KeyCode idleKey = KeyCode.R;
+	public KeyCode saveKey = KeyCode.T;
+	public KeyCode radioKey = KeyCode.Alpha2;
 	void Update()
 	{
+		if(Input.GetKeyDown(liftKey))
+		{
+			heli.EnterFlyMode();
+		}
+		else if(Input.GetKeyDown(saveKey))
+		{
+			heli.EnterSaveMode();
+		}
+		else if(Input.GetKeyDown(idleKey))
+		{
+			heli.EnterIdleMode();
+		}
+		else if(Input.GetKeyDown(radioKey))
+		{
+			heli.ToggleRadio();
+		}
 		Vector3 dir = Vector3.zero;
 		
 		float steer = Input.GetAxis("Horizontal"); // a && d, left and right
@@ -15,10 +36,6 @@ public class ControlKeyboard : ControlBase
 		heli.Steer(steer);
 		heli.Accelerate(dir);
 		
-		if(Input.GetKeyDown(KeyCode.Alpha1))
-			heli.ActivateRadio();
-		else if(Input.GetKeyDown(KeyCode.Alpha2))
-			heli.DeactivateRadio();
 		
 		cursorPosition = Input.mousePosition;
 	}
