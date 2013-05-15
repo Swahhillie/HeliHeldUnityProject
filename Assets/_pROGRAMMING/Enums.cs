@@ -12,7 +12,7 @@ public enum TriggerType{
 	None,
 	OnTriggerEnter,
 	OnTriggerExit,
-	OnDeath,
+	OnDestroy,
 	OnSpawn,
 	OnRescued,
 	Counting,

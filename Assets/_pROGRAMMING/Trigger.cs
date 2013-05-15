@@ -202,7 +202,7 @@ public class Trigger : TriggeredObject, IVisitable
 
 	void OnDestroy ()
 	{
-		triggers.FindAll (t => t.type == TriggerType.OnDeath).ForEach (x => TriggerActivate (x));
+		triggers.FindAll (t => t.type == TriggerType.OnDestroy).ForEach (x => TriggerActivate (x));
 		
 		/*for (int i = triggers.Count -1; i >= 0; i--) {
 			TriggerValue t = triggers [i];
