@@ -207,18 +207,22 @@
 		<Message>
 			<Name> Intro </Name>
 			<Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
+<<<<<<< HEAD
 			<Audio> Hello </Adio>
+=======
+			<Audio>test</Audio>
+>>>>>>> added sound to hud
 		</Message>
 		<Message>
 			<Name>Hallo</Name>
 			<Text>Hallo daar speler.</Text>
-			<Audio>Hello</Audio>
+			<Audio>test</Audio>
 		</Message>
 		<Message>
 			<Name>Move</Name>
 			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-			<Audio>Hello</Audio>			
+			<Audio>test</Audio>			
 		</Message>
 		<Message>
 <<<<<<< HEAD
@@ -232,7 +236,7 @@
 >>>>>>> Minor changes and some comments
 			<Name>DefaultMessage</Name>
 			<Text>PLACEHOLDER MESSAGE</Text>
-			<Audio>Hello</Audio>			
+			<Audio>test</Audio>			
 		</Message>
 		
 	</Messages>
