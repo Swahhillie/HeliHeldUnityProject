@@ -55,7 +55,7 @@ public class Menu
 		yield return null; //wait a frame so the scene can load
 		ConfigLoader.instance.LoadLevel (level); //load the objects
 	}
-	void UnLoadMenu ()
+	public void UnLoadMenu ()
 	{
 		for (int i = buttons.Count -1; i >= 0; i--) {
 			GameObject.Destroy (buttons [i].gameObject);
@@ -80,7 +80,7 @@ public class Menu
 
 	public void Update ()
 	{
-		if(isStarted == false){
+		if(isStarted == false && _isActive == true){
 			isStarted = true;
 			Start();
 		}
