@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class RescuePointer : MonoBehaviour {
 
 	
@@ -18,5 +19,7 @@ public class RescuePointer : MonoBehaviour {
 		float a = (alpha - min) * (max /(max - min));
 		result = a;
 		pointer.transform.position = Vector3.Lerp(startPos.position, endPos.position, a);
+		Debug.DrawLine(startPos.position, endPos.position, Color.magenta);
 	}
+	
 }

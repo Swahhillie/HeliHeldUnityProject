@@ -206,13 +206,26 @@
     </Objects>
   </Level>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Changes to make triggers more flexible
 =======
     <Level name="RescueTest">
+=======
+ <Level name="RescueTest">
+>>>>>>> Fixed rescue pointer
     <Objects>
       <Object>
-        <Name>castawayExample_000_</Name>
-        <Pos>(1729.1, 0.0, 823.4)</Pos>
+        <Name>beaconPrefab_000_</Name>
+        <Pos>(1864.8, 1.7, 723.8)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Beacon>
+          <Spawn>Start</Spawn>
+          <PrefabName>beaconPrefab</PrefabName>
+        </Beacon>
+      </Object>
+      <Object>
+        <Name>castawayExample_001_</Name>
+        <Pos>(1857.5, 1.5, 721.1)</Pos>
         <Rot>(0.0, 0.0, 0.0)</Rot>
         <Castaway>
           <Spawn>Start</Spawn>
@@ -224,7 +237,7 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
-              <Listener>castawayExample_000_</Listener>
+              <Listener>castawayExample_001_</Listener>
             </Listeners>
           </EventReaction>
           <Radius>50</Radius>
