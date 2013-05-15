@@ -115,7 +115,12 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
+<<<<<<< HEAD
               <Listener>castawayTemp_000_</Listener>
+=======
+              <Listener>HudObject</Listener>
+		<Listener>Cube</Listener>
+>>>>>>> added animator
             </Listeners>
           </EventReaction>
 <<<<<<< HEAD
@@ -216,13 +221,13 @@
 		<Message>
 			<Name>Hallo</Name>
 			<Text>Hallo daar speler.</Text>
-			<Audio>test</Audio>
+			<Audio>Hallo</Audio>
 		</Message>
 		<Message>
 			<Name>Move</Name>
 			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-			<Audio>test</Audio>			
+			<Audio>Move</Audio>			
 		</Message>
 		<Message>
 <<<<<<< HEAD

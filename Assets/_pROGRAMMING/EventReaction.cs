@@ -12,7 +12,13 @@ public class EventReaction
 		Displace,
 		Enable,
 		Disable,
+<<<<<<< HEAD
 		Count
+=======
+		StartTimer,
+		Count,
+		Animate
+>>>>>>> added animator
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
