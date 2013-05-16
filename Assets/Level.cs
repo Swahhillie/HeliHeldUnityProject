@@ -91,13 +91,14 @@ public class Level
 
 	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
 	{
-		GameObject elementToRemove = levelElements.Find (x => x.GetComponentInChildren<MissionObjectBase> () == obj);
+		
 		if (obj.type == MissionObject.Ship) {
 			_shipCount--;
 		}
 		if (obj.type == MissionObject.Castaway) {
 			_castawayCount --;
 		}
+		levelElements.Remove(obj.gameObject);
 	}
 
 	public void UnLoadLevel ()

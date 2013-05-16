@@ -168,7 +168,14 @@ public class XMLVisitor : Visitor
 		GameObject go  = v.gameObject;
 		
 		_activeObject = _writeTarget.CreateNode (XmlNodeType.Element, "Button", null);
+		
+		//type
+		XmlNode typeXml = _writeTarget.CreateNode (XmlNodeType.Element, "Type", null);
+		typeXml.InnerText = v.type.ToString ();
+		_activeObject.AppendChild (typeXml);
+		
 		//name
+		
 		XmlNode nameXml = _writeTarget.CreateNode (XmlNodeType.Element, "Name", null);
 		nameXml.InnerText = go.name;
 		_activeObject.AppendChild (nameXml);
@@ -189,6 +196,8 @@ public class XMLVisitor : Visitor
 		XmlNode functionXml = _writeTarget.CreateNode(XmlNodeType.Element, "Function", null);
 		functionXml.InnerText = v.command;
 		_activeObject.AppendChild (functionXml);
+		
+		
 		
 		_writeTarget.GetElementsByTagName ("Menu") [0].AppendChild (_activeObject);
 		

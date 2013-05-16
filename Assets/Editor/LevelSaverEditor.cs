@@ -86,7 +86,7 @@ public class LevelSaverEditor : EditorWindow
 			
 			i++;
 		}
-		XMLVisitor xmlVisitor = new XMLVisitor (saveName);
+		XMLVisitor xmlVisitor = new XMLVisitor (saveName, target == SavingTarget.Level);
 		foreach (var go in _selectedGos) {
 			
 			if(target == SavingTarget.Level)xmlVisitor.OpenNewObject(go);
