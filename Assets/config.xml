@@ -36,8 +36,7 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
-              <Listener>HudObject</Listener>
-		<Listener>Cube</Listener>
+              <Listener>RadioObject</Listener>
             </Listeners>
           </EventReaction>
           <EventReaction>
@@ -66,7 +65,7 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>ToLate</MessageName>
             <Listeners>
-              <Listener>HudObject</Listener>
+              <Listener>RadioObject</Listener>
             </Listeners>
           </EventReaction>
           <Radius>0</Radius>
