@@ -3,15 +3,21 @@ using System.Collections;
 
 public class Button3D : MonoBehaviour, IVisitable {
 
-	public delegate void Callback(string command);
+	public enum Type
+	{
+		LoadMenu,
+		LoadLevel
+	}
+	
+	public delegate void Callback(Button3D thisObj);
 	Callback callback = null;
 	public string command;
-	
+	public Button3D.Type type;
 	
 	
 	private bool _isHovered; // is the player pointer at this button
 	
-	public static Button3D CreateButton(string text, string command, Callback c, Vector3 pos, Vector3 rot, string prefabName = "button3DPrefab"){
+	public static Button3D CreateButton(Button3D.Type type, string text, string command, Callback c, Vector3 pos, Vector3 rot, string prefabName = "button3DPrefab"){
 		GameObject go = (GameObject)Instantiate(Resources.Load(prefabName), pos, Quaternion.identity);
 		go.transform.eulerAngles = rot;
 		Button3D b = go.GetComponent<Button3D>();
@@ -31,7 +37,7 @@ public class Button3D : MonoBehaviour, IVisitable {
 	}
 	
 	public void Activate(){
-		callback(command);
+		callback(this);
 	}
 	
 	private TextMesh _tMesh;

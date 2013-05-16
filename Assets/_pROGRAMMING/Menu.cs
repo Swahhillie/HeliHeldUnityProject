@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.SerializableAttribute()]
-public class Menu
+public class Menu : UnityEngine.Object
 {
 
 	private string menuName = "";
@@ -25,11 +25,10 @@ public class Menu
 	void Start ()
 	{
 		buttonLayer.value = 1 << LayerMask.NameToLayer ("Buttons");
-		Main script = GameObject.Find ("Main").GetComponent<Main> ();
 		//createMenu(script.loadName);
 		
 		ConfigLoader.GetValue ("buttonTime", ref buttonTimer);
-		mouse = GameObject.Find ("Mouse").GetComponent<KinectMouse> ();
+		mouse = FindObjectOfType(typeof(KinectMouse)) as KinectMouse;
 		selectionPlane = GameObject.Find("hoverSelectionPlane");
 		
 	}
@@ -40,14 +39,20 @@ public class Menu
 		this.menuXml = menuXml;
 	}
 
-	void ClickButton (string command)
+	void ClickButton (Button3D b)
 	{
-		if (command == "LoadLevel1") 
+		Debug.Log ("Button " + b.name + " was clicked, command = "+ b.type + " -> " + b.command);
+		if (b.type == Button3D.Type.LoadLevel) 
 		{
 			UnLoadMenu ();
-			ConfigLoader.instance.StartCoroutine(SwitchSceneAndLoad("LevelDesign", "level3"));
+			ConfigLoader.instance.StartCoroutine(SwitchSceneAndLoad("LevelDesign", b.command));
 		}
-		Debug.Log (command);
+		if(b.type == Button3D.Type.LoadMenu)
+		{
+			UnLoadMenu();
+			ConfigLoader.instance.LoadMenu(b.command);
+		}
+		
 	}
 	
 	IEnumerator SwitchSceneAndLoad(string scene, string level){
@@ -69,11 +74,15 @@ public class Menu
 		XmlNodeList buttonsList = menuXml.ChildNodes;
 		Debug.Log("Loading menu " + menuName + " with " + buttonsList.Count + " buttons");
 		foreach (XmlNode buttonXml in buttonsList) {
+			string name = buttonXml["Name"].InnerText;
+			Button3D.Type type = (Button3D.Type)System.Enum.Parse(typeof(Button3D.Type), buttonXml["Type"].InnerText);
 			Vector3 pos = ConfigLoader.ParseVec3 (buttonXml ["Pos"].InnerText);
 			Vector3 rot = ConfigLoader.ParseVec3 (buttonXml ["Rot"].InnerText);
 			string label = buttonXml ["Label"].InnerText;
 			string command = buttonXml ["Function"].InnerText;
-			buttons.Add (Button3D.CreateButton (label, command, ClickButton, pos, rot));
+			Button3D b = Button3D.CreateButton (type, label, command, ClickButton, pos, rot);
+			b.name = name;
+			buttons.Add (b);
 		}
 		_isActive = true;
 	}

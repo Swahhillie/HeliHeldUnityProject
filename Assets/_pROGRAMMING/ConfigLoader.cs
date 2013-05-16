@@ -141,8 +141,8 @@ public class ConfigLoader : MonoBehaviour
 	public static Dictionary<string, Reaction> reactionTypes = new Dictionary<string, Reaction> ();
 	public static Dictionary<string, Message> messages = new Dictionary<string,Message>();
 	public static ConfigLoader instance = null;
-	public Level activeLevel;
-	public Menu activeMenu;
+	public Level activeLevel = null;
+	public Menu activeMenu = null;
 	
 	void Awake ()
 	{

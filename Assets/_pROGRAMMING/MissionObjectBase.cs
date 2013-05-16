@@ -86,6 +86,8 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		if (t != null) {
 			t.OnRescue ();
 		}
+		ConfigLoader.instance.activeLevel.RemoveLevelElement(this);
+		GameObject.Destroy(this.gameObject);
 		return rescueSuccess;
 	}
 /*	
@@ -169,5 +171,9 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 			gameObject.SetActive (false);
 		}
 		
+	}
+	private void OnDestroy()
+	{
+		Debug.Log("OnDestroy Mission object ---> " + name, gameObject);
 	}
 }

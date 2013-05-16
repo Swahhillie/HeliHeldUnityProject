@@ -1,16 +1,20 @@
 <HeliHeld>
 	<Menu name = "MainMenu">
 		<Button>
+			<Name>Level3Load</Name>
 			<Label>1</Label>
+			<Type>LoadLevel</Type>
 			<Pos>3259.96,152,3724.76</Pos>
 			<Rot>0,0,0</Rot>
-			<Function>LoadLevel1</Function>
+			<Function>level3</Function>
 		</Button>
 		<Button>
+			<Name>DerpKnop</Name>
+			<Type>LoadLevel</Type>
 			<Label>VerticalSlice</Label>
 			<Pos>3259,150,3724</Pos>
 			<Rot>0,0,0</Rot>
-			<Function>LoadVerticalSlice</Function>
+			<Function>RescueTest</Function>
 		</Button>
 	</Menu>
 	<Menu name = "Shop">

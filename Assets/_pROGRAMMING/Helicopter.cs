@@ -49,19 +49,38 @@ public class Helicopter : MonoBehaviour
 		Kinect,
 		Keyboard
 	}
+	
+	private IEnumerator rescueRoutine;
+	private bool rescueing = false;
+	public float rescueTime = 4.0f;
+	
 	private ControlType controlType = ControlType.None;
 	public string toSavePosition;
 	public string toPilotPosition;
-	public RescuePointer rescuePointer;
+	private RescuePointer rescuePointer;
+	private RescueNearbyIndicator rescueNearbyIndicator;
 	public void Start ()
 	{
 		
+		rescuePointer = GetComponentInChildren<RescuePointer>();
+		rescueNearbyIndicator = GetComponentInChildren<RescueNearbyIndicator>();
 		radio = GetComponentInChildren<Radio> ();
+		InitializeControls();
+		
+		if (heliSettings.rescueRadius < heliSettings.avoidRadius) {
+			Debug.LogWarning (@"Helicopter avoid radius is bigger than rescue radius, 
+			Objects on terrain will not get rescued because the helicopter will fly to high");
+		}
+	}
+	
+	private void InitializeControls()
+	{
 		prevState = Helistate.FLY;
 		state = Helistate.IDLE;
 		
 		
 		
+		// disable the keyboard if connect is there and vice versa
 		if (skelWrap.devOrEmu.device.connected) {
 			controlType = ControlType.Kinect;
 			gameObject.GetComponent<ControlKeyboard> ().enabled = false;
@@ -73,14 +92,10 @@ public class Helicopter : MonoBehaviour
 		}
 		
 		
-		if (heliSettings.rescueRadius < heliSettings.avoidRadius) {
-			Debug.LogWarning (@"Helicopter avoid radius is bigger than rescue radius, 
-			Objects on terrain will not get rescued because the helicopter will fly to high");
-		}
+		
 		if (controlType == ControlType.Keyboard)
 			SetState (Helistate.FLY);
 	}
-	
 	public float closestPoint = 0;
 	public float distanceToWater = 0;
 	
@@ -154,33 +169,39 @@ public class Helicopter : MonoBehaviour
 		if (debugLines)
 			Gizmos.DrawWireSphere (transform.position, heliSettings.rescueRadius);
 	}
-
-	public bool AttemptRescue ()
-	{
 	
-		bool rescueSuccess = false;
+	private IEnumerator RescueRoutine()
+	{
 		
-		
-		if ((ConfigLoader.instance == null) || ConfigLoader.instance.activeLevel == null) {
-			Debug.LogError ("Making a rescue attempt without having loaded a level");
-			return false;
+		if(rescueing == true)
+		{
+			Debug.LogError("Multiple rescue routines are running at the same time! Respect the guard!");
+			
 		}
-		
-		if (dotToNearest > heliSettings.hoverPrecision) {
-			return (nearestRescuable.AttemptRescue ());
+		else{
+			rescueing = true;
+			float elaspedTime = 0;
+			while(dotToNearest > heliSettings.hoverPrecision){
+				elaspedTime += Time.deltaTime;
+				if(elaspedTime > rescueTime)
+				{
+					Debug.Log("Rescue timer gone off");
+					MakeRescue();
+					break;
+				}
+				else{
+					yield return null;
+				}
+			}
+			rescueing = false;
 		}
-		//getting all the objects that have mission object base attached
-		
-		
-		
-		return rescueSuccess;
-		
 		
 		
 	}
-
 	bool FindNearestInRange<T> (List<T> toSearch, Vector3 fromPos, float radius, out T result) where T : Component
 	{
+		
+		
 		result = null;
 		float closest = radius * radius;
 		foreach (var mib in toSearch) {
@@ -218,20 +239,29 @@ public class Helicopter : MonoBehaviour
 			
 		heliSettings.hoverPrecision = Mathf.Clamp (heliSettings.hoverPrecision, -1.0f, 1.0f);
 		
+		
 		if (FindNearestInRange <MissionObjectBase> (GetRescuables (), transform.position, heliSettings.rescueRadius, out nearestRescuable)) {
 			dotToNearest = GetDotToRescuable (nearestRescuable.transform);
+			rescueNearbyIndicator.Activate();
 		}
+		else{
+			rescueNearbyIndicator.DeActivate();
+			dotToNearest = 0;
+		}
+
 		
 		if (state == Helistate.SAVE) {
 			
 			rescuePointer.alpha = dotToNearest;
 		
 			
+			if(!rescueing)StartCoroutine(RescueRoutine());
 			
-			if (Input.GetKeyDown (KeyCode.Alpha1)) {
-				AttemptRescue ();
-			}
 		}
+	}
+	public void MakeRescue()
+	{
+		nearestRescuable.AttemptRescue();
 	}
 
 	public List<MissionObjectBase> GetRescuables ()
