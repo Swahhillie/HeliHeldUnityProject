@@ -4,6 +4,7 @@ using System.Collections;
 public class LoadAuto : MonoBehaviour {
 
 	ConfigLoader loader;
+<<<<<<< HEAD
 	
 	public enum ToLoad
 	{
@@ -12,6 +13,9 @@ public class LoadAuto : MonoBehaviour {
 	}
 	public ToLoad toLoad = ToLoad.Level;
 	public string toLoadName;
+=======
+	public string levelToLoad;
+>>>>>>> highlight shader
 	
 	void Start () {
 		loader = GetComponent<ConfigLoader>();

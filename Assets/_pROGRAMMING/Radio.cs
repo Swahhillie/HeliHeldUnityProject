@@ -88,6 +88,7 @@ public class Radio : TriggeredObject
 	
 	override public void OnTriggered(EventReaction evr)
 	{
+		Debug.Log("asdfjkgaksfjdghlkjsdfghksjdfhglksjdgksjdfghlajghösdfgölsakdjfglö");
 		if(evr.type==EventReaction.Type.Say)
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);

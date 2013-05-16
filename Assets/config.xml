@@ -116,11 +116,15 @@
             <MessageName>Hallo</MessageName>
             <Listeners>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <Listener>castawayTemp_000_</Listener>
 =======
               <Listener>HudObject</Listener>
 		<Listener>Cube</Listener>
 >>>>>>> added animator
+=======
+              <Listener>RadioObject</Listener>
+>>>>>>> highlight shader
             </Listeners>
           </EventReaction>
 <<<<<<< HEAD
@@ -160,6 +164,7 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>ToLate</MessageName>
             <Listeners>
+<<<<<<< HEAD
               <Listener>castawayTemp_001_</Listener>
             </Listeners>
           </EventReaction>
@@ -176,6 +181,9 @@
             <MessageName>Hallo</MessageName>
             <Listeners>
               <Listener>castawayTemp_001_</Listener>
+=======
+              <Listener>RadioObject</Listener>
+>>>>>>> highlight shader
             </Listeners>
           </EventReaction>
           <Radius>50</Radius>
