@@ -130,7 +130,7 @@ public class Trigger : TriggeredObject, IVisitable
 		gameObject.layer = LayerMask.NameToLayer ("SaveLayer");
 	}
 	
-	public void AddTriggerValue (List<EventReaction> eventReactions, TriggerType type, float radius = 0, float time = 0, int triggerCount = 1, int repeatCount = 1)//,List<SpecMission> Missions)
+	public void AddTriggerValue (List<EventReaction> eventReactions, TriggerType type, float radius, float time, int triggerCount, int repeatCount)//,List<SpecMission> Missions)
 	{
 		//Debug.Log(aName+aRadius+aType+aTime);
 		TriggerValue t = new TriggerValue (eventReactions, type, radius, time, triggerCount, repeatCount);

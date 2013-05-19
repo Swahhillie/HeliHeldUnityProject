@@ -129,36 +129,38 @@
   </Level>
 	</Levels>
 	
-	<Messages>
-		<Message>
-			<Name>Intro</Name>
-			<Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
-			<Audio> Hello </Audio>
-		</Message>
-		<Message>
-			<Name>Hallo</Name>
-			<Text>Hallo daar speler.</Text>
-			<Audio>Hello</Audio>
-		</Message>
-		<Message>
-			<Name>Move</Name>
-			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
+	  <Messages>
+    <Message>
+      <Name>Intro</Name>
+      <Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
+      <Audio>
+      </Audio>
+    </Message>
+    <Message>
+      <Name>Hallo</Name>
+      <Text>Hallo daar speler.</Text>
+      <Audio>switch32</Audio>
+    </Message>
+    <Message>
+      <Name>Move</Name>
+      <Text>Goed gedaan! Vlieg nu terug naar de basis. 
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-			<Audio>Hello</Audio>			
-		</Message>
-		<Message>
-			<Name>ToLate</Name>
-			<Text>Te laat, mensen verdrinken, vind de andere boot. 
+      <Audio>
+      </Audio>
+    </Message>
+    <Message>
+      <Name>ToLate</Name>
+      <Text>Te laat, mensen verdrinken, vind de andere boot. 
 			Daar liggen twee mensen in het water.</Text>
-			<Audio>Hello</Audio>			
-		</Message>
-		<Message>
-			<Name>DefaultMessage</Name>
-			<Text>PLACEHOLDER MESSAGE</Text>
-			<Audio>Hello</Audio>			
-		</Message>
-		
-	</Messages>
+      <Audio>
+      </Audio>
+    </Message>
+    <Message>
+      <Name>DefaultMessage</Name>
+      <Text>PLACEHOLDER MESSAGE</Text>
+      <Audio>switch32</Audio>
+    </Message>
+  </Messages>
 	<Settings>
 		<Setting name="flightHeight" value="200"></Setting>
 		<Setting name="buttonTime" value="2"></Setting>

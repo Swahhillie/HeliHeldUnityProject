@@ -14,7 +14,7 @@ public class SpecMission
 	private int count=1;
 	
 	
-	public SpecMission(string aName,string aText,float aTime,int Points,string Winmessage,string Failmessage,int aCount=1)
+	public SpecMission(string aName,string aText,float aTime,int Points,string Winmessage,string Failmessage,int aCount)
 	{
 		name=aName;
 		text=aText;

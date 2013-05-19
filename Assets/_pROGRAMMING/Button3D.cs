@@ -17,7 +17,7 @@ public class Button3D : MonoBehaviour, IVisitable {
 	
 	private bool _isHovered; // is the player pointer at this button
 	
-	public static Button3D CreateButton(Button3D.Type type, string text, string command, Callback c, Vector3 pos, Vector3 rot, string prefabName = "button3DPrefab"){
+	public static Button3D CreateButton(Button3D.Type type, string text, string command, Callback c, Vector3 pos, Vector3 rot, string prefabName){
 		GameObject go = (GameObject)Instantiate(Resources.Load(prefabName), pos, Quaternion.identity);
 		go.transform.eulerAngles = rot;
 		Button3D b = go.GetComponent<Button3D>();
