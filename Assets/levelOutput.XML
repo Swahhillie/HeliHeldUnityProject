@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <HeliHeld>
   <Level name="newXml">
 <<<<<<< HEAD
@@ -262,3 +263,39 @@
   </Menu>
 </HeliHeld>
 >>>>>>> Buttons -> xml, Rescueing, Rescue Indicator
+=======
+<Root>
+  <Messages>
+    <Message>
+      <Name>Intro</Name>
+      <Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
+      <Audio>
+      </Audio>
+    </Message>
+    <Message>
+      <Name>Hallo</Name>
+      <Text>Hallo daar speler.</Text>
+      <Audio>switch32</Audio>
+    </Message>
+    <Message>
+      <Name>Move</Name>
+      <Text>Goed gedaan! Vlieg nu terug naar de basis. 
+			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
+      <Audio>
+      </Audio>
+    </Message>
+    <Message>
+      <Name>ToLate</Name>
+      <Text>Te laat, mensen verdrinken, vind de andere boot. 
+			Daar liggen twee mensen in het water.</Text>
+      <Audio>
+      </Audio>
+    </Message>
+    <Message>
+      <Name>DefaultMessage</Name>
+      <Text>PLACEHOLDER MESSAGE</Text>
+      <Audio>switch32</Audio>
+    </Message>
+  </Messages>
+</Root>
+>>>>>>> Message editor utility added, UT for ParseVec3

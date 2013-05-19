@@ -45,7 +45,7 @@ public class Menu : UnityEngine.Object
 		if (b.type == Button3D.Type.LoadLevel) 
 		{
 			UnLoadMenu ();
-			ConfigLoader.instance.StartCoroutine(SwitchSceneAndLoad("LevelDesign", b.command));
+			ConfigLoader.instance.StartCoroutine(ConfigLoader.instance.SwitchSceneAndLoad("LevelDesign", b.command));
 		}
 		if(b.type == Button3D.Type.LoadMenu)
 		{
@@ -55,11 +55,7 @@ public class Menu : UnityEngine.Object
 		
 	}
 	
-	IEnumerator SwitchSceneAndLoad(string scene, string level){
-		Application.LoadLevel(scene);
-		yield return null; //wait a frame so the scene can load
-		ConfigLoader.instance.LoadLevel (level); //load the objects
-	}
+	
 	public void UnLoadMenu ()
 	{
 		for (int i = buttons.Count -1; i >= 0; i--) {
@@ -80,7 +76,7 @@ public class Menu : UnityEngine.Object
 			Vector3 rot = ConfigLoader.ParseVec3 (buttonXml ["Rot"].InnerText);
 			string label = buttonXml ["Label"].InnerText;
 			string command = buttonXml ["Function"].InnerText;
-			Button3D b = Button3D.CreateButton (type, label, command, ClickButton, pos, rot);
+			Button3D b = Button3D.CreateButton (type, label, command, ClickButton, pos, rot, "button3DPrefab");
 			b.name = name;
 			buttons.Add (b);
 		}
@@ -104,15 +100,22 @@ public class Menu : UnityEngine.Object
 					hoverStart = Time.time;
 					hoveringOver = id;
 				} else if (hoverStart + buttonTimer < Time.time) {
+				
+					//trigger the button and reset for another.
 					b.Activate ();
 					hoverStart = Time.time;
 					hoveringOver = -1;
 				}
 				else{
+					//face the plane along the button
 					selectionPlane.transform.position = b.transform.position;
 					selectionPlane.transform.up = -b.transform.forward;
+					
+					//calculate percent of activation time that has past.
 					float elapsed = Time.time - hoverStart;
 					float percent = elapsed / buttonTimer;
+					
+					//set the alpha to cut the texture off at. This allows artist to create the "progress effect"
 					selectionPlane.renderer.material.SetFloat("_Cutoff", percent);
 				}
 			

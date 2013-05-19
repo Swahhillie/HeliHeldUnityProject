@@ -8,12 +8,8 @@ public class LevelSaverEditor : EditorWindow
 	
 	private GameObject[] _selectedGos = new GameObject[0];
 	
-	private enum SavingTarget
-	{
-		Level,
-		Menu
-	}
-	private static SavingTarget target;
+	
+	private static XMLVisitor.ToSave target;
 	private string saveName = "newXml";
 	
 	
@@ -21,14 +17,14 @@ public class LevelSaverEditor : EditorWindow
 	private static void CreateWindowSaveLevel ()
 	{
 		EditorWindow.GetWindow<LevelSaverEditor> (true, "Saving a level");
-		target = SavingTarget.Level;
+		target = XMLVisitor.ToSave.Level;
 	}
 
 	[MenuItem("SaveXML/Menu")]
 	private static void CreateWindowSaveMenu ()
 	{
 		EditorWindow.GetWindow<LevelSaverEditor> (true, "Saving a menu");
-		target = SavingTarget.Menu;
+		target = XMLVisitor.ToSave.Menu;
 	}
 
 	[MenuItem("SaveXML/Level", true)]
@@ -39,10 +35,10 @@ public class LevelSaverEditor : EditorWindow
 	
 	private void OnSelectionChange ()
 	{
-		if (target == SavingTarget.Level) { 
+		if (target == XMLVisitor.ToSave.Level) { 
 			int targetLayer = LayerMask.NameToLayer ("SaveLayer");
 			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, (go => go.layer == targetLayer && go.transform.parent == null));
-		} else if (target == SavingTarget.Menu) {
+		} else if (target == XMLVisitor.ToSave.Menu) {
 			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, go => go.GetComponent<Button3D>() != null);
 		}
 		Repaint ();
@@ -86,10 +82,10 @@ public class LevelSaverEditor : EditorWindow
 			
 			i++;
 		}
-		XMLVisitor xmlVisitor = new XMLVisitor (saveName, target == SavingTarget.Level);
+		XMLVisitor xmlVisitor = new XMLVisitor (saveName, target);
 		foreach (var go in _selectedGos) {
 			
-			if(target == SavingTarget.Level)xmlVisitor.OpenNewObject(go);
+			if(target == XMLVisitor.ToSave.Level)xmlVisitor.OpenNewObject(go);
 			System.Array.ForEach<IVisitable> (go.GetInterfacesInChildren<IVisitable> (), visitable => visitable.AcceptVisitor (xmlVisitor));
 			
 		}

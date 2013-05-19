@@ -6,4 +6,9 @@ public abstract class Visitor {
 	public abstract void Visit(Castaway visitable);
 	public abstract void Visit(Ship visitable);
 	public abstract void Visit(Button3D visitable);
+<<<<<<< HEAD
+=======
+	public abstract void Visit(Beacon visitable);
+	public abstract void Visit(Message message);
+>>>>>>> Message editor utility added, UT for ParseVec3
 }

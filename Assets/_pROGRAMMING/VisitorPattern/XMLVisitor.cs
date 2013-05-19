@@ -11,29 +11,59 @@ public class XMLVisitor : Visitor
 	private string levelBase = "levelBase.xml";
 	private string outputFile = "levelOutput.xml";
 	
-	public XMLVisitor (XmlDocument target)
+	public enum ToSave
 	{
-		_writeTarget = target;
+		Level,
+		Menu,
+		Messages
 	}
-	public XMLVisitor(string levelName, bool level = true){
+	
+	public XMLVisitor (string levelName, ToSave toSave)
+	{
+		
 		
 		_writeTarget = new XmlDocument ();
-		_writeTarget.Load (Application.dataPath + "\\" + levelBase);
+		//_writeTarget.Load (Application.dataPath + "\\" + levelBase);
 		
-		XmlNode root = _writeTarget.DocumentElement;
+		XmlDeclaration xmlDecl = _writeTarget.CreateXmlDeclaration("1.0", null, null);
+		
+		XmlNode root = _writeTarget.CreateNode(XmlNodeType.Element, "Root", null);
+		_writeTarget.AppendChild(root);
+		//xmlDecl.InsertBefore(xmlDecl, root);
 		
 		XmlNode testChild;
-		if(level)testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Level", "");
-		else testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Menu", "");
+		
+		switch (toSave) {
+		case ToSave.Level:
+			{
+				testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Level", "");
+				XmlElement tc = (XmlElement)testChild;//
+				tc.SetAttribute ("name", levelName);
+				break;
+			}
+		case ToSave.Menu:
+			{
+				testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Menu", "");
+				XmlElement tc = (XmlElement)testChild;//
+				tc.SetAttribute ("name", levelName);
+				break;
+			}
+		case ToSave.Messages:
+			testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Messages", "");
+			break;
+		default:
+			testChild = null;
+			break;
+		}
 	
-		XmlElement tc = (XmlElement)testChild;//
-		tc.SetAttribute ("name", levelName);
+	
+		
 		
 		root.AppendChild (testChild);
 		
-		if(level){
+		if (toSave == ToSave.Level) {
 			XmlNode objectsXml = _writeTarget.CreateNode (XmlNodeType.Element, "Objects", "");
-			testChild.AppendChild(objectsXml);	
+			testChild.AppendChild (objectsXml);	
 		}
 	}
 
@@ -42,14 +72,13 @@ public class XMLVisitor : Visitor
 		Debug.Log ("Visiting a trigger");
 		
 		
-		foreach (TriggerValue t in v.triggers)
-		{
+		foreach (TriggerValue t in v.triggers) {
 			XmlNode triggerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Trigger", null);
 			_activeObject.AppendChild (triggerXml);
 			
 			
 			
-			foreach(EventReaction evr in t.eventReactions){
+			foreach (EventReaction evr in t.eventReactions) {
 				XmlNode reactionXml = _writeTarget.CreateNode (XmlNodeType.Element, "EventReaction", null);
 				AddEventReaction (ref reactionXml, evr);
 				triggerXml.AppendChild (reactionXml);
@@ -64,6 +93,11 @@ public class XMLVisitor : Visitor
 			//saving the repeat count and the trigger count
 			XmlNode repeatCountXml = _writeTarget.CreateNode (XmlNodeType.Element, "RepeatCount", null);
 			repeatCountXml.InnerText = t.maxRepeatCount.ToString ();
+<<<<<<< HEAD
+=======
+			XmlNode timeToTriggerXml = _writeTarget.CreateNode (XmlNodeType.Element, "TimeToTrigger", null);
+			timeToTriggerXml.InnerText = t.timeToTrigger.ToString ();
+>>>>>>> Message editor utility added, UT for ParseVec3
 			XmlNode triggerCountXml = _writeTarget.CreateNode (XmlNodeType.Element, "CountToTrigger", null);
 			triggerCountXml.InnerText = t.countToTrigger.ToString ();
 			
@@ -89,23 +123,28 @@ public class XMLVisitor : Visitor
 		messageNameXml.InnerText = evr.messageName;
 		evrXml.AppendChild (messageNameXml);
 		
-		XmlNode listenersXml = _writeTarget.CreateNode(XmlNodeType.Element, "Listeners", null);
+		XmlNode listenersXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listeners", null);
 		
-		foreach(TriggeredObject listener in evr.listeners){
-			XmlNode listenerXml = _writeTarget.CreateNode(XmlNodeType.Element, "Listener", null);
+		foreach (TriggeredObject listener in evr.listeners) {
+			XmlNode listenerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listener", null);
 			listenerXml.InnerXml = listener.gameObject.name;
-			listenersXml.AppendChild(listenerXml);
+			listenersXml.AppendChild (listenerXml);
 		}
-		evrXml.AppendChild(listenersXml);
+		evrXml.AppendChild (listenersXml);
 	}
 	
 	override public void Visit (Castaway v)
 	{
 		Debug.Log ("Visiting a Castaway");
+<<<<<<< HEAD
 		XmlNode castawayXml = _writeTarget.CreateNode (XmlNodeType.Element, "Castaway", null);
 		XmlNode spawnXml = _writeTarget.CreateNode (XmlNodeType.Element, "Spawn", null);
 		spawnXml.InnerText = v.spawn.ToString ();
 		castawayXml.AppendChild (spawnXml);
+=======
+				
+		CreateMissionObjectBaseXml ("Castaway", v);
+>>>>>>> Message editor utility added, UT for ParseVec3
 		
 		XmlNode prefabNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "PrefabName", null);
 		prefabNameXml.InnerText = v.prefabName;
@@ -117,7 +156,28 @@ public class XMLVisitor : Visitor
 	override public void Visit (Ship v)
 	{
 		Debug.Log ("Visiting a Ship");
+<<<<<<< HEAD
 		XmlNode shipXml = _writeTarget.CreateNode (XmlNodeType.Element, "Ship", null);
+=======
+		
+	
+		CreateMissionObjectBaseXml ("Ship", v);
+		
+		
+		
+	}
+
+	override public void Visit (Beacon beacon)
+	{
+		Debug.Log ("Visiting a Beacon");
+		CreateMissionObjectBaseXml ("Beacon", beacon);	
+	}
+	
+	private void CreateMissionObjectBaseXml (string name, MissionObjectBase mb)
+	{
+		XmlNode target = _writeTarget.CreateNode (XmlNodeType.Element, name, null);
+		
+>>>>>>> Message editor utility added, UT for ParseVec3
 		XmlNode spawnXml = _writeTarget.CreateNode (XmlNodeType.Element, "Spawn", null);
 		spawnXml.InnerText = v.spawn.ToString ();
 		shipXml.AppendChild (spawnXml);
@@ -128,7 +188,11 @@ public class XMLVisitor : Visitor
 		
 		_activeObject.AppendChild (shipXml);
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> Message editor utility added, UT for ParseVec3
 	public void OpenNewObject (GameObject go)
 	{
 		Debug.Log ("Saving new object with name " + go.name);
@@ -152,8 +216,10 @@ public class XMLVisitor : Visitor
 		_writeTarget.GetElementsByTagName ("Objects") [0].AppendChild (_activeObject);
 				
 	}
-	override public void Visit(Button3D v){
-		GameObject go  = v.gameObject;
+
+	override public void Visit (Button3D v)
+	{
+		GameObject go = v.gameObject;
 		
 		_activeObject = _writeTarget.CreateNode (XmlNodeType.Element, "Button", null);
 		
@@ -181,7 +247,7 @@ public class XMLVisitor : Visitor
 		rotXml.InnerText = go.transform.eulerAngles.ToString ();
 		_activeObject.AppendChild (rotXml);
 		
-		XmlNode functionXml = _writeTarget.CreateNode(XmlNodeType.Element, "Function", null);
+		XmlNode functionXml = _writeTarget.CreateNode (XmlNodeType.Element, "Function", null);
 		functionXml.InnerText = v.command;
 		_activeObject.AppendChild (functionXml);
 		
@@ -190,8 +256,28 @@ public class XMLVisitor : Visitor
 		_writeTarget.GetElementsByTagName ("Menu") [0].AppendChild (_activeObject);
 		
 	}
-	public string Write(){
-	//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
+
+	override public void Visit (Message message)
+	{
+		_activeObject = _writeTarget.CreateNode(XmlNodeType.Element, "Message", null);
+		//name
+		CreateAddNode(_writeTarget, "Name", _activeObject).InnerText = message.name;
+		//text
+		CreateAddNode(_writeTarget, "Text", _activeObject).InnerText = message.text;
+		//audio
+		CreateAddNode(_writeTarget, "Audio", _activeObject).InnerText = message.audio != null? message.audio.name : "";
+		
+		_writeTarget.GetElementsByTagName("Messages")[0].AppendChild(_activeObject);
+	}
+	private static XmlNode CreateAddNode(XmlDocument doc, string name, XmlNode parent)
+	{
+		XmlNode node = doc.CreateNode(XmlNodeType.Element, name, null);
+		parent.AppendChild(node);
+		return node;
+	}
+	public string Write ()
+	{
+		//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
 		XmlTextWriter writer = new XmlTextWriter (Application.dataPath + "\\" + outputFile, System.Text.Encoding.ASCII);
 		writer.Formatting = Formatting.Indented;
 		//doc.Save(Application.dataPath + "\\" +outputFile);

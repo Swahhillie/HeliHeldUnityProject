@@ -195,7 +195,7 @@ public class ConfigLoader : MonoBehaviour
 		ParseMenus (xml);
 		
 		
-		ParseMessages(xml);
+		messages = ParseMessages(xml);
 		
 		//menus ["MainMenu"].LoadMenu ();
 		
@@ -265,14 +265,15 @@ public class ConfigLoader : MonoBehaviour
 		}
 	}
 	
-	void ParseMessages (XmlDocument xml)
+	public static Dictionary<string, Message> ParseMessages (XmlDocument xml)
 	{
-		
+		Dictionary<string, Message> messages = new Dictionary<string, Message>();
 		XmlNodeList messageList = xml.GetElementsByTagName ("Message");
 		foreach (XmlNode messageXml in messageList) 
 		{
 			messages[messageXml["Name"].InnerText] = new Message(messageXml);
 		}
+		return messages;
 	}
 
 	private void Update ()
@@ -288,8 +289,8 @@ public class ConfigLoader : MonoBehaviour
 		string[] elements = s.Split (',');
 		if (elements.Length != 3)
 			Debug.LogError ("Passed Vector3 that does not have 3 elements");
-			
-		return new Vector3 (float.Parse (elements [0]), float.Parse (elements [1]), float.Parse (elements [2]));
+		var fm = System.Globalization.CultureInfo.InvariantCulture; // set the formatter to accept floats in this format '0.01f'
+		return new Vector3 (float.Parse (elements [0], fm ), float.Parse (elements [1], fm), float.Parse (elements [2], fm));
 	}
 	//---------------------- getting settings from the settings file and putting reading them as proper values
 	public static bool GetValue (string fieldName, ref string target)
@@ -301,7 +302,7 @@ public class ConfigLoader : MonoBehaviour
 	{
 		string str;
 		if (settings.TryGetValue (fieldName, out str)) {
-			target = float.Parse (str);
+			target = float.Parse (str, System.Globalization.CultureInfo.InvariantCulture);
 			return true;
 		} else {
 			Debug.LogError ("Couldnt get setting " + fieldName + " from settings map ");
@@ -355,6 +356,8 @@ public class ConfigLoader : MonoBehaviour
 		return message;	
 	}
 	
+	
+	//coroutines for use by classes that are no monobehaviours
 	public static IEnumerator FindListeners(EventReaction evr, string[] names)
 	{
 		foreach(string name in names)Debug.Log("Looking for listener object with name " + name);
@@ -376,6 +379,11 @@ public class ConfigLoader : MonoBehaviour
 			
 		}
 				
+	}
+	public IEnumerator SwitchSceneAndLoad(string scene, string level){
+		Application.LoadLevel(scene);
+		yield return null; //wait a frame so the scene can load
+		ConfigLoader.instance.LoadLevel (level); //load the objects
 	}
 
 	
