@@ -175,6 +175,7 @@ public class Level
 	{
 		//add component ship here and set the proper values
 		Ship c = AddMissionBase<Ship> (shipXml, go);
+		if(UnityEngine.Random.value > .999)Debug.Log("I'm on a boat.");
 		
 	}
 
@@ -204,6 +205,10 @@ public class Level
 		return mib;
 	}
 	
+	public bool isLoaded
+	{
+		get{return _isLoaded;}
+	}
 
 
 	

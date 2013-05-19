@@ -92,7 +92,7 @@ public class Radio : TriggeredObject
 		if(evr.type==EventReaction.Type.Say)
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
-			
+			Debug.Log("Displaying message " + message.text);
 			_message = message.text;
 
 			audio.PlayOneShot((AudioClip)Resources.Load(message.audio));
