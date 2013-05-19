@@ -15,7 +15,7 @@ public class MessageSaverEditor : EditorWindow {
 	[MenuItem("SaveXML/Messages")]
 	private static void CreateWindowSaveLevel ()
 	{
-		MessageSaverEditor wind = EditorWindow.GetWindow<MessageSaverEditor> (true, "Message Editor");
+		EditorWindow.GetWindow<MessageSaverEditor> (true, "Message Editor");
 		
 		
 	}
@@ -48,7 +48,7 @@ public class MessageSaverEditor : EditorWindow {
 						GUILayout.Label(pair.Key);
 						message.text = EditorGUILayout.TextField(message.text);
 
-						message.audio = EditorGUILayout.ObjectField(message.audio, typeof(AudioClip)) as AudioClip;
+						message.audio = EditorGUILayout.ObjectField(message.audio, typeof(AudioClip), false) as AudioClip;
 				
 						if(GUI.changed && message.audio != null)
 						{

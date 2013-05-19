@@ -14,7 +14,7 @@ public class ControlKinect : ControlBase
 	Vector3 handL;
 	Vector3 elbowL;
 	
-	void StartConcrete()
+	override protected void StartConcrete()
 	{
 		kg = new KinectGestures(skelWrap);
 	}

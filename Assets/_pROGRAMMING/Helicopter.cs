@@ -278,7 +278,6 @@ public class Helicopter : MonoBehaviour
 	
 	public void EnterSaveMode ()
 	{
-		MissionObjectBase mib = null;
 		if (nearestRescuable != null) {//check if above mission object
 			SetState (Helistate.SAVE);
 		} else if (controlType == ControlType.Kinect) {
