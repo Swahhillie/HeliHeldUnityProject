@@ -269,6 +269,7 @@
 	</Levels>
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<Messages>
 		<Message>
 			<Name> Intro </Name>
@@ -307,6 +308,8 @@
 		
 	</Messages>
 =======
+=======
+>>>>>>> Fixes github diff text
 	  <Messages>
     <Message>
       <Name>Intro</Name>
@@ -339,7 +342,41 @@
       <Audio>switch32</Audio>
     </Message>
   </Messages>
+<<<<<<< HEAD
 >>>>>>> Message editor utility added, UT for ParseVec3
+=======
+
+	<Messages>
+		<Message>
+			<Name>Intro</Name>
+			<Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
+			<Audio>test</Audio>
+		</Message>
+		<Message>
+			<Name>Hallo</Name>
+			<Text>Hallo daar speler.</Text>
+			<Audio>Hallo</Audio>
+		</Message>
+		<Message>
+			<Name>Move</Name>
+			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
+			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
+			<Audio>Move</Audio>			
+		</Message>
+		<Message>
+			<Name>ToLate</Name>
+			<Text>Te laat, mensen verdrinken, vind de andere boot. 
+			Daar liggen twee mensen in het water.</Text>
+			<Audio>Hello</Audio>			
+		</Message>
+		<Message>
+			<Name>DefaultMessage</Name>
+			<Text>PLACEHOLDER MESSAGE</Text>
+			<Audio>test</Audio>			
+		</Message>
+		
+	</Messages>
+>>>>>>> Fixes github diff text
 	<Settings>
 		<Setting name="flightHeight" value="200"></Setting>
 		<Setting name="buttonTime" value="2"></Setting>

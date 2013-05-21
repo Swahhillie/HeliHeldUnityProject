@@ -6,11 +6,12 @@ public class Message : IVisitable
 {
 	private string _name;
 	private string _text;
-	private string _audio;
+	private AudioClip _audio;
 	
 	public Message(XmlNode node)
 	{
 		_text = node["Text"].InnerText;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		_audio = node["Audio"].InnerText;
 =======
@@ -18,6 +19,13 @@ public class Message : IVisitable
 		_name = node["Name"].InnerText;
 		_audio = (AudioClip)Resources.Load(audioFile);
 >>>>>>> Message editor utility added, UT for ParseVec3
+=======
+
+		string audioFile = node["Audio"].InnerText;
+		_name = node["Name"].InnerText;
+		_audio = (AudioClip)Resources.Load(audioFile);
+
+>>>>>>> Fixes github diff text
 	}
 	
 	public string name
@@ -31,7 +39,7 @@ public class Message : IVisitable
 		set{_text = value;}
 	}
 		
-	public string audio
+	public AudioClip audio
 	{
 		get {return _audio;}
 		set{_audio = value;}
