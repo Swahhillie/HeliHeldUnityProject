@@ -6,14 +6,18 @@ public class Message : IVisitable
 {
 	private string _name;
 	private string _text;
-	private AudioClip _audio;
+	private string _audio;
 	
 	public Message(XmlNode node)
 	{
 		_text = node["Text"].InnerText;
+<<<<<<< HEAD
 		string audioFile = node["Audio"].InnerText;
 		_name = node["Name"].InnerText;
 		_audio = (AudioClip)Resources.Load(audioFile);
+=======
+		_audio = node["Audio"].InnerText;
+>>>>>>> origin/highlight,-animations-and-sounds
 	}
 	
 	public string name
@@ -27,7 +31,7 @@ public class Message : IVisitable
 		set{_text = value;}
 	}
 		
-	public AudioClip audio
+	public string audio
 	{
 		get {return _audio;}
 		set{_audio = value;}

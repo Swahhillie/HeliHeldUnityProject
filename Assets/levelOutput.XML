@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="us-ascii"?>
+<<<<<<< HEAD
 <Root>
   <Messages>
     <Message>
@@ -33,3 +34,10 @@
     </Message>
   </Messages>
 </Root>
+=======
+<HeliHeld>
+  <Level name="RescueTest">
+    <Objects />
+  </Level>
+</HeliHeld>
+>>>>>>> origin/highlight,-animations-and-sounds

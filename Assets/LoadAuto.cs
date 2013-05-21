@@ -5,6 +5,7 @@ public class LoadAuto : MonoBehaviour
 {
 
 	ConfigLoader loader;
+<<<<<<< HEAD
 	
 	public enum ToLoad
 	{
@@ -25,6 +26,13 @@ public class LoadAuto : MonoBehaviour
 	
 			loader.LoadMenu (toLoadName);
 		}
+=======
+	public string levelToLoad;
+	
+	void Start () {
+		loader = GetComponent<ConfigLoader>();
+		loader.LoadLevel(levelToLoad);
+>>>>>>> origin/highlight,-animations-and-sounds
 	}
 
 }

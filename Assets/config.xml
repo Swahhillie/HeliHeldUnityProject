@@ -40,7 +40,7 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
-              <Listener>HudObject</Listener>
+              <Listener>RadioObject</Listener>
             </Listeners>
           </EventReaction>
           <EventReaction>
@@ -69,7 +69,7 @@
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>ToLate</MessageName>
             <Listeners>
-              <Listener>HudObject</Listener>
+              <Listener>RadioObject</Listener>
             </Listeners>
           </EventReaction>
           <Radius>0</Radius>
@@ -129,6 +129,7 @@
   </Level>
 	</Levels>
 	
+<<<<<<< HEAD
 	  <Messages>
     <Message>
       <Name>Intro</Name>
@@ -161,6 +162,38 @@
       <Audio>switch32</Audio>
     </Message>
   </Messages>
+=======
+	<Messages>
+		<Message>
+			<Name>Intro</Name>
+			<Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
+			<Audio>test</Audio>
+		</Message>
+		<Message>
+			<Name>Hallo</Name>
+			<Text>Hallo daar speler.</Text>
+			<Audio>Hallo</Audio>
+		</Message>
+		<Message>
+			<Name>Move</Name>
+			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
+			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
+			<Audio>Move</Audio>			
+		</Message>
+		<Message>
+			<Name>ToLate</Name>
+			<Text>Te laat, mensen verdrinken, vind de andere boot. 
+			Daar liggen twee mensen in het water.</Text>
+			<Audio>Hello</Audio>			
+		</Message>
+		<Message>
+			<Name>DefaultMessage</Name>
+			<Text>PLACEHOLDER MESSAGE</Text>
+			<Audio>test</Audio>			
+		</Message>
+		
+	</Messages>
+>>>>>>> origin/highlight,-animations-and-sounds
 	<Settings>
 		<Setting name="flightHeight" value="200"></Setting>
 		<Setting name="buttonTime" value="2"></Setting>
