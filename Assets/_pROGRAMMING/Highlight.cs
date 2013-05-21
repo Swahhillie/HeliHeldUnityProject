@@ -4,7 +4,7 @@ using System.Collections;
 public class Highlight : TriggeredObject {
 	
 	private Shader originalShader;
-	private bool active;
+	//private bool active;
 	
 	void Awake()
 	{
@@ -13,13 +13,18 @@ public class Highlight : TriggeredObject {
 	
 	public override void OnTriggered (EventReaction eventReaction)
 	{
-		if(eventReaction.type == EventReaction.Type.Highlight)
+		if(eventReaction.type == EventReaction.Type.Highlight_Activate)
 		{
-			this.gameObject.renderer.material.shader = Shader.Find("Outline/Rimlight");
+			this.gameObject.renderer.material.shader = Shader.Find("Rimlight");
+		}
+		if(eventReaction.type == EventReaction.Type.Highlight_Deactivate)
+		{
+			this.gameObject.renderer.material.shader = originalShader;
 		}
 	}
 	
-	private IEnumerator switchShader()
+	//not used yet
+	/*private IEnumerator switchShader()
 	{
 		if(active)
 		{
@@ -29,6 +34,5 @@ public class Highlight : TriggeredObject {
 		{
 			this.gameObject.renderer.material.shader = Shader.Find("Rimlight");
 		}
-	}
-	
+	}*/
 }

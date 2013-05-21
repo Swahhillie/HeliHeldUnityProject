@@ -15,7 +15,9 @@ public class EventReaction
 		StartTimer,
 		Count,
 		Animate,
-		Highlight
+		Highlight_Activate,
+		Highlight_Deactivate
+		
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
