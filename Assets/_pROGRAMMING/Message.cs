@@ -8,6 +8,11 @@ public class Message : IVisitable
 	private string _text;
 	private AudioClip _audio;
 	
+	public Message(string name)
+	{
+		_name = name;
+	}
+	
 	public Message(XmlNode node)
 	{
 		_text = node["Text"].InnerText;
