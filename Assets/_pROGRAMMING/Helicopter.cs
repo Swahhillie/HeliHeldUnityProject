@@ -234,8 +234,9 @@ public class Helicopter : MonoBehaviour
 		transform.position += velocity * Time.deltaTime; //misschien niet de deltatime hier maar in de controller. waarschijn lijk wel though
 		velocity *= 1 - heliSettings.drag * Time.deltaTime;
 		
-		if (this.GetComponent<ControlKinect> ())
+		if (controlType == ControlType.Kinect){
 			skelWrap.pollSkeleton ();
+		}
 			
 		heliSettings.hoverPrecision = Mathf.Clamp (heliSettings.hoverPrecision, -1.0f, 1.0f);
 		

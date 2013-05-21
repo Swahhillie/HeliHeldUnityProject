@@ -5,7 +5,7 @@ public class Animator : TriggeredObject {
 
 	void Start()
 	{
-		Animation anim = this.gameObject.GetOrAddComponent<Animation>();
+		Animation anim = this.gameObject.GetComponent<Animation>();
 		anim.playAutomatically = false;
 	}
 	override public void OnTriggered(EventReaction evr)

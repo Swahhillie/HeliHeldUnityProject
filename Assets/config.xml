@@ -75,7 +75,7 @@
           <Radius>0</Radius>
           <Type>Timer</Type>
           <RepeatCount>1</RepeatCount>
-          <TimeToTrigger>10</TimeToTrigger>
+          <TimeToTrigger>0.5</TimeToTrigger>
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
       </Object>
