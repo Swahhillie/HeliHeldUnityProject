@@ -129,7 +129,6 @@
   </Level>
 	</Levels>
 	
-<<<<<<< HEAD
 	  <Messages>
     <Message>
       <Name>Intro</Name>
@@ -162,7 +161,7 @@
       <Audio>switch32</Audio>
     </Message>
   </Messages>
-=======
+
 	<Messages>
 		<Message>
 			<Name>Intro</Name>
@@ -193,7 +192,6 @@
 		</Message>
 		
 	</Messages>
->>>>>>> origin/highlight,-animations-and-sounds
 	<Settings>
 		<Setting name="flightHeight" value="200"></Setting>
 		<Setting name="buttonTime" value="2"></Setting>

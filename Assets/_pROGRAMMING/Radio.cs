@@ -95,7 +95,7 @@ public class Radio : TriggeredObject
 			Debug.Log("Displaying message " + message.text);
 			_message = message.text;
 
-			audio.PlayOneShot((AudioClip)Resources.Load(message.audio));
+			audio.PlayOneShot(message.audio);
 			
 			StopAllCoroutines();
 			StartCoroutine("ActivateHud");
