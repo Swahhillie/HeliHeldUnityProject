@@ -205,8 +205,12 @@
           <Radius>0</Radius>
           <Type>Timer</Type>
           <RepeatCount>1</RepeatCount>
+<<<<<<< HEAD
           <TimeToTrigger>10</TimeToTrigger>
 >>>>>>> Heli Kinect controls update
+=======
+          <TimeToTrigger>0.5</TimeToTrigger>
+>>>>>>> bugs fixed
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
         <Castaway>
