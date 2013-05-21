@@ -115,10 +115,11 @@
         </Castaway>
         <Trigger>
           <EventReaction>
-            <Type>Say</Type>
+            <Type>Highlight_Activate</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               <Listener>castawayTemp_000_</Listener>
@@ -129,6 +130,9 @@
 =======
               <Listener>RadioObject</Listener>
 >>>>>>> highlight shader
+=======
+              <Listener>polySurface3_Cockpit:polySurface9</Listener>
+>>>>>>> Highlight adjustments
             </Listeners>
           </EventReaction>
 <<<<<<< HEAD

@@ -22,8 +22,14 @@ public class EventReaction
 >>>>>>> added animator
 =======
 		Animate,
+<<<<<<< HEAD
 		Highlight
 >>>>>>> EventReaction and Highlight update
+=======
+		Highlight_Activate,
+		Highlight_Deactivate
+		
+>>>>>>> Highlight adjustments
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();

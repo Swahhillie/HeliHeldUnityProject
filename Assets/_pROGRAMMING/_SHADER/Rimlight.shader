@@ -1,4 +1,4 @@
-Shader "Outline/Rimlight"
+Shader "Rimlight"
 {
 	Properties {
 		_ColorTint("Color",Color) = (1,1,1,1)
