@@ -17,8 +17,13 @@ public class EventReaction
 =======
 		StartTimer,
 		Count,
+<<<<<<< HEAD
 		Animate
 >>>>>>> added animator
+=======
+		Animate,
+		Highlight
+>>>>>>> EventReaction and Highlight update
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
