@@ -15,10 +15,10 @@ public class Highlightable : TriggeredObject
 	public override void OnTriggered (EventReaction eventReaction)
 	{ 
 		if (eventReaction.type == EventReaction.Type.Highlight_Activate) { 
-			this.gameObject.renderer.material.shader = Shader.Find ("Rimlight"); 
+			renderer.material.shader = Shader.Find ("Rimlight"); 
 		} 
 		if (eventReaction.type == EventReaction.Type.Highlight_Deactivate) { 
-			this.gameObject.renderer.material.shader = originalShader; 
+			renderer.material.shader = originalShader; 
 		} 
 	} 
   

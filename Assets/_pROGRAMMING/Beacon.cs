@@ -11,6 +11,8 @@ public class Beacon : MissionObjectBase {
 	public ForceMode forceMode = ForceMode.Impulse;
 	public Rigidbody effect;
 	
+	private bool _activated = false;
+	
 	protected override void AwakeConcrete ()
 	{
 		
@@ -18,17 +20,21 @@ public class Beacon : MissionObjectBase {
 	protected override void UpdateConcrete ()
 	{
 		
-		float timeRemaining = lastFire + repeatCd - Time.time;
-		if(timeRemaining < 0)
-		{
-			FireBeacon();
+		
+		if(_activated){
+			float timeRemaining = lastFire + repeatCd - Time.time;
+			if(timeRemaining < 0)
+			{
+				FireBeacon();
+			}
+			else
+			{
+				 // temp
+				 trailRenderer.time = timeRemaining;
+				
+			}
 		}
-		else
-		{
-			 // temp
-			 trailRenderer.time = timeRemaining;
-			
-		}
+		
 		
 	}
 	override public void OnTriggered(EventReaction evr)
@@ -37,7 +43,11 @@ public class Beacon : MissionObjectBase {
 		switch (evr.type)
 		{
 			case EventReaction.Type.Enable:
-				
+				_activated = true;
+			break;
+			
+			case EventReaction.Type.Disable:
+				_activated = false;
 			break;
 		}
 	}

@@ -1,43 +1,66 @@
 <?xml version="1.0" encoding="us-ascii"?>
-<<<<<<< HEAD
 <Root>
-  <Messages>
-    <Message>
-      <Name>Intro</Name>
-      <Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>Hallo</Name>
-      <Text>Hallo daar speler.</Text>
-      <Audio>switch32</Audio>
-    </Message>
-    <Message>
-      <Name>Move</Name>
-      <Text>Goed gedaan! Vlieg nu terug naar de basis. 
-			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>ToLate</Name>
-      <Text>Te laat, mensen verdrinken, vind de andere boot. 
-			Daar liggen twee mensen in het water.</Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>DefaultMessage</Name>
-      <Text>PLACEHOLDER MESSAGE</Text>
-      <Audio>switch32</Audio>
-    </Message>
-  </Messages>
-</Root>
-=======
-<HeliHeld>
-  <Level name="RescueTest">
-    <Objects />
+  <Level name="exampleLevel">
+    <Objects>
+      <Object>
+        <Name>TriggerInitial_000_</Name>
+        <Pos>(2820.0, 128.2, 364.5)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Trigger>
+          <EventReaction>
+            <Type>Say</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>Hallo</MessageName>
+            <Listeners>
+              <Listener>RadioObject</Listener>
+            </Listeners>
+          </EventReaction>
+          <EventReaction>
+            <Type>StartTimer</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>
+            </MessageName>
+            <Listeners>
+              <Listener>TriggerTimer_002_</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>86.12</Radius>
+          <Type>OnTriggerEnter</Type>
+          <RepeatCount>1</RepeatCount>
+          <TimeToTrigger>0</TimeToTrigger>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+      </Object>
+      <Object>
+        <Name>beaconPrefab_001_</Name>
+        <Pos>(2797.9, 1.0, 839.8)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Beacon>
+          <Spawn>Start</Spawn>
+          <PrefabName>beaconPrefab</PrefabName>
+        </Beacon>
+      </Object>
+      <Object>
+        <Name>TriggerTimer_002_</Name>
+        <Pos>(2820.0, 128.2, 364.5)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Trigger>
+          <EventReaction>
+            <Type>Say</Type>
+            <Pos>(0.0, 0.0, 0.0)</Pos>
+            <MessageName>
+            </MessageName>
+            <Listeners>
+              <Listener>RadarAndFuel</Listener>
+            </Listeners>
+          </EventReaction>
+          <Radius>0</Radius>
+          <Type>OnActivate</Type>
+          <RepeatCount>1</RepeatCount>
+          <TimeToTrigger>10</TimeToTrigger>
+          <CountToTrigger>0</CountToTrigger>
+        </Trigger>
+      </Object>
+    </Objects>
   </Level>
-</HeliHeld>
->>>>>>> origin/highlight,-animations-and-sounds
+</Root>

@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{9F081893-6880-4CAE-89B7-C1B9B34E2302}</ProjectGuid>
+	<ProjectGuid>{A6CC4487-C975-A7BE-43A6-66550EF589D8}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -44,12 +44,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\_PROGRAMMING\NoiseAndGrainEditor.js" />
+     <Compile Include="Assets\NOTEd\AntialiasingAsPostEffectEditor.js" />
+     <Compile Include="Assets\NOTEd\BloomAndLensFlaresEditor.js" />
+     <Compile Include="Assets\NOTEd\BloomEditor.js" />
+     <Compile Include="Assets\NOTEd\CameraMotionBlurEditor.js" />
+     <Compile Include="Assets\NOTEd\ColorCorrectionCurvesEditor.js" />
+     <Compile Include="Assets\NOTEd\ColorCorrectionLutEditor.js" />
+     <Compile Include="Assets\NOTEd\DepthOfField34Editor.js" />
+     <Compile Include="Assets\NOTEd\DepthOfFieldScatterEditor.js" />
+     <Compile Include="Assets\NOTEd\EdgeDetectEffectNormalsEditor.js" />
+     <Compile Include="Assets\NOTEd\NoiseAndGrainEditor.js" />
+     <Compile Include="Assets\NOTEd\SunShaftsEditor.js" />
+     <Compile Include="Assets\NOTEd\TiltShiftEditor.js" />
+     <Compile Include="Assets\NOTEd\TonemappingEditor.js" />
+     <Compile Include="Assets\NOTEd\VignettingEditor.js" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Glass Refraction (Pro Only)\Glass-Stained-BumpDistort.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\levelBase.xml" />
      <None Include="Assets\config.xml" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ShowAlphaChannel.shader" />
@@ -74,6 +88,7 @@
      <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\_pROGRAMMING\_SHADER\Rimlight.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\TiltShift.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
@@ -129,6 +144,13 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>Assets\nunit.framework.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{D3504024-0E8A-8548-745D-87504E3BF3BD}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

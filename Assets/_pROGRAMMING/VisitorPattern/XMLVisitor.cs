@@ -124,9 +124,11 @@ public class XMLVisitor : Visitor
 		XmlNode listenersXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listeners", null);
 		
 		foreach (TriggeredObject listener in evr.listeners) {
-			XmlNode listenerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listener", null);
-			listenerXml.InnerXml = listener.gameObject.name;
-			listenersXml.AppendChild (listenerXml);
+			if(listener != null){
+				XmlNode listenerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listener", null);
+				listenerXml.InnerXml = listener.gameObject.name;
+				listenersXml.AppendChild (listenerXml);
+			}
 		}
 		evrXml.AppendChild (listenersXml);
 	}

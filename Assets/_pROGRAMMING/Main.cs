@@ -10,7 +10,15 @@ public class Main : MonoBehaviour {
 
 	void Awake () 
 	{
-		DontDestroyOnLoad(this.gameObject);
+		if(FindObjectsOfType(typeof(Main)).Length > 1)
+		{
+			Debug.Log("Found another main. deleting this");
+			GameObject.Destroy(gameObject);
+		}
+		else{
+			DontDestroyOnLoad(this.gameObject);
+		}
+		
 
 	}
 	
