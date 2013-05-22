@@ -220,7 +220,11 @@ public class Trigger : TriggeredObject, IVisitable
 	
 	override public void OnTriggered (EventReaction evr)
 	{
+<<<<<<< HEAD
 		Debug.Log ("Triggered was triggered, this is usefull for counting");
+=======
+		Debug.Log ("Trigger " + gameObject.name + " receveid event with eventType: " + evr.type.ToString(), this);
+>>>>>>> Clarity, Example updated, unsed variables deleted
 		switch (evr.type) {
 		case EventReaction.Type.Count:
 			triggers.FindAll (t => t.type == TriggerType.Counting).ForEach (x => TriggerActivate (x));

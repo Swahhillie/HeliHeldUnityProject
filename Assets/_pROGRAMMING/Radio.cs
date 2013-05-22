@@ -12,9 +12,6 @@ public class Radio : TriggeredObject
 	public float closeDuration=1.0f;
 	public float writeDuration = 5.0f;
 	
-	public float delay = 0.01f;
-	public int step = 10;
-	
 	public Vector3 openedScale = new Vector3(1,1,0);
 	public Vector3 closedScale = new Vector3(0,0,0);
 	
