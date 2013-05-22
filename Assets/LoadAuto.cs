@@ -27,7 +27,13 @@ public class LoadAuto : MonoBehaviour
 		if (loader == null)
 			Debug.LogError ("Failed to find ConfigLoader component");
 		if (toLoad == ToLoad.Level) {
-			loader.StartCoroutine (loader.SwitchSceneAndLoad (scene, toLoadName));
+			if(scene == ""){
+				loader.LoadLevel(toLoadName);
+			}
+			else{
+				loader.StartCoroutine (loader.SwitchSceneAndLoad (scene, toLoadName));
+			}
+			
 		} else if (toLoad == ToLoad.Menu) {
 >>>>>>> Message editor utility added, UT for ParseVec3
 	

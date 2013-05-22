@@ -31,6 +31,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<Level name = "level3">
 			<Objects>
 				<Object>
@@ -103,6 +104,9 @@
         <Pos>(2819.1, 50.9, 725.5)</Pos>
 =======
  <Level name="level3">
+=======
+  <Level name="exampleLevel">
+>>>>>>> Recreated the project settings.
     <Objects>
       <Object>
         <Name>TriggerInitial_000_</Name>
@@ -115,10 +119,11 @@
         </Castaway>
         <Trigger>
           <EventReaction>
-            <Type>Highlight_Activate</Type>
+            <Type>Say</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
             <MessageName>Hallo</MessageName>
             <Listeners>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -133,6 +138,9 @@
 =======
               <Listener>polySurface3_Cockpit:polySurface9</Listener>
 >>>>>>> Highlight adjustments
+=======
+              <Listener>RadioObject</Listener>
+>>>>>>> Recreated the project settings.
             </Listeners>
           </EventReaction>
 <<<<<<< HEAD
@@ -146,7 +154,7 @@
             <MessageName>
             </MessageName>
             <Listeners>
-              <Listener>TriggerTimer_001_</Listener>
+              <Listener>TriggerTimer_002_</Listener>
             </Listeners>
           </EventReaction>
           <Radius>86.12</Radius>
@@ -159,10 +167,23 @@
       </Object>
       <Object>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <Name>castawayTemp_001_</Name>
         <Pos>(2819.1, 50.9, 1008.4)</Pos>
 =======
         <Name>TriggerTimer_001_</Name>
+=======
+        <Name>beaconPrefab_001_</Name>
+        <Pos>(2797.9, 1.0, 839.8)</Pos>
+        <Rot>(0.0, 0.0, 0.0)</Rot>
+        <Beacon>
+          <Spawn>Start</Spawn>
+          <PrefabName>beaconPrefab</PrefabName>
+        </Beacon>
+      </Object>
+      <Object>
+        <Name>TriggerTimer_002_</Name>
+>>>>>>> Recreated the project settings.
         <Pos>(2820.0, 128.2, 364.5)</Pos>
 >>>>>>> Heli Kinect controls update
         <Rot>(0.0, 0.0, 0.0)</Rot>
@@ -170,8 +191,10 @@
           <EventReaction>
             <Type>Disable</Type>
             <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>ToLate</MessageName>
+            <MessageName>
+            </MessageName>
             <Listeners>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               <Listener>castawayTemp_001_</Listener>
@@ -196,6 +219,9 @@
 =======
               <Listener>HudObject</Listener>
 >>>>>>> Added Message Add for Message saver
+=======
+              <Listener>RadarAndFuel</Listener>
+>>>>>>> Recreated the project settings.
             </Listeners>
           </EventReaction>
           <Radius>50</Radius>
@@ -203,29 +229,24 @@
           <RepeatCount>1</RepeatCount>
 =======
           <Radius>0</Radius>
-          <Type>Timer</Type>
+          <Type>OnActivate</Type>
           <RepeatCount>1</RepeatCount>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <TimeToTrigger>10</TimeToTrigger>
 >>>>>>> Heli Kinect controls update
 =======
           <TimeToTrigger>0.5</TimeToTrigger>
 >>>>>>> bugs fixed
+=======
+          <TimeToTrigger>10</TimeToTrigger>
+>>>>>>> Recreated the project settings.
           <CountToTrigger>0</CountToTrigger>
         </Trigger>
         <Castaway>
           <Spawn>Start</Spawn>
           <PrefabName>castawayPrefab</PrefabName>
         </Castaway>
-      </Object>
-      <Object>
-        <Name>beaconPrefab_002_</Name>
-        <Pos>(2797.9, 1.0, 839.8)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Beacon>
-          <Spawn>Start</Spawn>
-          <PrefabName>beaconPrefab</PrefabName>
-        </Beacon>
       </Object>
     </Objects>
   </Level>

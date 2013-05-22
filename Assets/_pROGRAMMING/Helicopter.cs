@@ -315,6 +315,16 @@ public class Helicopter : MonoBehaviour
 	public void ToggleRadio ()
 	{
 		//for use by keyboard
+		
+		radio.ToggleHud();
+	
+		if(radio.radioIsActive){
+			SetState(Helistate.IDLE);
+		}
+		else{
+			SetState(prevState);
+		}
+		/*
 		Debug.Log ("Toggling radio");
 		if (state == Helistate.FLY || state == Helistate.SAVE) {
 			SetState (Helistate.IDLE);
@@ -323,6 +333,7 @@ public class Helicopter : MonoBehaviour
 			SetState (prevState);
 			radio.SetRadio (false);
 		}
+		*/
 	}
 
 	private void SetState (Helistate aState)

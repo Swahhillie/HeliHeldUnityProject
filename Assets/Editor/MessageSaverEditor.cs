@@ -69,12 +69,18 @@ public class MessageSaverEditor : EditorWindow
 						EditorGUILayout.BeginHorizontal ();{
 							_newMessageName = EditorGUILayout.TextField (_newMessageName);
 							if (GUILayout.Button ("Add")) {
+								if(_newMessageName.Length < 1){
+									_report = "Give the new Message a name";
+								}
+								else
+								{
 								if (_messages.ContainsKey (_newMessageName)) {
-									_report = "There is already a message named '" + _newMessageName + "'";	
-								} else {
-									_messages.Add (_newMessageName, new Message (_newMessageName));
-									_report = "New message created named '" + _newMessageName + "'";
-									_newMessageName = "";
+										_report = "There is already a message named '" + _newMessageName + "'";	
+									} else {
+										_messages.Add (_newMessageName, new Message (_newMessageName));
+										_report = "New message created named '" + _newMessageName + "'";
+										_newMessageName = "";
+									}
 								}
 							}
 						}

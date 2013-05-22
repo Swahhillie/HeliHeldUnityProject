@@ -99,7 +99,10 @@ public class Radio : TriggeredObject
 			//StartCoroutine("ActivateHud");
 		}
 	}
-	
+	public bool radioIsActive
+	{
+		get{return _active;}
+	}
 	/*private IEnumerator ActivateHud()
 	{
 		_active=true;
