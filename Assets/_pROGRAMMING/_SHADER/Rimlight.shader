@@ -5,7 +5,7 @@ Shader "Rimlight"
 		_MainTex("MainTexture",2D)="white"{}
 		//_BumpMap("Bump Map",2D) = "bump"{}
 		_RimColor("RimColor",Color) = (1,1,1,1)
-		_RimPower("RimPower",Range(0.5,10.0))= 3.0
+		_RimPower("RimPower",Range(0.2,10.0))= 3.0
 	}
 	
 	SubShader
