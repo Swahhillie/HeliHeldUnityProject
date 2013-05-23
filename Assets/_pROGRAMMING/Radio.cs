@@ -5,8 +5,9 @@ public class Radio : TriggeredObject
 {
 	private float _width;	
 	private string _message = "";
-	private bool _active;
+	private bool _active=false;
 	private TextMesh tMesh;
+    public RadioMessageIndicator rmi;
 	
 	private float startTime;
 	public float closeDuration=1.0f;
@@ -14,6 +15,7 @@ public class Radio : TriggeredObject
 	
 	public Vector3 openedScale = new Vector3(1,1,0);
 	public Vector3 closedScale = new Vector3(0,0,0);
+    
 	
 	public float width
 	{
@@ -21,9 +23,10 @@ public class Radio : TriggeredObject
 		set{_width = value;}
 	}
 	
-	void Awake()
+	void Start()
 	{
-		tMesh = this.GetComponent<TextMesh>();	
+		tMesh = this.GetComponent<TextMesh>();
+        rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
 	}
 	
 	
@@ -54,6 +57,10 @@ public class Radio : TriggeredObject
 	{
 		startTime = Time.time;
 		_active = !_active;
+		if(_active)
+		{
+			rmi.setActive=false;
+		}
 		/*StopAllCoroutines();
 		if(!_active)
 		{
@@ -70,6 +77,10 @@ public class Radio : TriggeredObject
 	    //Debug.LogError("should not be called");
 		startTime = Time.time;
 		_active = active;
+		if(_active)
+		{
+			rmi.setActive=false;
+		}
 		/*StopAllCoroutines();
 		if(active)
 		{
@@ -88,8 +99,10 @@ public class Radio : TriggeredObject
 			Message message = ConfigLoader.GetMessage(evr.messageName);
 			Debug.Log("Displaying message " + message.text);
 			_message = message.text;
+            SetRadio(true);
+			rmi.setActive=true;
+
 			
-			SetRadio(true);
 			//audio.PlayOneShot(message.audio);
 			
 			//StopAllCoroutines();
