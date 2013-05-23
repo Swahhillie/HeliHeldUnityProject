@@ -117,20 +117,11 @@ public class Trigger : TriggeredObject, IVisitable
 		if (type == TriggerType.OnTriggerEnter || type == TriggerType.OnTriggerExit) {
 			if (t.radius == 0)
 				Debug.LogError ("Created a collider trigger with 0 radius");
-			CapsuleCollider cc = this.gameObject.GetOrAddComponent <CapsuleCollider> ();
+			SphereCollider cc = this.gameObject.GetOrAddComponent <SphereCollider> ();
 			//adding a rigibody to the trigger
 			Rigidbody rb = this.gameObject.GetOrAddComponent<Rigidbody> ();
 			rb.constraints = RigidbodyConstraints.FreezeAll;
 			cc.isTrigger = true;
-			
-			
-			float h = 0;
-			if (ConfigLoader.GetValue ("capsuleHeight", ref h))
-				Debug.Log ("Height is set to " + cc.height);
-			else
-				Debug.LogError ("FAIL");
-			
-			cc.height = h;
 			cc.radius = radius;
 		}
 		triggers.Add (t);
@@ -170,7 +161,7 @@ public class Trigger : TriggeredObject, IVisitable
 	
 	void OnTriggerEnter (Collider collider)
 	{
-		Debug.Log ("Trigger set of by " + collider.name);
+		Debug.Log ("Trigger " + gameObject.name + " set of by " + collider.name);
 		if (collider.CompareTag ("Player")) {
 			Debug.Log ("Player triggered ", this.gameObject);
 			//trigger enter and exit should be ignored if its not the player
@@ -182,7 +173,7 @@ public class Trigger : TriggeredObject, IVisitable
 
 	void OnTriggerExit (Collider collider)
 	{
-		
+		Debug.Log("Trigger "  + gameObject.name + " exited by " + collider.name);
 		if (collider.CompareTag ("Player")) {
 			//trigger enter and exit should be ignored if its not the player, use unity physics settings
 			triggers.FindAll (t => t.type == TriggerType.OnTriggerExit).ForEach (x => TriggerActivate (x));

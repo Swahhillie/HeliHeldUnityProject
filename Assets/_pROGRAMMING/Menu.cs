@@ -81,6 +81,7 @@ public class Menu : MonoBehaviour
 			string label = buttonXml ["Label"].InnerText;
 			string command = buttonXml ["Function"].InnerText;
 			Button3D b = Button3D.CreateButton (type, label, command, ClickButton, pos, rot, "button3DPrefab");
+			b.transform.parent = transform;
 			b.name = name;
 			buttons.Add (b);
 		}

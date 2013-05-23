@@ -33,6 +33,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<Level name = "level3">
 			<Objects>
 				<Object>
@@ -392,9 +393,164 @@
     </Objects>
   </Level>
 		<Level name="try">
+=======
+		<Level name="Level1">
+>>>>>>> Tweaks to editor. Fixed triggers
 			<Objects>
 				<Object>
-					<Name>TriggerTimer_000_</Name>
+					<Name>Castaway3_000_</Name>
+					<Pos>(3023.0, 304.7, 1333.6)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Castaway>
+						<Spawn>Start</Spawn>
+						<PrefabName>Placeholder_Character</PrefabName>
+					</Castaway>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Save</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnRescued</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Destroy</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>
+							</MessageName>
+							<Listeners />
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>Timer</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>70</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>Castaway1_001_</Name>
+					<Pos>(2984.8, 304.7, 1280.9)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Castaway>
+						<Spawn>Start</Spawn>
+						<PrefabName>Placeholder_Character</PrefabName>
+					</Castaway>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Save</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnRescued</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Destroy</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>
+							</MessageName>
+							<Listeners />
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>Timer</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>70</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>Ship1_002_</Name>
+					<Pos>(3031.6, 30, 1283.3)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Ship>
+						<Spawn>Start</Spawn>
+						<PrefabName>FishingBoat</PrefabName>
+					</Ship>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Boat1</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>206.55</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Destroy</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>
+							</MessageName>
+							<Listeners />
+						</EventReaction>
+						<EventReaction>
+							<Type>Enable</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Ship2</MessageName>
+							<Listeners />
+						</EventReaction>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>ToLate</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>Timer</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>70</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Beacon>
+						<Spawn>Start</Spawn>
+						<PrefabName>beaconPrefab</PrefabName>
+					</Beacon>
+				</Object>
+				<Object>
+					<Name>TriggerGuide_003_</Name>
+					<Pos>(4383.1, -69.0, 1103.0)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Keerom</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>568.93</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>TriggerTimer_004_</Name>
 					<Pos>(2820.0, 128.2, 364.5)</Pos>
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Trigger>
@@ -423,34 +579,175 @@
 					</Trigger>
 				</Object>
 				<Object>
-					<Name>1Try_001_</Name>
-					<Pos>(2883.4, 37.0, 1593.8)</Pos>
-					<Rot>(0.0, 0.0, 0.0)</Rot>
-					<Castaway>
-						<Spawn>Start</Spawn>
-						<PrefabName>castawayPrefab</PrefabName>
-					</Castaway>
-				</Object>
-				<Object>
-					<Name>TriggerInitial_002_</Name>
-					<Pos>(2820.0, 128.2, 364.5)</Pos>
+					<Name>TriggerGuide_005_</Name>
+					<Pos>(1538.3, -69.0, 934.0)</Pos>
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Trigger>
 						<EventReaction>
 							<Type>Say</Type>
 							<Pos>(0.0, 0.0, 0.0)</Pos>
-							<MessageName>Hallo</MessageName>
+							<MessageName>Keerom</MessageName>
 							<Listeners>
 								<Listener>RadioObject</Listener>
 							</Listeners>
 						</EventReaction>
+						<Radius>568.93</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>Castaway2_006_</Name>
+					<Pos>(3093.6, 304.7, 1280.9)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Castaway>
+						<Spawn>Start</Spawn>
+						<PrefabName>Placeholder_Character</PrefabName>
+					</Castaway>
+					<Trigger>
 						<EventReaction>
-							<Type>StartTimer</Type>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Save</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnRescued</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Destroy</Type>
 							<Pos>(0.0, 0.0, 0.0)</Pos>
 							<MessageName>
 							</MessageName>
+							<Listeners />
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>Timer</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>70</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>Ship2_007_</Name>
+					<Pos>(2559.4, 83.9, 1366.1)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Ship>
+						<Spawn>Later</Spawn>
+						<PrefabName>FishingBoat</PrefabName>
+					</Ship>
+					<Trigger>
+						<EventReaction>
+							<Type>Spawn</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>
+							</MessageName>
+							<Listeners />
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnDestroy</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Boot1</MessageName>
 							<Listeners>
-								<Listener>TriggerTimer_000_</Listener>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>197.87</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Enable</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Castaway4</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnSpawn</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Trigger>
+						<EventReaction>
+							<Type>Enable</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Castaway5</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnSpawn</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+					<Beacon>
+						<Spawn>Start</Spawn>
+						<PrefabName>beaconPrefab</PrefabName>
+					</Beacon>
+				</Object>
+				<Object>
+					<Name>beaconPrefab_008_</Name>
+					<Pos>(2797.9, 1.0, 839.8)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Beacon>
+						<Spawn>Start</Spawn>
+						<PrefabName>beaconPrefab</PrefabName>
+					</Beacon>
+				</Object>
+				<Object>
+					<Name>TriggerGuide_009_</Name>
+					<Pos>(1829.2, -69.0, 1952.5)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Keerom</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>568.93</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>TriggerInitial_010_</Name>
+					<Pos>(2820.0, 146.2, 364.5)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Intro</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
 							</Listeners>
 						</EventReaction>
 						<Radius>86.12</Radius>
@@ -461,13 +758,92 @@
 					</Trigger>
 				</Object>
 				<Object>
-					<Name>beaconPrefab_003_</Name>
-					<Pos>(2797.9, 1.0, 839.8)</Pos>
+					<Name>Castaway5_011_</Name>
+					<Pos>(3023.0, 304.7, 1333.6)</Pos>
 					<Rot>(0.0, 0.0, 0.0)</Rot>
-					<Beacon>
-						<Spawn>Start</Spawn>
-						<PrefabName>beaconPrefab</PrefabName>
-					</Beacon>
+					<Castaway>
+						<Spawn>Later</Spawn>
+						<PrefabName>Placeholder_Character</PrefabName>
+					</Castaway>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Save</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnRescued</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>TriggerGuide_012_</Name>
+					<Pos>(3886.4, -69.0, 1982.8)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Keerom</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>568.93</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>TriggerGuide_013_</Name>
+					<Pos>(2852.6, -69.0, 2347.7)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Keerom</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>568.93</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>10</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>Castaway4_014_</Name>
+					<Pos>(3023.0, 304.7, 1333.6)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Castaway>
+						<Spawn>Later</Spawn>
+						<PrefabName>Placeholder_Character</PrefabName>
+					</Castaway>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Save</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>OnRescued</Type>
+						<RepeatCount>0</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
 				</Object>
 			</Objects>
 		</Level>
@@ -595,6 +971,12 @@
 			<Audio>switch32</Audio>
 		</Message>
 		<Message>
+			<Name>Keerom</Name>
+			<Text>Hier is geen boot, keer om</Text>
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
 			<Name>Move</Name>
 			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
@@ -609,6 +991,26 @@
 			</Audio>
 		</Message>
 		<Message>
+			<Name>Save</Name>
+			<Text>Je hebt een drenkeling gered, vind ze allemaal!
+			</Text>
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
+			<Name>Boat1</Name>
+			<Text>Je bent boven een schip ofzo</Text>
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
+			<Name>Mission1</Name>
+			<Text>Er is 1 schip in nood, vind hem en red de drie
+			drenkelingen!</Text>
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
 			<Name>DefaultMessage</Name>
 			<Text>PLACEHOLDER MESSAGE</Text>
 			<Audio>switch32</Audio>
@@ -616,7 +1018,7 @@
 	</Messages>
 >>>>>>> Fixes github diff text
 	<Settings>
-		<Setting name="flightHeight" value="200">
+		<Setting name="flightHeight" value="150">
 		</Setting>
 		<Setting name="buttonTime" value="2">
 		</Setting>

@@ -267,6 +267,7 @@
 =======
 <Root>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <Messages>
     <Message>
       <Name>Intro</Name>
@@ -389,3 +390,24 @@
   </Level>
 </Root>
 >>>>>>> Menu changed to componenet
+=======
+  <Menu name="DebugMenu">
+    <Button>
+      <Type>LoadLevel</Type>
+      <Name>button3DPrefab_000_</Name>
+      <Label>Load newXml Level</Label>
+      <Pos>(3260.6, 154.4, 3717.1)</Pos>
+      <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Function>newXml</Function>
+    </Button>
+    <Button>
+      <Type>LoadMenu</Type>
+      <Name>button3DPrefab_001_</Name>
+      <Label>Load newXml Menu</Label>
+      <Pos>(3260.6, 152.3, 3717.1)</Pos>
+      <Rot>(0.0, 0.0, 0.0)</Rot>
+      <Function>newXml</Function>
+    </Button>
+  </Menu>
+</Root>
+>>>>>>> Tweaks to editor. Fixed triggers
