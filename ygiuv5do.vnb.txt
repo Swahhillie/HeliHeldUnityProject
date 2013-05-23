@@ -1,0 +1,38 @@
+﻿Juppie
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# Not currently on any branch.
+# You are currently rebasing.
+#   (all conflicts fixed: run "git rebase --continue")
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   Assembly-UnityScript-Editor-vs.unityproj
+#	modified:   Assembly-UnityScript-Editor.unityproj
+#	modified:   Assembly-UnityScript-firstpass-vs.unityproj
+#	modified:   Assembly-UnityScript-firstpass.unityproj
+#	modified:   Assets/Level.cs
+#	modified:   Assets/_GAME/Prefabs/Player.prefab
+#	new file:   Assets/_GAME/Resources/hoverSelectionPlane.prefab
+#	new file:   Assets/_GAME/Resources/hoverSelectionPlane.prefab.meta
+#	new file:   Assets/_GAME/Resources/kinectMousePrefab.prefab
+#	new file:   Assets/_GAME/Resources/kinectMousePrefab.prefab.meta
+#	modified:   Assets/_GAME/Scenes/LevelDesign.unity
+#	modified:   Assets/_pROGRAMMING/ConfigLoader.cs
+#	modified:   Assets/_pROGRAMMING/KinectMouse.cs
+#	modified:   Assets/_pROGRAMMING/Menu.cs
+#	modified:   Assets/config.xml
+#	modified:   Assets/config.xml.meta
+#	new file:   Assets/config2.xml
+#	new file:   Assets/config2.xml.meta
+#	modified:   Assets/levelOutput.XML
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	Assets/DisabledTEMP.meta
+#	Assets/Editor/Water (Pro Only).meta
+#	Assets/Standard Assets/Scripts.meta
+
