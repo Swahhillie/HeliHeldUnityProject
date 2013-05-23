@@ -115,7 +115,7 @@ public class XMLVisitor : Visitor
 		typeXml.InnerText = evr.type.ToString ();
 		evrXml.AppendChild (typeXml);
 		XmlNode posXml = _writeTarget.CreateNode (XmlNodeType.Element, "Pos", null);
-		posXml.InnerText = evr.pos.ToString ();
+		posXml.InnerText = evr.pos.ToString ("G4");
 		evrXml.AppendChild (posXml);
 		XmlNode messageNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "MessageName", null);
 		messageNameXml.InnerText = evr.messageName;
@@ -168,7 +168,7 @@ public class XMLVisitor : Visitor
 		target.AppendChild (spawnXml);
 		
 		XmlNode prefabNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "PrefabName", null);
-		prefabNameXml.InnerText = mb.prefabName;
+		prefabNameXml.InnerText = mb.prefab.name;
 		target.AppendChild (prefabNameXml);
 		
 		_activeObject.AppendChild (target);
@@ -187,11 +187,11 @@ public class XMLVisitor : Visitor
 		_activeObject.AppendChild (nameXml);
 		//position
 		XmlNode posXml = _writeTarget.CreateNode (XmlNodeType.Element, "Pos", null);
-		posXml.InnerText = go.transform.position.ToString ();
+		posXml.InnerText = go.transform.position.ToString ("G4");
 		_activeObject.AppendChild (posXml);
 		//rotation
 		XmlNode rotXml = _writeTarget.CreateNode (XmlNodeType.Element, "Rot", null);
-		rotXml.InnerText = go.transform.eulerAngles.ToString ();
+		rotXml.InnerText = go.transform.eulerAngles.ToString ("G4");
 		_activeObject.AppendChild (rotXml);
 		
 		_writeTarget.GetElementsByTagName ("Objects") [0].AppendChild (_activeObject);

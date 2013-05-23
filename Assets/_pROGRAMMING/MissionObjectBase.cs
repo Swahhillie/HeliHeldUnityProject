@@ -17,7 +17,7 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 	}
 	public SpawnType spawn = SpawnType.Start;
 	protected MissionObject _type;
-	public string prefabName;
+	public GameObject prefab;
 	//protected Dictionary<string,Reaction> evt = new Dictionary<string,Reaction>();
 	//protected Dictionary<int,List<string>> action = new Dictionary<int, List<string>>();
 	
