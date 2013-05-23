@@ -259,7 +259,8 @@ public class ConfigLoader : MonoBehaviour
 		XmlNodeList menuList = xml.GetElementsByTagName ("Menu");
 		foreach (XmlNode menuXml in menuList) {
 			string menuName = menuXml.Attributes ["name"].InnerText;
-			Menu m = new Menu (menuName, menuXml);
+			Menu m = new GameObject("menu_"+ menuName).AddComponent<Menu>();
+			m.MenuIni(menuName, menuXml);
 			menus [menuName] = m;
 			
 		}
@@ -274,11 +275,6 @@ public class ConfigLoader : MonoBehaviour
 			messages[messageXml["Name"].InnerText] = new Message(messageXml);
 		}
 		return messages;
-	}
-
-	private void Update ()
-	{
-		activeMenu.Update();
 	}
 	//util
 	public static Vector3 ParseVec3 (string s)

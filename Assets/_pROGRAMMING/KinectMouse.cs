@@ -18,6 +18,7 @@ public class KinectMouse : MonoBehaviour
 	{
 		Screen.showCursor = false;
 		handTex = Resources.Load ("Hand", typeof(Texture2D)) as Texture2D;
+		skelWrap = FindObjectOfType(typeof(SkeletonWrapper)) as SkeletonWrapper;
 	}
 	
 	void Update ()

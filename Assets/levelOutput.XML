@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Root>
-
+  <Level name="newXml">
+    <Objects>
+      <Object>
+        <Name>testCastaway_000_</Name>
+        <Pos>(2708.8, 28.7, 456.4)</Pos>
+        <Rot>(12.5, 175.0, 0.0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+      </Object>
+    </Objects>
+  </Level>
 </Root>
