@@ -193,7 +193,7 @@ public class Level
 		mib.spawn = (MissionObjectBase.SpawnType)System.Enum.Parse (typeof(MissionObjectBase.SpawnType), baseNode ["Spawn"].InnerText);
 		
 		string prefabName = baseNode ["PrefabName"].InnerText;
-		mib.prefabName = prefabName;
+		mib.prefab = Resources.Load(prefabName) as GameObject;
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
