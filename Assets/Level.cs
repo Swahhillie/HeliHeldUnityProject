@@ -201,6 +201,7 @@ public class Level
 		GameObject model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
+		model.transform.localEulerAngles = Vector3.zero;
 		mib.Sleep2FramesAndDisable();
 		return mib;
 	}

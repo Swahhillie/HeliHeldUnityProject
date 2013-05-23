@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.SerializableAttribute()]
-public class Menu : UnityEngine.Object
+public class Menu : MonoBehaviour
 {
 
 	private string menuName = "";
@@ -22,18 +22,12 @@ public class Menu : UnityEngine.Object
 	private float hoverStart; // time at wich the player started hovering over a button;
 	public GameObject selectionPlane;
 	
-	void Start ()
+	
+	public void Start()
 	{
-		buttonLayer.value = 1 << LayerMask.NameToLayer ("Buttons");
-		//createMenu(script.loadName);
-		
-		ConfigLoader.GetValue ("buttonTime", ref buttonTimer);
-		mouse = FindObjectOfType(typeof(KinectMouse)) as KinectMouse;
-		selectionPlane = GameObject.Find("hoverSelectionPlane");
-		
+		DontDestroyOnLoad(this.gameObject);
 	}
-
-	public Menu (string name, XmlNode menuXml)
+	public void MenuIni (string name, XmlNode menuXml)
 	{
 		menuName = name;
 		this.menuXml = menuXml;
@@ -58,6 +52,8 @@ public class Menu : UnityEngine.Object
 	
 	public void UnLoadMenu ()
 	{
+		Destroy(mouse.gameObject);
+		Destroy(selectionPlane);
 		for (int i = buttons.Count -1; i >= 0; i--) {
 			GameObject.Destroy (buttons [i].gameObject);
 		}
@@ -67,6 +63,14 @@ public class Menu : UnityEngine.Object
 
 	public void LoadMenu ()
 	{
+		buttonLayer.value = 1 << LayerMask.NameToLayer ("Buttons");
+		//createMenu(script.loadName);
+		
+		ConfigLoader.GetValue ("buttonTime", ref buttonTimer);
+		mouse = (Instantiate((GameObject)Resources.Load("kinectMousePrefab")) as GameObject).GetComponent<KinectMouse>();
+		//mouse = FindObjectOfType(typeof(KinectMouse)) as KinectMouse;
+		selectionPlane = Instantiate((GameObject)Resources.Load("hoverSelectionPlane")) as GameObject;
+		
 		XmlNodeList buttonsList = menuXml.ChildNodes;
 		Debug.Log("Loading menu " + menuName + " with " + buttonsList.Count + " buttons");
 		foreach (XmlNode buttonXml in buttonsList) {

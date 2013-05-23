@@ -266,6 +266,7 @@
 >>>>>>> Buttons -> xml, Rescueing, Rescue Indicator
 =======
 <Root>
+<<<<<<< HEAD
   <Messages>
     <Message>
       <Name>Intro</Name>
@@ -372,3 +373,19 @@
 
 </Root>
 >>>>>>> Clarity, Example updated, unsed variables deleted
+=======
+  <Level name="newXml">
+    <Objects>
+      <Object>
+        <Name>testCastaway_000_</Name>
+        <Pos>(2708.8, 28.7, 456.4)</Pos>
+        <Rot>(12.5, 175.0, 0.0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+      </Object>
+    </Objects>
+  </Level>
+</Root>
+>>>>>>> Menu changed to componenet

@@ -32,6 +32,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<Level name = "level3">
 			<Objects>
 				<Object>
@@ -376,6 +377,101 @@
 =======
 
 =======
+=======
+	<Level name="newXml">
+    <Objects>
+      <Object>
+        <Name>testCastaway_000_</Name>
+       <Pos>(2708.8, 28.7, 456.4)</Pos>
+        <Rot>(12.5, 175.0, 0.0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+      </Object>
+    </Objects>
+  </Level>
+		<Level name="try">
+			<Objects>
+				<Object>
+					<Name>TriggerTimer_000_</Name>
+					<Pos>(2820.0, 128.2, 364.5)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Highlight_Activate</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>
+							</MessageName>
+							<Listeners>
+								<Listener>RadarAndFuel</Listener>
+							</Listeners>
+						</EventReaction>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>ToLate</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>0</Radius>
+						<Type>Timer</Type>
+						<RepeatCount>1</RepeatCount>
+						<TimeToTrigger>5</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>1Try_001_</Name>
+					<Pos>(2883.4, 37.0, 1593.8)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Castaway>
+						<Spawn>Start</Spawn>
+						<PrefabName>castawayPrefab</PrefabName>
+					</Castaway>
+				</Object>
+				<Object>
+					<Name>TriggerInitial_002_</Name>
+					<Pos>(2820.0, 128.2, 364.5)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Trigger>
+						<EventReaction>
+							<Type>Say</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>Hallo</MessageName>
+							<Listeners>
+								<Listener>RadioObject</Listener>
+							</Listeners>
+						</EventReaction>
+						<EventReaction>
+							<Type>StartTimer</Type>
+							<Pos>(0.0, 0.0, 0.0)</Pos>
+							<MessageName>
+							</MessageName>
+							<Listeners>
+								<Listener>TriggerTimer_000_</Listener>
+							</Listeners>
+						</EventReaction>
+						<Radius>86.12</Radius>
+						<Type>OnTriggerEnter</Type>
+						<RepeatCount>1</RepeatCount>
+						<TimeToTrigger>0</TimeToTrigger>
+						<CountToTrigger>0</CountToTrigger>
+					</Trigger>
+				</Object>
+				<Object>
+					<Name>beaconPrefab_003_</Name>
+					<Pos>(2797.9, 1.0, 839.8)</Pos>
+					<Rot>(0.0, 0.0, 0.0)</Rot>
+					<Beacon>
+						<Spawn>Start</Spawn>
+						<PrefabName>beaconPrefab</PrefabName>
+					</Beacon>
+				</Object>
+			</Objects>
+		</Level>
+>>>>>>> Menu changed to componenet
 		<Level name="exampleLevel">
 			<Objects>
 				<Object>
