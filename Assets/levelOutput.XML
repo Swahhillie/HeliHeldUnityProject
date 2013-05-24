@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Root>
-  <Menu name="DebugMenu">
-    <Button>
-      <Type>LoadLevel</Type>
-      <Name>button3DPrefab_000_</Name>
-      <Label>Load newXml Level</Label>
-      <Pos>(3260.6, 154.4, 3717.1)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>newXml</Function>
-    </Button>
-    <Button>
-      <Type>LoadMenu</Type>
-      <Name>button3DPrefab_001_</Name>
-      <Label>Load newXml Menu</Label>
-      <Pos>(3260.6, 152.3, 3717.1)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>newXml</Function>
-    </Button>
-  </Menu>
+  <Level name="testXml">
+    <Objects>
+      <Object>
+        <Name>testCastaway_000_</Name>
+        <Pos>(2709, 28.72, 456.4)</Pos>
+        <Rot>(12.48, 175, -2.569E-06)</Rot>
+        <Castaway>
+          <Spawn>Later</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+      </Object>
+    </Objects>
+  </Level>
 </Root>

@@ -4,7 +4,7 @@ using UnityEditor;
 using System.Collections;
 
 
-[CustomEditor(typeof(MissionObjectBase), true)]
+[CustomEditor(typeof(MissionObjectBase))]
 public class MissionObjectBaseEditor : Editor
 {
 

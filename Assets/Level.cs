@@ -198,7 +198,8 @@ public class Level
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
 		model.transform.localEulerAngles = Vector3.zero;
-		mib.Sleep2FramesAndDisable();
+		mib.StartCoroutine(mib.Sleep2FramesAndDisable());
+		Debug.LogError("Created misson base " + prefabName);
 		return mib;
 	}
 	
