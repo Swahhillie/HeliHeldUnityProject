@@ -205,6 +205,7 @@ public class Helicopter : MonoBehaviour
 		result = null;
 		float closest = radius * radius;
 		foreach (var mib in toSearch) {
+			if(mib.gameObject.activeSelf == false)continue; //skip over disabled level object
 			Transform tr = mib.transform;
 			float dist = Vector3.SqrMagnitude (tr.position - fromPos);
 			if (dist < closest) {

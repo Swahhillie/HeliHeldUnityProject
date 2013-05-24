@@ -305,6 +305,7 @@
 =======
 <Root>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <Level name="exampleLevel">
     <Objects>
       <Object>
@@ -383,11 +384,22 @@
         <Rot>(12.5, 175.0, 0.0)</Rot>
         <Castaway>
           <Spawn>Start</Spawn>
+=======
+  <Level name="testXml">
+    <Objects>
+      <Object>
+        <Name>testCastaway_000_</Name>
+        <Pos>(2709, 28.72, 456.4)</Pos>
+        <Rot>(12.48, 175, -2.569E-06)</Rot>
+        <Castaway>
+          <Spawn>Later</Spawn>
+>>>>>>> Fix to objects that spawn later
           <PrefabName>castawayPrefab</PrefabName>
         </Castaway>
       </Object>
     </Objects>
   </Level>
+<<<<<<< HEAD
 </Root>
 >>>>>>> Menu changed to componenet
 =======
@@ -411,3 +423,6 @@
   </Menu>
 </Root>
 >>>>>>> Tweaks to editor. Fixed triggers
+=======
+</Root>
+>>>>>>> Fix to objects that spawn later
