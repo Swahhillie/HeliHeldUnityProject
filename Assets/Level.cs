@@ -14,7 +14,7 @@ public class Level
 
 	public string levelName;
 	public XmlNode lvlXml;
-	public List<GameObject> levelElements; //list of all gameobjects that will be active in this level.
+	private List<GameObject> _levelElements; //list of all gameobjects that will be active in this level.
 	public GameObject lvlRoot;
 	private bool _isLoaded = false;
 	private int _castawayCount = 0;
@@ -88,7 +88,15 @@ public class Level
 	public int shipCount {
 		get{ return _shipCount;}
 	}
-
+	public List<GameObject> levelElements
+	{
+		get{return _levelElements;}
+		private set{ _levelElements = value;}
+	}
+	public bool levelComplete()
+	{
+		return false;	
+	}
 	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
 	{
 		
@@ -199,7 +207,7 @@ public class Level
 		model.transform.localPosition = Vector3.zero;
 		model.transform.localEulerAngles = Vector3.zero;
 		mib.StartCoroutine(mib.Sleep2FramesAndDisable());
-		Debug.LogError("Created misson base " + prefabName);
+
 		return mib;
 	}
 	

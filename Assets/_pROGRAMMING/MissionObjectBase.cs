@@ -160,7 +160,7 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		//frame 1: objects are created
 		//frame 2: objects are linked
 		//frame 3: some objects are disabled
-		Debug.LogError(string.Format("Setting {0} to {1}", gameObject.name , spawn), gameObject);
+
 		yield return null; //sleep over frame 1
 		yield return null; //sleep over frame 2
 		
