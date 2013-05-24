@@ -98,13 +98,17 @@ public class Radio : TriggeredObject
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
 			Debug.Log("Displaying message " + message.text);
-			_message = message.text;
-            SetRadio(true);
+			if(message.text!=null)
+			{
+				_message = message.text;
+			}
+            //SetRadio(true);
 			rmi.setActive=true;
 
-			
-			//audio.PlayOneShot(message.audio);
-			
+			if(message.audio!=null)
+			{
+				audio.PlayOneShot(message.audio);
+			}
 			//StopAllCoroutines();
 			//StartCoroutine("ActivateHud");
 		}
