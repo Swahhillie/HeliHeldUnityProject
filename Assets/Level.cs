@@ -89,15 +89,25 @@ public class Level
 		get{ return _shipCount;}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public List<GameObject> levelElements
 	{
 		get{return _levelElements;}
 		private set{ _levelElements = value;}
 	}
+=======
+
+	public List<GameObject> levelElements{
+		get{return _levelElements;}
+		private set{_levelElements = value;}
+	}
+
+>>>>>>> Level had some github text in it
 	public bool levelComplete()
 	{
 		return false;	
 	}
+<<<<<<< HEAD
 	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
 =======
 	public List<GameObject> levelElements{
@@ -106,6 +116,9 @@ public class Level
 	}
 	public void RemoveLevelElement (GameObject go) //ships and castaways
 >>>>>>> Added convenience to the editor
+=======
+	public void RemoveLevelElement (GameObject go) //ships and castaways
+>>>>>>> Level had some github text in it
 	{
 		
 		MissionObjectBase obj = go.GetComponent<MissionObjectBase>();
@@ -118,7 +131,7 @@ public class Level
 			}
 			
 		}
-		levelElements.Remove(obj.gameObject);
+		levelElements.Remove(go);
 	}
 
 	public void UnLoadLevel ()
