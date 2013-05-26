@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="us-ascii"?>
+<<<<<<< HEAD
 <HeliHeld>
   <Menus>
     <Menu name="MainMenu">
@@ -688,3 +689,20 @@
     </Setting>
   </Settings>
 </HeliHeld>
+=======
+<Root>
+  <Level name="testXml">
+    <Objects>
+      <Object>
+        <Name>testCastaway_000_</Name>
+        <Pos>(2709, 28.72, 456.4)</Pos>
+        <Rot>(12.48, 175, -2.569E-06)</Rot>
+        <Castaway>
+          <Spawn>Later</Spawn>
+          <PrefabName>castawayPrefab</PrefabName>
+        </Castaway>
+      </Object>
+    </Objects>
+  </Level>
+</Root>
+>>>>>>> c7e7e0f73ac9895a9e192d2907741aa2c7f5a392

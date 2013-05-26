@@ -164,15 +164,18 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		//frame 1: objects are created
 		//frame 2: objects are linked
 		//frame 3: some objects are disabled
-		
+
 		yield return null; //sleep over frame 1
 		yield return null; //sleep over frame 2
+		
+		
 		
 		//disable
 		if (spawn == MissionObjectBase.SpawnType.Start) {
 				
 		} else {
 			gameObject.SetActive (false);
+			
 		}
 		
 	}

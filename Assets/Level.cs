@@ -88,11 +88,24 @@ public class Level
 	public int shipCount {
 		get{ return _shipCount;}
 	}
+<<<<<<< HEAD
 	public List<GameObject> levelElements{
 		get{return _levelElements;}
 		private set{_levelElements = value;}
 	}
 	public void RemoveLevelElement (GameObject go) //ships and castaways
+=======
+	public List<GameObject> levelElements
+	{
+		get{return _levelElements;}
+		private set{ _levelElements = value;}
+	}
+	public bool levelComplete()
+	{
+		return false;	
+	}
+	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
+>>>>>>> c7e7e0f73ac9895a9e192d2907741aa2c7f5a392
 	{
 		
 		MissionObjectBase obj = go.GetComponent<MissionObjectBase>();
@@ -205,7 +218,8 @@ public class Level
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
 		model.transform.localEulerAngles = Vector3.zero;
-		mib.Sleep2FramesAndDisable();
+		mib.StartCoroutine(mib.Sleep2FramesAndDisable());
+
 		return mib;
 	}
 	
