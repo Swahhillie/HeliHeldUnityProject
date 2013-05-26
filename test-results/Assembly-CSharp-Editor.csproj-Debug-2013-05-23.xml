@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2013-05-23T23:19:46</TestDate>
+      <Status>Failure</Status>
+      <TotalFailures>0</TotalFailures>
+      <TotalSuccess>0</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>ECall methods must be packaged into a system module.</Message>
+      <StackTrace>
+Server stack trace: 
+   at UnityEditor.CustomEditor..ctor(Type inspectedType)
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, IRuntimeMethodInfo ctor, IntPtr&amp; blob, IntPtr blobEnd, Int32&amp; namedArgs)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Boolean inherit)
+   at NUnit.Core.Reflect.HasAttribute(MemberInfo member, String attrName, Boolean inherit)
+   at NUnit.Core.Builders.NUnitTestFixtureBuilder.CanBuildFrom(Type type)
+   at NUnit.Core.Extensibility.SuiteBuilderCollection.CanBuildFrom(Type type)
+   at NUnit.Core.TestFixtureBuilder.CanBuildFrom(Type type)
+   at NUnit.Core.Builders.TestAssemblyBuilder.GetFixtures(Assembly assembly, String ns)
+   at NUnit.Core.Builders.TestAssemblyBuilder.Build(String assemblyName, Boolean autoSuites)
+   at NUnit.Core.Builders.TestAssemblyBuilder.Build(String assemblyName, String testName, Boolean autoSuites)
+   at NUnit.Core.TestSuiteBuilder.BuildSingleAssembly(TestPackage package)
+   at NUnit.Core.TestSuiteBuilder.Build(TestPackage package)
+   at NUnit.Core.SimpleTestRunner.Load(TestPackage package)
+   at NUnit.Core.ProxyTestRunner.Load(TestPackage package)
+   at NUnit.Core.ProxyTestRunner.Load(TestPackage package)
+   at NUnit.Core.RemoteTestRunner.Load(TestPackage package)
+   at MonoDevelop.NUnit.External.NUnitTestRunner.Run(EventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\NUnitRunner\NUnitTestRunner.cs:line 78
+   at MonoDevelop.NUnit.External.NUnitTestRunner.Run(EventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies)
+   at MonoDevelop.NUnit.External.ExternalTestRunner.Run(IRemoteEventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\ExternalTestRunner.cs:line 73
+   at System.Runtime.Remoting.Messaging.StackBuilderSink._PrivateProcessMessage(IntPtr md, Object[] args, Object server, Object[]&amp; outArgs)
+   at System.Runtime.Remoting.Messaging.StackBuilderSink.SyncProcessMessage(IMessage msg)
+
+Exception rethrown at [0]: 
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.RunUnitTest(UnitTest test, String suiteName, String pathName, String testName, TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\NUnitAssemblyTestSuite.cs:line 379
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.OnRun(TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\NUnitAssemblyTestSuite.cs:line 328
+   at MonoDevelop.NUnit.UnitTest.Run(TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\UnitTest.cs:line 343</StackTrace>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2013-05-23T23:20:16</TestDate>
+      <Status>Failure</Status>
+      <TotalFailures>0</TotalFailures>
+      <TotalSuccess>0</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>ECall methods must be packaged into a system module.</Message>
+      <StackTrace>
+Server stack trace: 
+   at UnityEditor.CustomEditor..ctor(Type inspectedType)
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, IRuntimeMethodInfo ctor, IntPtr&amp; blob, IntPtr blobEnd, Int32&amp; namedArgs)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Boolean inherit)
+   at NUnit.Core.Reflect.HasAttribute(MemberInfo member, String attrName, Boolean inherit)
+   at NUnit.Core.Builders.NUnitTestFixtureBuilder.CanBuildFrom(Type type)
+   at NUnit.Core.Extensibility.SuiteBuilderCollection.CanBuildFrom(Type type)
+   at NUnit.Core.TestFixtureBuilder.CanBuildFrom(Type type)
+   at NUnit.Core.Builders.TestAssemblyBuilder.GetFixtures(Assembly assembly, String ns)
+   at NUnit.Core.Builders.TestAssemblyBuilder.Build(String assemblyName, Boolean autoSuites)
+   at NUnit.Core.Builders.TestAssemblyBuilder.Build(String assemblyName, String testName, Boolean autoSuites)
+   at NUnit.Core.TestSuiteBuilder.BuildSingleAssembly(TestPackage package)
+   at NUnit.Core.TestSuiteBuilder.Build(TestPackage package)
+   at NUnit.Core.SimpleTestRunner.Load(TestPackage package)
+   at NUnit.Core.ProxyTestRunner.Load(TestPackage package)
+   at NUnit.Core.ProxyTestRunner.Load(TestPackage package)
+   at NUnit.Core.RemoteTestRunner.Load(TestPackage package)
+   at MonoDevelop.NUnit.External.NUnitTestRunner.Run(EventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\NUnitRunner\NUnitTestRunner.cs:line 78
+   at MonoDevelop.NUnit.External.NUnitTestRunner.Run(EventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies)
+   at MonoDevelop.NUnit.External.ExternalTestRunner.Run(IRemoteEventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\ExternalTestRunner.cs:line 73
+   at System.Runtime.Remoting.Messaging.StackBuilderSink._PrivateProcessMessage(IntPtr md, Object[] args, Object server, Object[]&amp; outArgs)
+   at System.Runtime.Remoting.Messaging.StackBuilderSink.SyncProcessMessage(IMessage msg)
+
+Exception rethrown at [0]: 
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.RunUnitTest(UnitTest test, String suiteName, String pathName, String testName, TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\NUnitAssemblyTestSuite.cs:line 379
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.OnRun(TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\NUnitAssemblyTestSuite.cs:line 328
+   at MonoDevelop.NUnit.UnitTest.Run(TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\UnitTest.cs:line 343</StackTrace>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2013-05-23T23:20:56</TestDate>
+      <Status>Failure</Status>
+      <TotalFailures>0</TotalFailures>
+      <TotalSuccess>0</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>ECall methods must be packaged into a system module.</Message>
+      <StackTrace>
+Server stack trace: 
+   at UnityEditor.CustomEditor..ctor(Type inspectedType)
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, IRuntimeMethodInfo ctor, IntPtr&amp; blob, IntPtr blobEnd, Int32&amp; namedArgs)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Boolean inherit)
+   at NUnit.Core.Reflect.HasAttribute(MemberInfo member, String attrName, Boolean inherit)
+   at NUnit.Core.Builders.NUnitTestFixtureBuilder.CanBuildFrom(Type type)
+   at NUnit.Core.Extensibility.SuiteBuilderCollection.CanBuildFrom(Type type)
+   at NUnit.Core.TestFixtureBuilder.CanBuildFrom(Type type)
+   at NUnit.Core.Builders.TestAssemblyBuilder.GetFixtures(Assembly assembly, String ns)
+   at NUnit.Core.Builders.TestAssemblyBuilder.Build(String assemblyName, Boolean autoSuites)
+   at NUnit.Core.Builders.TestAssemblyBuilder.Build(String assemblyName, String testName, Boolean autoSuites)
+   at NUnit.Core.TestSuiteBuilder.BuildSingleAssembly(TestPackage package)
+   at NUnit.Core.TestSuiteBuilder.Build(TestPackage package)
+   at NUnit.Core.SimpleTestRunner.Load(TestPackage package)
+   at NUnit.Core.ProxyTestRunner.Load(TestPackage package)
+   at NUnit.Core.ProxyTestRunner.Load(TestPackage package)
+   at NUnit.Core.RemoteTestRunner.Load(TestPackage package)
+   at MonoDevelop.NUnit.External.NUnitTestRunner.Run(EventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\NUnitRunner\NUnitTestRunner.cs:line 78
+   at MonoDevelop.NUnit.External.NUnitTestRunner.Run(EventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies)
+   at MonoDevelop.NUnit.External.ExternalTestRunner.Run(IRemoteEventListener listener, ITestFilter filter, String path, String suiteName, List`1 supportAssemblies) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\ExternalTestRunner.cs:line 73
+   at System.Runtime.Remoting.Messaging.StackBuilderSink._PrivateProcessMessage(IntPtr md, Object[] args, Object server, Object[]&amp; outArgs)
+   at System.Runtime.Remoting.Messaging.StackBuilderSink.SyncProcessMessage(IMessage msg)
+
+Exception rethrown at [0]: 
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.RunUnitTest(UnitTest test, String suiteName, String pathName, String testName, TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\NUnitAssemblyTestSuite.cs:line 379
+   at MonoDevelop.NUnit.NUnitAssemblyTestSuite.OnRun(TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\NUnitAssemblyTestSuite.cs:line 328
+   at MonoDevelop.NUnit.UnitTest.Run(TestContext testContext) in c:\BuildAgent\work\f07246b5212f7be4\monodevelop\main\src\addins\NUnit\Services\UnitTest.cs:line 343</StackTrace>
+    </UnitTestResult>
+  </Results>
+</TestRecord>

@@ -270,8 +270,15 @@ public class Helicopter : MonoBehaviour
 	{
 		List<MissionObjectBase> missionObjects = new List<MissionObjectBase> ();
 		if ((ConfigLoader.instance != null) && ConfigLoader.instance.activeLevel != null) {
-			foreach (var go in ConfigLoader.instance.activeLevel.levelElements) {
-				missionObjects.AddRange (go.GetComponentsInChildren<MissionObjectBase> ());
+			//all game objects in the level
+			List<GameObject> gos = ConfigLoader.instance.activeLevel.levelElements;
+			
+			foreach (var go in gos) {
+				//all rescuable components on a gameobject
+				MissionObjectBase[] mibs = go.GetComponentsInChildren<MissionObjectBase> ();
+				
+				//filter mission objects that are not rescuable
+				missionObjects.AddRange (System.Array.FindAll<MissionObjectBase>(mibs, x=> x.rescuable == true));
 			}
 		}
 		

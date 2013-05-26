@@ -88,6 +88,7 @@ public class Level
 	public int shipCount {
 		get{ return _shipCount;}
 	}
+<<<<<<< HEAD
 	public List<GameObject> levelElements
 	{
 		get{return _levelElements;}
@@ -98,13 +99,24 @@ public class Level
 		return false;	
 	}
 	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
+=======
+	public List<GameObject> levelElements{
+		get{return _levelElements;}
+		private set{_levelElements = value;}
+	}
+	public void RemoveLevelElement (GameObject go) //ships and castaways
+>>>>>>> Added convenience to the editor
 	{
 		
-		if (obj.type == MissionObject.Ship) {
-			_shipCount--;
-		}
-		if (obj.type == MissionObject.Castaway) {
-			_castawayCount --;
+		MissionObjectBase obj = go.GetComponent<MissionObjectBase>();
+		if(obj != null){
+			if (obj.type == MissionObject.Ship) {
+				_shipCount--;
+			}
+			if (obj.type == MissionObject.Castaway) {
+				_castawayCount --;
+			}
+			
 		}
 		levelElements.Remove(obj.gameObject);
 	}

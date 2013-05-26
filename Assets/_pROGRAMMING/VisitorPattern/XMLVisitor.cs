@@ -8,8 +8,15 @@ public class XMLVisitor : Visitor
 	private XmlDocument _writeTarget;
 	private XmlNode _activeObject; //object the current components should be added to
 	
-	private string levelBase = "levelBase.xml";
-	private string outputFile = "levelOutput.xml";
+	private XmlNode _savingTo;
+	private XmlNode _levelsNode;
+	private XmlNode _messagesNode;
+	private XmlNode _settingsNode;
+	private XmlNode _menusNode;
+	public static string outputFile = "levelOutput.xml";
+	public static string configFile = "config.xml";
+	public static bool useExsitingConfig = false;
+	public static bool overridePreviousLevelWithName = false;
 	
 	public enum ToSave
 	{
@@ -20,53 +27,125 @@ public class XMLVisitor : Visitor
 	
 	public XMLVisitor (string levelName, ToSave toSave)
 	{
+		if(useExsitingConfig){
+			LoadExsitingFile (levelName, toSave);		
+		}
+		else{
+			PrepareNewFile (levelName, toSave);
+		}
 		
-		
+	}
+
+	private void PrepareNewFile (string levelName, ToSave toSave)
+	{
 		_writeTarget = new XmlDocument ();
-		//_writeTarget.Load (Application.dataPath + "\\" + levelBase);
 		
-		XmlDeclaration xmlDecl = _writeTarget.CreateXmlDeclaration("1.0", null, null);
+		XmlDeclaration xmlDecl = _writeTarget.CreateXmlDeclaration ("1.0", null, null);
 		
-		XmlNode root = _writeTarget.CreateNode(XmlNodeType.Element, "Root", null);
-		_writeTarget.AppendChild(root);
+		XmlNode root = _writeTarget.CreateNode (XmlNodeType.Element, "Root", null);
+		_writeTarget.AppendChild (root);
 		//xmlDecl.InsertBefore(xmlDecl, root);
-		
-		XmlNode testChild;
 		
 		switch (toSave) {
 		case ToSave.Level:
 			{
-				testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Level", "");
-				XmlElement tc = (XmlElement)testChild;//
+				
+				_savingTo = _writeTarget.CreateNode (XmlNodeType.Element, "Level", "");
+				XmlElement tc = (XmlElement)_savingTo;//
 				tc.SetAttribute ("name", levelName);
+				CreateAddNode(_writeTarget, "Objects", _savingTo);
 				break;
 			}
 		case ToSave.Menu:
 			{
-				testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Menu", "");
-				XmlElement tc = (XmlElement)testChild;//
+				_savingTo = _writeTarget.CreateNode (XmlNodeType.Element, "Menu", "");
+				XmlElement tc = (XmlElement)_savingTo;//
 				tc.SetAttribute ("name", levelName);
 				break;
 			}
 		case ToSave.Messages:
-			testChild = _writeTarget.CreateNode (XmlNodeType.Element, "Messages", "");
+			_savingTo = _writeTarget.CreateNode (XmlNodeType.Element, "Messages", "");
 			break;
 		default:
-			testChild = null;
+			_savingTo = null;
 			break;
 		}
+		
+		root.AppendChild (_savingTo);
 	
-	
-		
-		
-		root.AppendChild (testChild);
-		
-		if (toSave == ToSave.Level) {
-			XmlNode objectsXml = _writeTarget.CreateNode (XmlNodeType.Element, "Objects", "");
-			testChild.AppendChild (objectsXml);	
-		}
 	}
 
+	private void LoadExsitingFile (string levelName, ToSave toSave)
+	{
+		_writeTarget = new XmlDocument ();
+		_writeTarget.Load (Application.dataPath + "\\" + configFile);
+		
+		//Debug.Log("Doc element = " + _writeTarget.DocumentElement.Name); // Heli Held
+		XmlNode docElement = _writeTarget.DocumentElement;
+		
+		
+		_levelsNode = docElement.SelectSingleNode ("Levels");
+		ReportIfNull(_levelsNode, "Levels");
+		
+		_settingsNode = docElement.SelectSingleNode ("Settings");
+		ReportIfNull(_settingsNode, "Settings");
+		
+		_messagesNode = docElement.SelectSingleNode ("Messages");
+		ReportIfNull(_messagesNode, "Messages");
+		
+		_menusNode = docElement.SelectSingleNode ("Menus");
+		ReportIfNull(_menusNode, "Menus");
+		
+		switch (toSave) {
+		case ToSave.Level:
+			{	
+				//check to see if there is a level with this name
+				_savingTo = _levelsNode.SelectSingleNode(string.Format("Level[@name='{0}']", levelName));
+		
+				if(_savingTo != null){
+					
+					// there is a level with this name
+					
+					if(overridePreviousLevelWithName)
+					{
+						//removing the old level
+						Debug.LogWarning("Overriding a previously saved level");
+						_levelsNode.RemoveChild(_savingTo);
+						
+					}
+					else
+					{	
+						//let the old level sit there. will cause issues loading
+						Debug.LogError("Creating a new level in the config file with an identical name!");
+					}
+				}
+				//create the new level
+				_savingTo = CreateAddNode (_writeTarget, "Level", _levelsNode);
+				XmlElement tc = _savingTo as XmlElement;
+				tc.SetAttribute ("name", levelName);
+				
+				CreateAddNode(_writeTarget, "Objects", _savingTo);
+			}	
+			break;
+			
+		case ToSave.Menu:
+			{
+				_savingTo = CreateAddNode (_writeTarget, "Menu", _menusNode);
+				XmlElement tc = _savingTo as XmlElement;
+				tc.SetAttribute ("name", levelName);
+			}	
+			break;
+		case ToSave.Messages:
+			docElement.RemoveChild (_messagesNode);
+			_messagesNode = CreateAddNode (_writeTarget, "Messages", _writeTarget.DocumentElement);
+			_savingTo = _messagesNode;
+			break;
+		}
+	}
+	private void ReportIfNull(XmlNode node, string name)
+	{
+		if(node == null) Debug.Log(string.Format("{0} node is null, the document is not complete", name));
+	}
 	override public void Visit (Trigger v)
 	{
 		Debug.Log ("Visiting a trigger");
@@ -126,7 +205,7 @@ public class XMLVisitor : Visitor
 		XmlNode listenersXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listeners", null);
 		
 		foreach (TriggeredObject listener in evr.listeners) {
-			if(listener != null){
+			if (listener != null) {
 				XmlNode listenerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listener", null);
 				listenerXml.InnerXml = listener.gameObject.name;
 				listenersXml.AppendChild (listenerXml);
@@ -220,7 +299,8 @@ public class XMLVisitor : Visitor
 		rotXml.InnerText = go.transform.eulerAngles.ToString ("G4");
 		_activeObject.AppendChild (rotXml);
 		
-		_writeTarget.GetElementsByTagName ("Objects") [0].AppendChild (_activeObject);
+		//_writeTarget.GetElementsByTagName ("Objects") [0].AppendChild (_activeObject);
+		_savingTo.SelectSingleNode ("Objects").AppendChild (_activeObject);
 				
 	}
 
@@ -260,28 +340,32 @@ public class XMLVisitor : Visitor
 		
 		
 		
-		_writeTarget.GetElementsByTagName ("Menu") [0].AppendChild (_activeObject);
+		//_writeTarget.GetElementsByTagName ("Menu") [0].AppendChild (_activeObject);
+		_savingTo.AppendChild (_activeObject);
 		
 	}
 
 	override public void Visit (Message message)
 	{
-		_activeObject = _writeTarget.CreateNode(XmlNodeType.Element, "Message", null);
+		_activeObject = _writeTarget.CreateNode (XmlNodeType.Element, "Message", null);
 		//name
-		CreateAddNode(_writeTarget, "Name", _activeObject).InnerText = message.name;
+		CreateAddNode (_writeTarget, "Name", _activeObject).InnerText = message.name;
 		//text
-		CreateAddNode(_writeTarget, "Text", _activeObject).InnerText = message.text;
+		CreateAddNode (_writeTarget, "Text", _activeObject).InnerText = message.text;
 		//audio
-		CreateAddNode(_writeTarget, "Audio", _activeObject).InnerText = message.audio != null? message.audio.name : "";
+		CreateAddNode (_writeTarget, "Audio", _activeObject).InnerText = message.audio != null ? message.audio.name : "";
 		
-		_writeTarget.GetElementsByTagName("Messages")[0].AppendChild(_activeObject);
+//_writeTarget.GetElementsByTagName ("Messages") [0].AppendChild (_activeObject);
+		_messagesNode.AppendChild (_activeObject);
 	}
-	private static XmlNode CreateAddNode(XmlDocument doc, string name, XmlNode parent)
+
+	private static XmlNode CreateAddNode (XmlDocument doc, string name, XmlNode parent)
 	{
-		XmlNode node = doc.CreateNode(XmlNodeType.Element, name, null);
-		parent.AppendChild(node);
+		XmlNode node = doc.CreateNode (XmlNodeType.Element, name, null);
+		parent.AppendChild (node);
 		return node;
 	}
+
 	public string Write ()
 	{
 		//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
