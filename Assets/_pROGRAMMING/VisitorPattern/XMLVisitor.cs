@@ -40,7 +40,7 @@ public class XMLVisitor : Visitor
 	{
 		_writeTarget = new XmlDocument ();
 		
-		XmlDeclaration xmlDecl = _writeTarget.CreateXmlDeclaration ("1.0", null, null);
+		_writeTarget.CreateXmlDeclaration ("1.0", null, null);
 		
 		XmlNode root = _writeTarget.CreateNode (XmlNodeType.Element, "Root", null);
 		_writeTarget.AppendChild (root);

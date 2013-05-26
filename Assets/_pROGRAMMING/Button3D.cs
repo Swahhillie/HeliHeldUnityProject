@@ -13,10 +13,7 @@ public class Button3D : MonoBehaviour, IVisitable {
 	Callback callback = null;
 	public string command;
 	public Button3D.Type type;
-	
-	
-	private bool _isHovered; // is the player pointer at this button
-	
+		
 	public static Button3D CreateButton(Button3D.Type type, string text, string command, Callback c, Vector3 pos, Vector3 rot, string prefabName){
 		
 		GameObject go = (GameObject)Instantiate(Resources.Load(prefabName), pos, Quaternion.identity);
@@ -29,15 +26,7 @@ public class Button3D : MonoBehaviour, IVisitable {
 		return b;
 	}
 	
-	public void StartHover(){
-		_isHovered = true;
-		//do fancy graphic stuff here
-	}
-	public void EndHover(){
-		_isHovered = false;
-		//make button normal again
-	}
-	
+
 	public void Activate(){
 		callback(this);
 	}

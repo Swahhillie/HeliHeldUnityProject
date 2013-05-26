@@ -5,10 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class XmlSaverEditor : EditorWindow
-{
-	
-	private GameObject[] _selectedGos = new GameObject[0];
-	
+{	
 	
 	private static XMLVisitor.ToSave target;
 	

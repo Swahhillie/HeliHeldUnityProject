@@ -194,19 +194,19 @@ public class Level
 	private static void AddShip (XmlNode shipXml, ref GameObject go)
 	{
 		//add component ship here and set the proper values
-		Ship c = AddMissionBase<Ship> (shipXml, go);
+		AddMissionBase<Ship> (shipXml, go);
 		if(UnityEngine.Random.value > .999)Debug.Log("I'm on a boat.");
 		
 	}
 
 	private static void AddCastaway (XmlNode cawXml, ref GameObject go)
 	{
-		Castaway c = AddMissionBase<Castaway> (cawXml, go);
+		AddMissionBase<Castaway> (cawXml, go);
 	}
 
 	private static void AddBeacon (XmlNode bNode, ref GameObject go)
 	{
-		Beacon b = AddMissionBase<Beacon> (bNode, go);
+		AddMissionBase<Beacon> (bNode, go);
 	}
 
 	private static T AddMissionBase<T> (XmlNode baseNode, GameObject go) where T : MissionObjectBase
