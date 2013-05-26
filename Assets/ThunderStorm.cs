@@ -66,7 +66,7 @@ public class ThunderStorm : MonoBehaviour {
 	private void CreateStrike()
 	{
 		_lastLighting = Time.time;
-		int branches = Random.Range(minBranches, maxBranches);
+//		int branches = Random.Range(minBranches, maxBranches);
 		CreateBranch(lightningPrefab);
 		StartCoroutine(DisableStrike(lightningPrefab));
 	}

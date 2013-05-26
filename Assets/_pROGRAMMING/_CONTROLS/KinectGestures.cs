@@ -14,11 +14,9 @@ public class KinectGestures
 	public static Hand activeHand = Hand.Right;
 	public static float distHandsApart = 0.3f;
 	public static float distRadioGesture = 0.6f;
-	private static bool handsApart = true;
 	
 	private static Vector3 handPos;
 	private static Vector3 elbowPos;
-	private static Vector2 cursorPos;
 	
 	static int iHandR;
 	static int iHandL;
@@ -33,10 +31,6 @@ public class KinectGestures
 		iHandR = (int)Kinect.NuiSkeletonPositionIndex.HandRight;
 		iHandL = (int)Kinect.NuiSkeletonPositionIndex.HandLeft;
 		iShouldC = (int)Kinect.NuiSkeletonPositionIndex.ShoulderCenter;
-	}
-	
-	public static Vector2 cursorPosition {
-		get{ return cursorPos;}
 	}
 	
 	public bool GetHandsApart()

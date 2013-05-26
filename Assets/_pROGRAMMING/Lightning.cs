@@ -29,7 +29,7 @@ public class Lightning : MonoBehaviour {
 	
 	void GenerateLightning()
 	{
-		Vector3 temp = this.transform.position;
+
 		
 		int maxelements =(int) (6+Random.value*5);
 		//use for loop
