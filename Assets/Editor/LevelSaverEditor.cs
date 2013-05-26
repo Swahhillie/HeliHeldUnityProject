@@ -26,7 +26,6 @@ public class LevelSaverEditor : EditorWindow
 		EditorWindow.GetWindow<LevelSaverEditor> (true, "Saving a menu");
 		target = XMLVisitor.ToSave.Menu;
 	}
-
 	[MenuItem("SaveXML/Level", true)]
 	private static bool ShowWindow ()
 	{

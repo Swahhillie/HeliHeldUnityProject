@@ -18,6 +18,7 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 	public SpawnType spawn = SpawnType.Start;
 	protected MissionObject _type;
 	public GameObject prefab;
+	protected bool _rescuable = false;
 	//protected Dictionary<string,Reaction> evt = new Dictionary<string,Reaction>();
 	//protected Dictionary<int,List<string>> action = new Dictionary<int, List<string>>();
 	
@@ -86,9 +87,12 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		if (t != null) {
 			t.OnRescue ();
 		}
-		ConfigLoader.instance.activeLevel.RemoveLevelElement(this);
+		ConfigLoader.instance.activeLevel.RemoveLevelElement(this.gameObject);
 		GameObject.Destroy(this.gameObject);
 		return rescueSuccess;
+	}
+	public bool rescuable{
+		get{return _rescuable;}
 	}
 /*	
 	protected virtual void CreateModel(string toLoad = "")

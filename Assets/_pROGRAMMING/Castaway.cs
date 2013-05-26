@@ -6,6 +6,7 @@ public class Castaway : MissionObjectBase
 {
 	override protected void AwakeConcrete(){
 		_type = MissionObject.Castaway;
+		_rescuable = true;
 	}
 	override protected void UpdateConcrete(){
 		//update for mission object base must be implemented here. not in Update()	
@@ -16,5 +17,6 @@ public class Castaway : MissionObjectBase
 	}
 	override public void OnTriggered(EventReaction evr){
 		base.OnTriggered(evr);
+		
 	}
 }

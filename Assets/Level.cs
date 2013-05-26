@@ -14,7 +14,7 @@ public class Level
 
 	public string levelName;
 	public XmlNode lvlXml;
-	public List<GameObject> levelElements; //list of all gameobjects that will be active in this level.
+	private List<GameObject> _levelElements; //list of all gameobjects that will be active in this level.
 	public GameObject lvlRoot;
 	private bool _isLoaded = false;
 	private int _castawayCount = 0;
@@ -88,15 +88,22 @@ public class Level
 	public int shipCount {
 		get{ return _shipCount;}
 	}
-
-	public void RemoveLevelElement (MissionObjectBase obj) //ships and castaways
+	public List<GameObject> levelElements{
+		get{return _levelElements;}
+		private set{_levelElements = value;}
+	}
+	public void RemoveLevelElement (GameObject go) //ships and castaways
 	{
 		
-		if (obj.type == MissionObject.Ship) {
-			_shipCount--;
-		}
-		if (obj.type == MissionObject.Castaway) {
-			_castawayCount --;
+		MissionObjectBase obj = go.GetComponent<MissionObjectBase>();
+		if(obj != null){
+			if (obj.type == MissionObject.Ship) {
+				_shipCount--;
+			}
+			if (obj.type == MissionObject.Castaway) {
+				_castawayCount --;
+			}
+			
 		}
 		levelElements.Remove(obj.gameObject);
 	}
