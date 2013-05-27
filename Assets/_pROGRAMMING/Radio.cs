@@ -4,7 +4,8 @@ using System.Collections;
 public class Radio : TriggeredObject  
 {
 	private float _width;	
-	private string _message = "";
+	private Message _message;
+	private Message _tempMessage;
 	private bool _active=false;
 	private TextMesh tMesh;
     public RadioMessageIndicator rmi;
@@ -50,7 +51,7 @@ public class Radio : TriggeredObject
 		float messagePercent = elapsedSinceOpen / writeDuration;
 		messagePercent = Mathf.Clamp (messagePercent, 0, 1);
 		//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
-		tMesh.text = _message.Substring(0,Mathf.FloorToInt(messagePercent * _message.Length));
+		tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
 	}
 	
 	public void ToggleHud()
@@ -60,6 +61,13 @@ public class Radio : TriggeredObject
 		if(_active)
 		{
 			rmi.setActive=false;
+		}
+		else
+		{
+			if(_message.isWarning)
+			{
+				_message = _tempMessage;	
+			}
 		}
 		/*StopAllCoroutines();
 		if(!_active)
@@ -81,6 +89,13 @@ public class Radio : TriggeredObject
 		{
 			rmi.setActive=false;
 		}
+		else
+		{
+			if(_message.isWarning)
+			{
+				_message = _tempMessage;	
+			}
+		}
 		/*StopAllCoroutines();
 		if(active)
 		{
@@ -98,14 +113,17 @@ public class Radio : TriggeredObject
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
 			Debug.Log("Displaying message " + message.text);
-			if(message.text!=null)
+			_message = message;
+			if(!_message.isWarning)
 			{
-				_message = message.text;
+				_tempMessage = message;
 			}
-            //SetRadio(true);
+			
+            SetRadio(true);
+			
 			rmi.setActive=true;
 
-			if(message.audio!=null)
+			if(_message.audio!=null)
 			{
 				audio.PlayOneShot(message.audio);
 			}
