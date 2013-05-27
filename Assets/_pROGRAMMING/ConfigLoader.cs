@@ -128,8 +128,10 @@ public static class GameObjectExtend
 	}
 
 }
-
-public class ConfigLoader : MonoBehaviour
+/// <summary>
+/// Loads all information that can be found in a config.xml file.
+/// </summary>
+public class ConfigLoader
 {
 	
 	public string configFilePath = "config.xml";
@@ -144,13 +146,20 @@ public class ConfigLoader : MonoBehaviour
 	public Level activeLevel = null;
 	public Menu activeMenu = null;
 	
-	void Awake ()
+	public ConfigLoader(bool editMode = false)
 	{
-		if (instance != null) {
-			Debug.LogError ("THERE ALREADY IS A CONFIGLOADER!!!!!");
-			return;
-		} else {
-			instance = this;
+		Initialize(editMode);
+	}
+	
+	private void Initialize (bool editMode)
+	{
+		if(!editMode){
+			if (instance != null) {
+				Debug.LogError ("THERE ALREADY IS A CONFIGLOADER!!!!!");
+				return;
+			} else {
+				instance = this;
+			}
 		}
 		
 		//migrate these to the enums class, this will make it easier to serialize data
@@ -192,12 +201,13 @@ public class ConfigLoader : MonoBehaviour
 		ParseLevels (xml);
 		
 		
-		ParseMenus (xml);
+		if(!editMode)ParseMenus (xml);
 		
 		
 		messages = ParseMessages(xml);
 		
 		//menus ["MainMenu"].LoadMenu ();
+		Debug.Log("Messages Loaded");
 		
 	}
 
