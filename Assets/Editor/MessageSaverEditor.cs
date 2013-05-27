@@ -119,7 +119,7 @@ public class MessageSaverEditor : EditorWindow
 	private void SaveToXml ()
 	{
 		if (_messages != null) {
-			XMLVisitor xmlVisitor = new XMLVisitor (null, XMLVisitor.ToSave.Messages);
+			XmlVisitor xmlVisitor = new XmlVisitor (null, XmlVisitor.ToSave.Messages);
 			foreach (var pair in _messages) {
 				pair.Value.AcceptVisitor (xmlVisitor);
 			}

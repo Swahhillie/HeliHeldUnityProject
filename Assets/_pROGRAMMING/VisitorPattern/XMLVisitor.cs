@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Xml;
-
-public class XMLVisitor : Visitor
+/// <summary>
+/// Visitor that writes to an XML file.
+/// </summary>
+public class XmlVisitor : Visitor
 {
 	
 	private XmlDocument _writeTarget;
@@ -25,7 +27,7 @@ public class XMLVisitor : Visitor
 		Messages
 	}
 	
-	public XMLVisitor (string levelName, ToSave toSave)
+	public XmlVisitor (string levelName, ToSave toSave)
 	{
 		if(useExsitingConfig){
 			Debug.Log("Saving using exsisting config.xml file");
