@@ -17,6 +17,13 @@ public class XmlSaverEditor : EditorWindow
 		EditorWindow.GetWindow<XmlSaverEditor> (true, "Changing save settings");
 		
 	}
+	private void Awake()
+	{
+		XMLVisitor.configFile = EditorPrefs.GetString("XmlVisitorConfig", "config.xml");
+		XMLVisitor.outputFile = EditorPrefs.GetString("XmlVisitorOutput", "outputFile.xml");
+		XMLVisitor.overridePreviousLevelWithName = EditorPrefs.GetBool("XmlVisitorOverride", true);
+		XMLVisitor.useExsitingConfig = EditorPrefs.GetBool("XmlVisitorUseExisting", true);
+	}
 	
 	/*
 	public static string levelBase = "levelBase.xml";
@@ -57,6 +64,24 @@ public class XmlSaverEditor : EditorWindow
 			
 		}
 		EditorGUILayout.EndVertical();
+	}
+	private void OnLostFocus()
+	{
+		SaveSettings();
+	}
+	private void OnDestroy()
+	{
+		SaveSettings();
+	}
+	private void SaveSettings()
+	{
+			
+		Debug.Log("saving settings to prefs");
+		EditorPrefs.GetString("XmlVisitorConfig", XMLVisitor.configFile);
+		EditorPrefs.GetString("XmlVisitorOutput", XMLVisitor.outputFile );
+		EditorPrefs.GetBool("XmlVisitorOverride", XMLVisitor.overridePreviousLevelWithName);
+		EditorPrefs.GetBool("XmlVisitorUseExisting", XMLVisitor.useExsitingConfig);
+		
 	}
 
 	
