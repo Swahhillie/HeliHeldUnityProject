@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class XmlSaverEditor : EditorWindow
 {	
 	
-	private static XMLVisitor.ToSave target;
+	private static XmlVisitor.ToSave target;
 	
 	
 	
@@ -19,10 +19,10 @@ public class XmlSaverEditor : EditorWindow
 	}
 	private void Awake()
 	{
-		XMLVisitor.configFile = EditorPrefs.GetString("XmlVisitorConfig", "config.xml");
-		XMLVisitor.outputFile = EditorPrefs.GetString("XmlVisitorOutput", "outputFile.xml");
-		XMLVisitor.overridePreviousLevelWithName = EditorPrefs.GetBool("XmlVisitorOverride", true);
-		XMLVisitor.useExsitingConfig = EditorPrefs.GetBool("XmlVisitorUseExisting", true);
+		XmlVisitor.configFile = EditorPrefs.GetString("XmlVisitorConfig", "config.xml");
+		XmlVisitor.outputFile = EditorPrefs.GetString("XmlVisitorOutput", "outputFile.xml");
+		XmlVisitor.overridePreviousLevelWithName = EditorPrefs.GetBool("XmlVisitorOverride", true);
+		XmlVisitor.useExsitingConfig = EditorPrefs.GetBool("XmlVisitorUseExisting", true);
 	}
 	
 	/*
@@ -38,26 +38,26 @@ public class XmlSaverEditor : EditorWindow
 		{
 			EditorGUILayout.BeginHorizontal();
 			{
-				XMLVisitor.useExsitingConfig = GUILayout.Toggle(XMLVisitor.useExsitingConfig, "Use exsiting config");
+				XmlVisitor.useExsitingConfig = GUILayout.Toggle(XmlVisitor.useExsitingConfig, "Use exsiting config");
 			}
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
 			{
 				EditorGUILayout.PrefixLabel("levelOutput");
-				XMLVisitor.outputFile = EditorGUILayout.TextField(XMLVisitor.outputFile);
+				XmlVisitor.outputFile = EditorGUILayout.TextField(XmlVisitor.outputFile);
 			}
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
 			{
 				EditorGUILayout.PrefixLabel("ConfigFile to use as base");
-				XMLVisitor.configFile = EditorGUILayout.TextField(XMLVisitor.configFile);
+				XmlVisitor.configFile = EditorGUILayout.TextField(XmlVisitor.configFile);
 			}
 			EditorGUILayout.EndHorizontal();
 			EditorGUILayout.BeginHorizontal();
 			{
-				XMLVisitor.overridePreviousLevelWithName = GUILayout.Toggle(XMLVisitor.overridePreviousLevelWithName, "Override existing level in config file");
+				XmlVisitor.overridePreviousLevelWithName = GUILayout.Toggle(XmlVisitor.overridePreviousLevelWithName, "Override existing level in config file");
 			}
 			EditorGUILayout.EndHorizontal();		
 				
@@ -77,10 +77,10 @@ public class XmlSaverEditor : EditorWindow
 	{
 			
 		Debug.Log("saving settings to prefs");
-		EditorPrefs.GetString("XmlVisitorConfig", XMLVisitor.configFile);
-		EditorPrefs.GetString("XmlVisitorOutput", XMLVisitor.outputFile );
-		EditorPrefs.GetBool("XmlVisitorOverride", XMLVisitor.overridePreviousLevelWithName);
-		EditorPrefs.GetBool("XmlVisitorUseExisting", XMLVisitor.useExsitingConfig);
+		EditorPrefs.GetString("XmlVisitorConfig", XmlVisitor.configFile);
+		EditorPrefs.GetString("XmlVisitorOutput", XmlVisitor.outputFile );
+		EditorPrefs.GetBool("XmlVisitorOverride", XmlVisitor.overridePreviousLevelWithName);
+		EditorPrefs.GetBool("XmlVisitorUseExisting", XmlVisitor.useExsitingConfig);
 		
 	}
 
