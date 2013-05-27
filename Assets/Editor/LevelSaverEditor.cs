@@ -7,11 +7,8 @@ public class LevelSaverEditor : EditorWindow
 {
 	
 	private GameObject[] _selectedGos = new GameObject[0];
-	
-	
 	private static XMLVisitor.ToSave target;
 	private string saveName = "newXml";
-	
 	
 	[MenuItem("SaveXML/Level")]
 	private static void CreateWindowSaveLevel ()
@@ -26,6 +23,7 @@ public class LevelSaverEditor : EditorWindow
 		EditorWindow.GetWindow<LevelSaverEditor> (true, "Saving a menu");
 		target = XMLVisitor.ToSave.Menu;
 	}
+
 	[MenuItem("SaveXML/Level", true)]
 	private static bool ShowWindow ()
 	{
@@ -38,7 +36,7 @@ public class LevelSaverEditor : EditorWindow
 			int targetLayer = LayerMask.NameToLayer ("SaveLayer");
 			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, (go => go.layer == targetLayer && go.transform.parent == null));
 		} else if (target == XMLVisitor.ToSave.Menu) {
-			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, go => go.GetComponent<Button3D>() != null);
+			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, go => go.GetComponent<Button3D> () != null);
 		}
 		Repaint ();
 	}
@@ -50,7 +48,7 @@ public class LevelSaverEditor : EditorWindow
 		_scrollPosition = EditorGUILayout.BeginScrollView (_scrollPosition);
 		EditorGUILayout.BeginHorizontal ();
 		{
-			saveName = GUILayout.TextField(saveName, 15);
+			saveName = GUILayout.TextField (saveName, 15);
 			
 			if (GUILayout.Button ("Save")) {
 				SaveToXml ();
@@ -82,21 +80,27 @@ public class LevelSaverEditor : EditorWindow
 			i++;
 		}
 		XMLVisitor xmlVisitor = new XMLVisitor (saveName, target);
-		foreach (var go in _selectedGos) {
+		try {
+			foreach (var go in _selectedGos) {
 			
-			if(target == XMLVisitor.ToSave.Level)xmlVisitor.OpenNewObject(go);
-			System.Array.ForEach<IVisitable> (go.GetInterfacesInChildren<IVisitable> (), visitable => visitable.AcceptVisitor (xmlVisitor));
+				if (target == XMLVisitor.ToSave.Level)
+					xmlVisitor.OpenNewObject (go);
+				System.Array.ForEach<IVisitable> (go.GetInterfacesInChildren<IVisitable> (), visitable => visitable.AcceptVisitor (xmlVisitor));
 			
+			}
+		} finally {
+			//cleanup the names if an exception occurs
+			foreach (var go in _selectedGos) {
+				go.name = go.name.Substring (0, go.name.Length - 5); // leave the number out of it
+			}
 		}
-		//cleanup names
-		foreach (var go in _selectedGos) {
-			go.name = go.name.Substring (0, go.name.Length - 5); // leave the number out of it
-		}
-		string resultPath = xmlVisitor.Write();
-		OpenOutputFile(resultPath);
+	
+		string resultPath = xmlVisitor.Write ();
+		OpenOutputFile (resultPath);
 	}
-	private void OpenOutputFile(string path)
+
+	private void OpenOutputFile (string path)
 	{
-		UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(path, 0);
+		UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal (path, 0);
 	}
 }

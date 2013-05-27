@@ -1,276 +1,4 @@
 <?xml version="1.0" encoding="us-ascii"?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<HeliHeld>
-  <Level name="newXml">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Objects />
-=======
-    <Objects>
-      <Object>
-        <Name>castawayExample_000_</Name>
-        <Pos>(2869.1, 50.9, 950.3)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-=======
-<HeliHeld>
-<<<<<<< HEAD
-  <Level name="RescueTest">
-    <Objects>
-      <Object>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <Name>castawayTemp_000_</Name>
-        <Pos>(2819.1, 50.9, 725.5)</Pos>
-=======
-        <Name>TriggerInitial_000_</Name>
-        <Pos>(2820.0, 128.2, 364.5)</Pos>
->>>>>>> Heli Kinect controls update
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-<<<<<<< HEAD
->>>>>>> Changes to make triggers more flexible
-=======
-=======
-        <Name>castawayExample_000_</Name>
-        <Pos>(1729.1, 0.0, 823.4)</Pos>
-=======
-        <Name>beaconPrefab_000_</Name>
-        <Pos>(1864.8, 1.7, 723.8)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Beacon>
-          <Spawn>Start</Spawn>
-          <PrefabName>beaconPrefab</PrefabName>
-        </Beacon>
-      </Object>
-      <Object>
-        <Name>castawayExample_001_</Name>
-        <Pos>(1857.5, 1.5, 721.1)</Pos>
->>>>>>> Fixed rescue pointer
-        <Rot>(0.0, 0.0, 0.0)</Rot>
->>>>>>> Improvements to heli controls and camera
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-<<<<<<< HEAD
->>>>>>> Setting up level1
-=======
->>>>>>> Improvements to heli controls and camera
-        <Trigger>
-          <EventReaction>
-            <Type>Say</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <Listener>castawayExample_000_</Listener>
-            </Listeners>
-          </EventReaction>
-<<<<<<< HEAD
-          <Radius>50</Radius>
-          <Type>OnTriggerEnter</Type>
-        </Trigger>
-      </Object>
-      <Object>
-        <Name>castawayExample_001_</Name>
-        <Pos>(2792.3, 0.7, 773.5)</Pos>
-=======
-              <Listener>castawayTemp_000_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>50</Radius>
-          <Type>OnTriggerEnter</Type>
-          <RepeatCount>0</RepeatCount>
-=======
-          <EventReaction>
-            <Type>StartTimer</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>
-            </MessageName>
-            <Listeners>
-              <Listener>TriggerTimer_001_</Listener>
-=======
-              <Listener>castawayExample_000_</Listener>
->>>>>>> Improvements to heli controls and camera
-=======
-              <Listener>castawayExample_001_</Listener>
->>>>>>> Fixed rescue pointer
-            </Listeners>
-          </EventReaction>
-          <Radius>50</Radius>
-          <Type>OnTriggerEnter</Type>
-          <RepeatCount>0</RepeatCount>
-          <TimeToTrigger>0</TimeToTrigger>
->>>>>>> Heli Kinect controls update
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
-      </Object>
-<<<<<<< HEAD
-      <Object>
-<<<<<<< HEAD
-        <Name>castawayTemp_001_</Name>
-        <Pos>(2819.1, 50.9, 1008.4)</Pos>
-=======
-        <Name>TriggerTimer_001_</Name>
-        <Pos>(2820.0, 128.2, 364.5)</Pos>
->>>>>>> Heli Kinect controls update
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Trigger>
-          <EventReaction>
-            <Type>Disable</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>ToLate</MessageName>
-            <Listeners>
-              <Listener>castawayTemp_001_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>50</Radius>
-          <Type>Counting</Type>
-          <RepeatCount>1</RepeatCount>
-          <CountToTrigger>3</CountToTrigger>
-        </Trigger>
-<<<<<<< HEAD
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-      </Object>
-      <Object>
-        <Name>castawayTemp_001_</Name>
-        <Pos>(2819.1, 50.9, 725.5)</Pos>
->>>>>>> Changes to make triggers more flexible
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-=======
->>>>>>> Setting up level1
-        <Trigger>
-          <EventReaction>
-            <Type>Count</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-<<<<<<< HEAD
-              <Listener>castawayExample_001_</Listener>
-=======
-              <Listener>castawayTemp_001_</Listener>
->>>>>>> Changes to make triggers more flexible
-            </Listeners>
-          </EventReaction>
-<<<<<<< HEAD
-          <Radius>50</Radius>
-<<<<<<< HEAD
-          <Type>OnTriggerEnter</Type>
-<<<<<<< HEAD
-        </Trigger>
-      </Object>
-    </Objects>
->>>>>>> Editor Utility to save to xml file
-=======
-    <Objects />
->>>>>>> Small updates
-  </Level>
-</HeliHeld>
-=======
-<Levels>
-<<<<<<< HEAD
-  <Menu name="Menu2" />
-</Levels>
->>>>>>> Github wants me to commit this
-=======
-  <Level name="LevelHudTest">
-    <Objects>
-      <Object>
-        <Name>castawayTemp_000_</Name>
-        <Pos>(2819.1, 50.9, 725.5)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-        <Trigger>
-          <EventReaction>
-            <Type>Say</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-              <Listener>HudObject</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>150</Radius>
-          <Type>OnTriggerEnter</Type>
-        </Trigger>
-      </Object>
-    </Objects>
-  </Level>
-</Levels>
->>>>>>> working hud
-=======
-          <RepeatCount>0</RepeatCount>
-=======
-          <Type>OnRescued</Type>
-          <RepeatCount>1</RepeatCount>
->>>>>>> Setting up level1
-=======
-          <Radius>0</Radius>
-          <Type>Timer</Type>
-          <RepeatCount>1</RepeatCount>
-          <TimeToTrigger>10</TimeToTrigger>
->>>>>>> Heli Kinect controls update
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
-        <Castaway>
-          <Spawn>Start</Spawn>
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-      </Object>
-      <Object>
-        <Name>beaconPrefab_002_</Name>
-        <Pos>(2797.9, 1.0, 839.8)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Beacon>
-          <Spawn>Start</Spawn>
-          <PrefabName>beaconPrefab</PrefabName>
-        </Beacon>
-      </Object>
-=======
->>>>>>> Improvements to heli controls and camera
-    </Objects>
-  </Level>
-</HeliHeld>
->>>>>>> Changes to make triggers more flexible
-=======
-  <Menu name="newXml">
-    <Button>
-      <Type>LoadMenu</Type>
-      <Name>button3DPrefab_000_</Name>
-      <Label>Hello World</Label>
-      <Pos>(3261.5, 157.2, 3712.2)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>
-      </Function>
-    </Button>
-  </Menu>
-</HeliHeld>
->>>>>>> Buttons -> xml, Rescueing, Rescue Indicator
-=======
-<Root>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 <HeliHeld>
   <Menus>
     <Menu name="MainMenu">
@@ -875,24 +603,19 @@
         </Object>
       </Objects>
     </Level>
-    <Level name="newXml">
-      <Objects>
-        <Object>
-          <Name>TestObject_000__000_</Name>
-          <Pos>(2722, -269, 1464)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>FishingBoat</PrefabName>
-          </Castaway>
-        </Object>
-      </Objects>
-    </Level>
   </Levels>
->>>>>>> Added convenience to the editor
-=======
-<Root>
->>>>>>> Doxygen and Message.IsWarning
+  <Settings>
+    <Setting name="flightHeight" value="150">
+    </Setting>
+    <Setting name="buttonTime" value="2">
+    </Setting>
+    <Setting name="rainStrength" value="10">
+    </Setting>
+    <Setting name="heliSpeed" value="100">
+    </Setting>
+    <Setting name="capsuleHeight" value="100">
+    </Setting>
+  </Settings>
   <Messages>
     <Message>
       <Name>Intro</Name>
@@ -908,8 +631,6 @@
       <IsWarning>False</IsWarning>
     </Message>
     <Message>
-<<<<<<< HEAD
-=======
       <Name>Keerom</Name>
       <Text>Hier is geen boot, keer om</Text>
       <Audio>
@@ -917,7 +638,6 @@
       <IsWarning>False</IsWarning>
     </Message>
     <Message>
->>>>>>> Added convenience to the editor
       <Name>Move</Name>
       <Text>Goed gedaan! Vlieg nu terug naar de basis. 
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
@@ -934,8 +654,6 @@
       <IsWarning>False</IsWarning>
     </Message>
     <Message>
-<<<<<<< HEAD
-=======
       <Name>Save</Name>
       <Text>Je hebt een drenkeling gered, vind ze allemaal!
 			</Text>
@@ -959,156 +677,10 @@
       <IsWarning>False</IsWarning>
     </Message>
     <Message>
->>>>>>> Added convenience to the editor
       <Name>DefaultMessage</Name>
       <Text>PLACEHOLDER MESSAGE</Text>
       <Audio>switch32</Audio>
       <IsWarning>False</IsWarning>
     </Message>
   </Messages>
-<<<<<<< HEAD
-<<<<<<< HEAD
-</Root>
->>>>>>> Message editor utility added, UT for ParseVec3
-=======
-<Root>
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <Level name="exampleLevel">
-    <Objects>
-      <Object>
-        <Name>TriggerInitial_000_</Name>
-        <Pos>(2820.0, 128.2, 364.5)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Trigger>
-          <EventReaction>
-            <Type>Say</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>Hallo</MessageName>
-            <Listeners>
-              <Listener>RadioObject</Listener>
-            </Listeners>
-          </EventReaction>
-          <EventReaction>
-            <Type>StartTimer</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>
-            </MessageName>
-            <Listeners>
-              <Listener>TriggerTimer_002_</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>86.12</Radius>
-          <Type>OnTriggerEnter</Type>
-          <RepeatCount>1</RepeatCount>
-          <TimeToTrigger>0</TimeToTrigger>
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
-      </Object>
-      <Object>
-        <Name>beaconPrefab_001_</Name>
-        <Pos>(2797.9, 1.0, 839.8)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Beacon>
-          <Spawn>Start</Spawn>
-          <PrefabName>beaconPrefab</PrefabName>
-        </Beacon>
-      </Object>
-      <Object>
-        <Name>TriggerTimer_002_</Name>
-        <Pos>(2820.0, 128.2, 364.5)</Pos>
-        <Rot>(0.0, 0.0, 0.0)</Rot>
-        <Trigger>
-          <EventReaction>
-            <Type>Say</Type>
-            <Pos>(0.0, 0.0, 0.0)</Pos>
-            <MessageName>
-            </MessageName>
-            <Listeners>
-              <Listener>RadarAndFuel</Listener>
-            </Listeners>
-          </EventReaction>
-          <Radius>0</Radius>
-          <Type>OnActivate</Type>
-          <RepeatCount>1</RepeatCount>
-          <TimeToTrigger>10</TimeToTrigger>
-          <CountToTrigger>0</CountToTrigger>
-        </Trigger>
-      </Object>
-    </Objects>
-  </Level>
-</Root>
->>>>>>> Recreated the project settings.
-=======
-
-</Root>
->>>>>>> Clarity, Example updated, unsed variables deleted
-=======
-  <Level name="newXml">
-    <Objects>
-      <Object>
-        <Name>testCastaway_000_</Name>
-        <Pos>(2708.8, 28.7, 456.4)</Pos>
-        <Rot>(12.5, 175.0, 0.0)</Rot>
-        <Castaway>
-          <Spawn>Start</Spawn>
-=======
-  <Level name="testXml">
-    <Objects>
-      <Object>
-        <Name>testCastaway_000_</Name>
-        <Pos>(2709, 28.72, 456.4)</Pos>
-        <Rot>(12.48, 175, -2.569E-06)</Rot>
-        <Castaway>
-          <Spawn>Later</Spawn>
->>>>>>> Fix to objects that spawn later
-          <PrefabName>castawayPrefab</PrefabName>
-        </Castaway>
-      </Object>
-    </Objects>
-  </Level>
-<<<<<<< HEAD
-</Root>
->>>>>>> Menu changed to componenet
-=======
-  <Menu name="DebugMenu">
-    <Button>
-      <Type>LoadLevel</Type>
-      <Name>button3DPrefab_000_</Name>
-      <Label>Load newXml Level</Label>
-      <Pos>(3260.6, 154.4, 3717.1)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>newXml</Function>
-    </Button>
-    <Button>
-      <Type>LoadMenu</Type>
-      <Name>button3DPrefab_001_</Name>
-      <Label>Load newXml Menu</Label>
-      <Pos>(3260.6, 152.3, 3717.1)</Pos>
-      <Rot>(0.0, 0.0, 0.0)</Rot>
-      <Function>newXml</Function>
-    </Button>
-  </Menu>
-</Root>
->>>>>>> Tweaks to editor. Fixed triggers
-=======
-</Root>
->>>>>>> Fix to objects that spawn later
-=======
-  <Settings>
-    <Setting name="flightHeight" value="150">
-    </Setting>
-    <Setting name="buttonTime" value="2">
-    </Setting>
-    <Setting name="rainStrength" value="10">
-    </Setting>
-    <Setting name="heliSpeed" value="100">
-    </Setting>
-    <Setting name="capsuleHeight" value="100">
-    </Setting>
-  </Settings>
 </HeliHeld>
->>>>>>> Added convenience to the editor
-=======
-</Root>
->>>>>>> Doxygen and Message.IsWarning

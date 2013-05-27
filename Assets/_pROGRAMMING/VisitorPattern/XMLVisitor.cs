@@ -28,10 +28,13 @@ public class XMLVisitor : Visitor
 	public XMLVisitor (string levelName, ToSave toSave)
 	{
 		if(useExsitingConfig){
+			Debug.Log("Saving using exsisting config.xml file");
 			LoadExsitingFile (levelName, toSave);		
 		}
 		else{
+			Debug.Log("Preparing a new file to save to");
 			PrepareNewFile (levelName, toSave);
+			
 		}
 		
 	}
@@ -354,9 +357,12 @@ public class XMLVisitor : Visitor
 		CreateAddNode (_writeTarget, "Text", _activeObject).InnerText = message.text;
 		//audio
 		CreateAddNode (_writeTarget, "Audio", _activeObject).InnerText = message.audio != null ? message.audio.name : "";
+		//isWarning
+		CreateAddNode (_writeTarget, "IsWarning", _activeObject).InnerText = message.isWarning.ToString();
+		
 		
 //_writeTarget.GetElementsByTagName ("Messages") [0].AppendChild (_activeObject);
-		_messagesNode.AppendChild (_activeObject);
+		_savingTo.AppendChild (_activeObject);
 	}
 
 	private static XmlNode CreateAddNode (XmlDocument doc, string name, XmlNode parent)

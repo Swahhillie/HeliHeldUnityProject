@@ -142,7 +142,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 		catch (Exception e)
 		{
 			connected = false;
-			Debug.Log(e.Message);
+			Debug.LogError(e.Message);
 		}
 	}
 	
