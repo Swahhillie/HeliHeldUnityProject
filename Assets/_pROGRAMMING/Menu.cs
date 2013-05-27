@@ -39,7 +39,7 @@ public class Menu : MonoBehaviour
 		if (b.type == Button3D.Type.LoadLevel) 
 		{
 			UnLoadMenu ();
-			ConfigLoader.instance.StartCoroutine(ConfigLoader.instance.SwitchSceneAndLoad("LevelDesign", b.command));
+			StartCoroutine(ConfigLoader.instance.SwitchSceneAndLoad("LevelDesign", b.command));
 		}
 		if(b.type == Button3D.Type.LoadMenu)
 		{

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(ConfigLoader))]
+[RequireComponent(typeof(Main))]
 public class LoadAuto : MonoBehaviour
 {
 
@@ -18,7 +18,7 @@ public class LoadAuto : MonoBehaviour
 	
 	void Start ()
 	{
-		loader = GetComponent<ConfigLoader> ();
+		loader = GetComponent<Main> ().configLoader;
 		if (loader == null)
 			Debug.LogError ("Failed to find ConfigLoader component");
 		if (toLoad == ToLoad.Level) {
@@ -26,7 +26,7 @@ public class LoadAuto : MonoBehaviour
 				loader.LoadLevel(toLoadName);
 			}
 			else{
-				loader.StartCoroutine (loader.SwitchSceneAndLoad (scene, toLoadName));
+				StartCoroutine (loader.SwitchSceneAndLoad (scene, toLoadName));
 			}
 			
 		} else if (toLoad == ToLoad.Menu) {

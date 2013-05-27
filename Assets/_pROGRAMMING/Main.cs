@@ -6,6 +6,7 @@ public class Main : MonoBehaviour {
 	private string _loadName = "MainMenu";
 	private enum STATE{MENU,GAME};
 	private int state;
+	private ConfigLoader _configLoader;// = new ConfigLoader();
 	// Use this for initialization
 
 	void Awake () 
@@ -16,6 +17,7 @@ public class Main : MonoBehaviour {
 			GameObject.Destroy(gameObject);
 		}
 		else{
+			configLoader = new ConfigLoader();
 			DontDestroyOnLoad(this.gameObject);
 		}
 		
@@ -27,5 +29,8 @@ public class Main : MonoBehaviour {
 		get{return _loadName;}
 		set{_loadName = value;}
 	}
-	
+	public ConfigLoader configLoader{
+		get{return _configLoader;}
+		private set{_configLoader = value;}
+	}
 }

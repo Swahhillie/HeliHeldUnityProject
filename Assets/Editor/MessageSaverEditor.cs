@@ -56,9 +56,11 @@ public class MessageSaverEditor : EditorWindow
 									if (Resources.Load (message.audio.name) == null) {
 										_report = message.audio.name + " is not in a resource folder!";
 									}
-								}							
-								bool toggle = false;
-								if (GUILayout.Toggle (toggle, "Delete")) {
+								}
+								message.isWarning = GUILayout.Toggle(message.isWarning, "IsWarning");
+																						
+								
+								if (GUILayout.Button ("Delete", GUILayout.MaxWidth(50))) {
 									_messages.Remove (pair.Key);
 									break;
 								}
