@@ -8,7 +8,8 @@ public class Radio : TriggeredObject
 	private Message _tempMessage;
 	private bool _active=false;
 	private TextMesh tMesh;
-    public RadioMessageIndicator rmi;
+    private RadioMessageIndicator rmi;
+	private AudioSource _audioSource;
 	
 	private float startTime;
 	public float closeDuration=1.0f;
@@ -28,83 +29,81 @@ public class Radio : TriggeredObject
 	{
 		tMesh = this.GetComponent<TextMesh>();
         rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
+		
+		_audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetOrAddComponent<AudioSource>();
 	}
 	
 	
 	public void Update()
 	{
-		
-		float elapsed = Time.time - startTime;
-		float percent = elapsed / closeDuration;
-		
-		if(_active)
+		if(_message!=null)
 		{
-			transform.localScale = Vector3.Lerp(closedScale, openedScale, percent);
+			float elapsed = Time.time - startTime;
+			float percent = elapsed / closeDuration;
+			
+			if(_active)
+			{
+				transform.localScale = Vector3.Lerp(closedScale, openedScale, percent);
+			}
+			else
+			{
+				transform.localScale = Vector3.Lerp(openedScale, closedScale, percent);
+			}
+			
+			float elapsedSinceOpen = Time.time - startTime - closeDuration;
+			
+			float messagePercent = elapsedSinceOpen / writeDuration;
+			messagePercent = Mathf.Clamp (messagePercent, 0, 1);
+			//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
+			tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
 		}
-		else
-		{
-			transform.localScale = Vector3.Lerp(openedScale, closedScale, percent);
-		}
-		
-		float elapsedSinceOpen = Time.time - startTime - closeDuration;
-		
-		float messagePercent = elapsedSinceOpen / writeDuration;
-		messagePercent = Mathf.Clamp (messagePercent, 0, 1);
-		//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
-		tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
 	}
 	
 	public void ToggleHud()
 	{
 		startTime = Time.time;
 		_active = !_active;
-		if(_active)
-		{
-			rmi.setActive=false;
-		}
-		else
-		{
-			if(_message.isWarning)
-			{
-				_message = _tempMessage;	
-			}
-		}
-		/*StopAllCoroutines();
-		if(!_active)
-		{
-			StartCoroutine("ActivateHud");	
-		}
-		else
-		{
-			StartCoroutine("DeactivateHud");
-		}*/
+		StateChanged();
 	}
+	
 	
 	public void SetRadio(bool active)
 	{
 	    //Debug.LogError("should not be called");
 		startTime = Time.time;
 		_active = active;
+		StateChanged();
+	}
+	
+	private void StateChanged()
+	{
 		if(_active)
 		{
 			rmi.setActive=false;
+			if(_message.audio!=null&&!_audioSource.isPlaying)
+			{
+				GameObject.FindGameObjectWithTag("MainCamera");
+				if(_message.audio!=null)
+				{
+					_audioSource.PlayOneShot(_message.audio);
+				}
+			}
+			
 		}
 		else
 		{
-			if(_message.isWarning)
+			if(_tempMessage!=null)
 			{
-				_message = _tempMessage;	
+				if(_message.isWarning)
+				{
+					_message = _tempMessage;	
+				}
+				if(_audioSource.isPlaying)
+				{
+					_audioSource.Stop();
+				}
 			}
 		}
-		/*StopAllCoroutines();
-		if(active)
-		{
-			StartCoroutine("ActivateHud");
-		}
-		else
-		{
-			StartCoroutine("DeactivateHud");
-		}*/
 	}
 	
 	override public void OnTriggered(EventReaction evr)
@@ -118,17 +117,14 @@ public class Radio : TriggeredObject
 			{
 				_tempMessage = message;
 			}
+			else
+			{
+				SetRadio(true);
+			}
 			
-            SetRadio(true);
+            //SetRadio(true);
 			
 			rmi.setActive=true;
-
-			if(_message.audio!=null)
-			{
-				audio.PlayOneShot(message.audio);
-			}
-			//StopAllCoroutines();
-			//StartCoroutine("ActivateHud");
 		}
 	}
 	public bool radioIsActive

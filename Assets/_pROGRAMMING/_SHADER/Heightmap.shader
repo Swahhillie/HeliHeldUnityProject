@@ -3,6 +3,8 @@ Shader "Heightmap"
 	Properties {
 		_Color("Color",Color) = (1,1,1,1)
 		_Distance("Distance",Float)=2
+		_LineFat("LineFat",Range(0,1))=1
+		_Correction("Correction",Range(0,1))=0.7
 	}
 	
 	SubShader
@@ -15,19 +17,29 @@ Shader "Heightmap"
 		struct Input
 		{
 			float3 worldPos;
+			float3 worldNormal;
 		};
 		
 		float4 _Color;
 		int _Distance;
-		sampler2D _MainTex;
+		float _LineFat;
+		float _Correction;
 
 		
 		void surf(Input IN, inout SurfaceOutput o)
 		{
-			int x = (int)IN.worldPos.y%_Distance;		
-			if(x==0)
+			float  y  = IN.worldPos.y/_Distance;
+			float heightFract = y - (int)y;
+			
+			
+			
+			
+			if(heightFract < _LineFat)
 			{
-				o.Albedo = _Color.rgb;
+				if(IN.worldNormal.y<=_Correction)
+				{
+				 	o.Albedo = _Color.rgb;
+				}
 			}
 			else
 			{
