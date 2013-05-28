@@ -11,13 +11,35 @@ public class HeliSettings
 	
 	public float flyHeightMax = 40.0f; // maximum altitude of the helicopter. later used to stop the helicopter from flying over very high mountains
 	public float avoidRadius = 20.0f; //Repulsor bubble around the helicopter
+	
 	public float rotationSpeed = 360.0f; // 360 = 1 rotation per second
 	public float decendRate = .2f;
-	public float leanSpeed = -25.0f; //degrees the helicopter tilts per second
-	public float rightSpeed = .6f; //how many seconds it takes for the helicopter to completly right itself after rotation
-	//public float raiseSpeed= .1f; // should be applied to normalized direction vector, so loww
-	public float rescueRadius = 50.0f; //max distance an object can be away from the helicopter for rescueing
-	public float hoverPrecision = .70f; // determines where the castaway must be in relation to the helicopter. 1 == Directly below, no margin for error, 0 == anywhere below the helicopter, -1 == Anywhere.
+	/// <summary>
+	/// degrees the helicopter tilts per second
+	/// </summary>
+	public float leanSpeed = -25.0f; 
+	
+	/// <summary>
+	///how many seconds it takes for the helicopter to completly right itself after rotation
+	/// </summary>
+	public float rightSpeed = .6f;
+
+	/// <summary>
+	///max distance an object can be away from the helicopter for rescueing
+	/// </summary>
+	public float rescueRadius = 50.0f; 
+	/// <summary>
+	/// determines where the castaway must be in relation to the helicopter. 1 == Directly below, no margin for error, 0 == anywhere below the helicopter, -1 == Anywhere.
+	/// </summary>
+	public float hoverPrecision = .70f;
+	/// <summary>
+	/// rotation that the stick can go to the left or right.
+	/// </summary>
+	public float stickRotationRange = 45; 
+	/// <summary>
+	/// The amount the player has to steer to get the stick to move.
+	/// </summary>
+	public float stickRotationThresshold = 0.1f;
 }
 
 public class Helicopter : MonoBehaviour
@@ -59,6 +81,9 @@ public class Helicopter : MonoBehaviour
 	public string toPilotPosition;
 	private RescuePointer rescuePointer;
 	private RescueNearbyIndicator rescueNearbyIndicator;
+	
+	public Transform joystick;
+	
 	public void Start ()
 	{
 		
@@ -76,7 +101,7 @@ public class Helicopter : MonoBehaviour
 	private void InitializeControls()
 	{
 		prevState = Helistate.FLY;
-		state = Helistate.IDLE;
+		state = Helistate.FLY;
 		
 		
 		
@@ -90,15 +115,11 @@ public class Helicopter : MonoBehaviour
 			controlType = ControlType.Keyboard;
 			gameObject.GetComponent<ControlKinect> ().enabled = false;
 		}
-		
-		
-		
-		if (controlType == ControlType.Keyboard)
-			SetState (Helistate.FLY);
 	}
+	
 	public float closestPoint = 0;
 	public float distanceToWater = 0;
-	
+
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer (float x)
 	{
@@ -107,10 +128,23 @@ public class Helicopter : MonoBehaviour
 		
 			Quaternion goalRotation = Quaternion.AngleAxis (x * heliSettings.leanSpeed * Time.deltaTime, transform.forward) * transform.rotation; //lean over to a side
 			transform.rotation = Quaternion.Slerp (goalRotation, Quaternion.FromToRotation (transform.up, Vector3.up) * transform.rotation, Time.deltaTime * heliSettings.rightSpeed);// bring upright overtime
+			//joystick.localEulerAngles = new Vector3(0, 0, joystick.localEulerAngles.z + x);
+			
+			float angle = 0;
+			if(Mathf.Abs(x) > heliSettings.stickRotationThresshold){
+				angle = -x * heliSettings.stickRotationRange;
+			}
+			
+			float joystickSpeed = 1.0f;
+			Quaternion joystickGoal = Quaternion.AngleAxis(angle, Vector3.forward);
+			joystick.localRotation = Quaternion.Lerp(joystick.localRotation, joystickGoal, Time.deltaTime * joystickSpeed);
 		}
 		else if( state == Helistate.SAVE){
 			Accelerate(new Vector3(x, 0, 0));
+			
 		}
+		
+		
 	}
 
 	public void Accelerate (Vector3 direction)
@@ -122,6 +156,8 @@ public class Helicopter : MonoBehaviour
 						
 			direction = Vector3.Normalize (direction);
 			velocity += heliSettings.acceleration * Time.deltaTime * direction;
+			
+			
 			
 			
 			velocity = Vector3.ClampMagnitude (velocity, heliSettings.maxSpeed);
@@ -233,7 +269,11 @@ public class Helicopter : MonoBehaviour
 		if (debugLines)
 			Debug.DrawRay (transform.position, velocity, Color.cyan);
 		transform.position += velocity * Time.deltaTime; //misschien niet de deltatime hier maar in de controller. waarschijn lijk wel though
-		velocity *= 1 - heliSettings.drag * Time.deltaTime;
+		
+		if(state == Helistate.SAVE)
+		   velocity = new Vector3(0.0f, 0.0f, 0.0f);
+		else
+		   velocity *= 1 - heliSettings.drag * Time.deltaTime;
 		
 		if (controlType == ControlType.Kinect){
 			skelWrap.pollSkeleton ();
