@@ -3,20 +3,40 @@ using System.Collections;
 
 public class Storm : MonoBehaviour {
 
-	public Vector3 Position = new Vector3(0,500,0);
-	public float Range = 500;
-	public float Strength = 50.0f; 
+	public Vector3 position = new Vector3(0,500,0);
+	public float range = 500;
+	public float delay = 1;
+	public float randomizer=0;
 	
-	// Update is called once per frame
+	
+	private float _startTime=0;
+	private float _timer=0;
+	
+	/// <summary>
+	/// Update this instance.
+	/// Calls the CreateLighting-function after an amount of time.
+	/// It resets the timer to a fixed delay and random value.
+	/// </summary>
 	void Update () 
 	{
-		if(Random.value*100<Strength)
+		if(_startTime+Time.time>_timer)
 		{
-			GameObject light = new GameObject();
-			light.transform.parent = this.transform;
-			light.name="Lightning";
-			light.transform.position=new Vector3(Position.x+Random.value*Range,Position.y,Position.z+Random.value*Range);
-			light.AddComponent<Lightning>();
+			_timer = Time.time+delay+(Random.value*randomizer);
+			CreateLightning();
 		}
+	}
+	
+	/// <summary>
+	/// Creates the lightning at a random position in a range.
+	/// </summary>
+	
+	void CreateLightning()
+	{
+		Vector3 rndPos = new Vector3 (0,0,0);//Random.insideUnitSphere;
+		GameObject light = new GameObject();
+		light.transform.parent = this.transform;
+		light.name="Lightning";
+		light.transform.position= new Vector3(position.x+(rndPos.x*(range/2)),position.y,position.z+(rndPos.x*(range/2)));
+		light.AddComponent<Lightning_old>();
 	}
 }
