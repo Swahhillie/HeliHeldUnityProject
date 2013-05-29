@@ -7,8 +7,12 @@ public class Lightning : MonoBehaviour {
 	//private GameObject cloudeff;
 	//private GameObject beam;
 	//private GameObject env;
+	public float radius = 5;
+	public int maxElements = 50;
 	
-	public float radius = 50;
+	private float startWidth=6;
+	private float endWidth=1;
+	
 	private List<LineRenderer> lightning = new List<LineRenderer>();
 
 	private Material mat;
@@ -29,11 +33,7 @@ public class Lightning : MonoBehaviour {
 	
 	void GenerateLightning()
 	{
-
-		
-		int maxelements =(int) (6+Random.value*5);
 		//use for loop
-		
 		GameObject mainLightning = new GameObject();
 		mainLightning.transform.parent=this.transform;
 		mainLightning.transform.localPosition=this.transform.position;
@@ -41,15 +41,17 @@ public class Lightning : MonoBehaviour {
 		LineRenderer line = mainLightning.AddComponent<LineRenderer>();
 		line.renderer.enabled=false;
 		line.material=mat;
-		line.SetVertexCount(maxelements);
+		line.SetVertexCount(maxElements);
+		line.SetWidth(startWidth,endWidth);
+		
 		Vector3 tempPos = transform.position;
-		for(int i = 0;i<maxelements;++i)
+		for(int i = 0;i<maxElements;++i)
 		{	
 			//Random direction
 			Vector3 point = Random.insideUnitSphere * radius;
 			point += tempPos + Vector3.down * radius;
 			line.SetPosition(i,point);
-			
+
 			
 			//set a new starting point
 			tempPos=point;
@@ -59,6 +61,10 @@ public class Lightning : MonoBehaviour {
 	}
 	
 
+	
+	
+	
+	
 	IEnumerator CreateLightning()
 	{
 			//CloudEffect();
