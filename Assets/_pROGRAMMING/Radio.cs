@@ -24,41 +24,28 @@ public class Radio : TriggeredObject
 		get{return _width;}
 		set{_width = value;}
 	}
-	
+	/// <summary>
+	/// The Start-function will get references to the TextMesh (the text on scene),
+	/// the RadioMessageIndicator and the audioSource from the maincamera
+	/// </summary>
 	void Start()
 	{
 		tMesh = this.GetComponent<TextMesh>();
         rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
-		
-		_audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetOrAddComponent<AudioSource>();
+		_audioSource = Camera.main.GetComponent<AudioSource>();
 	}
 	
-	
+	/// <summary>
+	/// The Update-function will call the DrawRadio function
+	/// </summary>
 	public void Update()
 	{
-		if(_message!=null)
-		{
-			float elapsed = Time.time - startTime;
-			float percent = elapsed / closeDuration;
-			
-			if(_active)
-			{
-				transform.localScale = Vector3.Lerp(closedScale, openedScale, percent);
-			}
-			else
-			{
-				transform.localScale = Vector3.Lerp(openedScale, closedScale, percent);
-			}
-			
-			float elapsedSinceOpen = Time.time - startTime - closeDuration;
-			
-			float messagePercent = elapsedSinceOpen / writeDuration;
-			messagePercent = Mathf.Clamp (messagePercent, 0, 1);
-			//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
-			tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
-		}
+		DrawRadio();
 	}
 	
+	/// <summary>
+	/// The ToggleHud -function will change the state of the Radio from active to deactive and the other way around.
+	/// </summary>
 	public void ToggleHud()
 	{
 		startTime = Time.time;
@@ -66,15 +53,33 @@ public class Radio : TriggeredObject
 		StateChanged();
 	}
 	
+	/// <summary>
+	/// The SetRadio -function will change the state of the radio to a specific state (active or deactive)
+	/// </summary>
+	/// <param name='active'>
+	/// The state the radio should have.
+	/// </param>
 	
 	public void SetRadio(bool active)
 	{
 	    //Debug.LogError("should not be called");
-		startTime = Time.time;
-		_active = active;
-		StateChanged();
+		if(active!=_active)
+		{
+			startTime = Time.time;
+			_active = active;
+			StateChanged();
+		}
 	}
 	
+	/// <summary>
+	/// The StateChanged -function handles everthing that should happen after the state of the radio changed
+	/// Active:
+	/// -deactivate the RadioMessageIdicator
+	/// -play the sound
+	/// Deactivate:
+	/// -stop the sound
+	/// -reset the message if the active message was a warning
+	/// </summary>
 	private void StateChanged()
 	{
 		if(_active)
@@ -82,7 +87,6 @@ public class Radio : TriggeredObject
 			rmi.setActive=false;
 			if(_message.audio!=null&&!_audioSource.isPlaying)
 			{
-				GameObject.FindGameObjectWithTag("MainCamera");
 				if(_message.audio!=null)
 				{
 					_audioSource.PlayOneShot(_message.audio);
@@ -106,6 +110,41 @@ public class Radio : TriggeredObject
 		}
 	}
 	
+	/// <summary>
+	/// The DrawRadio -function changes the scale of the radio object and draws the text on screen.
+	/// </summary>
+	private void DrawRadio()
+	{
+		if(_message!=null)
+		{
+			float elapsed = Time.time - startTime;
+			float percent = elapsed / closeDuration;
+			
+			if(_active)
+			{
+				transform.localScale = Vector3.Lerp(closedScale, openedScale, percent);
+			}
+			else
+			{
+				transform.localScale = Vector3.Lerp(openedScale, closedScale, percent);
+			}
+			
+			float elapsedSinceOpen = Time.time - startTime - closeDuration;
+			
+			float messagePercent = elapsedSinceOpen / writeDuration;
+			messagePercent = Mathf.Clamp (messagePercent, 0, 1);
+			//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
+			tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
+		}
+	}
+	/// <summary>
+	/// Overrides the OnTriggered  -function from the TriggeredObject class
+	/// It takes a eventreaction and if it has the type Say it will draw use the message name to load a valid message.
+	/// If the message isn't a warning it will be saved as the last missionrelated message.
+	/// </summary>
+	/// <param name='evr'>
+	/// Evr.
+	/// </param>
 	override public void OnTriggered(EventReaction evr)
 	{
 		if(evr.type==EventReaction.Type.Say)
@@ -127,6 +166,14 @@ public class Radio : TriggeredObject
 			rmi.setActive=true;
 		}
 	}
+	
+	/// <summary>
+	/// Gets a value indicating whether this <see cref="Radio"/> radio is active.
+	/// </summary>
+	/// <value>
+	/// <c>true</c> if radio is active; otherwise, <c>false</c>.
+	/// </value>
+	
 	public bool radioIsActive
 	{
 		get{return _active;}
