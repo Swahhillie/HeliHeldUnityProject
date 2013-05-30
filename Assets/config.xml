@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="us-ascii"?>
 <HeliHeld>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 	<Menu name="MainMenu">
 		<Button>
 			<Name>Level3Load</Name>
@@ -29,6 +31,7 @@
 		</Button>
 	</Menu>
 	<Levels>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1015,6 +1018,13 @@
 				<Object>
 					<Name>Castaway3_000_</Name>
 					<Pos>(3023.0, 304.7, 1333.6)</Pos>
+=======
+		<Level name="Level1">
+			<Objects>
+				<Object>
+					<Name>Castaway3_000_</Name>
+					<Pos>(3023.0, 25, 1333.6)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Castaway>
 						<Spawn>Start</Spawn>
@@ -1052,7 +1062,11 @@
 				</Object>
 				<Object>
 					<Name>Castaway1_001_</Name>
+<<<<<<< HEAD
 					<Pos>(2984.8, 304.7, 1280.9)</Pos>
+=======
+					<Pos>(2984.8, 25, 1280.9)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Castaway>
 						<Spawn>Start</Spawn>
@@ -1090,7 +1104,11 @@
 				</Object>
 				<Object>
 					<Name>Ship1_002_</Name>
+<<<<<<< HEAD
 					<Pos>(3031.6, 30, 1283.3)</Pos>
+=======
+					<Pos>(3031.6, 25, 1283.3)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Ship>
 						<Spawn>Start</Spawn>
@@ -1215,7 +1233,11 @@
 				</Object>
 				<Object>
 					<Name>Castaway2_006_</Name>
+<<<<<<< HEAD
 					<Pos>(3093.6, 304.7, 1280.9)</Pos>
+=======
+					<Pos>(3093.6, 25, 1280.9)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Castaway>
 						<Spawn>Start</Spawn>
@@ -1253,7 +1275,11 @@
 				</Object>
 				<Object>
 					<Name>Ship2_007_</Name>
+<<<<<<< HEAD
 					<Pos>(2559.4, 83.9, 1366.1)</Pos>
+=======
+					<Pos>(2559.4, 30, 1366.1)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Ship>
 						<Spawn>Later</Spawn>
@@ -1374,7 +1400,11 @@
 				</Object>
 				<Object>
 					<Name>Castaway5_011_</Name>
+<<<<<<< HEAD
 					<Pos>(3023.0, 304.7, 1333.6)</Pos>
+=======
+					<Pos>(3023.0, 25, 1333.6)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Castaway>
 						<Spawn>Later</Spawn>
@@ -1438,7 +1468,11 @@
 				</Object>
 				<Object>
 					<Name>Castaway4_014_</Name>
+<<<<<<< HEAD
 					<Pos>(3023.0, 304.7, 1333.6)</Pos>
+=======
+					<Pos>(3023.0, 25, 1333.6)</Pos>
+>>>>>>> Saving mode fixes + Arrow functionality
 					<Rot>(0.0, 0.0, 0.0)</Rot>
 					<Castaway>
 						<Spawn>Later</Spawn>
@@ -1462,7 +1496,10 @@
 				</Object>
 			</Objects>
 		</Level>
+<<<<<<< HEAD
 >>>>>>> Menu changed to componenet
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 		<Level name="exampleLevel">
 			<Objects>
 				<Object>
@@ -1572,7 +1609,10 @@
 			</Objects>
 		</Level>
 	</Levels>
+<<<<<<< HEAD
 >>>>>>> Clarity, Example updated, unsed variables deleted
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 	<Messages>
 		<Message>
 			<Name>Intro</Name>
@@ -1594,39 +1634,45 @@
 		<Message>
 			<Name>Move</Name>
 			<Text>Goed gedaan! Vlieg nu terug naar de basis. 
+<<<<<<< HEAD
 =======
       <Name>Move</Name>
       <Text>Goed gedaan! Vlieg nu terug naar de basis. 
 >>>>>>> Added convenience to the editor
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>ToLate</Name>
-      <Text>Te laat, mensen verdrinken, vind de andere boot. 
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
+			<Name>ToLate</Name>
+			<Text>Te laat, mensen verdrinken, vind de andere boot. 
 			Daar liggen twee mensen in het water.</Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>Save</Name>
-      <Text>Je hebt een drenkeling gered, vind ze allemaal!
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
+			<Name>Save</Name>
+			<Text>Je hebt een drenkeling gered, vind ze allemaal!
 			</Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>Boat1</Name>
-      <Text>Je bent boven een schip ofzo</Text>
-      <Audio>
-      </Audio>
-    </Message>
-    <Message>
-      <Name>Mission1</Name>
-      <Text>Er is 1 schip in nood, vind hem en red de drie
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
+			<Name>Boat1</Name>
+			<Text>Je bent boven een schip ofzo</Text>
+			<Audio>
+			</Audio>
+		</Message>
+		<Message>
+			<Name>Mission1</Name>
+			<Text>Er is 1 schip in nood, vind hem en red de drie
 			drenkelingen!</Text>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 			<Audio>
 			</Audio>
 		</Message>
@@ -1636,7 +1682,10 @@
 			<Audio>switch32</Audio>
 		</Message>
 	</Messages>
+<<<<<<< HEAD
 >>>>>>> Fixes github diff text
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 	<Settings>
 		<Setting name="flightHeight" value="150">
 		</Setting>
@@ -1649,6 +1698,7 @@
 		<Setting name="capsuleHeight" value="100">
 		</Setting>
 	</Settings>
+<<<<<<< HEAD
 =======
       <Audio>
       </Audio>
@@ -1672,4 +1722,6 @@
     </Setting>
   </Settings>
 >>>>>>> Added convenience to the editor
+=======
+>>>>>>> Saving mode fixes + Arrow functionality
 </HeliHeld>
