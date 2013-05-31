@@ -98,11 +98,12 @@ public class Radio : TriggeredObject
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
 			Debug.Log("Displaying message " + message.text);
+			
 			if(message.text!=null)
 			{
 				_message = message.text;
 			}
-            //SetRadio(true);
+            SetRadio(true);
 			rmi.setActive=true;
 
 			if(message.audio!=null)
