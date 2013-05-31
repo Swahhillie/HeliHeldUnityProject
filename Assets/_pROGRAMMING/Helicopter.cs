@@ -108,17 +108,15 @@ public class Helicopter : MonoBehaviour
 		prevState = Helistate.FLY;
 		state = Helistate.FLY;
 		
-		
-		
 		// disable the keyboard if connect is there and vice versa
 		if (skelWrap.devOrEmu.device.connected)
 		{
 			controlType = ControlType.Kinect;
 			gameObject.GetComponent<ControlKeyboard> ().enabled = false;
 				
-		} else
+		}
+		else
 		{
-			
 			controlType = ControlType.Keyboard;
 			gameObject.GetComponent<ControlKinect> ().enabled = false;
 		}
@@ -169,12 +167,9 @@ public class Helicopter : MonoBehaviour
 		
 		if (state != Helistate.IDLE)
 		{			
-						
-			direction = Vector3.Normalize (direction);
+			if(controlType == ControlType.Keyboard)		
+				direction = Vector3.Normalize (direction);
 			velocity += heliSettings.acceleration * Time.deltaTime * direction;
-			
-			
-			
 			
 			velocity = Vector3.ClampMagnitude (velocity, heliSettings.maxSpeed);
 		}
@@ -450,7 +445,6 @@ public class Helicopter : MonoBehaviour
 		{
 			SetState (Helistate.FLY);
 		}
-		
 	}
 	/// <summary>
 	/// Enters the idle mode.
@@ -529,11 +523,11 @@ public class Helicopter : MonoBehaviour
 			Debug.Log ("Changing state from " + prevState + " to " + aState);
 			if(aState == Helistate.FLY)
 			{
-				camAnimation.PlayQueued(toPilotPosition);
+				//camAnimation.PlayQueued(toPilotPosition);
 			}
 			else if(aState == Helistate.SAVE)
 			{
-				camAnimation.PlayQueued(toSavePosition);
+				//camAnimation.PlayQueued(toSavePosition);
 			}
 		}
 		

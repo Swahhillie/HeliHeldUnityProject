@@ -151,12 +151,24 @@ public class Radio : TriggeredObject
 		{
 			Message message = ConfigLoader.GetMessage(evr.messageName);
 			Debug.Log("Displaying message " + message.text);
+<<<<<<< HEAD
 			_message = message;
 			if(!_message.isWarning)
+=======
+			
+			if(message.text!=null)
+>>>>>>> Bugfixes kinect
 			{
 				_tempMessage = message;
 			}
+<<<<<<< HEAD
 			else
+=======
+            SetRadio(true);
+			rmi.setActive=true;
+
+			if(message.audio!=null)
+>>>>>>> Bugfixes kinect
 			{
 				SetRadio(true);
 			}

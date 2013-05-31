@@ -221,6 +221,9 @@ public class ConfigLoader
 		Debug.Log ("Loading level" + name);
 		activeLevel = levels [name];
 		activeLevel.LoadLevel ();
+		
+		UnityEngine.Object.Destroy(GameObject.Find("Kinect_Prefab"));
+		
 		Debug.Log ("Loaded level success");
 	}
 	public void LoadMenu(string name)
@@ -233,6 +236,7 @@ public class ConfigLoader
 		Debug.Log("Loading menu" + name);
 		activeMenu = menus[name];
 		activeMenu.LoadMenu();
+		
 		Debug.Log("Loaded menu success");
 	}
 	void ParseSettings (XmlDocument xml)
