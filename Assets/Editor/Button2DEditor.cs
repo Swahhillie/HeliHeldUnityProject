@@ -35,13 +35,15 @@ public class Button2DEditor : Editor {
 		
 		GUILayout.BeginVertical();
 		{
-			chooseFunction = GUILayout.Toggle(chooseFunction, "Choose Function");
+			
 			if(chooseFunction){
 				var names = new string[functionsInMenu2D.Count];
 				for(int i= 0; i < names.Length; i++)names[i] = functionsInMenu2D[i].Name;
-				
+				var selectedOld = selected;
 				selected = 	GUILayout.SelectionGrid(selected, names , 1);
+				
 				b.ActivateFunction = functionsInMenu2D[selected].Name;
+				if(GUI.changed)chooseFunction = false;
 				
 			}
 			else{
@@ -50,10 +52,14 @@ public class Button2DEditor : Editor {
 				{
 					EditorGUILayout.PrefixLabel("FunctionToCall");
 					if(b.ActivateFunction == null){
-						EditorGUILayout.LabelField("Not Set");
+						if(GUILayout.Button("Not Set")){
+							chooseFunction = true;
+						}
 					}
 					else{
-						EditorGUILayout.LabelField(b.ActivateFunction);	
+						if(GUILayout.Button(b.ActivateFunction)){
+							chooseFunction = true;
+						}
 					}
 					
 				}

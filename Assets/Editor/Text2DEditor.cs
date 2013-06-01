@@ -35,13 +35,14 @@ public class Text2DEditor : Editor {
 		
 		GUILayout.BeginVertical();
 		{
-			choose = GUILayout.Toggle(choose, "Choose Field");
+			
 			if(choose){
 				var names = new string[fields.Count];
 				for(int i= 0; i < names.Length; i++)names[i] = fields[i].Name;
-				
+				var oldSelected = selected;
 				selected = 	GUILayout.SelectionGrid(selected, names , 1);
 				txt.fieldToRead = fields[selected].Name;
+				if(GUI.changed)choose = false;
 				
 			}
 			else{
@@ -50,10 +51,10 @@ public class Text2DEditor : Editor {
 				{
 					EditorGUILayout.PrefixLabel("Field To Print");
 					if(txt.fieldToRead == null){
-						EditorGUILayout.LabelField("Not Set");
+						if(GUILayout.Button("Not Set"))choose = true;
 					}
 					else{
-						EditorGUILayout.LabelField(txt.fieldToRead);	
+						if(GUILayout.Button(txt.fieldToRead))choose = true;	
 					}
 					
 				}
