@@ -2,6 +2,35 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class GameStats : System.Object{
+	
+	
+	public enum Award
+	{
+		Gold,
+		Silver,
+		Bronze
+	}
+	
+	public float castawayScore;
+	public float timeScore;
+	public float achievementScore;
+	public float TotalScore{
+		get{return castawayScore + timeScore + achievementScore;}
+	}
+	public Award awardAchieved;
+	
+	public int goldAwards;
+	public int silverAwards;
+	public int bronzeAwards;
+	/// <summary>
+	/// The award counts, awardCounts[Gold] == the amount of gold awards.
+	/// </summary>
+	
+
+	
+}
 public class Menu2D : MonoBehaviour {
 
 	private List<Button2D> _buttons;
@@ -10,6 +39,9 @@ public class Menu2D : MonoBehaviour {
 	private event OnMouseMove MouseMoved;
 	
 	private Vector2 lastMousePosition;
+	
+	
+	public GameStats gameStats;
 	
 	private void Start()
 	{
@@ -78,6 +110,11 @@ public class Menu2D : MonoBehaviour {
 	{
 		Debug.Log("Starting new");
 	}
+	public void StopPlaying()
+	{
+		
+	}
+	
 	
 	
 }

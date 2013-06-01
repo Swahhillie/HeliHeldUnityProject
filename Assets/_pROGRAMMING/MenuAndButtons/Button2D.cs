@@ -18,7 +18,9 @@ public class Button2D : MonoBehaviour
 	public Texture2D defaultTexture;
 	public Texture2D hoverTexture;
 	
-	public MethodInfo activateFunction;
+	
+	[HideInInspector]
+	public string _activateFunction;
 	
 	/// <summary>
 	/// Awake this instance, warn if there are unset variables.
@@ -27,8 +29,8 @@ public class Button2D : MonoBehaviour
 	{
 		if(defaultTexture == null)Debug.LogError("There is no default texture set");
 		if(hoverTexture == null)Debug.LogError("There is no hover texture set");
-		if(activateFunction == null){
-			activateFunction = typeof(Menu2D).GetMethod("DefaultButton");
+		if(ActivateFunction == null){
+			ActivateFunction = typeof(Menu2D).GetMethod("DefaultButton").Name;
 			Debug.LogWarning("Using default button function for " + name, this);
 		} 
 		//update the texture so it displays the correct one from the start.
@@ -61,7 +63,7 @@ public class Button2D : MonoBehaviour
 	{
 		Debug.Log("Button was activated ", gameObject);
 		ButtonActivateEventArgs activateEvent = new ButtonActivateEventArgs();
-		activateEvent.Function = activateFunction;
+		activateEvent.Function = typeof(Menu2D).GetMethod(ActivateFunction);
 		ButtonActivated (this, activateEvent);
 	}
 	
@@ -85,6 +87,10 @@ public class Button2D : MonoBehaviour
 		
 		Rect r = new Rect(guiTexture.pixelInset.x, guiTexture.pixelInset.y, guiTexture.texture.width, guiTexture.texture.height);
 		guiTexture.pixelInset = r;
+	}
+	public string ActivateFunction{
+		get{return _activateFunction;}
+		set{_activateFunction = value;}
 	}
 //	public ButtonActivateEventArgs activateEvent{
 //		get{return _activateEvent;}
