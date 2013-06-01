@@ -22,7 +22,7 @@ public class Button2DEditor : Editor {
 		//System.Array.ForEach<MethodInfo>(menuFunctions, x=>functionsInMenu2D.Add(x.Name));
 		functionsInMenu2D.AddRange(menuFunctions);
 		
-		selected = functionsInMenu2D.FindIndex(x => x== b.activateFunction);
+		selected = functionsInMenu2D.FindIndex(x => x.Name== b.ActivateFunction);
 		if(selected == -1)
 		{
 			selected = 0;
@@ -41,7 +41,7 @@ public class Button2DEditor : Editor {
 				for(int i= 0; i < names.Length; i++)names[i] = functionsInMenu2D[i].Name;
 				
 				selected = 	GUILayout.SelectionGrid(selected, names , 1);
-				b.activateFunction = functionsInMenu2D[selected];
+				b.ActivateFunction = functionsInMenu2D[selected].Name;
 				
 			}
 			else{
@@ -49,11 +49,11 @@ public class Button2DEditor : Editor {
 				GUILayout.BeginHorizontal();
 				{
 					EditorGUILayout.PrefixLabel("FunctionToCall");
-					if(b.activateFunction == null){
-						EditorGUILayout.LabelField("Not set");
+					if(b.ActivateFunction == null){
+						EditorGUILayout.LabelField("Not Set");
 					}
 					else{
-						EditorGUILayout.LabelField(b.activateFunction.Name);	
+						EditorGUILayout.LabelField(b.ActivateFunction);	
 					}
 					
 				}
