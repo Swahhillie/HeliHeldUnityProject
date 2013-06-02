@@ -16,8 +16,8 @@ public class EventReaction
 		Count,
 		Animate,
 		Highlight_Activate,
-		Highlight_Deactivate
-		
+		Highlight_Deactivate,
+		EndLevel		
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
