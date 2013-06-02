@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
+/// <summary>
+/// Game stats object.
+/// </summary>
 public class GameStats : System.Object{
 	
 	
@@ -24,9 +27,7 @@ public class GameStats : System.Object{
 	public int goldAwards;
 	public int silverAwards;
 	public int bronzeAwards;
-	/// <summary>
-	/// The award counts, awardCounts[Gold] == the amount of gold awards.
-	/// </summary>
+
 	
 
 	
@@ -85,34 +86,39 @@ public class Menu2D : MonoBehaviour {
 	private void ButtonActivateListener(Button2D sender, ButtonActivateEventArgs e)
 	{
 		Debug.Log("Button was activated ", sender);
-		e.Function.Invoke(this, null);
+		e.Function.Invoke(this,new object[]{e});
 	}
-	public void DefaultButton()
+	public void DefaultButton(ButtonActivateEventArgs e)
 	{
 		Debug.LogWarning("Default button was called because a button does not have a properly set activate event");
 	}
-	public void OpenShop(){
+	public void OpenShop(ButtonActivateEventArgs e){
 		Debug.Log("Opening shop");
 	}
-	public void CloseShop()
+	public void CloseShop(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Closing shop");
 	}
-	public void BeginGame()
+	public void BeginGame(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Beginning game");
+		
+		//start the game. currently using the autoloader
+		((LoadAuto)FindObjectOfType(typeof(LoadAuto))).Load();
 	}
-	public void StartOver()
+	public void StartOver(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Starting over");
 	}
-	public void StartNew()
+	public void StartNew(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Starting new");
+		((LoadAuto)FindObjectOfType(typeof(LoadAuto))).Load();
 	}
-	public void StopPlaying()
+	public void StopPlaying(ButtonActivateEventArgs e)
 	{
-		
+		//Debug.Log("Probably shouldnt do this");
+		//Application.Quit();
 	}
 	
 	
