@@ -1,6 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// The storm class creates the lightnings in the scene.
+/// It has a position and a range to create the lightnings in a specific area.
+/// </summary>
+
+
 public class Storm : MonoBehaviour {
 
 	public Vector3 position = new Vector3(0,500,0);
@@ -37,6 +43,6 @@ public class Storm : MonoBehaviour {
 		light.transform.parent = this.transform;
 		light.name="Lightning";
 		light.transform.position= new Vector3(position.x+(rndPos.x*(range/2)),position.y,position.z+(rndPos.x*(range/2)));
-		light.AddComponent<Lightning_old>();
+		light.AddComponent<Lightning>();
 	}
 }
