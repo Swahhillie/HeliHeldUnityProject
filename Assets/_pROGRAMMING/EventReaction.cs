@@ -27,9 +27,14 @@ public class EventReaction
 >>>>>>> EventReaction and Highlight update
 =======
 		Highlight_Activate,
+<<<<<<< HEAD
 		Highlight_Deactivate
 		
 >>>>>>> Highlight adjustments
+=======
+		Highlight_Deactivate,
+		EndLevel		
+>>>>>>> lvl end prep.:)
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();

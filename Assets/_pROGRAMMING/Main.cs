@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class Main : MonoBehaviour {
+public class Main : TriggeredObject {
 	
 	private string _loadName = "MainMenu";
-	private enum STATE{MENU,GAME};
-	private int state;
+	private enum State{Menu, Game};
+	private State state;
 	private ConfigLoader _configLoader;// = new ConfigLoader();
 	// Use this for initialization
 
@@ -17,13 +17,20 @@ public class Main : MonoBehaviour {
 			GameObject.Destroy(gameObject);
 		}
 		else{
+			state = State.Game;
 			configLoader = new ConfigLoader();
 			DontDestroyOnLoad(this.gameObject);
 		}
 		
 
 	}
-	
+	public override void OnTriggered (EventReaction eventReaction)
+	{
+		if(eventReaction.type == EventReaction.Type.EndLevel)
+		{
+			Application.LoadLevel("MenuScene");	
+		}
+	}
 	public string loadName
 	{
 		get{return _loadName;}
