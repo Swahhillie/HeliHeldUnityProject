@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 public class Lightning : MonoBehaviour {
 
-	//private GameObject cloudeff;
-	//private GameObject beam;
-	//private GameObject env;
+	private GameObject cloudeff;
+	private GameObject env;
 	public float radius = 5;
 	public int maxElements = 50;
 	
@@ -20,9 +19,9 @@ public class Lightning : MonoBehaviour {
 	void Start()
 	{
 
-		//this.cloudeff = CreateLightObject("cloudeff",LightType.Spot,4,target.magnitude,150,new Vector3(0,target.magnitude/5,0),new Vector3(90,0,0));
+		this.cloudeff = CreateLightObject("cloudeff",LightType.Spot,4,200,150,new Vector3(0,200/5,0),new Vector3(90,0,0));
 
-		//this.env = CreateLightObject("enveff",LightType.Point,6,target.magnitude*5,6,new Vector3(0,-target.magnitude/2,0),new Vector3(0,0,0));
+		this.env = CreateLightObject("enveff",LightType.Point,6,1000,6,new Vector3(0,-200/2,0),new Vector3(0,0,0));
 		
 		mat = (Material)Resources.Load("lightning_material",typeof(Material));
 		
@@ -30,6 +29,27 @@ public class Lightning : MonoBehaviour {
 		
 		StartCoroutine("CreateLightning");
 	}
+	
+	GameObject CreateLightObject(string name,LightType type,float intensity,float range,float spotangle,Vector3 pos,Vector3 rot)
+	{
+		GameObject obj = new GameObject();
+		obj.transform.parent = this.transform;
+		obj.name=name;
+		obj.transform.localPosition =  pos;
+		obj.transform.rotation = Quaternion.Euler(rot);
+		obj.AddComponent("Light");
+		Component man;
+		man = obj.GetComponent("Light");
+		man.light.type = type;
+		man.light.shadows = LightShadows.Soft;
+		man.light.enabled = false;
+		man.light.intensity = intensity;
+		man.light.range= range;
+		man.light.spotAngle=spotangle;
+		return obj;
+	}
+	
+	
 	
 	void GenerateLightning()
 	{
@@ -67,22 +87,24 @@ public class Lightning : MonoBehaviour {
 	
 	IEnumerator CreateLightning()
 	{
-			//CloudEffect();
-			//yield return (null);
+			CloudEffect();
+			yield return (null);
 			LightningEffect();
-			//beamEffect();
 			yield return (null);			
-			//EnvEffect();
-			yield return new WaitForSeconds (0.5f);
+			EnvEffect();
+			yield return new WaitForSeconds (0.2f);
 			LightningEffect();
-			//beamEffect();
-			//CloudEffect();
-			//EnvEffect();
+			GenerateLightning();
+			LightningEffect();
+			yield return new WaitForSeconds (0.2f);
+			LightningEffect();
+			CloudEffect();
+			EnvEffect();
 			Destroy (this.gameObject);
 	}
 	
 	
-	/*void CloudEffect()
+	void CloudEffect()
 	{
 		
 		if(this.cloudeff.light.enabled)
@@ -95,17 +117,6 @@ public class Lightning : MonoBehaviour {
 		}
 	}
 	
-	void beamEffect()
-	{
-		if(beam.light.enabled)
-		{
-			beam.light.enabled=false;
-		}
-		else
-		{
-			beam.light.enabled=true;	
-		}
-	}
 	void EnvEffect()
 	{
 		if(env.light.enabled)
@@ -116,7 +127,7 @@ public class Lightning : MonoBehaviour {
 		{
 			env.light.enabled=true;	
 		}
-	}*/
+	}
 	
 	void LightningEffect()
 	{
