@@ -39,7 +39,6 @@ public class Text2DEditor : Editor {
 			if(choose){
 				var names = new string[fields.Count];
 				for(int i= 0; i < names.Length; i++)names[i] = fields[i].Name;
-				var oldSelected = selected;
 				selected = 	GUILayout.SelectionGrid(selected, names , 1);
 				txt.fieldToRead = fields[selected].Name;
 				if(GUI.changed)choose = false;

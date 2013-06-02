@@ -43,21 +43,24 @@ public class Menu2D : MonoBehaviour {
 	
 	
 	public GameStats gameStats;
+	public KinectMouse kinectMouse;
 	
 	private void Start()
 	{
 		
+		kinectMouse = ((GameObject)Instantiate(Resources.Load("kinectMousePrefab"))).GetComponent<KinectMouse>();
 		RegisterButtons();
+		
 		
 	}
 	private void Update()
 	{
 		
-		if(Input.mousePosition.sqrMagnitude != lastMousePosition.sqrMagnitude) // normal != operator doesnt work here.. fix that later
+		if(kinectMouse.position.sqrMagnitude != lastMousePosition.sqrMagnitude) // normal != operator doesnt work here.. fix that later
 		{
 			MouseClickEventArgs e = new MouseClickEventArgs();
-			e.position = Input.mousePosition;
-			lastMousePosition = Input.mousePosition;
+			e.position = kinectMouse.position;
+			lastMousePosition = kinectMouse.position;
 			MouseMoved(this, e);
 		}
 		
