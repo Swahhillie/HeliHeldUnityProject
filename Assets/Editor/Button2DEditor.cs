@@ -39,7 +39,6 @@ public class Button2DEditor : Editor {
 			if(chooseFunction){
 				var names = new string[functionsInMenu2D.Count];
 				for(int i= 0; i < names.Length; i++)names[i] = functionsInMenu2D[i].Name;
-				var selectedOld = selected;
 				selected = 	GUILayout.SelectionGrid(selected, names , 1);
 				
 				b.ActivateFunction = functionsInMenu2D[selected].Name;
