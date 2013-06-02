@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <HeliHeld>
-  <Menus>
-    <Menu name="MainMenu">
-      <Button>
-        <Name>Level3Load</Name>
-        <Label>1</Label>
-        <Type>LoadLevel</Type>
-        <Pos>3259.96,152,3724.76</Pos>
-        <Rot>0,0,0</Rot>
-        <Function>level3</Function>
-      </Button>
-      <Button>
-        <Name>DerpKnop</Name>
-        <Type>LoadLevel</Type>
-        <Label>VerticalSlice</Label>
-        <Pos>3259,150,3724</Pos>
-        <Rot>0,0,0</Rot>
-        <Function>RescueTest</Function>
-      </Button>
-    </Menu>
-    <Menu name="Shop">
-      <Button>
-        <Label>BuyStuff!</Label>
-        <Pos>3240,150,3750</Pos>
-        <Rot>0,285,0</Rot>
-        <Scale>30,5,1</Scale>
-        <Function>LoadVerticalSlice</Function>
-      </Button>
-    </Menu>
-  </Menus>
+  <Menu name="MainMenu">
+    <Button>
+      <Name>Level3Load</Name>
+      <Label>1</Label>
+      <Type>LoadLevel</Type>
+      <Pos>3259.96,152,3724.76</Pos>
+      <Rot>0,0,0</Rot>
+      <Function>level3</Function>
+    </Button>
+    <Button>
+      <Name>DerpKnop</Name>
+      <Type>LoadLevel</Type>
+      <Label>VerticalSlice</Label>
+      <Pos>3259,150,3724</Pos>
+      <Rot>0,0,0</Rot>
+      <Function>RescueTest</Function>
+    </Button>
+  </Menu>
+  <Menu name="Shop">
+    <Button>
+      <Label>BuyStuff!</Label>
+      <Pos>3240,150,3750</Pos>
+      <Rot>0,285,0</Rot>
+      <Scale>30,5,1</Scale>
+      <Function>LoadVerticalSlice</Function>
+    </Button>
+  </Menu>
   <Levels>
     <Level name="Level1">
       <Objects>
         <Object>
           <Name>Castaway3_000_</Name>
-          <Pos>(3023.0, 304.7, 1333.6)</Pos>
+          <Pos>(3023.0, 25, 1333.6)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Castaway>
             <Spawn>Start</Spawn>
@@ -72,7 +70,7 @@
         </Object>
         <Object>
           <Name>Castaway1_001_</Name>
-          <Pos>(2984.8, 304.7, 1280.9)</Pos>
+          <Pos>(2984.8, 25, 1280.9)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Castaway>
             <Spawn>Start</Spawn>
@@ -110,7 +108,7 @@
         </Object>
         <Object>
           <Name>Ship1_002_</Name>
-          <Pos>(3031.6, 30, 1283.3)</Pos>
+          <Pos>(3031.6, 25, 1283.3)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Ship>
             <Spawn>Start</Spawn>
@@ -235,7 +233,7 @@
         </Object>
         <Object>
           <Name>Castaway2_006_</Name>
-          <Pos>(3093.6, 304.7, 1280.9)</Pos>
+          <Pos>(3093.6, 25, 1280.9)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Castaway>
             <Spawn>Start</Spawn>
@@ -273,7 +271,7 @@
         </Object>
         <Object>
           <Name>Ship2_007_</Name>
-          <Pos>(2559.4, 83.9, 1366.1)</Pos>
+          <Pos>(2559.4, 30, 1366.1)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Ship>
             <Spawn>Later</Spawn>
@@ -394,7 +392,7 @@
         </Object>
         <Object>
           <Name>Castaway5_011_</Name>
-          <Pos>(3023.0, 304.7, 1333.6)</Pos>
+          <Pos>(3023.0, 25, 1333.6)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Castaway>
             <Spawn>Later</Spawn>
@@ -458,7 +456,7 @@
         </Object>
         <Object>
           <Name>Castaway4_014_</Name>
-          <Pos>(3023.0, 304.7, 1333.6)</Pos>
+          <Pos>(3023.0, 25, 1333.6)</Pos>
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Castaway>
             <Spawn>Later</Spawn>
@@ -593,13 +591,25 @@
     <Level name="newXml">
       <Objects>
         <Object>
-          <Name>TestObject_000_</Name>
-          <Pos>(2722, -269, 1464)</Pos>
+          <Name>endLevelTrigger_000_</Name>
+          <Pos>(2819, 37, 354)</Pos>
           <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>FishingBoat</PrefabName>
-          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>EndLevel</Type>
+              <Pos>(0, 0, 0)</Pos>
+              <MessageName>
+              </MessageName>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>42.8</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
         </Object>
       </Objects>
     </Level>

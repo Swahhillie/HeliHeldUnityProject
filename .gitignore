@@ -10,3 +10,5 @@ Docs/*
 Temp
 *.pidb
 Build
+Docs
+Docs/*

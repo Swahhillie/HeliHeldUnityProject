@@ -87,7 +87,7 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 		if (KinectSensor.instance != null)
 		{
 			Debug.Log("There should be only one active instance of the KinectSensor component at at time.");
-            throw new Exception("There should be only one active instance of the KinectSensor component at a time.");
+            //throw new Exception("There should be only one active instance of the KinectSensor component at a time.");
 		}
 		try
 		{
@@ -129,6 +129,8 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			}
 			colorImage = new Color32[640*480];
 			
+			connected = true;
+			
 			double theta = Math.Atan((lookAt.y+kinectCenter.y-sensorHeight) / (lookAt.z + kinectCenter.z));
 			long kinectAngle = (long)(theta * (180 / Math.PI));
 			NativeMethods.NuiCameraSetAngle(kinectAngle);
@@ -137,13 +139,13 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 			KinectSensor.Instance = this;
 			
 			NativeMethods.NuiSetDeviceStatusCallback(new NuiStatusProc());
-			connected = true;
 		}
 		catch (Exception e)
 		{
 			connected = false;
 			Debug.LogError(e.Message);
 		}
+		Debug.Log("Kinect connected: " + connected);
 	}
 	
 	void LateUpdate()

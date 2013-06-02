@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Main))]
 public class LoadAuto : MonoBehaviour
 {
-
+	/*
 	ConfigLoader loader;
 
 	public enum ToLoad
@@ -12,6 +12,7 @@ public class LoadAuto : MonoBehaviour
 		Level,
 		Menu
 	}
+	public bool loadAtStart = false;
 	public ToLoad toLoad = ToLoad.Level;
 	public string toLoadName;
 	public string scene;
@@ -21,6 +22,11 @@ public class LoadAuto : MonoBehaviour
 		loader = GetComponent<Main> ().configLoader;
 		if (loader == null)
 			Debug.LogError ("Failed to find ConfigLoader component");
+		
+		if(loadAtStart)Load();
+	}
+	public void Load(){
+		
 		if (toLoad == ToLoad.Level) {
 			if(scene == ""){
 				loader.LoadLevel(toLoadName);
@@ -34,6 +40,6 @@ public class LoadAuto : MonoBehaviour
 			loader.LoadMenu (toLoadName);
 		}
 	}
-
+*/
 
 }

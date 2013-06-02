@@ -154,16 +154,18 @@ public class Radio : TriggeredObject
 			_message = message;
 			if(!_message.isWarning)
 			{
-				_tempMessage = message;
+			
+				if(message.text!=null)
+				{
+					SetRadio(true);
+				}
 			}
 			else
 			{
-				SetRadio(true);
+				_tempMessage = message;
+				rmi.setActive=true;
 			}
-			
             //SetRadio(true);
-			
-			rmi.setActive=true;
 		}
 	}
 	

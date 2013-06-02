@@ -80,4 +80,9 @@ public class KinectGestures
 	{
 		return skelWrap.bonePos[0, (int)bone1] - skelWrap.bonePos[0, (int)bone2];
 	}
+	
+	public Vector3 GetPlayerPosition()
+	{
+		return skelWrap.bonePos[0, (int)Kinect.NuiSkeletonPositionIndex.HipCenter];
+	}
 }
