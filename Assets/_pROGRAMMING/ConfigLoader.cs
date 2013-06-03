@@ -164,7 +164,7 @@ public class ConfigLoader
 		
 		//migrate these to the enums class, this will make it easier to serialize data
 		foreach(TriggerType t in System.Enum.GetValues(typeof(TriggerType))){
-			triggerTypes.Add(t.ToString(), t);
+			triggerTypes[(t.ToString())] =  t;
 		}
 		/*
 		triggerTypes ["None"] = TriggerType.None;
@@ -177,7 +177,7 @@ public class ConfigLoader
 		triggerTypes ["Activate"] = TriggerType.OnActivate;
 		*/
 		foreach(Reaction t in System.Enum.GetValues(typeof(Reaction))){
-			reactionTypes.Add(t.ToString(), t);
+			reactionTypes[t.ToString()] = t;
 		}
 		
 		/*
