@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ControlBase : MonoBehaviour
 {
-	public float actionTime = 1.0f;
+	public float actionTime = 2.0f;
 	
 	public enum Action
 	{

@@ -430,7 +430,7 @@ public class Helicopter : MonoBehaviour
 	/// </summary>
 	public void EnterSaveMode ()
 	{
-		if (nearestRescuable != null)
+		if ( nearestRescuable != null )
 		{//check if above mission object
 			SetState (Helistate.Save);
 		}
@@ -442,6 +442,16 @@ public class Helicopter : MonoBehaviour
 	{
 		SetState (Helistate.Fly);
 		
+	}
+	/// <summary>
+	/// Determines whether this instance is saving.
+	/// </summary>
+	/// <returns>
+	/// <c>true</c> if this instance is saving; otherwise, <c>false</c>.
+	/// </returns>
+	public bool IsSaving()
+	{
+		return state == Helistate.Save;
 	}
 	/// <summary>
 	/// Activates the radio.
