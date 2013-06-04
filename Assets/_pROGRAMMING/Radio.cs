@@ -18,6 +18,15 @@ public class Radio : TriggeredObject
 	public Vector3 openedScale = new Vector3(1,1,0);
 	public Vector3 closedScale = new Vector3(0,0,0);
     
+	private enum State{
+		DEACTIVE,
+		ACTIVE,
+		ACTIVATE,
+		DEACTIVATE,
+	};
+	
+	private State state = State.DEACTIVE;
+	
 	
 	public float width
 	{
@@ -41,6 +50,28 @@ public class Radio : TriggeredObject
 	public void Update()
 	{
 		DrawRadio();
+	}
+	
+	public void OnGUI()
+	{
+		if(state!=State.DEACTIVE)
+		{
+			switch(state)
+			{
+				case State.ACTIVE :
+				{
+					break;	
+				}
+				case State.ACTIVATE :
+				{
+					break;	
+				}
+				case State.DEACTIVATE :
+				{
+					break;	
+				}
+			}
+		}
 	}
 	
 	/// <summary>
