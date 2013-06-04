@@ -61,13 +61,11 @@ public class Helicopter : MonoBehaviour
 	
 	private enum Helistate
 	{
-		IDLE,
-		FLY,
-		SAVE
+		Fly,
+		Save
 	}
-	
-	private Helistate prevState;
 	private Helistate state;
+	
 	public MissionObjectBase nearestRescuable = null;
 	public float dotToNearest;
 	private enum ControlType
@@ -105,8 +103,7 @@ public class Helicopter : MonoBehaviour
 	
 	private void InitializeControls ()
 	{
-		prevState = Helistate.FLY;
-		state = Helistate.FLY;
+		SetState(Helistate.Fly);
 		
 		// disable the keyboard if connect is there and vice versa
 		if (skelWrap.devOrEmu.device.connected)
@@ -128,7 +125,7 @@ public class Helicopter : MonoBehaviour
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer (float x)
 	{
-		if (state == Helistate.FLY)
+		if (state == Helistate.Fly)
 		{
 			transform.Rotate (Vector3.up, x * heliSettings.rotationSpeed * Time.deltaTime); //rotate over the y axis
 		
@@ -145,7 +142,7 @@ public class Helicopter : MonoBehaviour
 			float joystickSpeed = 1.0f;
 			Quaternion joystickGoal = Quaternion.AngleAxis (angle, Vector3.forward);
 			joystick.localRotation = Quaternion.Lerp (joystick.localRotation, joystickGoal, Time.deltaTime * joystickSpeed);
-		} else if (state == Helistate.SAVE)
+		} else if (state == Helistate.Save)
 		{
 			Accelerate (new Vector3 (x, 0, 0));
 			
@@ -165,14 +162,12 @@ public class Helicopter : MonoBehaviour
 		direction = transform.TransformDirection (direction); // make the direction in local space
 		AddAvoidForce (ref direction);
 		
-		if (state != Helistate.IDLE)
-		{			
-			if(controlType == ControlType.Keyboard)		
-				direction = Vector3.Normalize (direction);
-			velocity += heliSettings.acceleration * Time.deltaTime * direction;
-			
-			velocity = Vector3.ClampMagnitude (velocity, heliSettings.maxSpeed);
-		}
+		if(controlType == ControlType.Keyboard)		
+			direction = Vector3.Normalize (direction);
+		
+		velocity += heliSettings.acceleration * Time.deltaTime * direction;
+		
+		velocity = Vector3.ClampMagnitude (velocity, heliSettings.maxSpeed);
 	}
 
 	private void AddAvoidForce (ref Vector3 direction)
@@ -321,7 +316,7 @@ public class Helicopter : MonoBehaviour
 		}
 		transform.position += velocity * Time.deltaTime; //misschien niet de deltatime hier maar in de controller. waarschijn lijk wel though
 		
-		if (state == Helistate.SAVE && controlType == ControlType.Kinect)
+		if (state == Helistate.Save && controlType == ControlType.Kinect)
 		{
 			velocity = new Vector3 (0.0f, 0.0f, 0.0f);
 		} else
@@ -348,7 +343,7 @@ public class Helicopter : MonoBehaviour
 		}
 
 		
-		if (state == Helistate.SAVE)
+		if (state == Helistate.Save)
 		{
 			
 			rescuePointer.alpha = dotToNearest;
@@ -437,28 +432,15 @@ public class Helicopter : MonoBehaviour
 	{
 		if (nearestRescuable != null)
 		{//check if above mission object
-			SetState (Helistate.SAVE);
-		} else if (controlType == ControlType.Kinect)
-		{
-			SetState (Helistate.IDLE);
-		} else if (controlType == ControlType.Keyboard)
-		{
-			SetState (Helistate.FLY);
+			SetState (Helistate.Save);
 		}
-	}
-	/// <summary>
-	/// Enters the idle mode.
-	/// </summary>
-	public void EnterIdleMode ()
-	{
-		SetState (Helistate.IDLE);
 	}
 	/// <summary>
 	/// Enters the fly mode.
 	/// </summary>
 	public void EnterFlyMode ()
 	{
-		SetState (Helistate.FLY);
+		SetState (Helistate.Fly);
 		
 	}
 	/// <summary>
@@ -466,39 +448,18 @@ public class Helicopter : MonoBehaviour
 	/// </summary>
 	public void ActivateRadio ()
 	{
-		SetState (Helistate.IDLE);
 		radio.SetRadio (true);
 	}
 	
 	public void DeactivateRadio ()
 	{
-		SetState (prevState);
 		radio.SetRadio (false);
 	}
 	
 	public void ToggleRadio ()
 	{
 		//for use by keyboard
-		
 		radio.ToggleHud ();
-	
-		if (radio.radioIsActive)
-		{
-			SetState (Helistate.IDLE);
-		} else
-		{
-			SetState (prevState);
-		}
-		/*
-		Debug.Log ("Toggling radio");
-		if (state == Helistate.FLY || state == Helistate.SAVE) {
-			SetState (Helistate.IDLE);
-			radio.SetRadio (true);
-		} else if (state == Helistate.IDLE) {
-			SetState (prevState);
-			radio.SetRadio (false);
-		}
-		*/
 	}
 	/// <summary>
 	/// Sets the state.
@@ -508,31 +469,15 @@ public class Helicopter : MonoBehaviour
 	/// </param>
 	private void SetState (Helistate aState)
 	{
-		
-		
-		if (state == Helistate.FLY && aState == Helistate.SAVE)
+		if (state == Helistate.Fly && aState == Helistate.Save)
 		{
 			camAnimation.PlayQueued (toSavePosition, QueueMode.PlayNow);
 		}
-		if (state == Helistate.SAVE && aState == Helistate.FLY)
+		if (state == Helistate.Save && aState == Helistate.Fly)
 		{
 			camAnimation.PlayQueued (toPilotPosition, QueueMode.PlayNow);
 		}
-		if (state == Helistate.IDLE && prevState != aState)
-		{
-			Debug.Log ("Changing state from " + prevState + " to " + aState);
-			if(aState == Helistate.FLY)
-			{
-				//camAnimation.PlayQueued(toPilotPosition);
-			}
-			else if(aState == Helistate.SAVE)
-			{
-				//camAnimation.PlayQueued(toSavePosition);
-			}
-		}
 		
-	
-		prevState = state;
 		state = aState;
 	}
 }

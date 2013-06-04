@@ -6,15 +6,16 @@ public class Main : TriggeredObject {
 	private string _loadName = "MainMenu";
 	private enum State{Menu, Game};
 	private State state;
-	private ConfigLoader _configLoader;// = new ConfigLoader();
+	private ConfigLoader _configLoader = null;// = new ConfigLoader();
 	// Use this for initialization
 	public string gameScene = "LevelDesignDaniel";
 	public List<string> levels;
-	public int currentLevel = 0;
+	private int currentLevel = -1;
 	
 	void Awake () 
 	{
-		if(FindObjectsOfType(typeof(Main)).Length > 1)
+		Debug.LogError("Main", this);
+		if(FindObjectsOfType(typeof(Main)).Length >1)
 		{
 			Debug.Log("Found another main. deleting this");
 			GameObject.Destroy(gameObject);
@@ -37,7 +38,7 @@ public class Main : TriggeredObject {
 	/// </param>
 	public override void OnTriggered (EventReaction eventReaction)
 	{
-		currentLevel++;
+		
 		if(eventReaction.type == EventReaction.Type.EndLevel)
 		{
 			state = State.Menu;
@@ -71,7 +72,11 @@ public class Main : TriggeredObject {
 		private set{_configLoader = value;}
 	}
 	public void NextLevel(){
-		StartCoroutine(SwitchSceneAndLoad(gameScene, nextLevel));
+		currentLevel++;
+		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
+	}
+	public void LastLevel(){
+		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
 	}
 		
 	public IEnumerator SwitchSceneAndLoad(string scene, string level){

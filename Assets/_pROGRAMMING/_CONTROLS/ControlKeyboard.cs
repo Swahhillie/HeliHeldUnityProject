@@ -6,7 +6,6 @@ public class ControlKeyboard : ControlBase
 	public float forceThresshold = .3f;
 	
 	public KeyCode liftKey = KeyCode.F;
-	public KeyCode idleKey = KeyCode.T;
 	public KeyCode saveKey = KeyCode.R;
 	public KeyCode radioKey = KeyCode.Alpha2;
 	void Update()
@@ -18,10 +17,6 @@ public class ControlKeyboard : ControlBase
 		else if(Input.GetKeyDown(saveKey))
 		{
 			heli.EnterSaveMode();
-		}
-		else if(Input.GetKeyDown(idleKey))
-		{
-			heli.EnterIdleMode();
 		}
 		else if(Input.GetKeyDown(radioKey))
 		{

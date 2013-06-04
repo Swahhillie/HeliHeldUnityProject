@@ -108,6 +108,7 @@ public class Menu2D : MonoBehaviour {
 	public void StartOver(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Starting over");
+		main.LastLevel();
 	}
 	public void StartNew(ButtonActivateEventArgs e)
 	{

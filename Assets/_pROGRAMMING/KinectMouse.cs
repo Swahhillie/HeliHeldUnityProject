@@ -51,8 +51,7 @@ public class KinectMouse : MonoBehaviour
 	
 	void OnGUI ()
 	{
-		if (Application.loadedLevelName == "menu" || Application.loadedLevelName == "PlacingObjects")
-			GUI.Label (new Rect (screenPos.x - handTex.width / 2, Screen.height - screenPos.y - handTex.height / 2, handTex.width, handTex.height), handTex);
+		GUI.Label (new Rect (screenPos.x - handTex.width / 2, Screen.height - screenPos.y - handTex.height / 2, handTex.width, handTex.height), handTex);
 	}
 	
 	public Vector2 position {

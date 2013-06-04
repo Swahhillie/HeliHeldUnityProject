@@ -222,8 +222,6 @@ public class ConfigLoader
 		activeLevel = levels [name];
 		activeLevel.LoadLevel ();
 		
-		UnityEngine.Object.Destroy(GameObject.Find("Kinect_Prefab"));
-		
 		Debug.Log ("Loaded level success");
 	}
 	public void LoadMenu(string name)
