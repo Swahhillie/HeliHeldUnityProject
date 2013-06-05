@@ -16,8 +16,8 @@ public class ConfigLoaderEditor : EditorWindow {
 			_levelToLoad = EditorGUILayout.TextField(_levelToLoad);
 			if(GUILayout.Button("Load"))
 			{
-				ConfigLoader configLoader = new ConfigLoader(true);
-				configLoader.LoadLevel(_levelToLoad);
+				
+				ConfigLoader.Instance.LoadLevel(_levelToLoad);
 				Debug.Log("Loaded level " + _levelToLoad);
 			}
 		}

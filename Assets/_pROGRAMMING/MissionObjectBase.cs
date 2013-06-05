@@ -87,7 +87,7 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		if (t != null) {
 			t.OnRescue ();
 		}
-		ConfigLoader.instance.activeLevel.RemoveLevelElement(this.gameObject);
+		ConfigLoader.Instance.activeLevel.RemoveLevelElement(this.gameObject);
 		GameObject.Destroy(this.gameObject);
 		return rescueSuccess;
 	}

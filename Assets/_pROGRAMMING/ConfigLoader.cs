@@ -142,25 +142,30 @@ public class ConfigLoader
 	public static Dictionary<string, TriggerType> triggerTypes = new Dictionary<string, TriggerType> (); // use this to quickly get Action enum value from the string representation
 	public static Dictionary<string, Reaction> reactionTypes = new Dictionary<string, Reaction> ();
 	public static Dictionary<string, Message> messages = new Dictionary<string,Message>();
-	public static ConfigLoader instance = null;
+	private static ConfigLoader instance = null;
 	public Level activeLevel = null;
 	public Menu activeMenu = null;
 	
-	public ConfigLoader(bool editMode = false)
+	public delegate void LevelEvent(Level level);
+	public event LevelEvent LoadedLevel;
+	public event LevelEvent UnloadingLevel; 
+	
+	
+	public static ConfigLoader Instance{
+		get{
+			if(instance == null){
+				instance = new ConfigLoader();
+			}
+			return instance;
+		}
+	}
+	public ConfigLoader()
 	{
-		Initialize(editMode);
+		Initialize();
 	}
 	
-	private void Initialize (bool editMode)
+	private void Initialize ()
 	{
-		if(!editMode){
-			if (instance != null) {
-				Debug.LogError ("THERE ALREADY IS A CONFIGLOADER!!!!!");
-				return;
-			} else {
-				instance = this;
-			}
-		}
 		
 		//migrate these to the enums class, this will make it easier to serialize data
 		foreach(TriggerType t in System.Enum.GetValues(typeof(TriggerType))){
@@ -198,11 +203,7 @@ public class ConfigLoader
 		ParseSettings (xml);
 		
 		//create the levels and list them, does not create any yet.
-		ParseLevels (xml);
-		
-		
-		if(!editMode)ParseMenus (xml);
-		
+		ParseLevels (xml);		
 		
 		messages = ParseMessages(xml);
 		
@@ -215,13 +216,15 @@ public class ConfigLoader
 	{
 		
 		if (activeLevel != null) {
+			UnloadingLevel(activeLevel);
 			Debug.Log ("Unloading level " + activeLevel.levelName);
-			activeLevel.UnLoadLevel ();	
+			activeLevel.UnLoadLevel ();
+			
 		}
 		Debug.Log ("Loading level" + name);
 		activeLevel = levels [name];
 		activeLevel.LoadLevel ();
-		
+		LoadedLevel(activeLevel);
 		Debug.Log ("Loaded level success");
 	}
 	public void LoadMenu(string name)
@@ -265,7 +268,7 @@ public class ConfigLoader
 		}
 		Debug.Log (report);
 	}
-
+/*
 	void ParseMenus (XmlDocument xml)
 	{
 		XmlNodeList menuList = xml.GetElementsByTagName ("Menu");
@@ -277,7 +280,7 @@ public class ConfigLoader
 			
 		}
 	}
-	
+	*/
 	public static Dictionary<string, Message> ParseMessages (XmlDocument xml)
 	{
 		Dictionary<string, Message> messages = new Dictionary<string, Message>();

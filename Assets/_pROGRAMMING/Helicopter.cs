@@ -408,10 +408,10 @@ public class Helicopter : MonoBehaviour
 	public List<MissionObjectBase> GetRescuables ()
 	{
 		List<MissionObjectBase> missionObjects = new List<MissionObjectBase> ();
-		if ((ConfigLoader.instance != null) && ConfigLoader.instance.activeLevel != null)
+		if (ConfigLoader.Instance.activeLevel != null)
 		{
 			//all game objects in the level
-			List<GameObject> gos = ConfigLoader.instance.activeLevel.levelElements;
+			List<GameObject> gos = ConfigLoader.Instance.activeLevel.levelElements;
 			
 			foreach (var go in gos)
 			{
