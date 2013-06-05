@@ -42,7 +42,7 @@ public class Menu2D : MonoBehaviour {
 	private Vector2 lastMousePosition;
 	
 	
-	public GameStats gameStats;
+	private GameStats gameStats;
 	public KinectMouse kinectMouse;
 	private Main main;
 	private void Start()
@@ -52,6 +52,7 @@ public class Menu2D : MonoBehaviour {
 		
 		kinectMouse = ((GameObject)Instantiate(Resources.Load("kinectMousePrefab"))).GetComponent<KinectMouse>();
 		RegisterButtons();
+		gameStats = ScoreManager.Instance.gameStats;
 		
 		
 	}

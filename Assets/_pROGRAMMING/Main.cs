@@ -6,11 +6,12 @@ public class Main : TriggeredObject {
 	private string _loadName = "MainMenu";
 	private enum State{Menu, Game};
 	private State state;
-	private ConfigLoader _configLoader = null;// = new ConfigLoader();
 	// Use this for initialization
 	public string gameScene = "LevelDesignDaniel";
 	public List<string> levels;
 	private int currentLevel = -1;
+	
+	public ScoreManager scoreManager;
 	
 	void Awake () 
 	{
@@ -22,11 +23,10 @@ public class Main : TriggeredObject {
 		}
 		else{
 			state = State.Game;
-			configLoader = new ConfigLoader();
 			DontDestroyOnLoad(this.gameObject);
 		}
 		if(levels.Count == 0)Debug.LogError ("Specify Levels!");
-		
+		scoreManager = ScoreManager.Instance;
 		
 
 	}
@@ -67,10 +67,6 @@ public class Main : TriggeredObject {
 		get{return _loadName;}
 		set{_loadName = value;}
 	}
-	public ConfigLoader configLoader{
-		get{return _configLoader;}
-		private set{_configLoader = value;}
-	}
 	public void NextLevel(){
 		currentLevel++;
 		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
@@ -82,7 +78,7 @@ public class Main : TriggeredObject {
 	public IEnumerator SwitchSceneAndLoad(string scene, string level){
 		Application.LoadLevel(scene);
 		yield return null; //wait a frame so the scene can load
-		configLoader.LoadLevel (level); //load the objects
+		ConfigLoader.Instance.LoadLevel (level); //load the objects
 		state = State.Game;
 	}
 }

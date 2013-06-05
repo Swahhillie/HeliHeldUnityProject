@@ -1,70 +1,17 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Root>
-  <Messages>
-    <Message>
-      <Name>Intro</Name>
-      <Text> Schip in nood, ga snel! Drie mensen in het water! </Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>Hallo</Name>
-      <Text>Hallo daar speler.</Text>
-      <Audio>switch32</Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>Keerom</Name>
-      <Text>Hier is geen boot, keer om</Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>Move</Name>
-      <Text>Goed gedaan! Vlieg nu terug naar de basis. 
-			Vouw eerst je handen weer voor je buik om de helicopter te kunnen besturen.</Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>ToLate</Name>
-      <Text>Te laat, mensen verdrinken, vind de andere boot. 
-			Daar liggen twee mensen in het water.</Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>Save</Name>
-      <Text>Je hebt een drenkeling gered, vind ze allemaal!
-			</Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>Boat1</Name>
-      <Text>Je bent boven een schip ofzo</Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>Mission1</Name>
-      <Text>Er is 1 schip in nood, vind hem en red de drie
-			drenkelingen!</Text>
-      <Audio>
-      </Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-    <Message>
-      <Name>DefaultMessage</Name>
-      <Text>PLACEHOLDER MESSAGE</Text>
-      <Audio>switch32</Audio>
-      <IsWarning>False</IsWarning>
-    </Message>
-  </Messages>
+  <Level name="newXml">
+    <Objects>
+      <Object>
+        <Name>Placeholder_Character_000_</Name>
+        <Pos>(3067, 0, 2963)</Pos>
+        <Rot>(0, 0, 0)</Rot>
+        <Castaway>
+          <Spawn>Start</Spawn>
+          <PrefabName>Placeholder_Character</PrefabName>
+          <ScoreValue>100</ScoreValue>
+        </Castaway>
+      </Object>
+    </Objects>
+  </Level>
 </Root>

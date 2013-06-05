@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.Xml;
+using System.Text;
 
 public class ConfigLoaderEditor : EditorWindow {
 	
@@ -23,4 +25,5 @@ public class ConfigLoaderEditor : EditorWindow {
 		}
 		EditorGUILayout.EndVertical();
 	}
+	
 }

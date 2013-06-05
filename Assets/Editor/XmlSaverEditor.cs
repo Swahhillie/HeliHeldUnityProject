@@ -17,6 +17,7 @@ public class XmlSaverEditor : EditorWindow
 		EditorWindow.GetWindow<XmlSaverEditor> (true, "Changing save settings");
 		
 	}
+	
 	private void Awake()
 	{
 		XmlVisitor.configFile = EditorPrefs.GetString("XmlVisitorConfig", "config.xml");

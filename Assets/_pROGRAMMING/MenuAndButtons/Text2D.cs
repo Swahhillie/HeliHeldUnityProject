@@ -15,7 +15,7 @@ public class Text2D : MonoBehaviour {
 	
 	public void Start()
 	{
-		gameStats = ((Menu2D)FindObjectOfType(typeof(Menu2D))).gameStats;
+		gameStats = ScoreManager.Instance.gameStats;
 		fieldInfo = typeof(GameStats).GetField(fieldToRead);
 	}
 	public void Update()

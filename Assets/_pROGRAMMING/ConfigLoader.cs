@@ -110,7 +110,7 @@ public static class GameObjectExtend
 	/// <param name="gObj"></param>
 
 	/// <returns></returns>
-
+	
 	public static T[] GetInterfacesInChildren<T> (this GameObject gObj)
 	{
 
@@ -128,10 +128,11 @@ public static class GameObjectExtend
 	}
 
 }
+[System.Serializable]
 /// <summary>
 /// Loads all information that can be found in a config.xml file.
 /// </summary>
-public class ConfigLoader
+public class ConfigLoader : System.Object
 {
 	
 	public string configFilePath = "config.xml";
@@ -159,8 +160,9 @@ public class ConfigLoader
 			return instance;
 		}
 	}
-	public ConfigLoader()
+	private ConfigLoader()
 	{
+		Debug.LogError("Created a config loader");
 		Initialize();
 	}
 	
@@ -194,12 +196,7 @@ public class ConfigLoader
 		 */
 
 		
-		StreamReader reader = new StreamReader (Application.dataPath + "\\" + configFilePath);
-		config = reader.ReadToEnd ();
-		reader.Close ();
-		
-		XmlDocument xml = new XmlDocument ();
-		xml.LoadXml (config);
+		XmlDocument xml = GetWorkingDocument();
 		ParseSettings (xml);
 		
 		//create the levels and list them, does not create any yet.
@@ -211,7 +208,16 @@ public class ConfigLoader
 		Debug.Log("Messages Loaded");
 		
 	}
-
+	public XmlDocument GetWorkingDocument(){
+		//for editing purposes
+		StreamReader reader = new StreamReader (Application.dataPath + "\\" + configFilePath);
+		config = reader.ReadToEnd ();
+		reader.Close ();
+		
+		XmlDocument xml = new XmlDocument ();
+		xml.LoadXml (config);
+		return xml;
+	}
 	public void LoadLevel (string name)
 	{
 		

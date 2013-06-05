@@ -19,11 +19,17 @@ public class Level
 	private bool _isLoaded = false;
 	private int _castawayCount = 0;
 	private int _shipCount = 0;
-
+	
+	private float levelLoadTime = 0;
+	private float levelUnloadTime = 0;
+	
+	public delegate void LevelEvent(Level sender, Castaway savedCastaway);
+	public event LevelEvent SavedCastaway;
+	
 	public void LoadLevel () // make the level real, creates the gameobjects from the stored xml
 	{
 	
-		
+		levelLoadTime = Time.time;
 		levelElements = new List<GameObject> ();
 		//parse the xml file and instantiate the gameobjects
 		lvlRoot = new GameObject ("lvlRoot" + levelName);
@@ -108,6 +114,7 @@ public class Level
 			}
 			if (obj.type == MissionObject.Castaway) {
 				_castawayCount --;
+				SavedCastaway(this, obj as Castaway);
 			}
 			
 		}
@@ -123,7 +130,11 @@ public class Level
 		_isLoaded = false;
 		_castawayCount = 0;
 		_shipCount = 0;
+		levelUnloadTime = Time.time;
 			
+	}
+	public float TimeTaken{
+		get{return levelUnloadTime - levelLoadTime;}
 	}
 	//---------------------Object building functions--------------------------------
 	
@@ -190,7 +201,12 @@ public class Level
 
 	private static void AddCastaway (XmlNode cawXml, ref GameObject go)
 	{
-		AddMissionBase<Castaway> (cawXml, go);
+		var c = AddMissionBase<Castaway> (cawXml, go);
+		XmlNode node = cawXml["ScoreValue"];
+		if(node != null){
+			c.scoreValue = int.Parse(node.InnerText, System.Globalization.NumberStyles.Integer);
+		}
+			
 	}
 
 	private static void AddBeacon (XmlNode bNode, ref GameObject go)

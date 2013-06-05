@@ -15,9 +15,9 @@ public class XmlVisitor : Visitor
 	private XmlNode _messagesNode;
 	private XmlNode _settingsNode;
 	private XmlNode _menusNode;
-	public static string outputFile = "levelOutput.xml";
+	public static string outputFile = "config.xml";
 	public static string configFile = "config.xml";
-	public static bool useExsitingConfig = false;
+	public static bool useExsitingConfig = true;
 	public static bool overridePreviousLevelWithName = false;
 	
 	public enum ToSave
@@ -221,7 +221,8 @@ public class XmlVisitor : Visitor
 	{
 		Debug.Log ("Visiting a Castaway");
 				
-		CreateMissionObjectBaseXml ("Castaway", v);
+		XmlNode c = CreateMissionObjectBaseXml ("Castaway", v);
+		CreateAddNode(_writeTarget, "ScoreValue", c).InnerText = v.scoreValue.ToString();
 		
 		
 	}
@@ -243,7 +244,7 @@ public class XmlVisitor : Visitor
 		CreateMissionObjectBaseXml ("Beacon", beacon);	
 	}
 	
-	private void CreateMissionObjectBaseXml (string name, MissionObjectBase mb)
+	private XmlNode CreateMissionObjectBaseXml (string name, MissionObjectBase mb)
 	{
 		XmlNode target = _writeTarget.CreateNode (XmlNodeType.Element, name, null);
 		
@@ -256,6 +257,7 @@ public class XmlVisitor : Visitor
 		target.AppendChild (prefabNameXml);
 		
 		_activeObject.AppendChild (target);
+		return target;
 	}
 
 	public void OpenNewObject (GameObject go)

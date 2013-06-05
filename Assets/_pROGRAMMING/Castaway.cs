@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class Castaway : MissionObjectBase
 {
+	
+	public int scoreValue = 0;
+	
 	override protected void AwakeConcrete(){
 		_type = MissionObject.Castaway;
 		_rescuable = true;
