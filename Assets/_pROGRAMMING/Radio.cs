@@ -3,30 +3,28 @@ using System.Collections;
 
 public class Radio : TriggeredObject  
 {
-	private float _width;	
-	private Message _message;
-	private Message _tempMessage;
-	private bool _active=false;
-	private TextMesh tMesh;
-    private RadioMessageIndicator rmi;
-	private AudioSource _audioSource;
-	
-	private float startTime;
+	public Texture2D backgroundImage;
 	public float closeDuration=1.0f;
 	public float writeDuration = 5.0f;
 	
-	public Vector3 openedScale = new Vector3(1,1,0);
-	public Vector3 closedScale = new Vector3(0,0,0);
+	public Vector2 openedScale = new Vector2(200,200);
+	public Vector2 closedScale = new Vector2(0,0);
+	public Vector4 textOffset = new Vector4(0,0,0,0);
+	
+	private float _width;	
+	private Message _message;
+	private Message _tempMessage;
+	private float messagePercent;
+	private bool _active=false;
+    //private RadioMessageIndicator rmi;
+	private AudioSource _audioSource;
+	
+	private float startTime;
+	
+	private Vector2 _currentScale=new Vector2(0,0);
     
-	private enum State{
-		DEACTIVE,
-		ACTIVE,
-		ACTIVATE,
-		DEACTIVATE,
-	};
 	
-	private State state = State.DEACTIVE;
-	
+
 	
 	public float width
 	{
@@ -39,8 +37,7 @@ public class Radio : TriggeredObject
 	/// </summary>
 	void Start()
 	{
-		tMesh = this.GetComponent<TextMesh>();
-        rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
+        //rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
 		_audioSource = Camera.main.GetComponent<AudioSource>();
 	}
 	
@@ -54,22 +51,21 @@ public class Radio : TriggeredObject
 	
 	public void OnGUI()
 	{
-		if(state!=State.DEACTIVE)
+		if(_currentScale.x>0)
 		{
-			switch(state)
+			Vector4 radioscreen = new Vector4(Screen.width/2-_currentScale.x/2,Screen.height/2-_currentScale.y/2,_currentScale.x,_currentScale.y);
+			
+			GUI.Label(
+				new Rect(radioscreen.x,radioscreen.y,radioscreen.z,radioscreen.w),
+				new GUIContent(backgroundImage));
+			
+			if(messagePercent>0)
 			{
-				case State.ACTIVE :
-				{
-					break;	
-				}
-				case State.ACTIVATE :
-				{
-					break;	
-				}
-				case State.DEACTIVATE :
-				{
-					break;	
-				}
+				string text = "asdjfhaksdgajk\nakjgskjhagjksdhgas\\njagsdhasdfjagsjdhfgasdf\\njhasdfkga";
+				Vector4 textfield = radioscreen-textOffset;
+				GUI.Label(
+					new Rect(textfield.x,textfield.y,textfield.z,textfield.w),
+					new GUIContent(text.Substring(0,Mathf.FloorToInt(messagePercent * text.Length))));
 			}
 		}
 	}
@@ -115,14 +111,14 @@ public class Radio : TriggeredObject
 	{
 		if(_active)
 		{
-			rmi.setActive=false;
-			if(_message.audio!=null&&!_audioSource.isPlaying)
+			//rmi.setActive=false;
+			/*if(_message.audio!=null&&!_audioSource.isPlaying)
 			{
 				if(_message.audio!=null)
 				{
 					_audioSource.PlayOneShot(_message.audio);
 				}
-			}
+			}*/
 			
 		}
 		else
@@ -146,27 +142,26 @@ public class Radio : TriggeredObject
 	/// </summary>
 	private void DrawRadio()
 	{
-		if(_message!=null)
-		{
+		//if(_message!=null)
+	//	{
 			float elapsed = Time.time - startTime;
 			float percent = elapsed / closeDuration;
 			
 			if(_active)
 			{
-				transform.localScale = Vector3.Lerp(closedScale, openedScale, percent);
+				_currentScale = Vector3.Lerp(_currentScale, openedScale, percent);
 			}
 			else
 			{
-				transform.localScale = Vector3.Lerp(openedScale, closedScale, percent);
+				_currentScale = Vector3.Lerp(_currentScale, closedScale, percent);
 			}
 			
 			float elapsedSinceOpen = Time.time - startTime - closeDuration;
 			
-			float messagePercent = elapsedSinceOpen / writeDuration;
-			messagePercent = Mathf.Clamp (messagePercent, 0, 1);
+			messagePercent = Mathf.Clamp (elapsedSinceOpen / writeDuration, 0, 1);
 			//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
-			tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
-		}
+			//tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
+		//}
 	}
 	/// <summary>
 	/// Overrides the OnTriggered  -function from the TriggeredObject class
@@ -194,7 +189,7 @@ public class Radio : TriggeredObject
 			else
 			{
 				_tempMessage = message;
-				rmi.setActive=true;
+				//rmi.setActive=true;
 			}
             //SetRadio(true);
 		}
@@ -256,6 +251,4 @@ public class Radio : TriggeredObject
 		}
 				
 	}*/
-	
-	
 }
