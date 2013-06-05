@@ -372,7 +372,7 @@ public class Helicopter : MonoBehaviour
 			else
 				saveReticle.renderer.enabled = true;
 			
-			Debug.Log ("Dir to rescuable = " + dirToRescuable);
+			//Debug.Log ("Dir to rescuable = " + dirToRescuable);
 			Vector3 dir = Vector3.Normalize (dirToRescuable);
 			
 			// forward component
@@ -382,12 +382,12 @@ public class Helicopter : MonoBehaviour
 			//combine components
 			Vector3 dif = (difForward + difSideways);
 			
-			dif *= heliSettings.saveReticuleRange;
+			//dif *= heliSettings.saveReticuleRange;
 			
 			Debug.DrawRay (transform.position, dif * 5, Color.yellow);
 			
 			//saveReticle.localPosition = dif;
-			saveReticle.localRotation = Quaternion.LookRotation(dif);
+			saveReticle.rotation = Quaternion.LookRotation(dif);
 		}
 	}
 	
@@ -454,16 +454,28 @@ public class Helicopter : MonoBehaviour
 		return state == Helistate.Save;
 	}
 	/// <summary>
+	/// Determines whether this instance is flying.
+	/// </summary>
+	/// <returns>
+	/// <c>true</c> if this instance is flying; otherwise, <c>false</c>.
+	/// </returns>
+	public bool IsFlying()
+	{
+		return state == Helistate.Fly;
+	}
+	/// <summary>
 	/// Activates the radio.
 	/// </summary>
 	public void ActivateRadio ()
 	{
-		radio.SetRadio (true);
+		if(!radio.radioIsActive)
+			radio.SetRadio (true);
 	}
 	
 	public void DeactivateRadio ()
 	{
-		radio.SetRadio (false);
+		if(radio.radioIsActive)
+			radio.SetRadio (false);
 	}
 	
 	public void ToggleRadio ()
