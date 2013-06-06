@@ -8,7 +8,7 @@ public class HelmetAnimation : System.Object
 	public Vector2 position;
 	public Vector2 size;
 	public MovieTexture _image;
-	public float activateDuration=1;
+	public float activateDuration=1; 
 	
 	
 	private bool _active=false;
@@ -46,8 +46,6 @@ public class HelmetAnimation : System.Object
 	public Texture image
 	{
 		get{
-			//_image.width = (int)_curScale.x;
-			//_image.height = (int)_curScale.y;
 			return _image;
 		}	
 	}
@@ -100,26 +98,64 @@ public class HelmetAnimation : System.Object
 [System.Serializable]
 public class HelmetText :System.Object
 {
-	public string name;
+	public Vector2 position;
+	public Vector2 size;
 	public string text;
-	public Rect position;
+	public float activateDuration=1;
+	public float writeDuration=1;
 	
 	
+	private bool _active=false;
+	private float _startTime;
+	private float _scale;
+	private Vector2 _startScale=new Vector2(0,0);
+	private Vector2 _curScale = new Vector2(0,0);
+	private float messagePercent;
+
+	
+	public bool state
+	{
+		get{return _active;}
+		set{
+			_active = value;
+			if(_active)
+			{
+				_startTime=Time.time;
+			}
+		}
+	}
+	
+	public Vector2 getScale{
+		get{return (_curScale);}
+	}
+
+	public void Update()
+	{
+		float elapsed = Time.time - _startTime;
+		float percent = elapsed / activateDuration;
+		
+		if(_active)
+		{
+			_curScale = Vector2.Lerp(_curScale, size, percent);
+		}
+		else
+		{
+			_curScale = Vector2.Lerp(_curScale, _startScale, percent);
+		}
+		
+		float elapsedSinceOpen = Time.time - _startTime - activateDuration;
+		messagePercent = Mathf.Clamp (elapsedSinceOpen / writeDuration, 0, 1);
+	}
 }
 
 
 public class Helmet : TriggeredObject 
 {
-	public Texture BackgroundImage;
 	public HelmetAnimation[] HelmetAnimations;
-	public HelmetText[] leftText;
+	//public HelmetText[] Text;
 	
 	void Start()
 	{
-		//only for testing delete in final version
-		//BackgroundImage.loop = true;
-		//BackgroundImage.Play();
-		
 		for(int i=0;i<HelmetAnimations.Length;++i)
 		{
 			HelmetAnimations[i].setActive(true);
@@ -128,7 +164,6 @@ public class Helmet : TriggeredObject
 		
 	void OnGUI()
 	{
-		GUI.Label(new Rect(0,0,Screen.width,Screen.height),new GUIContent(BackgroundImage));
 		for(int i=0;i<HelmetAnimations.Length;++i)
 		{
 			if(HelmetAnimations[i].state!=HelmetAnimation.State.Deactive)
