@@ -191,7 +191,15 @@ public class XmlVisitor : Visitor
 			
 		}
 	}
-	
+	/// <summary>
+	/// Adds the event reaction.
+	/// </summary>
+	/// <param name='evrXml'>
+	/// Evr xml.
+	/// </param>
+	/// <param name='evr'>
+	/// Evr.
+	/// </param>
 	private void AddEventReaction (ref XmlNode evrXml, EventReaction evr)
 	{
 		
@@ -243,7 +251,18 @@ public class XmlVisitor : Visitor
 		Debug.Log ("Visiting a Beacon");
 		CreateMissionObjectBaseXml ("Beacon", beacon);	
 	}
-	
+	/// <summary>
+	/// Creates the mission object base xml.
+	/// </summary>
+	/// <returns>
+	/// The mission object base xml.
+	/// </returns>
+	/// <param name='name'>
+	/// Name.
+	/// </param>
+	/// <param name='mb'>
+	/// Mission ojbect to be written up.
+	/// </param>
 	private XmlNode CreateMissionObjectBaseXml (string name, MissionObjectBase mb)
 	{
 		XmlNode target = _writeTarget.CreateNode (XmlNodeType.Element, name, null);
@@ -259,7 +278,12 @@ public class XmlVisitor : Visitor
 		_activeObject.AppendChild (target);
 		return target;
 	}
-
+	/// <summary>
+	/// Opens the new object and writes the basic stats of an object to the xml.
+	/// </summary>
+	/// <param name='go'>
+	/// gameObject that is written from.
+	/// </param>
 	public void OpenNewObject (GameObject go)
 	{
 		Debug.Log ("Saving new object with name " + go.name);
@@ -342,21 +366,40 @@ public class XmlVisitor : Visitor
 //_writeTarget.GetElementsByTagName ("Messages") [0].AppendChild (_activeObject);
 		_savingTo.AppendChild (_activeObject);
 	}
-
-	private static XmlNode CreateAddNode (XmlDocument doc, string name, XmlNode parent)
+	/// <summary>
+	/// Creates and add a node to a parent.
+	/// </summary>
+	/// <returns>
+	/// The added node.
+	/// </returns>
+	/// <param name='doc'>
+	/// Xml Document in wich the node is created.
+	/// </param>
+	/// <param name='name'>
+	/// Name of the new node.
+	/// </param>
+	/// <param name='parent'>
+	/// Parent of the new node.
+	/// </param>
+	public static XmlNode CreateAddNode (XmlDocument doc, string name, XmlNode parent)
 	{
 		XmlNode node = doc.CreateNode (XmlNodeType.Element, name, null);
 		parent.AppendChild (node);
 		return node;
 	}
-
-	public string Write ()
+	/// <summary>
+	/// Write the specified doc to the the output file path.
+	/// </summary>
+	/// <param name='doc'>
+	/// The XmlDocument to be written.
+	/// </param>
+	public static string Write (XmlDocument doc)
 	{
 		//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
 		XmlTextWriter writer = new XmlTextWriter (Application.dataPath + "\\" + outputFile, System.Text.Encoding.ASCII);
 		writer.Formatting = Formatting.Indented;
 		//doc.Save(Application.dataPath + "\\" +outputFile);
-		_writeTarget.Save (writer);
+		doc.Save (writer);
 		writer.Close ();
 		return Application.dataPath + "\\" + outputFile;
 	}
@@ -365,5 +408,7 @@ public class XmlVisitor : Visitor
 	{
 		return _writeTarget;
 	}
-	
+	public XmlDocument Document{
+		get{return _writeTarget;}
+	}
 }

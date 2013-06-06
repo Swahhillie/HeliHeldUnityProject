@@ -123,7 +123,7 @@ public class MessageSaverEditor : EditorWindow
 			foreach (var pair in _messages) {
 				pair.Value.AcceptVisitor (xmlVisitor);
 			}
-			string path = xmlVisitor.Write ();
+			string path = XmlVisitor.Write (xmlVisitor.Document);
 			_report = "Saved Successfully";
 			UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal (path, 0);
 			

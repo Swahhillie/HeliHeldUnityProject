@@ -138,8 +138,8 @@ public class ConfigLoader : System.Object
 	public string configFilePath = "config.xml";
 	private string config = "";
 	static private Dictionary<string, string> settings = new Dictionary<string, string> ();
-	static private Dictionary<string, Level> levels = new Dictionary<string, Level> ();
-	static private Dictionary<string, Menu> menus = new Dictionary<string, Menu> ();
+	public Dictionary<string, Level> levels = new Dictionary<string, Level> ();
+	//static private Dictionary<string, Menu> menus = new Dictionary<string, Menu> ();
 	public static Dictionary<string, TriggerType> triggerTypes = new Dictionary<string, TriggerType> (); // use this to quickly get Action enum value from the string representation
 	public static Dictionary<string, Reaction> reactionTypes = new Dictionary<string, Reaction> ();
 	public static Dictionary<string, Message> messages = new Dictionary<string,Message>();
@@ -233,6 +233,7 @@ public class ConfigLoader : System.Object
 		LoadedLevel(activeLevel);
 		Debug.Log ("Loaded level success");
 	}
+	/*
 	public void LoadMenu(string name)
 	{
 		if(activeMenu != null)
@@ -246,6 +247,7 @@ public class ConfigLoader : System.Object
 		
 		Debug.Log("Loaded menu success");
 	}
+	*/
 	void ParseSettings (XmlDocument xml)
 	{
 		XmlNodeList settingsList = xml.GetElementsByTagName ("Setting");

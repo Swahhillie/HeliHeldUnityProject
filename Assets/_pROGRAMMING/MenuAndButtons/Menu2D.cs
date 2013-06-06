@@ -11,6 +11,7 @@ public class GameStats : System.Object{
 	
 	public enum Award
 	{
+		None,
 		Gold,
 		Silver,
 		Bronze
@@ -22,7 +23,7 @@ public class GameStats : System.Object{
 	public float TotalScore{
 		get{return castawayScore + timeScore + achievementScore;}
 	}
-	public Award awardAchieved;
+	public Award awardAchieved = Award.None;
 	
 	public int goldAwards;
 	public int silverAwards;

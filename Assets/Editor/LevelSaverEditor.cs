@@ -95,7 +95,7 @@ public class LevelSaverEditor : EditorWindow
 			}
 		}
 	
-		string resultPath = xmlVisitor.Write ();
+		string resultPath = XmlVisitor.Write (xmlVisitor.Document);
 		OpenOutputFile (resultPath);
 	}
 
@@ -103,4 +103,5 @@ public class LevelSaverEditor : EditorWindow
 	{
 		UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal (path, 0);
 	}
+	
 }

@@ -20,11 +20,15 @@ public class Level
 	private int _castawayCount = 0;
 	private int _shipCount = 0;
 	
-	private float levelLoadTime = 0;
-	private float levelUnloadTime = 0;
+	public float levelLoadTime = 0;
 	
 	public delegate void LevelEvent(Level sender, Castaway savedCastaway);
 	public event LevelEvent SavedCastaway;
+	
+	
+	public int goldAchievementScore = 200;
+	public int silverAchievementScore = 100;
+	public int bronzeAchievementScore = 0;
 	
 	public void LoadLevel () // make the level real, creates the gameobjects from the stored xml
 	{
@@ -33,6 +37,14 @@ public class Level
 		levelElements = new List<GameObject> ();
 		//parse the xml file and instantiate the gameobjects
 		lvlRoot = new GameObject ("lvlRoot" + levelName);
+		
+		
+		//figure out the score limits
+		XmlNode scoreXml = lvlXml["Score"];
+		goldAchievementScore = int.Parse(scoreXml["GoldScoreMinimum"].InnerText);
+		silverAchievementScore = int.Parse(scoreXml["SilverScoreMinimum"].InnerText);
+		bronzeAchievementScore = int.Parse(scoreXml["BronzeScoreMinimum"].InnerText);
+		
 		//get all the objects that need to be created
 		XmlNodeList elements = lvlXml ["Objects"].ChildNodes;
 		
@@ -100,10 +112,6 @@ public class Level
 		private set{_levelElements = value;}
 	}
 
-	public bool levelComplete()
-	{
-		return false;	
-	}
 	public void RemoveLevelElement (GameObject go) //ships and castaways
 	{
 		
@@ -130,11 +138,8 @@ public class Level
 		_isLoaded = false;
 		_castawayCount = 0;
 		_shipCount = 0;
-		levelUnloadTime = Time.time;
+		
 			
-	}
-	public float TimeTaken{
-		get{return levelUnloadTime - levelLoadTime;}
 	}
 	//---------------------Object building functions--------------------------------
 	
