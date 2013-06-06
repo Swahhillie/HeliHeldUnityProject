@@ -29,6 +29,15 @@ public class ScoreManager : System.Object
 		ConfigLoader.Instance.UnloadingLevel += UnbindEvents;
 		ConfigLoader.Instance.LoadedLevel += BindEvents;
 	}
+	/// <summary>
+	/// Adds the special score.
+	/// </summary>
+	/// <param name='amount'>
+	/// The Amount to be added.
+	/// </param>
+	private void AddSpecialScore(int amount){
+		gameStats.achievementScore += amount;
+	}
 
 	private void UnbindEvents (Level level)
 	{

@@ -28,7 +28,6 @@ public class Main : TriggeredObject {
 		if(levels.Count == 0)Debug.LogError ("Specify Levels!");
 		scoreManager = ScoreManager.Instance;
 		
-
 	}
 	/// <summary>
 	/// Raises the triggered event.
@@ -43,6 +42,9 @@ public class Main : TriggeredObject {
 		{
 			state = State.Menu;
 			Application.LoadLevel("MenuScene");	
+		}
+		if(eventReaction.type == EventReaction.Type.SpecialScore){
+			scoreManager.AddSpecialScore(eventReaction.specialScore);
 		}
 	}
 	/// <summary>

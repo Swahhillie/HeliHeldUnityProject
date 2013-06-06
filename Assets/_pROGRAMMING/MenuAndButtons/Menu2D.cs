@@ -20,9 +20,8 @@ public class GameStats : System.Object{
 	public float castawayScore;
 	public float timeScore;
 	public float achievementScore;
-	public float TotalScore{
-		get{return castawayScore + timeScore + achievementScore;}
-	}
+	
+	public float totalScore;
 	public Award awardAchieved = Award.None;
 	
 	public int goldAwards;

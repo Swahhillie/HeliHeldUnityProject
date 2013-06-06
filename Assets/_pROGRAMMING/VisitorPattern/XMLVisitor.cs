@@ -213,6 +213,8 @@ public class XmlVisitor : Visitor
 		messageNameXml.InnerText = evr.messageName;
 		evrXml.AppendChild (messageNameXml);
 		
+		CreateAddNode(_writeTarget, "SpecialScore", evrXml).InnerText = evr.specialScore.ToString();
+		
 		XmlNode listenersXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listeners", null);
 		
 		foreach (TriggeredObject listener in evr.listeners) {

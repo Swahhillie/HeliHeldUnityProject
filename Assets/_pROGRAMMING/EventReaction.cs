@@ -17,7 +17,8 @@ public class EventReaction
 		Animate,
 		Highlight_Activate,
 		Highlight_Deactivate,
-		EndLevel		
+		EndLevel,
+		SpecialScore
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
@@ -27,7 +28,7 @@ public class EventReaction
 	public string messageName;
 	public Vector3 pos;
 	public List<TriggeredObject> listeners;
-	
+	public int specialScore;
 	public EventReaction(XmlNode node)
 	{
 		if(!init)
@@ -41,6 +42,7 @@ public class EventReaction
 
 		messageName = node["MessageName"].InnerText;
 		type = typeHelper[node["Type"].InnerText];
+		specialScore = int.Parse(node["SpecialScore"].InnerText, System.Globalization.CultureInfo.InvariantCulture);
 	}
 	public void Activate(){
 		foreach(TriggeredObject obj in listeners){
