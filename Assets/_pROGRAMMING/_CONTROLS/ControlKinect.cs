@@ -119,10 +119,6 @@ public class ControlKinect : ControlBase
 		
 	}
 	
-	
-	
-	
-	
 //	void UpdateOld ()
 //	{
 //		float oldVal;
@@ -182,34 +178,11 @@ public class ControlKinect : ControlBase
 	
 	void OnGUI ()
 	{
-		bool debug = true;
+		bool debug = false;
 		if(debug){DebugGUI();}
-		Vector2 boxPos = new Vector2 (1400, 150);
-		Vector2 boxSize = new Vector2 (120, 120);
-		
-		GUI.Box (new Rect (boxPos.x, boxPos.y, boxSize.x, boxSize.y), "");
-		
-		Vector3 playerPos = kg.GetPlayerPosition ();
-		//limits
-		if (playerPos.x > 1) {
-			playerPos.x = 1;
-		}
-		if (playerPos.x < -1) {
-			playerPos.x = -1;
-		}
-		if (playerPos.z > 1) {
-			playerPos.z = -1;
-		}
-		if (playerPos.z < -1) {
-			playerPos.z = -1;
-		}
-		
-		Vector2 playerOnscreen = new Vector2 ((playerPos.x * boxSize.x * 0.5f), (playerPos.z * boxSize.y * 0.5f));
-		
-		GUI.Label (new Rect (boxPos.x + boxSize.x * 0.5f + playerOnscreen.x - 10, boxPos.y + boxSize.y * 0.5f + playerOnscreen.y - 10, 20, 20), "X");
 		
 		if (showHand) {
-			GUI.Label (new Rect (cursorPosition.x - handTex.width * 0.5f, Screen.height - cursorPosition.y - handTex.height * 0.5f, handTex.width, handTex.height), handTex);
+			GUI.DrawTexture (new Rect (cursorPosition.x - handTex.width * 0.5f, Screen.height - cursorPosition.y - handTex.height * 0.5f, handTex.width, handTex.height), handTex);
 		}
 	}
 	
