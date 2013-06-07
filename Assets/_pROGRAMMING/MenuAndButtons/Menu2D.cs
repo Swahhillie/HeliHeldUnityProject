@@ -16,12 +16,13 @@ public class GameStats : System.Object{
 		Silver,
 		Bronze
 	}
+	public int savedCastaways;
 	
-	public float castawayScore;
-	public float timeScore;
-	public float achievementScore;
+	public int castawayScore;
+	public int timeScore;
+	public int specialScore;
 	
-	public float totalScore;
+	public int totalScore;
 	public Award awardAchieved = Award.None;
 	
 	public int goldAwards;

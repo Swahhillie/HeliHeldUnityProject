@@ -32,10 +32,12 @@ public class LevelSaverEditor : EditorWindow
 	
 	private void OnSelectionChange ()
 	{
-		if (target == XmlVisitor.ToSave.Level) { 
+		if (target == XmlVisitor.ToSave.Level)
+		{ 
 			int targetLayer = LayerMask.NameToLayer ("SaveLayer");
 			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, (go => go.layer == targetLayer && go.transform.parent == null));
-		} else if (target == XmlVisitor.ToSave.Menu) {
+		} else if (target == XmlVisitor.ToSave.Menu)
+		{
 			_selectedGos = System.Array.FindAll<GameObject> (Selection.gameObjects, go => go.GetComponent<Button3D> () != null);
 		}
 		Repaint ();
@@ -50,14 +52,16 @@ public class LevelSaverEditor : EditorWindow
 		{
 			saveName = GUILayout.TextField (saveName, 15);
 			
-			if (GUILayout.Button ("Save")) {
+			if (GUILayout.Button ("Save"))
+			{
 				SaveToXml ();
 				
 			}
 		}
 		EditorGUILayout.EndHorizontal ();
 		{
-			foreach (var go in _selectedGos) {
+			foreach (var go in _selectedGos)
+			{
 				EditorGUILayout.BeginHorizontal ();
 				{
 					EditorGUILayout.PrefixLabel (go.name);
@@ -73,24 +77,31 @@ public class LevelSaverEditor : EditorWindow
 		int i = 0;
 		
 		//System.Array.ForEach<GameObject>(toSaveGo, (x) => {x.name = go.name + " " + i.ToString("000") + " "; i++;});
-		foreach (var go in _selectedGos) {
+		foreach (var go in _selectedGos)
+		{
 			
 			go.name = go.name + "_" + i.ToString ("000") + "_"; //give all gos that will be safed a unique name
 			
 			i++;
 		}
 		XmlVisitor xmlVisitor = new XmlVisitor (saveName, target);
-		try {
-			foreach (var go in _selectedGos) {
+		try
+		{
+			foreach (var go in _selectedGos)
+			{
 			
 				if (target == XmlVisitor.ToSave.Level)
+				{
 					xmlVisitor.OpenNewObject (go);
+				}
 				System.Array.ForEach<IVisitable> (go.GetInterfacesInChildren<IVisitable> (), visitable => visitable.AcceptVisitor (xmlVisitor));
 			
 			}
-		} finally {
+		} finally
+		{
 			//cleanup the names if an exception occurs
-			foreach (var go in _selectedGos) {
+			foreach (var go in _selectedGos)
+			{
 				go.name = go.name.Substring (0, go.name.Length - 5); // leave the number out of it
 			}
 		}

@@ -145,11 +145,9 @@ public class ConfigLoader : System.Object
 	public static Dictionary<string, Message> messages = new Dictionary<string,Message>();
 	private static ConfigLoader instance = null;
 	public Level activeLevel = null;
-	public Menu activeMenu = null;
 	
 	public delegate void LevelEvent(Level level);
 	public event LevelEvent LoadedLevel;
-	public event LevelEvent UnloadingLevel; 
 	
 	
 	public static ConfigLoader Instance{
@@ -220,13 +218,14 @@ public class ConfigLoader : System.Object
 	}
 	public void LoadLevel (string name)
 	{
-		
 		if (activeLevel != null) {
-			UnloadingLevel(activeLevel);
+			
 			Debug.Log ("Unloading level " + activeLevel.levelName);
 			activeLevel.UnLoadLevel ();
+			activeLevel = null;
 			
 		}
+		
 		Debug.Log ("Loading level" + name);
 		activeLevel = levels [name];
 		activeLevel.LoadLevel ();

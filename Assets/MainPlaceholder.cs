@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainPlaceholder : TriggeredObject {
 	public void Awake(){
+		name = "Main Placeholder";
 		Destroy(this.gameObject);
 	}
 	

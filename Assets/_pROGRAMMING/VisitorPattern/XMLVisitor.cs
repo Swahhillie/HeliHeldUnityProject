@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Xml;
+
 /// <summary>
 /// Visitor that writes to an XML file.
 /// </summary>
@@ -18,7 +19,7 @@ public class XmlVisitor : Visitor
 	public static string outputFile = "config.xml";
 	public static string configFile = "config.xml";
 	public static bool useExsitingConfig = true;
-	public static bool overridePreviousLevelWithName = false;
+	public static bool overridePreviousLevelWithName = true;
 	
 	public enum ToSave
 	{
@@ -29,12 +30,13 @@ public class XmlVisitor : Visitor
 	
 	public XmlVisitor (string levelName, ToSave toSave)
 	{
-		if(useExsitingConfig){
-			Debug.Log("Saving using exsisting config.xml file");
+		if (useExsitingConfig)
+		{
+			Debug.Log ("Saving using exsisting config.xml file");
 			LoadExsitingFile (levelName, toSave);		
-		}
-		else{
-			Debug.Log("Preparing a new file to save to");
+		} else
+		{
+			Debug.Log ("Preparing a new file to save to");
 			PrepareNewFile (levelName, toSave);
 			
 		}
@@ -51,14 +53,16 @@ public class XmlVisitor : Visitor
 		_writeTarget.AppendChild (root);
 		//xmlDecl.InsertBefore(xmlDecl, root);
 		
-		switch (toSave) {
+		switch (toSave)
+		{
 		case ToSave.Level:
 			{
 				
 				_savingTo = _writeTarget.CreateNode (XmlNodeType.Element, "Level", "");
 				XmlElement tc = (XmlElement)_savingTo;//
 				tc.SetAttribute ("name", levelName);
-				CreateAddNode(_writeTarget, "Objects", _savingTo);
+				CreateAddNode (_writeTarget, "Objects", _savingTo);
+				AddDefaultScoreNode (_writeTarget, _savingTo);
 				break;
 			}
 		case ToSave.Menu:
@@ -79,7 +83,15 @@ public class XmlVisitor : Visitor
 		root.AppendChild (_savingTo);
 	
 	}
-
+	/// <summary>
+	/// Loads an exsiting file to write over it.
+	/// </summary>
+	/// <param name='levelName'>
+	/// Level name.
+	/// </param>
+	/// <param name='toSave'>
+	/// What part of bit of xml should be written.
+	/// </param>
 	private void LoadExsitingFile (string levelName, ToSave toSave)
 	{
 		_writeTarget = new XmlDocument ();
@@ -90,46 +102,60 @@ public class XmlVisitor : Visitor
 		
 		
 		_levelsNode = docElement.SelectSingleNode ("Levels");
-		ReportIfNull(_levelsNode, "Levels");
+		ReportIfNull (_levelsNode, "Levels");
 		
 		_settingsNode = docElement.SelectSingleNode ("Settings");
-		ReportIfNull(_settingsNode, "Settings");
+		ReportIfNull (_settingsNode, "Settings");
 		
 		_messagesNode = docElement.SelectSingleNode ("Messages");
-		ReportIfNull(_messagesNode, "Messages");
+		ReportIfNull (_messagesNode, "Messages");
 		
 		_menusNode = docElement.SelectSingleNode ("Menus");
-		ReportIfNull(_menusNode, "Menus");
+		ReportIfNull (_menusNode, "Menus");
 		
-		switch (toSave) {
+		switch (toSave)
+		{
 		case ToSave.Level:
 			{	
 				//check to see if there is a level with this name
-				_savingTo = _levelsNode.SelectSingleNode(string.Format("Level[@name='{0}']", levelName));
+				_savingTo = _levelsNode.SelectSingleNode (string.Format ("Level[@name='{0}']", levelName));
 		
-				if(_savingTo != null){
+				if (_savingTo != null)
+				{
 					
 					// there is a level with this name
 					
-					if(overridePreviousLevelWithName)
+					if (overridePreviousLevelWithName)
 					{
-						//removing the old level
-						Debug.LogWarning("Overriding a previously saved level");
-						_levelsNode.RemoveChild(_savingTo);
+						//removing the old level objects and replace them
+						Debug.LogWarning ("Overriding a previously saved level");
+						_savingTo.RemoveChild (_savingTo ["Objects"]);
 						
-					}
-					else
+					} else
 					{	
 						//let the old level sit there. will cause issues loading
-						Debug.LogError("Creating a new level in the config file with an identical name!");
+					
+						
+						Debug.LogError ("Creating a new level in the config file with an identical name!");
+						_savingTo = CreateAddNode (_writeTarget, "Level", _levelsNode);
+						XmlElement tc = _savingTo as XmlElement;
+						tc.SetAttribute ("name", levelName);
+						AddDefaultScoreNode (_writeTarget, _savingTo);
 					}
+				} else
+				{	//currently no level with that name. save it to a new lvl
+					Debug.Log ("Creating a new level");
+					_savingTo = CreateAddNode (_writeTarget, "Level", _levelsNode);
+					XmlElement tc = _savingTo as XmlElement;
+					tc.SetAttribute ("name", levelName);
+					AddDefaultScoreNode (_writeTarget, _savingTo);
 				}
 				//create the new level
-				_savingTo = CreateAddNode (_writeTarget, "Level", _levelsNode);
-				XmlElement tc = _savingTo as XmlElement;
-				tc.SetAttribute ("name", levelName);
 				
-				CreateAddNode(_writeTarget, "Objects", _savingTo);
+				
+				//whatever happens. there is always a new set of objects to we should (re) add that node
+				CreateAddNode (_writeTarget, "Objects", _savingTo);
+				
 			}	
 			break;
 			
@@ -147,22 +173,54 @@ public class XmlVisitor : Visitor
 			break;
 		}
 	}
-	private void ReportIfNull(XmlNode node, string name)
+	/// <summary>
+	/// Adds the default score node.
+	/// </summary>
+	/// <param name='doc'>
+	/// Document.
+	/// </param>
+	/// <param name='parent'>
+	/// Parent.
+	/// </param>
+	private void AddDefaultScoreNode (XmlDocument doc, XmlNode parent)
 	{
-		if(node == null) Debug.Log(string.Format("{0} node is null, the document is not complete", name));
+		Debug.LogWarning ("Award requirements have reset");
+		XmlNode scoreNode = CreateAddNode (doc, "Score", parent);
+		CreateAddNode (doc, "GoldScoreMinimum", scoreNode).InnerText = "2";
+		CreateAddNode (doc, "SilverScoreMinimum", scoreNode).InnerText = "1";
+		CreateAddNode (doc, "BronzeScoreMinimum", scoreNode).InnerText = "0";
 	}
+	/// <summary>
+	/// Reports if null.
+	/// </summary>
+	/// <param name='node'>
+	/// Node.
+	/// </param>
+	/// <param name='name'>
+	/// Name.
+	/// </param>
+	private void ReportIfNull (XmlNode node, string name)
+	{
+		if (node == null)
+		{
+			Debug.Log (string.Format ("{0} node is null, the document is not complete", name));
+		}
+	}
+
 	override public void Visit (Trigger v)
 	{
 		Debug.Log ("Visiting a trigger");
 		
 		
-		foreach (TriggerValue t in v.triggers) {
+		foreach (TriggerValue t in v.triggers)
+		{
 			XmlNode triggerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Trigger", null);
 			_activeObject.AppendChild (triggerXml);
 			
 			
 			
-			foreach (EventReaction evr in t.eventReactions) {
+			foreach (EventReaction evr in t.eventReactions)
+			{
 				XmlNode reactionXml = _writeTarget.CreateNode (XmlNodeType.Element, "EventReaction", null);
 				AddEventReaction (ref reactionXml, evr);
 				triggerXml.AppendChild (reactionXml);
@@ -203,28 +261,20 @@ public class XmlVisitor : Visitor
 	private void AddEventReaction (ref XmlNode evrXml, EventReaction evr)
 	{
 		
-		XmlNode typeXml = _writeTarget.CreateNode (XmlNodeType.Element, "Type", null);
-		typeXml.InnerText = evr.type.ToString ();
-		evrXml.AppendChild (typeXml);
-		XmlNode posXml = _writeTarget.CreateNode (XmlNodeType.Element, "Pos", null);
-		posXml.InnerText = evr.pos.ToString ("G4");
-		evrXml.AppendChild (posXml);
-		XmlNode messageNameXml = _writeTarget.CreateNode (XmlNodeType.Element, "MessageName", null);
-		messageNameXml.InnerText = evr.messageName;
-		evrXml.AppendChild (messageNameXml);
+		CreateAddNode (_writeTarget, "Type", evrXml).InnerText = evr.type.ToString ();
+		CreateAddNode (_writeTarget, "Pos", evrXml).InnerText = evr.pos.ToString ();
+		CreateAddNode (_writeTarget, "MessageName", evrXml).InnerText = evr.messageName;		
+		CreateAddNode (_writeTarget, "SpecialScore", evrXml).InnerText = evr.specialScore.ToString ();
 		
-		CreateAddNode(_writeTarget, "SpecialScore", evrXml).InnerText = evr.specialScore.ToString();
+		XmlNode listenersXml = CreateAddNode (_writeTarget, "Listeners", evrXml);
 		
-		XmlNode listenersXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listeners", null);
-		
-		foreach (TriggeredObject listener in evr.listeners) {
-			if (listener != null) {
-				XmlNode listenerXml = _writeTarget.CreateNode (XmlNodeType.Element, "Listener", null);
-				listenerXml.InnerXml = listener.gameObject.name;
-				listenersXml.AppendChild (listenerXml);
+		foreach (TriggeredObject listener in evr.listeners)
+		{
+			if (listener != null)
+			{
+				CreateAddNode (_writeTarget, "Listener", listenersXml).InnerText = listener.gameObject.name;
 			}
 		}
-		evrXml.AppendChild (listenersXml);
 	}
 	
 	override public void Visit (Castaway v)
@@ -232,7 +282,7 @@ public class XmlVisitor : Visitor
 		Debug.Log ("Visiting a Castaway");
 				
 		XmlNode c = CreateMissionObjectBaseXml ("Castaway", v);
-		CreateAddNode(_writeTarget, "ScoreValue", c).InnerText = v.scoreValue.ToString();
+		CreateAddNode (_writeTarget, "ScoreValue", c).InnerText = v.scoreValue.ToString ();
 		
 		
 	}
@@ -362,7 +412,7 @@ public class XmlVisitor : Visitor
 		//audio
 		CreateAddNode (_writeTarget, "Audio", _activeObject).InnerText = message.audio != null ? message.audio.name : "";
 		//isWarning
-		CreateAddNode (_writeTarget, "IsWarning", _activeObject).InnerText = message.isWarning.ToString();
+		CreateAddNode (_writeTarget, "IsWarning", _activeObject).InnerText = message.isWarning.ToString ();
 		
 		
 //_writeTarget.GetElementsByTagName ("Messages") [0].AppendChild (_activeObject);
@@ -410,7 +460,8 @@ public class XmlVisitor : Visitor
 	{
 		return _writeTarget;
 	}
-	public XmlDocument Document{
-		get{return _writeTarget;}
+
+	public XmlDocument Document {
+		get{ return _writeTarget;}
 	}
 }

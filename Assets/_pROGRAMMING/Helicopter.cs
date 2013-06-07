@@ -372,7 +372,7 @@ public class Helicopter : MonoBehaviour
 			else
 				saveReticle.renderer.enabled = true;
 			
-			Debug.Log ("Dir to rescuable = " + dirToRescuable);
+//			Debug.Log ("Dir to rescuable = " + dirToRescuable);
 			Vector3 dir = Vector3.Normalize (dirToRescuable);
 			
 			// forward component

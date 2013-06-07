@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class Main : TriggeredObject {
 	
-	private string _loadName = "MainMenu";
+	public string menuScene = "MenuSceneDavid";
 	private enum State{Menu, Game};
 	private State state;
 	// Use this for initialization
@@ -15,7 +15,6 @@ public class Main : TriggeredObject {
 	
 	void Awake () 
 	{
-		Debug.LogError("Main", this);
 		if(FindObjectsOfType(typeof(Main)).Length >1)
 		{
 			Debug.Log("Found another main. deleting this");
@@ -24,9 +23,11 @@ public class Main : TriggeredObject {
 		else{
 			state = State.Game;
 			DontDestroyOnLoad(this.gameObject);
+			if(levels.Count == 0)Debug.LogError ("Specify Levels!");
+			scoreManager = ScoreManager.Instance;
+			scoreManager.main = this;
 		}
-		if(levels.Count == 0)Debug.LogError ("Specify Levels!");
-		scoreManager = ScoreManager.Instance;
+		
 		
 	}
 	/// <summary>
@@ -41,7 +42,9 @@ public class Main : TriggeredObject {
 		if(eventReaction.type == EventReaction.Type.EndLevel)
 		{
 			state = State.Menu;
-			Application.LoadLevel("MenuScene");	
+			scoreManager.LevelComplete(ConfigLoader.Instance.activeLevel);
+			Application.LoadLevel(menuScene);	
+			
 		}
 		if(eventReaction.type == EventReaction.Type.SpecialScore){
 			scoreManager.AddSpecialScore(eventReaction.specialScore);
@@ -64,11 +67,7 @@ public class Main : TriggeredObject {
 			}
 		}
 	}
-	public string loadName
-	{
-		get{return _loadName;}
-		set{_loadName = value;}
-	}
+
 	public void NextLevel(){
 		currentLevel++;
 		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
@@ -78,6 +77,7 @@ public class Main : TriggeredObject {
 	}
 		
 	public IEnumerator SwitchSceneAndLoad(string scene, string level){
+		
 		Application.LoadLevel(scene);
 		yield return null; //wait a frame so the scene can load
 		ConfigLoader.Instance.LoadLevel (level); //load the objects

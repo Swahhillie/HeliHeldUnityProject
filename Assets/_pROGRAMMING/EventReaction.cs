@@ -27,8 +27,9 @@ public class EventReaction
 	public Type type;
 	public string messageName;
 	public Vector3 pos;
-	public List<TriggeredObject> listeners;
 	public int specialScore;
+	public List<TriggeredObject> listeners;
+	
 	public EventReaction(XmlNode node)
 	{
 		if(!init)

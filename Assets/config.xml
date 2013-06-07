@@ -511,7 +511,7 @@
         </Object>
       </Objects>
       <Score>
-        <GoldScoreMinimum>500</GoldScoreMinimum>
+        <GoldScoreMinimum>200</GoldScoreMinimum>
         <SilverScoreMinimum>100</SilverScoreMinimum>
         <BronzeScoreMinimum>0</BronzeScoreMinimum>
       </Score>
@@ -582,49 +582,6 @@
             <Type>Timer</Type>
             <RepeatCount>1</RepeatCount>
             <TimeToTrigger>5</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-      </Objects>
-      <Score>
-        <GoldScoreMinimum>200</GoldScoreMinimum>
-        <SilverScoreMinimum>100</SilverScoreMinimum>
-        <BronzeScoreMinimum>0</BronzeScoreMinimum>
-      </Score>
-    </Level>
-    <Level name="RescueTest">
-      <Objects>
-        <Object>
-          <Name>beaconPrefab_000_</Name>
-          <Pos>(1864.8, 1.7, 723.8)</Pos>
-          <Rot>(0.0, 0.0, 0.0)</Rot>
-          <Beacon>
-            <Spawn>Start</Spawn>
-            <PrefabName>beaconPrefab</PrefabName>
-          </Beacon>
-        </Object>
-        <Object>
-          <Name>castawayExample_001_</Name>
-          <Pos>(1857.5, 1.5, 721.1)</Pos>
-          <Rot>(0.0, 0.0, 0.0)</Rot>
-          <Castaway>
-            <ScoreValue>100</ScoreValue>
-            <Spawn>Start</Spawn>
-            <PrefabName>castawayPrefab</PrefabName>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Hallo</MessageName>
-              <Listeners>
-                <Listener>castawayExample_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>50</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>0</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
             <CountToTrigger>0</CountToTrigger>
           </Trigger>
         </Object>
@@ -1310,6 +1267,69 @@
               </Listeners>
             </EventReaction>
             <Radius>345.46</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+      </Objects>
+      <Score>
+        <GoldScoreMinimum>200</GoldScoreMinimum>
+        <SilverScoreMinimum>100</SilverScoreMinimum>
+        <BronzeScoreMinimum>0</BronzeScoreMinimum>
+      </Score>
+    </Level>
+    <Level name="ScoreTest">
+      <Objects>
+        <Object>
+          <Name>rescuable_000__000_</Name>
+          <Pos>(2841, 30, 747)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>Placeholder_Character</PrefabName>
+            <ScoreValue>101</ScoreValue>
+          </Castaway>
+        </Object>
+        <Object>
+          <Name>endGameObject_001__001_</Name>
+          <Pos>(2792, 30, 846.8)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>EndLevel</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>80</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>addScoreObject_002__002_</Name>
+          <Pos>(2795, 30, 663.8)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>SpecialScore</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>1000</SpecialScore>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>80</Radius>
             <Type>OnTriggerEnter</Type>
             <RepeatCount>1</RepeatCount>
             <TimeToTrigger>0</TimeToTrigger>
