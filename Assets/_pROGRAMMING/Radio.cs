@@ -3,13 +3,17 @@ using System.Collections;
 
 public class Radio : TriggeredObject  
 {
+	public Font radioFont;
+	public Color radioTextcolor= Color.white;
+	public int radioTextSize = 10;
 	public Texture2D backgroundImage;
 	public float closeDuration=1.0f;
 	public float writeDuration = 5.0f;
 	
 	public Vector2 openedScale = new Vector2(200,200);
-	public Vector2 closedScale = new Vector2(0,0);
+	private Vector2 closedScale = new Vector2(0,0);
 	public Vector4 textOffset = new Vector4(0,0,0,0);
+	
 	
 	private float _width;	
 	private Message _message;
@@ -18,10 +22,9 @@ public class Radio : TriggeredObject
 	private bool _active=false;
     //private RadioMessageIndicator rmi;
 	private AudioSource _audioSource;
-	
 	private float startTime;
-	
 	private Vector2 _currentScale=new Vector2(0,0);
+	private GUIStyle style;
     
 	
 
@@ -39,6 +42,14 @@ public class Radio : TriggeredObject
 	{
         //rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
 		_audioSource = Camera.main.GetComponent<AudioSource>();
+		style = new GUIStyle();
+		style.wordWrap=true;
+		if(radioFont!=null)
+		{
+			style.font = radioFont;
+		}
+		style.normal.textColor = radioTextcolor;
+		style.fontSize = radioTextSize;
 	}
 	
 	/// <summary>
@@ -49,6 +60,9 @@ public class Radio : TriggeredObject
 		DrawRadio();
 	}
 	
+	/// <summary>
+	/// Draws the Radio in GUI space if neccessary
+	/// </summary>
 	public void OnGUI()
 	{
 		if(_currentScale.x>0)
@@ -61,11 +75,11 @@ public class Radio : TriggeredObject
 			
 			if(messagePercent>0)
 			{
-				string text = "asdjfhaksdgajk\nakjgskjhagjksdhgas\\njagsdhasdfjagsjdhfgasdf\\njhasdfkga";
+				string text = "asdjfhaksdgajkakjgskjhagjksdhgasjagsdhasdfjagsjdhfgasdfjhasdfkgjhsadfgkjhagdkfjhakjhgskjdfghslkjfdghskdjfhgslkjdfhglksjdfhgkjsldhfgjksldfhgjskldfhgklsjdfhglksjdfhglkjsdfhglksjdfhgklsjdfhglksjdfhglksjdhfga";
 				Vector4 textfield = radioscreen-textOffset;
 				GUI.Label(
 					new Rect(textfield.x,textfield.y,textfield.z,textfield.w),
-					new GUIContent(text.Substring(0,Mathf.FloorToInt(messagePercent * text.Length))));
+					new GUIContent(text.Substring(0,Mathf.FloorToInt(messagePercent * text.Length))),style);
 			}
 		}
 	}
@@ -143,7 +157,7 @@ public class Radio : TriggeredObject
 	private void DrawRadio()
 	{
 		//if(_message!=null)
-	//	{
+		//{
 			float elapsed = Time.time - startTime;
 			float percent = elapsed / closeDuration;
 			
@@ -157,10 +171,7 @@ public class Radio : TriggeredObject
 			}
 			
 			float elapsedSinceOpen = Time.time - startTime - closeDuration;
-			
 			messagePercent = Mathf.Clamp (elapsedSinceOpen / writeDuration, 0, 1);
-			//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
-			//tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
 		//}
 	}
 	/// <summary>
@@ -180,7 +191,6 @@ public class Radio : TriggeredObject
 			_message = message;
 			if(!_message.isWarning)
 			{
-			
 				if(message.text!=null)
 				{
 					SetRadio(true);
@@ -206,49 +216,4 @@ public class Radio : TriggeredObject
 	{
 		get{return _active;}
 	}
-	/*private IEnumerator ActivateHud()
-	{
-		_active=true;
-		for(int i=(int)(this.transform.localScale.x*step);i<=step;++i)
-		{
-			this.transform.localScale=new Vector3((float)i/step,this.transform.localScale.y,0.0f);
-			yield return new WaitForSeconds(delay);
-		}
-		for(int i=(int)(this.transform.localScale.y*step);i<=step;++i)
-		{
-			this.transform.localScale=new Vector3(this.transform.localScale.x,(float)i/step,0.0f);
-			yield return new WaitForSeconds(delay);
-		}
-		StartCoroutine("DisplayText");
-	}
-	
-	private IEnumerator DisplayText()
-	{
-		TextMesh tMesh = this.GetComponent<TextMesh>();
-		tMesh.font.material.color=Color.green;
-		tMesh.text="";
-		for(int i = 0; i < _message.Length; i++)
-		{
-			tMesh.text+= _message[i];
-			yield return new WaitForSeconds(delay);
-		}
-	}
-	
-	private IEnumerator DeactivateHud()
-	{
-		_active=false;
-		TextMesh tMesh = this.GetComponent<TextMesh>();
-		tMesh.text="";
-		for(int i=(int)(this.transform.localScale.y*step);i>0;--i)
-		{
-			this.transform.localScale=new Vector3(this.transform.localScale.x,(float)i/10,0);
-			yield return new WaitForSeconds(delay);
-		}	
-		for(int i=(int)(this.transform.localScale.x*step);i>=0;--i)
-		{
-			this.transform.localScale=new Vector3((float)i/step,this.transform.localScale.y,0.0f);
-			yield return new WaitForSeconds(delay);
-		}
-				
-	}*/
 }
