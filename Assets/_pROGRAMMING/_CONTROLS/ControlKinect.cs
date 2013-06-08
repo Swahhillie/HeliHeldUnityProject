@@ -1,148 +1,234 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ControlKinect : ControlBase
 {
 	public float forceThresshold = .5f;
 	public float steerSensitivity = 4.0f;
 	public float saveSensitvity = 30.0f;
-	
 	private KinectGestures kg;
-	
 	Vector3 shouldC;
 	Vector3 handR;
 	Vector3 elbowR;
 	Vector3 handL;
 	Vector3 elbowL;
-	
 	private Texture2D handTex;
 	bool showHand;
+	public SavingModeGesture savingModeGesture = new SavingModeGesture();
+	public RadioGesture radioGesture = new RadioGesture();
+	public FlyingModeGesture flyingModeGesture = new FlyingModeGesture();
 	
-	override protected void StartConcrete()
+	private List<GestureAction> gestures;
+	
+	override protected void StartConcrete ()
 	{
-		kg = new KinectGestures(skelWrap);
+		kg = new KinectGestures (skelWrap);
 		handTex = Resources.Load ("Hand", typeof(Texture2D)) as Texture2D;
-	}
-	
-	void Update()
-	{
-		float oldVal;
 		
-		if(!kg.GetHandsApart()) //hands tight
+		gestures = new List<GestureAction>();
+		
+		AddGesture(savingModeGesture);
+		AddGesture(flyingModeGesture);
+		AddGesture(radioGesture);
+		
+		GestureAction.skelWrap = skelWrap;
+		
+	}
+	private void AddGesture(GestureAction g){
+		g.BecomeActived += OnGestureBecomeActive;
+		g.BecomeDeactived += OnGestureBecomeDeactive;
+		g.WhileActivated += OnGesture;
+		gestures.Add(g);
+	}
+	void Update(){
+		foreach(var g in gestures)g.Update();
+		
+		cursorPosition = kg.GetCursorPosition ();
+		
+		if(heli.IsSaving())
 		{
-			showHand = false;
-			
-			//set handstight time and save old value
-			oldVal = actionTimers[Action.HandsTight];
-			actionTimers[Action.HandsTight] += Time.deltaTime;
-			
-			//if handstight is hold longer then set value...
-			if(actionTimers[Action.HandsTight] > actionTime)
-			{
-				//reset handsapart
-				actionActive[Action.HandsApart] = false;
-				actionTimers[Action.HandsApart] = 0.0f;
-				
-				actionActive[Action.HandsTight] = true;
-				if(oldVal < actionTime) heli.EnterFlyMode(); //if old value was smaller, set transition
-				
-				//calculate flying variables
-				Vector3 dir = Vector3.zero;
-				handR = skelWrap.bonePos[0, (int)Kinect.NuiSkeletonPositionIndex.HandRight];
-				elbowR = skelWrap.bonePos[0, (int)Kinect.NuiSkeletonPositionIndex.ElbowRight];
-				handL = skelWrap.bonePos[0, (int)Kinect.NuiSkeletonPositionIndex.HandLeft];
-				elbowL = skelWrap.bonePos[0, (int)Kinect.NuiSkeletonPositionIndex.ElbowLeft];
-				
-				Vector3 diff = (handR + handL)*0.5f - (elbowR + elbowL)*0.5f;
-				
-				float steer = diff.x * steerSensitivity;
-				
-				dir.z = 0.5f - diff.y;
-				
-				dir = dir.magnitude > forceThresshold ? Vector3.Normalize(dir) : Vector3.zero;
-				
-				heli.Steer(steer);
-				heli.Accelerate(dir);
-			}
-		}
-		else //hands apart
-		{
-			//hands are apart
-			oldVal = actionTimers[Action.HandsApart];
-			actionTimers[Action.HandsApart] += Time.deltaTime;
-			
-			if(actionTimers[Action.HandsApart] > actionTime) //activated
-			{
-				//reset handstight
-				actionActive[Action.HandsTight] = false;
-				actionTimers[Action.HandsTight] = 0.0f;
-				
-				actionActive[Action.HandsApart] = true;
-				if(oldVal < actionTime) heli.EnterSaveMode(); //transition
-				
-				cursorPosition = kg.GetCursorPosition();
-				
-				//give position to helicopter which handles it in saving mode
-				float saveX = (cursorPosition.x / Screen.width) - 0.5f;
-				float saveZ = (cursorPosition.y / Screen.height) - 0.5f;
-				
-				//sensitivity fix
-				if(saveX < 0.25f && saveX > 0.0f) saveX = 0;
-				if(saveX > -0.25f && saveX < 0.0f) saveX = 0;
-				if(saveZ < 0.25f && saveZ > 0.0f) saveZ = 0;
-				if(saveZ > -0.25f && saveZ < 0.0f) saveZ = 0;
-				
-				heli.Accelerate(new Vector3(saveX*saveSensitvity, 0, saveZ*saveSensitvity));
-				
-				showHand = true;
-			}
-			else
-				showHand = false;
-			
-			if(kg.GetRadioGesture()) //radio gesture on
-			{
-				oldVal = actionTimers[Action.Radio];
-				actionTimers[Action.Radio] += Time.deltaTime;
-				
-				if(actionTimers[Action.Radio] > actionTime)
-				{
-					actionActive[Action.Radio] = true;
-					if(oldVal < actionTime)
-					{
-						heli.ToggleRadio();
-					}
-				}
-			}
-			else //no radio gesture
-			{
-				if(actionActive[Action.Radio]) //if active, disable radio
-					heli.DeactivateRadio();
-				
-				actionActive[Action.Radio] = false;
-				actionTimers[Action.Radio] = 0.0f;
-			}
+			KinectSaving();
 		}
 	}
+	private void OnGestureBecomeActive(GestureAction sender, System.EventArgs e){
+		
+		switch(sender.Type)
+		{
+			case GestureAction.GestureType.SavingModeGesture:
+				heli.EnterSaveMode();
+				break;
+			
+			case GestureAction.GestureType.FlyingModeGesture:
+				heli.EnterFlyMode();
+				break;
+			
+			case GestureAction.GestureType.RadioGesture:
+				heli.ToggleRadio();
+				break;
+			
+			default:
+				break;
+		}
+	}
+	private void OnGesture(GestureAction sender, System.EventArgs e){
 	
-	void OnGUI()
+		switch(sender.Type)
+		{
+			case GestureAction.GestureType.SavingModeGesture:
+				
+				break;
+			
+			case GestureAction.GestureType.FlyingModeGesture:
+				KinectFlying();
+				break;
+			
+			case GestureAction.GestureType.RadioGesture:
+			
+				break;
+			
+			default:
+				break;
+		}
+	}
+	private void OnGestureBecomeDeactive(GestureAction sender, System.EventArgs e){
+		switch(sender.Type)
+		{
+			case GestureAction.GestureType.SavingModeGesture:
+			
+				break;
+			
+			case GestureAction.GestureType.FlyingModeGesture:
+			
+				break;
+			
+			case GestureAction.GestureType.RadioGesture:
+				heli.DeactivateRadio();
+				break;
+			
+			default:
+				break;
+		}
+	}
+	void DebugGUI(){
+		
+			GUILayout.BeginVertical();
+			foreach(var g in gestures)
+				GUILayout.Label(string.Format("gesture {0} is {1}", g.Type, g.Activated ));
+			GUILayout.EndVertical();
+		
+	}
+	
+//	void UpdateOld ()
+//	{
+//		float oldVal;
+//		
+//		if (!kg.GetHandsApart ()) { //hands tight
+//			showHand = false;
+//			
+//			//set handstight time and save old value
+//			oldVal = actionTimers [Action.HandsTight];
+//			actionTimers [Action.HandsTight] += Time.deltaTime;
+//			
+//			//if handstight is hold longer then set value...
+//			if (actionTimers [Action.HandsTight] > actionTime) {
+//				KinectFlying ();
+//			}
+//		} else if (kg.GetRadioGesture ()) { //radio gesture on
+//			oldVal = actionTimers [Action.Radio];
+//			actionTimers [Action.Radio] += Time.deltaTime;
+//			
+//			if (actionTimers [Action.Radio] > actionTime) {
+//				KinectRadio ();
+//			}
+//		} else { //no radio gesture
+//		
+//			//hands are apart
+//			oldVal = actionTimers [Action.HandsApart];
+//			actionTimers [Action.HandsApart] += Time.deltaTime;
+//			
+//			if (actionTimers [Action.HandsApart] > actionTime) { //activated
+//				//reset handstight
+//				actionActive [Action.HandsTight] = false;
+//				actionTimers [Action.HandsTight] = 0.0f;
+//				
+//				if (actionActive [Action.Radio]) {
+//					//if active, disable radio
+//					heli.DeactivateRadio ();
+//				}
+//				
+//				actionActive [Action.Radio] = false;
+//				actionTimers [Action.Radio] = 0.0f;
+//				
+//				actionActive [Action.HandsApart] = true;
+//				if (oldVal < actionTime) {
+//					heli.EnterSaveMode ();
+//				} //transition
+//				
+//				cursorPosition = kg.GetCursorPosition ();
+//				
+//				if (heli.IsSaving ()) {
+//					KinectSaving ();
+//				}
+//			} else {
+//				showHand = false;
+//			}
+//		}
+//	}
+	
+	void OnGUI ()
 	{
-		Vector2 boxPos = new Vector2(1400, 150);
-		Vector2 boxSize = new Vector2(120, 120);
+		bool debug = false;
+		if(debug){DebugGUI();}
 		
-		GUI.Box(new Rect(boxPos.x, boxPos.y, boxSize.x, boxSize.y), "");
+		if (showHand) {
+			GUI.DrawTexture (new Rect (cursorPosition.x - handTex.width * 0.5f, Screen.height - cursorPosition.y - handTex.height * 0.5f, handTex.width, handTex.height), handTex);
+		}
+	}
+	
+	void KinectFlying ()
+	{
+		//calculate flying variables
+		Vector3 dir = Vector3.zero;
+		handR = skelWrap.bonePos [0, (int)Kinect.NuiSkeletonPositionIndex.HandRight];
+		elbowR = skelWrap.bonePos [0, (int)Kinect.NuiSkeletonPositionIndex.ElbowRight];
+		handL = skelWrap.bonePos [0, (int)Kinect.NuiSkeletonPositionIndex.HandLeft];
+		elbowL = skelWrap.bonePos [0, (int)Kinect.NuiSkeletonPositionIndex.ElbowLeft];
 		
-		Vector3 playerPos = kg.GetPlayerPosition();
-		//limits
-		if(playerPos.x > 1) playerPos.x = 1;
-		if(playerPos.x < -1) playerPos.x = -1;
-		if(playerPos.z > 1) playerPos.z = -1;
-		if(playerPos.z < -1) playerPos.z = -1;
+		Vector3 diff = (handR + handL) * 0.5f - (elbowR + elbowL) * 0.5f;
 		
-		Vector2 playerOnscreen = new Vector2((playerPos.x*boxSize.x*0.5f), (playerPos.z*boxSize.y*0.5f));
+		float steer = diff.x * steerSensitivity; //add sensitivity value
 		
-		GUI.Label(new Rect(boxPos.x+boxSize.x*0.5f+playerOnscreen.x-10, boxPos.y+boxSize.y*0.5f+playerOnscreen.y-10, 20, 20), "X");
+		dir.z = 0.5f - diff.y; //prevent backwards flying
 		
-		if(showHand)
-			GUI.Label (new Rect (cursorPosition.x - handTex.width*0.5f, Screen.height - cursorPosition.y - handTex.height*0.5f, handTex.width, handTex.height), handTex);
+		dir = dir.magnitude > forceThresshold ? Vector3.Normalize (dir) : Vector3.zero; //get direction
+		
+		heli.Steer (steer);
+		heli.Accelerate (dir);
+	}
+	
+	void KinectSaving ()
+	{
+		//give position to helicopter which handles it in saving mode
+		float saveX = (cursorPosition.x / Screen.width) - 0.5f;
+		float saveZ = (cursorPosition.y / Screen.height) - 0.5f;
+					
+		//sensitivity fix
+		if (saveX < 0.25f && saveX > 0.0f) {
+			saveX = 0;
+		}
+		if (saveX > -0.25f && saveX < 0.0f) {
+			saveX = 0;
+		}
+		if (saveZ < 0.25f && saveZ > 0.0f) {
+			saveZ = 0;
+		}
+		if (saveZ > -0.25f && saveZ < 0.0f) {
+			saveZ = 0;
+		}
+				
+		heli.Accelerate (new Vector3 (saveX * saveSensitvity, 0, saveZ * saveSensitvity));
+				
+		showHand = true;
 	}
 }

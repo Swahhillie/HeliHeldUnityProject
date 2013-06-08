@@ -38,7 +38,7 @@ public class Storm : MonoBehaviour {
 	
 	void CreateLightning()
 	{
-		Vector3 rndPos = new Vector3 (0,0,0);//Random.insideUnitSphere;
+		Vector3 rndPos = Random.insideUnitSphere;
 		GameObject light = new GameObject();
 		light.transform.parent = this.transform;
 		light.name="Lightning";
