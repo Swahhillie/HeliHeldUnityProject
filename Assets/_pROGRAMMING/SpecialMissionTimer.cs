@@ -52,11 +52,12 @@ public class SpecialMissionTimer : MonoBehaviour {
 			if(timerTime<0)
 			{
 				_active=false;
-				_timer.text="";
+				_timer.enabled = false;				
 				_startTime = Time.time;
 			}
-			if(percent>0.9f)
+			else if(percent>0.9f)
 			{
+				_timer.enabled = true;
 				_timer.text = timerTime.ToString("00.0");
 			}
 			_currentScale = Vector2.Lerp(_currentScale, openedScale, percent);
