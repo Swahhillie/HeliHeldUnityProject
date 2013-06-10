@@ -36,6 +36,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -65,6 +66,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -89,6 +91,7 @@
           </Ship>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Spawn</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -103,6 +106,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Boot1</MessageName>
@@ -118,6 +122,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castaway4</MessageName>
@@ -131,6 +136,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castaway5</MessageName>
@@ -153,6 +159,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -183,6 +190,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Intro</MessageName>
@@ -208,6 +216,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -223,6 +232,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Destroy</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Placeholder_Castaway</MessageName>
@@ -246,6 +256,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -261,6 +272,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Destroy</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Placeholder_Castaway</MessageName>
@@ -284,6 +296,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -299,6 +312,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Destroy</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Placeholder_Castaway</MessageName>
@@ -322,6 +336,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -342,6 +357,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Highlight_Activate</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -349,6 +365,7 @@
               <Listeners />
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>ToLate</MessageName>
@@ -371,6 +388,7 @@
           </Ship>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Boat1</MessageName>
@@ -386,6 +404,7 @@
           </Trigger>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Destroy</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -393,12 +412,14 @@
               <Listeners />
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Ship2</MessageName>
               <Listeners />
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>ToLate</MessageName>
@@ -421,6 +442,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Highlight_Activate</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -430,6 +452,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>ToLate</MessageName>
@@ -450,6 +473,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -470,6 +494,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -495,6 +520,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -524,6 +550,7 @@
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0.0, 0.0, 0.0)</Pos>
               <MessageName>Hallo</MessageName>
@@ -532,6 +559,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>StartTimer</Type>
               <Pos>(0.0, 0.0, 0.0)</Pos>
               <MessageName>
@@ -562,6 +590,7 @@
           <Rot>(0.0, 0.0, 0.0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Highlight_Activate</Type>
               <Pos>(0.0, 0.0, 0.0)</Pos>
               <MessageName>
@@ -571,6 +600,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0.0, 0.0, 0.0)</Pos>
               <MessageName>ToLate</MessageName>
@@ -605,6 +635,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -613,6 +644,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -639,6 +671,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -647,6 +680,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -668,6 +702,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -688,6 +723,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Highlight_Activate</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -697,6 +733,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>ToLate</MessageName>
@@ -717,6 +754,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -742,6 +780,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -750,6 +789,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -771,6 +811,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>EndLevel</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -802,6 +843,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -810,6 +852,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -830,6 +873,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -837,6 +881,7 @@
               <Listeners />
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Boat1</MessageName>
@@ -846,6 +891,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castaway1</MessageName>
@@ -855,6 +901,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castway2</MessageName>
@@ -864,6 +911,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castway3</MessageName>
@@ -873,6 +921,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castway4</MessageName>
@@ -899,6 +948,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -907,6 +957,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -933,6 +984,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -941,6 +993,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -962,6 +1015,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -987,6 +1041,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -995,6 +1050,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -1005,6 +1061,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -1030,6 +1087,7 @@
           </Ship>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Boat1</MessageName>
@@ -1050,6 +1108,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -1075,6 +1134,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -1083,6 +1143,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -1108,6 +1169,7 @@
           </Ship>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Boat1</MessageName>
@@ -1116,6 +1178,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Castaway8</MessageName>
@@ -1146,6 +1209,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -1154,6 +1218,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -1175,6 +1240,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -1200,6 +1266,7 @@
           </Castaway>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Save</MessageName>
@@ -1208,6 +1275,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Count</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>
@@ -1229,6 +1297,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>Keerom</MessageName>
@@ -1249,6 +1318,7 @@
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Say</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>SpecialMission</MessageName>
@@ -1257,6 +1327,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
+              <SpecialScore>0</SpecialScore>
               <Type>Enable</Type>
               <Pos>(0, 0, 0)</Pos>
               <MessageName>SpecialMission</MessageName>
@@ -1280,69 +1351,6 @@
         <BronzeScoreMinimum>0</BronzeScoreMinimum>
       </Score>
     </Level>
-    <Level name="ScoreTest">
-      <Objects>
-        <Object>
-          <Name>rescuable_000__000_</Name>
-          <Pos>(2841, 30, 747)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>Placeholder_Character</PrefabName>
-            <ScoreValue>101</ScoreValue>
-          </Castaway>
-        </Object>
-        <Object>
-          <Name>endGameObject_001__001_</Name>
-          <Pos>(2792, 30, 846.8)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>EndLevel</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Listeners>
-                <Listener>Main</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>80</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>addScoreObject_002__002_</Name>
-          <Pos>(2795, 30, 663.8)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>SpecialScore</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>1000</SpecialScore>
-              <Listeners>
-                <Listener>Main</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>80</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-      </Objects>
-      <Score>
-        <GoldScoreMinimum>200</GoldScoreMinimum>
-        <SilverScoreMinimum>100</SilverScoreMinimum>
-        <BronzeScoreMinimum>0</BronzeScoreMinimum>
-      </Score>
-    </Level>
     <Level name="newXml">
       <Objects>
         <Object>
@@ -1352,6 +1360,81 @@
           <Castaway>
             <Spawn>Start</Spawn>
             <PrefabName>Placeholder_Character</PrefabName>
+          </Castaway>
+        </Object>
+      </Objects>
+    </Level>
+    <Level name="HerpDerpAtron">
+      <Score>
+        <GoldScoreMinimum>2</GoldScoreMinimum>
+        <SilverScoreMinimum>1</SilverScoreMinimum>
+        <BronzeScoreMinimum>0</BronzeScoreMinimum>
+      </Score>
+      <Objects>
+        <Object>
+          <Name>endGameObject_001__000_</Name>
+          <Pos>(2792, 30, 846.8)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>EndLevel</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>50</Time>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>80</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>beaconPrefab_001_</Name>
+          <Pos>(2797, 1.042, 626.4)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
+        <Object>
+          <Name>beaconPrefab_016__002_</Name>
+          <Pos>(2797, 1.042, 626.4)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
+        <Object>
+          <Name>addScoreObject_002__003_</Name>
+          <Pos>(2795, 30, 663.8)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>SpecialScore</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>1000</SpecialScore>
+              <Time>0</Time>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>80</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>rescuable_000__004_</Name>
+          <Pos>(2841, 30, 747)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>Placeholder_Character</PrefabName>
+            <ScoreValue>101</ScoreValue>
           </Castaway>
         </Object>
       </Objects>
