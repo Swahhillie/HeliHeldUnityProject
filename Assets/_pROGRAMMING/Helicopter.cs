@@ -310,6 +310,23 @@ public class Helicopter : MonoBehaviour
 	/// </summary>
 	void Update ()
 	{
+		/*START TEMP*/
+		if(Input.GetKeyDown(KeyCode.C))
+		{
+			Debug.Log("Testing animation!");
+			if(state == Helistate.Fly)
+			{
+				state = Helistate.Save;
+				camAnimation.PlayQueued (toSavePosition, QueueMode.PlayNow);
+			}
+			else
+			{
+				state = Helistate.Fly;
+				camAnimation.PlayQueued (toPilotPosition, QueueMode.PlayNow);
+			}
+		}
+		/*END TEMP*/
+		
 		if (debugLines)
 		{
 			Debug.DrawRay (transform.position, velocity, Color.cyan);
