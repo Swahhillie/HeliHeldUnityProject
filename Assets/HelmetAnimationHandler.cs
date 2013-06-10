@@ -57,6 +57,11 @@ public class HelmetAnimationHandler : TriggeredObject
 		{
 			kinectController.Gestures.ForEach((obj) => obj.BecomeActived += AlertGesture);
 		}
+		else
+		{
+			Debug.LogError("Failed to load kinectController",this);	
+		}
+
 		_animation = this.gameObject.GetOrAddComponent<GUITexture>();
 		_currentScale = closedScale;
 	}
