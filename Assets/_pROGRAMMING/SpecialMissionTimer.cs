@@ -8,7 +8,7 @@ public class SpecialMissionTimer : MonoBehaviour {
 	
 	public Vector2 openedScale;
 	public Vector2 closedScale;
-	public float timerTime;
+	public float _time;
 	public float openCloseDuration;
 	
 	public bool ReversedAnim = false;
@@ -48,8 +48,8 @@ public class SpecialMissionTimer : MonoBehaviour {
 		
 		if(_active)
 		{
-			timerTime -=Time.deltaTime;
-			if(timerTime<0)
+			_time -=Time.deltaTime;
+			if(_time<0)
 			{
 				_active=false;
 				_timer.enabled = false;				
@@ -58,7 +58,7 @@ public class SpecialMissionTimer : MonoBehaviour {
 			else if(percent>0.9f)
 			{
 				_timer.enabled = true;
-				_timer.text = timerTime.ToString("00.0");
+				_timer.text = _time.ToString("00.0");
 			}
 			_currentScale = Vector2.Lerp(_currentScale, openedScale, percent);
 		}

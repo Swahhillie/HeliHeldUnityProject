@@ -7,7 +7,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class HelmetAnimation : System.Object
 {
-	public string functioncall; // listenerfunction kinect
+	public GestureAction gesture; // listenerfunction kinect
 	public MovieTexture _image;
 	
 
@@ -19,7 +19,7 @@ public class HelmetAnimation : System.Object
 }
 
 [System.Serializable]
-public class Helmet : TriggeredObject 
+public class HelmetAnimationHandler : TriggeredObject 
 {
 	public enum State{
 		Active,
@@ -40,6 +40,7 @@ public class Helmet : TriggeredObject
 	private bool _active=false;
 	private float _startTime;
 	private GUITexture _animation;
+	private HelmetAnimation _activeAnimation;
 	private State _state = State.Deactive;
 	private Vector2 _currentScale = new Vector2(0,0);
 	
@@ -83,9 +84,10 @@ public class Helmet : TriggeredObject
 		if(activate)
 		{
 			_startTime = Time.time;
-			animations[animNr].image.loop=true;
-			animations[animNr].image.Play();
-			_animation.texture = animations[animNr].image;
+			_activeAnimation = animations[animNr];
+			_activeAnimation.image.loop=true;
+			_activeAnimation.image.Play();
+			_animation.texture = _activeAnimation.image;
 			//add kinect gesture listener
 			
 			_active=true;
@@ -95,6 +97,12 @@ public class Helmet : TriggeredObject
 			_active = false;	
 		}
 	}
+	
+	public void Alert()
+	{
+		
+	}
+	
 	
 	/// <summary>
 	/// Updates the Animationscreen in the Helmet

@@ -4,9 +4,10 @@ using System.Collections;
 public class RadioMessageIndicator : MonoBehaviour {
 
     public float speed=1;
-    private bool _active=false;
-    private Material mat;
-	private float startTime=0;
+	
+	private GUITexture _texture;
+    private bool _active=true;
+	private float _startTime=0;
 	
 	public bool setActive
 	{
@@ -15,26 +16,21 @@ public class RadioMessageIndicator : MonoBehaviour {
 			_active = value;
 			if(_active)
 			{
-				startTime=Time.time;
-			}
-			else
-			{
-				mat.color = Color.white;	
+				_startTime=Time.time;
 			}
 		}
 	}
-	void Awake()
+	void Start()
 	{
-		mat = (Material)Instantiate(renderer.material);
-		renderer.material = mat;
+		_texture = this.gameObject.GetComponent<GUITexture>();
 	}
 	// Update is called once per frame
 	void Update () 
 	{
 		if(_active)
 		{
-            float value = Mathf.Sin((Time.time-startTime) * speed);
-            mat.color = new Color(1, value, value, 0);
+            float alpha = Mathf.Sin((Time.time-_startTime) * speed);
+            _texture.color = new Color(0.5f, 0.5f, 0.5f, alpha);
 		}
 	}
 }
