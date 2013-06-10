@@ -1343,6 +1343,19 @@
         <BronzeScoreMinimum>0</BronzeScoreMinimum>
       </Score>
     </Level>
+    <Level name="newXml">
+      <Objects>
+        <Object>
+          <Name>GameObject_000_</Name>
+          <Pos>(2819, 36.78, 352.6)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>Placeholder_Character</PrefabName>
+          </Castaway>
+        </Object>
+      </Objects>
+    </Level>
   </Levels>
   <Settings>
     <Setting name="flightHeight" value="150">

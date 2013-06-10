@@ -26,6 +26,7 @@ public class KinectGestures
 		
 	public KinectGestures(SkeletonWrapper aSkelWrap)
 	{
+		if(aSkelWrap == null)Debug.LogError("Skeleton wrapper is NULL");
 		skelWrap = aSkelWrap;
 		
 		iHandR = (int)Kinect.NuiSkeletonPositionIndex.HandRight;
@@ -83,6 +84,7 @@ public class KinectGestures
 	
 	public Vector3 GetPlayerPosition()
 	{
+		skelWrap.pollSkeleton();
 		return skelWrap.bonePos[0, (int)Kinect.NuiSkeletonPositionIndex.HipCenter];
 	}
 }

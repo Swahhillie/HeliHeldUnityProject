@@ -1,20 +1,43 @@
 using UnityEngine;
 using System.Collections;
+[System.Serializable]
+public class GestureSettings : System.Object
+{
+	public enum Hand
+	{
+		Left,
+		Right
+	};
+	
+	public float activationDistanceFlying = 0.3f;
+	public float activationDistanceRadio = 0.6f;
+	public Hand activeHand = Hand.Right;
+}
 
 [System.Serializable]
-public class HandApartGesture : GestureAction
+public class SavingModeGesture : GestureAction
 {
-	public float activationDistance;
 	public override GestureType Type {
 		get {
-			return GestureType.HandsApart;
+			return GestureType.SavingModeGesture;
 		}
 	}
 	protected override bool CheckGesture ()
 	{
 		bool gestureActive = false;
 		float dist = GetDistanceBetweenBones (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.HandRight);
-		if (dist > activationDistance) {
+		
+		//bool leftUnderShoulder = GetVectorBetween(Kinect.NuiSkeletonPositionIndex.ShoulderLeft, Kinect.NuiSkeletonPositionIndex.HandLeft).y < 0;
+		//bool rightUnderShoulder = GetVectorBetween(Kinect.NuiSkeletonPositionIndex.ShoulderRight, Kinect.NuiSkeletonPositionIndex.HandRight).y < 0;
+		
+		//Debug.Log("Left: " + leftUnderShoulder + "  Right: " + rightUnderShoulder);
+		float distToHead; 
+		if(settings.activeHand == GestureSettings.Hand.Right)
+			distToHead = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.Head);
+		else
+			distToHead = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.Head);
+		
+		if (dist > settings.activationDistanceFlying && distToHead > settings.activationDistanceRadio) {
 			gestureActive = true;
 		} else {
 			gestureActive = false;
@@ -23,25 +46,44 @@ public class HandApartGesture : GestureAction
 	}
 }
 [System.Serializable]
-public class HandToHeadGesture : GestureAction{
-	
-	public KinectGestures.Hand activeHand;
-	public float activationDistance  = 1.0f;
+public class FlyingModeGesture : GestureAction
+{
 	public override GestureType Type {
 		get {
-			return GestureType.HandToHead;
+			return GestureType.FlyingModeGesture;
+		}
+	}
+	protected override bool CheckGesture ()
+	{
+		bool gestureActive = false;
+		float dist = GetDistanceBetweenBones (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.HandRight);
+		
+		if (dist < settings.activationDistanceFlying) {
+			gestureActive = true;
+		} else {
+			gestureActive = false;
+		}
+		return gestureActive;
+	}
+}
+[System.Serializable]
+public class RadioGesture : GestureAction{
+	
+	public override GestureType Type {
+		get {
+			return GestureType.RadioGesture;
 		}
 	}
 	protected override bool CheckGesture ()
 	{
 		bool gestureActive = false;
 		float dist; 
-		if(activeHand == KinectGestures.Hand.Left)
+		if(settings.activeHand == GestureSettings.Hand.Right)
 			dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.Head);
 		else
 			dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.Head);
-		Debug.Log(dist);
-		if(dist < activationDistance)
+		
+		if(dist < settings.activationDistanceRadio)
 		{
 			gestureActive = true;
 		}
@@ -54,10 +96,10 @@ public class HandToHeadGesture : GestureAction{
 [System.Serializable]
 public abstract class GestureAction : System.Object
 {
+	public static GestureSettings settings;
+	public enum GestureType{SavingModeGesture, RadioGesture, FlyingModeGesture};
 	
-	public enum GestureType{HandsApart, HandToHead};
-	
-	public float activationTime = 2.0f;
+	public float activationTime = 1.5f;
 	protected float timeSinceStart = 0.0f;
 	protected bool isGestureActive = false;
 	private bool activated = false;
@@ -77,6 +119,10 @@ public abstract class GestureAction : System.Object
 	protected float GetDistanceBetweenBones (Kinect.NuiSkeletonPositionIndex bone1, Kinect.NuiSkeletonPositionIndex bone2)
 	{
 		return Vector3.Distance (skelWrap.bonePos [0, (int)bone1], skelWrap.bonePos [0, (int)bone2]);
+	}
+	protected Vector3 GetVectorBetween(Kinect.NuiSkeletonPositionIndex fromBone, Kinect.NuiSkeletonPositionIndex toBone)
+	{
+		return skelWrap.bonePos [0, (int)toBone] - skelWrap.bonePos [0, (int)fromBone];
 	}
 	public void Update ()
 	{

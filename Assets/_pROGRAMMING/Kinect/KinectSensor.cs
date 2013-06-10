@@ -277,4 +277,10 @@ public class KinectSensor : MonoBehaviour, KinectInterface {
 	{
 		NativeMethods.NuiShutdown();
 	}
+	
+	//Dennis Function
+	public void SetSensorHeight(long anAngle)
+	{
+		NativeMethods.NuiCameraSetAngle(anAngle);
+	}
 }
