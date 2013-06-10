@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class SpecialMissionTimer : MonoBehaviour {
+public class SpecialMissionTimer : TriggeredObject {
 
 	// Use this for initialization
 	
@@ -67,9 +67,19 @@ public class SpecialMissionTimer : MonoBehaviour {
 			_currentScale = Vector2.Lerp(_currentScale, closedScale, percent);
 		}
 		_background.pixelInset = new Rect(_position.x,_position.y,_currentScale.x,_currentScale.y);
-		
-		
+	}
 	
+	public override void OnTriggered (EventReaction eventReaction)
+	{
+		if(eventReaction.type == EventReaction.Type.Enable)
+		{
+			_active =true;
+			_time = eventReaction.time;
+		}
+		if(eventReaction.type == EventReaction.Type.Disable)
+		{
+			_active =false;
+		}
 	}
 }
 

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class HelmetAnimation : System.Object
 {
-	public GestureAction gesture; // listenerfunction kinect
+	public GestureAction.GestureType gesture; // listenerfunction kinect
 	public MovieTexture _image;
 	
 
@@ -40,6 +40,7 @@ public class HelmetAnimationHandler : TriggeredObject
 	private bool _active=false;
 	private float _startTime;
 	private GUITexture _animation;
+	private ControlKinect kinectController;
 	private HelmetAnimation _activeAnimation;
 	private State _state = State.Deactive;
 	private Vector2 _currentScale = new Vector2(0,0);
@@ -51,9 +52,13 @@ public class HelmetAnimationHandler : TriggeredObject
 	/// </summary>
 	void Start()
 	{	
+		kinectController = (ControlKinect)FindObjectOfType(typeof(ControlKinect));
+		if(kinectController!=null)
+		{
+			kinectController.Gestures.ForEach((obj) => obj.BecomeActived += AlertGesture);
+		}
 		_animation = this.gameObject.GetOrAddComponent<GUITexture>();
 		_currentScale = closedScale;
-		//setAnimation(true,1);
 	}
 	/// <summary>
 	/// Raises the triggered event.
@@ -98,9 +103,13 @@ public class HelmetAnimationHandler : TriggeredObject
 		}
 	}
 	
-	public void Alert()
+	private void AlertGesture(GestureAction gesture, System.EventArgs e)
 	{
-		
+		Debug.Log("made a " + gesture.Type + " gesture " );
+		if(gesture.Type == _activeAnimation.gesture)
+		{
+			setAnimation(false,0);	
+		}
 	}
 	
 	

@@ -6,7 +6,7 @@ public class RadioMessageIndicator : MonoBehaviour {
     public float speed=1;
 	
 	private GUITexture _texture;
-    private bool _active=true;
+    private bool _active=false;
 	private float _startTime=0;
 	
 	public bool setActive
@@ -18,11 +18,18 @@ public class RadioMessageIndicator : MonoBehaviour {
 			{
 				_startTime=Time.time;
 			}
+			else
+			{
+				//makes the indicator invisible
+				_texture.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+			}
 		}
 	}
 	void Start()
 	{
 		_texture = this.gameObject.GetComponent<GUITexture>();
+		//makes the indicator invisible
+		_texture.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 	}
 	// Update is called once per frame
 	void Update () 
@@ -30,7 +37,7 @@ public class RadioMessageIndicator : MonoBehaviour {
 		if(_active)
 		{
             float alpha = Mathf.Sin((Time.time-_startTime) * speed);
-            _texture.color = new Color(0.5f, 0.5f, 0.5f, alpha);
+            _texture.color = new Color(1.0f, 1.0f, 1.0f, alpha);
 		}
 	}
 }

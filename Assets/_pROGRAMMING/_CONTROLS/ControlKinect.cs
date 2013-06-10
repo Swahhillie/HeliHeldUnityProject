@@ -21,6 +21,11 @@ public class ControlKinect : ControlBase
 	
 	private List<GestureAction> gestures;
 	
+	public List<GestureAction> Gestures
+	{
+		get{return gestures;}	
+	}
+	
 	override protected void StartConcrete ()
 	{
 		kg = new KinectGestures (skelWrap);
