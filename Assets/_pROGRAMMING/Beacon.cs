@@ -11,7 +11,7 @@ public class Beacon : MissionObjectBase {
 	public ForceMode forceMode = ForceMode.Impulse;
 	public Rigidbody effect;
 	
-	private bool _activated = false;
+	private bool _activated = true;
 	
 	protected override void AwakeConcrete ()
 	{
@@ -36,20 +36,6 @@ public class Beacon : MissionObjectBase {
 		}
 		
 		
-	}
-	override public void OnTriggered(EventReaction evr)
-	{
-		base.OnTriggered(evr);
-		switch (evr.type)
-		{
-			case EventReaction.Type.Enable:
-				_activated = true;
-			break;
-			
-			case EventReaction.Type.Disable:
-				_activated = false;
-			break;
-		}
 	}
 	public override void AcceptVisitor (Visitor v)
 	{

@@ -160,7 +160,7 @@ public class ConfigLoader : System.Object
 	}
 	private ConfigLoader()
 	{
-		Debug.LogError("Created a config loader");
+//		Debug.LogError("Created a config loader");
 		Initialize();
 	}
 	
