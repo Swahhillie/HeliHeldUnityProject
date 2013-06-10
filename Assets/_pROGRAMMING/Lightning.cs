@@ -6,8 +6,8 @@ public class Lightning : MonoBehaviour {
 
 	private GameObject cloudeff;
 	private GameObject env;
-	public float radius = 5;
-	public int maxElements = 50;
+	public float radius = 7;
+	public int maxElements = 150;
 	
 	private float startWidth=6;
 	private float endWidth=1;
