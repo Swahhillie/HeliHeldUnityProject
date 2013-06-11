@@ -81,15 +81,12 @@ public class Helicopter : MonoBehaviour
 	private ControlType controlType = ControlType.None;
 	public string toSavePosition;
 	public string toPilotPosition;
-	private RescuePointer rescuePointer;
 	private RescueNearbyIndicator rescueNearbyIndicator;
 	public Transform joystick;
 	public Transform saveReticle;
 	
 	public void Start ()
 	{
-		
-		rescuePointer = GetComponentInChildren<RescuePointer> ();
 		rescueNearbyIndicator = GetComponentInChildren<RescueNearbyIndicator> ();
 		radio = (Radio)FindObjectOfType(typeof(Radio));
 		InitializeControls ();
@@ -362,9 +359,6 @@ public class Helicopter : MonoBehaviour
 		
 		if (state == Helistate.Save)
 		{
-			
-			rescuePointer.alpha = dotToNearest;
-		
 			
 			if (!rescueing)
 			{
