@@ -9,7 +9,7 @@ using System.Collections;
 
 public class Storm : MonoBehaviour {
 
-	public Vector3 position = new Vector3(0,500,0);
+	public Vector3 position = new Vector3(0,700,0);
 	public float range = 500;
 	public float delay = 1;
 	public float randomizer=0;

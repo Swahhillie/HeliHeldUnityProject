@@ -47,7 +47,7 @@ public class EventReaction
 		specialScore = int.Parse(node["SpecialScore"].InnerText, System.Globalization.CultureInfo.InvariantCulture);
 		
 		XmlNode timeNode = node["Time"];
-		if(node != null)
+		if(timeNode != null)
 		{
 			time = float.Parse(timeNode.InnerText, System.Globalization.CultureInfo.InvariantCulture);
 		}

@@ -49,6 +49,38 @@ public class ScoreManager : System.Object
 	{
 		gameStats.specialScore += amount;
 	}
+	
+	public GameStats.Award MedalCalculate()
+	{
+		if(activeLevel == null)return GameStats.Award.None;
+
+		int levelScore = gameStats.castawayScore + gameStats.specialScore;
+		GameStats.Award award = GameStats.Award.None;
+		if (levelScore > activeLevel.bronzeAchievementScore)
+		{
+			if (levelScore > activeLevel.silverAchievementScore)
+			{
+				if (levelScore > activeLevel.goldAchievementScore)
+				{
+					award = GameStats.Award.Gold;
+				} 
+				else
+				{
+					award = GameStats.Award.Silver;
+				}
+			} 
+			else
+			{
+				award = GameStats.Award.Bronze;
+			}
+		} 
+		else
+		{
+			award = GameStats.Award.None;
+		}
+		return award;
+	}
+	
 	/// <summary>
 	/// Unbinds the events.
 	/// </summary>
@@ -58,34 +90,17 @@ public class ScoreManager : System.Object
 	public void LevelComplete (Level level)
 	{
 		Debug.Log("ENDED A LEVEL, CALCULATING MEDAL");
-		int levelScore = gameStats.castawayScore + gameStats.specialScore;
 		
+		int levelScore = gameStats.castawayScore + gameStats.specialScore;
 		//lerping the castaway and special score fields
 		main.StartCoroutine(BringFieldScoreUp((obj) => gameStats.castawayScore = obj, 0, gameStats.castawayScore));
 		main.StartCoroutine(BringFieldScoreUp((obj) => gameStats.specialScore = obj, 0, gameStats.specialScore));
 		level.SavedCastaway -= AddScore;
 		gameStats.timeScore = Mathf.FloorToInt(Time.time - level.levelLoadTime);
 		
+		gameStats.awardAchieved = MedalCalculate();
 		//find out what award the player scored
-		if (levelScore > level.bronzeAchievementScore)
-		{
-			if (levelScore > level.silverAchievementScore)
-			{
-				if (levelScore > level.goldAchievementScore)
-				{
-					gameStats.awardAchieved = GameStats.Award.Gold;
-				} else
-				{
-					gameStats.awardAchieved = GameStats.Award.Silver;
-				}
-			} else
-			{
-				gameStats.awardAchieved = GameStats.Award.Bronze;
-			}
-		} else
-		{
-			gameStats.awardAchieved = GameStats.Award.None;
-		}
+		
 		main.StartCoroutine(BringFieldScoreUp((obj) => gameStats.totalScore = obj, gameStats.totalScore, gameStats.totalScore + levelScore));
 		
 		Debug.Log (string.Format (

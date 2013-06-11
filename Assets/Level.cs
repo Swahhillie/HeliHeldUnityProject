@@ -81,6 +81,12 @@ public class Level
 				report.Append ("Castaway,");
 			}
 			
+			XmlNode beaconXml = e["Beacon"];
+			if(beaconXml != null)
+			{
+				AddBeacon(beaconXml, ref go);
+				report.Append("Beacon,");
+			}
 			
 			//XmlNode triggerXml = e ["Trigger"];
 			foreach (XmlNode triggerXml in e.SelectNodes("Trigger")) {

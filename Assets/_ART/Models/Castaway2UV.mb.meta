@@ -1,0 +1,79 @@
+fileFormatVersion: 2
+guid: 79659462c1ba7e448814346816a897ea
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Castaway
+    100002: //RootNode
+    100004: FinalCockpit:group
+    100006: FinalCockpit:group2
+    100008: FinalCockpit:group3
+    100010: FinalCockpit:pCylinder39
+    100012: FinalCockpit:polySurface12
+    100014: FinalCockpit:polySurface9
+    100016: polySurface6
+    400000: Castaway
+    400002: //RootNode
+    400004: FinalCockpit:group
+    400006: FinalCockpit:group2
+    400008: FinalCockpit:group3
+    400010: FinalCockpit:pCylinder39
+    400012: FinalCockpit:polySurface12
+    400014: FinalCockpit:polySurface9
+    400016: polySurface6
+    2300000: Castaway
+    2300002: FinalCockpit:polySurface12
+    3300000: Castaway
+    3300002: FinalCockpit:polySurface12
+    4300000: Castaway
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

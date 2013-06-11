@@ -21,7 +21,7 @@ public class XmlSaverEditor : EditorWindow
 	private void Awake()
 	{
 		XmlVisitor.configFile = EditorPrefs.GetString("XmlVisitorConfig", "config.xml");
-		XmlVisitor.outputFile = EditorPrefs.GetString("XmlVisitorOutput", "outputFile.xml");
+		XmlVisitor.outputFile = EditorPrefs.GetString("XmlVisitorOutput", "config.xml");
 		XmlVisitor.overridePreviousLevelWithName = EditorPrefs.GetBool("XmlVisitorOverride", true);
 		XmlVisitor.useExsitingConfig = EditorPrefs.GetBool("XmlVisitorUseExisting", true);
 	}
@@ -78,10 +78,10 @@ public class XmlSaverEditor : EditorWindow
 	{
 			
 		Debug.Log("saving settings to prefs");
-		EditorPrefs.GetString("XmlVisitorConfig", XmlVisitor.configFile);
-		EditorPrefs.GetString("XmlVisitorOutput", XmlVisitor.outputFile );
-		EditorPrefs.GetBool("XmlVisitorOverride", XmlVisitor.overridePreviousLevelWithName);
-		EditorPrefs.GetBool("XmlVisitorUseExisting", XmlVisitor.useExsitingConfig);
+		EditorPrefs.SetString("XmlVisitorConfig", XmlVisitor.configFile);
+		EditorPrefs.SetString("XmlVisitorOutput", XmlVisitor.outputFile );
+		EditorPrefs.SetBool("XmlVisitorOverride", XmlVisitor.overridePreviousLevelWithName);
+		EditorPrefs.SetBool("XmlVisitorUseExisting", XmlVisitor.useExsitingConfig);
 		
 	}
 

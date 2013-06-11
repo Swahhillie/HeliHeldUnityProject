@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class SpecialMissionTimer : MonoBehaviour {
+public class SpecialMissionTimer : TriggeredObject {
 
 	// Use this for initialization
 	
 	
 	public Vector2 openedScale;
 	public Vector2 closedScale;
-	public float timerTime;
+	private float _time=0;
 	public float openCloseDuration;
 	
 	public bool ReversedAnim = false;
@@ -18,7 +18,7 @@ public class SpecialMissionTimer : MonoBehaviour {
 	private GUITexture _background;
 	private GUIText _timer;
 	
-	private bool _active=true;
+	private bool _active=false;
 	
 	private float _startTime;
 		
@@ -48,8 +48,8 @@ public class SpecialMissionTimer : MonoBehaviour {
 		
 		if(_active)
 		{
-			timerTime -=Time.deltaTime;
-			if(timerTime<0)
+			_time -=Time.deltaTime;
+			if(_time<0)
 			{
 				_active=false;
 				_timer.enabled = false;				
@@ -58,7 +58,7 @@ public class SpecialMissionTimer : MonoBehaviour {
 			else if(percent>0.9f)
 			{
 				_timer.enabled = true;
-				_timer.text = timerTime.ToString("00.0");
+				_timer.text = _time.ToString("00.0");
 			}
 			_currentScale = Vector2.Lerp(_currentScale, openedScale, percent);
 		}
@@ -67,9 +67,19 @@ public class SpecialMissionTimer : MonoBehaviour {
 			_currentScale = Vector2.Lerp(_currentScale, closedScale, percent);
 		}
 		_background.pixelInset = new Rect(_position.x,_position.y,_currentScale.x,_currentScale.y);
-		
-		
+	}
 	
+	public override void OnTriggered (EventReaction eventReaction)
+	{
+		if(eventReaction.type == EventReaction.Type.Enable)
+		{
+			_active =true;
+			_time = eventReaction.time;
+		}
+		if(eventReaction.type == EventReaction.Type.Disable)
+		{
+			_active =false;
+		}
 	}
 }
 

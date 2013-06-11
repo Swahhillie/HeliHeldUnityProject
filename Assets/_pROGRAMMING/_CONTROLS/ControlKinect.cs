@@ -18,8 +18,14 @@ public class ControlKinect : ControlBase
 	public SavingModeGesture savingModeGesture = new SavingModeGesture();
 	public RadioGesture radioGesture = new RadioGesture();
 	public FlyingModeGesture flyingModeGesture = new FlyingModeGesture();
+	public ExitModeGesture exitModeGesture = new ExitModeGesture();
 	
 	private List<GestureAction> gestures;
+	
+	public List<GestureAction> Gestures
+	{
+		get{return gestures;}	
+	}
 	
 	override protected void StartConcrete ()
 	{
@@ -31,6 +37,7 @@ public class ControlKinect : ControlBase
 		AddGesture(savingModeGesture);
 		AddGesture(flyingModeGesture);
 		AddGesture(radioGesture);
+		AddGesture(exitModeGesture);
 		
 		GestureAction.skelWrap = skelWrap;
 		
@@ -67,6 +74,10 @@ public class ControlKinect : ControlBase
 				heli.ToggleRadio();
 				break;
 			
+			case GestureAction.GestureType.ExitModeGesture:
+				Debug.Log("EXIT MODE ACTIVATED");
+				break;
+			
 			default:
 				break;
 		}
@@ -87,6 +98,9 @@ public class ControlKinect : ControlBase
 			
 				break;
 			
+			case GestureAction.GestureType.ExitModeGesture:
+				break;
+			
 			default:
 				break;
 		}
@@ -104,6 +118,10 @@ public class ControlKinect : ControlBase
 			
 			case GestureAction.GestureType.RadioGesture:
 				heli.DeactivateRadio();
+				break;
+			
+			case GestureAction.GestureType.ExitModeGesture:
+				Debug.Log("EXIT MODE de-activated");
 				break;
 			
 			default:

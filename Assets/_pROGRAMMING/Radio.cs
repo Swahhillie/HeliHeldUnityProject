@@ -20,7 +20,7 @@ public class Radio : TriggeredObject
 	private Message _tempMessage;
 	private float messagePercent;
 	private bool _active=false;
-    //private RadioMessageIndicator rmi;
+    private RadioMessageIndicator rmi;
 	private AudioSource _audioSource;
 	private float startTime;
 	private Vector2 _currentScale=new Vector2(0,0);
@@ -40,7 +40,7 @@ public class Radio : TriggeredObject
 	/// </summary>
 	void Start()
 	{
-        //rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
+		rmi = this.transform.GetComponentInChildren<RadioMessageIndicator>();
 		_audioSource = Camera.main.GetComponent<AudioSource>();
 		style = new GUIStyle();
 		style.wordWrap=true;
@@ -75,11 +75,10 @@ public class Radio : TriggeredObject
 			
 			if(messagePercent>0)
 			{
-				string text = "asdjfhaksdgajkakjgskjhagjksdhgasjagsdhasdfjagsjdhfgasdfjhasdfkgjhsadfgkjhagdkfjhakjhgskjdfghslkjfdghskdjfhgslkjdfhglksjdfhgkjsldhfgjksldfhgjskldfhgklsjdfhglksjdfhglkjsdfhglksjdfhgklsjdfhglksjdfhglksjdhfga";
 				Vector4 textfield = radioscreen-textOffset;
 				GUI.Label(
 					new Rect(textfield.x,textfield.y,textfield.z,textfield.w),
-					new GUIContent(text.Substring(0,Mathf.FloorToInt(messagePercent * text.Length))),style);
+					new GUIContent(_message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length))),style);
 			}
 		}
 	}
@@ -125,14 +124,17 @@ public class Radio : TriggeredObject
 	{
 		if(_active)
 		{
-			//rmi.setActive=false;
-			/*if(_message.audio!=null&&!_audioSource.isPlaying)
+			rmi.setActive=false;
+			if(_message!=null)
 			{
-				if(_message.audio!=null)
+				if(_message.audio!=null&&!_audioSource.isPlaying)
 				{
-					_audioSource.PlayOneShot(_message.audio);
+					if(_message.audio!=null)
+					{
+						_audioSource.PlayOneShot(_message.audio);
+					}
 				}
-			}*/
+			}
 			
 		}
 		else
@@ -156,8 +158,8 @@ public class Radio : TriggeredObject
 	/// </summary>
 	private void DrawRadio()
 	{
-		//if(_message!=null)
-		//{
+		if(_message!=null)
+		{
 			float elapsed = Time.time - startTime;
 			float percent = elapsed / closeDuration;
 			
@@ -172,7 +174,7 @@ public class Radio : TriggeredObject
 			
 			float elapsedSinceOpen = Time.time - startTime - closeDuration;
 			messagePercent = Mathf.Clamp (elapsedSinceOpen / writeDuration, 0, 1);
-		//}
+		}
 	}
 	/// <summary>
 	/// Overrides the OnTriggered  -function from the TriggeredObject class
@@ -199,7 +201,7 @@ public class Radio : TriggeredObject
 			else
 			{
 				_tempMessage = message;
-				//rmi.setActive=true;
+				rmi.setActive=true;
 			}
             //SetRadio(true);
 		}

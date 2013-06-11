@@ -11,6 +11,7 @@ public class GestureSettings : System.Object
 	
 	public float activationDistanceFlying = 0.3f;
 	public float activationDistanceRadio = 0.6f;
+	public float activationDistanceLeave = 0.6f;
 	public Hand activeHand = Hand.Right;
 }
 
@@ -67,6 +68,28 @@ public class FlyingModeGesture : GestureAction
 	}
 }
 [System.Serializable]
+public class ExitModeGesture : GestureAction
+{
+	public override GestureType Type {
+		get {
+			return GestureType.ExitModeGesture;
+		}
+	}
+	protected override bool CheckGesture ()
+	{
+		bool gestureActive = false;
+		Vector3 distLeft = GetVectorBetween (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.Head);
+		Vector3 distRight = GetVectorBetween (Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.Head);
+		
+		if (distLeft.y < settings.activationDistanceLeave && distRight.y < settings.activationDistanceLeave) {
+			gestureActive = true;
+		} else {
+			gestureActive = false;
+		}
+		return gestureActive;
+	}
+}
+[System.Serializable]
 public class RadioGesture : GestureAction{
 	
 	public override GestureType Type {
@@ -97,7 +120,7 @@ public class RadioGesture : GestureAction{
 public abstract class GestureAction : System.Object
 {
 	public static GestureSettings settings;
-	public enum GestureType{SavingModeGesture, RadioGesture, FlyingModeGesture};
+	public enum GestureType{SavingModeGesture, RadioGesture, FlyingModeGesture, ExitModeGesture};
 	
 	public float activationTime = 1.5f;
 	protected float timeSinceStart = 0.0f;
