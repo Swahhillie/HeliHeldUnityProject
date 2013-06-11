@@ -404,6 +404,7 @@ public class Helicopter : MonoBehaviour
 			
 			//saveReticle.localPosition = dif;
 			saveReticle.rotation = Quaternion.LookRotation(dif);
+			saveReticle.rotation *= GameObject.Find("Infrared").transform.rotation;
 		}
 	}
 	
@@ -498,6 +499,12 @@ public class Helicopter : MonoBehaviour
 	{
 		radio.ToggleHud ();
 	}
+	
+	public void GiveExitWarning()
+	{
+		radio.Warning(new Message("Weet je zeker dat je wilt stoppen?", ""));
+	}
+	
 	/// <summary>
 	/// Sets the state.
 	/// </summary>

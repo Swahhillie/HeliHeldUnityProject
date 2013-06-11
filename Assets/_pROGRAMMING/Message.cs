@@ -14,6 +14,16 @@ public class Message : IVisitable
 		_name = name;
 	}
 	
+	public Message (string aText,string aAudio)
+	{
+		_text = aText;
+		if(aAudio!=null)
+		{
+			_audio = (AudioClip)Resources.Load (aAudio);
+		}
+		_isWarning = true;
+	}
+	
 	public Message (XmlNode node)
 	{
 		_text = node ["Text"].InnerText;

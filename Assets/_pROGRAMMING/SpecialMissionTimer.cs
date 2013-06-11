@@ -25,8 +25,6 @@ public class SpecialMissionTimer : TriggeredObject {
 	
 	void Start()
 	{
-		_startTime = Time.time;
-		
 		if(ReversedAnim)
 		{
 			openedScale.x*=-1;
@@ -75,6 +73,7 @@ public class SpecialMissionTimer : TriggeredObject {
 		{
 			_active =true;
 			_time = eventReaction.time;
+			_startTime = Time.time;
 		}
 		if(eventReaction.type == EventReaction.Type.Disable)
 		{
