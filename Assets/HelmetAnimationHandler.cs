@@ -45,6 +45,7 @@ public class HelmetAnimationHandler : TriggeredObject
 	private State _state = State.Deactive;
 	private Vector2 _currentScale = new Vector2(0,0);
 	private Vector2 _position;
+	public KeyCode hideAniKey = KeyCode.Alpha3;
 	
 	
 	/// <summary>
@@ -144,6 +145,11 @@ public class HelmetAnimationHandler : TriggeredObject
 			_currentScale = Vector2.Lerp(_currentScale, closedScale, percent);
 		}
 		_animation.pixelInset = new Rect(_position.x,_position.y,_currentScale.x,_currentScale.y);
+		
+		
+		if( Input.GetKeyDown(hideAniKey)){
+			setAnimation(false, 0);
+		}
 	}
 	
 }
