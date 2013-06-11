@@ -44,7 +44,7 @@ public class HelmetAnimationHandler : TriggeredObject
 	private HelmetAnimation _activeAnimation;
 	private State _state = State.Deactive;
 	private Vector2 _currentScale = new Vector2(0,0);
-	
+	private Vector2 _position;
 	
 	
 	/// <summary>
@@ -64,6 +64,8 @@ public class HelmetAnimationHandler : TriggeredObject
 
 		_animation = this.gameObject.GetOrAddComponent<GUITexture>();
 		_currentScale = closedScale;
+		_position.x = _animation.pixelInset.x;
+		_position.y = _animation.pixelInset.y;		
 	}
 	/// <summary>
 	/// Raises the triggered event.
@@ -91,15 +93,13 @@ public class HelmetAnimationHandler : TriggeredObject
 	
 	public void setAnimation(bool activate,int animNr)
 	{
+		_startTime = Time.time;
 		if(activate)
 		{
-			_startTime = Time.time;
 			_activeAnimation = animations[animNr];
 			_activeAnimation.image.loop=true;
 			_activeAnimation.image.Play();
 			_animation.texture = _activeAnimation.image;
-			//add kinect gesture listener
-			
 			_active=true;
 		}
 		else
@@ -110,10 +110,13 @@ public class HelmetAnimationHandler : TriggeredObject
 	
 	private void AlertGesture(GestureAction gesture, System.EventArgs e)
 	{
-		Debug.Log("made a " + gesture.Type + " gesture " );
-		if(gesture.Type == _activeAnimation.gesture)
+		if(_activeAnimation!=null)
 		{
-			setAnimation(false,0);	
+			Debug.Log("made a " + gesture.Type + " gesture " );
+			if(gesture.Type == _activeAnimation.gesture)
+			{
+				setAnimation(false,0);	
+			}
 		}
 	}
 	
@@ -133,7 +136,7 @@ public class HelmetAnimationHandler : TriggeredObject
 		{
 			_currentScale = Vector2.Lerp(_currentScale, closedScale, percent);
 		}
-		_animation.pixelInset = new Rect(59,398,_currentScale.x,_currentScale.y);
+		_animation.pixelInset = new Rect(_position.x,_position.y,_currentScale.x,_currentScale.y);
 	}
 	
 }

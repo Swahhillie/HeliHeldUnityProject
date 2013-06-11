@@ -8,7 +8,7 @@ public class SpecialMissionTimer : TriggeredObject {
 	
 	public Vector2 openedScale;
 	public Vector2 closedScale;
-	public float _time;
+	private float _time=0;
 	public float openCloseDuration;
 	
 	public bool ReversedAnim = false;
@@ -18,15 +18,13 @@ public class SpecialMissionTimer : TriggeredObject {
 	private GUITexture _background;
 	private GUIText _timer;
 	
-	private bool _active=true;
+	private bool _active=false;
 	
 	private float _startTime;
 		
 	
 	void Start()
 	{
-		_startTime = Time.time;
-		
 		if(ReversedAnim)
 		{
 			openedScale.x*=-1;
@@ -75,6 +73,7 @@ public class SpecialMissionTimer : TriggeredObject {
 		{
 			_active =true;
 			_time = eventReaction.time;
+			_startTime = Time.time;
 		}
 		if(eventReaction.type == EventReaction.Type.Disable)
 		{

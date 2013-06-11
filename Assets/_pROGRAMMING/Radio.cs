@@ -6,7 +6,8 @@ public class Radio : TriggeredObject
 	public Font radioFont;
 	public Color radioTextcolor= Color.white;
 	public int radioTextSize = 10;
-	public Texture2D backgroundImage;
+	public Texture2D radioBackgroundImage;
+	public Texture2D warningBackgroundImage;
 	public float closeDuration=1.0f;
 	public float writeDuration = 5.0f;
 	
@@ -25,7 +26,7 @@ public class Radio : TriggeredObject
 	private float startTime;
 	private Vector2 _currentScale=new Vector2(0,0);
 	private GUIStyle style;
-    
+    private Vector2 position;
 	
 
 	
@@ -69,17 +70,24 @@ public class Radio : TriggeredObject
 		{
 			Vector4 radioscreen = new Vector4(Screen.width/2-_currentScale.x/2,Screen.height/2-_currentScale.y/2,_currentScale.x,_currentScale.y);
 			
-			GUI.Label(
-				new Rect(radioscreen.x,radioscreen.y,radioscreen.z,radioscreen.w),
-				new GUIContent(backgroundImage));
-			
+			if(_message.isWarning)
+			{
+				GUI.Label(
+					new Rect(radioscreen.x,radioscreen.y,radioscreen.z,radioscreen.w),
+					new GUIContent(warningBackgroundImage));
+			}
+			else
+			{
+				GUI.Label(
+					new Rect(radioscreen.x,radioscreen.y,radioscreen.z,radioscreen.w),
+					new GUIContent(radioBackgroundImage));
+			}
 			if(messagePercent>0)
 			{
-				string text = "asdjfhaksdgajkakjgskjhagjksdhgasjagsdhasdfjagsjdhfgasdfjhasdfkgjhsadfgkjhagdkfjhakjhgskjdfghslkjfdghskdjfhgslkjdfhglksjdfhgkjsldhfgjksldfhgjskldfhgklsjdfhglksjdfhglkjsdfhglksjdfhgklsjdfhglksjdfhglksjdhfga";
 				Vector4 textfield = radioscreen-textOffset;
 				GUI.Label(
 					new Rect(textfield.x,textfield.y,textfield.z,textfield.w),
-					new GUIContent(text.Substring(0,Mathf.FloorToInt(messagePercent * text.Length))),style);
+					new GUIContent(_message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length))),style);
 			}
 		}
 	}
@@ -125,13 +133,15 @@ public class Radio : TriggeredObject
 	{
 		if(_active)
 		{
+			if(_message==null)
+			{
+				_active=false;
+				return;
+			}
 			rmi.setActive=false;
 			if(_message.audio!=null&&!_audioSource.isPlaying)
 			{
-				if(_message.audio!=null)
-				{
-					_audioSource.PlayOneShot(_message.audio);
-				}
+				_audioSource.PlayOneShot(_message.audio);
 			}
 			
 		}
@@ -189,7 +199,7 @@ public class Radio : TriggeredObject
 			Message message = ConfigLoader.GetMessage(evr.messageName);
 			Debug.Log("Displaying message " + message.text);
 			_message = message;
-			if(!_message.isWarning)
+			if(_message.isWarning)
 			{
 				if(message.text!=null)
 				{
@@ -215,5 +225,15 @@ public class Radio : TriggeredObject
 	public bool radioIsActive
 	{
 		get{return _active;}
+	}
+	
+	public void Warning(Message msg)
+	{
+		Debug.Log("Displaying warning " + msg.text);
+		if(msg.text!=null)
+		{
+			_message = msg;
+			SetRadio(true);
+		}
 	}
 }
