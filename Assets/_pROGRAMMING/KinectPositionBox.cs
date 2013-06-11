@@ -4,6 +4,7 @@ using System.Collections;
 public class KinectPositionBox : MonoBehaviour
 {
 	public bool Activated = false;
+	
 	public float DeactivationTime = 5.0f;
 	public string OutTheBoxText = "Ga bij de groene stip staan.";
 	private string labelString;

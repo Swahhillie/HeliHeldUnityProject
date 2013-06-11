@@ -83,4 +83,10 @@ public class Main : TriggeredObject {
 		ConfigLoader.Instance.LoadLevel (level); //load the objects
 		state = State.Game;
 	}
+	
+	public void ExitToMainMenu()
+	{
+		currentLevel = -1;
+		Application.LoadLevel(menuScene);
+	}
 }

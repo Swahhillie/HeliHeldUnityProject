@@ -19,6 +19,8 @@ public class ControlKinect : ControlBase
 	public RadioGesture radioGesture = new RadioGesture();
 	public FlyingModeGesture flyingModeGesture = new FlyingModeGesture();
 	public ExitModeGesture exitModeGesture = new ExitModeGesture();
+	public float ExitTime = 5.0f;
+	private float exitTimer = 0.0f;
 	
 	private List<GestureAction> gestures;
 	
@@ -75,7 +77,7 @@ public class ControlKinect : ControlBase
 				break;
 			
 			case GestureAction.GestureType.ExitModeGesture:
-				Debug.Log("EXIT MODE ACTIVATED");
+				heli.GiveExitWarning();
 				break;
 			
 			default:
@@ -95,10 +97,16 @@ public class ControlKinect : ControlBase
 				break;
 			
 			case GestureAction.GestureType.RadioGesture:
-			
+				
 				break;
 			
 			case GestureAction.GestureType.ExitModeGesture:
+				exitTimer += Time.deltaTime;
+				if(exitTimer > ExitTime)
+				{
+					Main main = (Main)FindObjectOfType(typeof(Main));
+					main.ExitToMainMenu();
+				}
 				break;
 			
 			default:
@@ -121,7 +129,8 @@ public class ControlKinect : ControlBase
 				break;
 			
 			case GestureAction.GestureType.ExitModeGesture:
-				Debug.Log("EXIT MODE de-activated");
+				exitTimer = 0.0f;
+				heli.DeactivateRadio();
 				break;
 			
 			default:

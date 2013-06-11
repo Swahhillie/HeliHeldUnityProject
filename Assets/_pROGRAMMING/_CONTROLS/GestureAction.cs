@@ -11,7 +11,7 @@ public class GestureSettings : System.Object
 	
 	public float activationDistanceFlying = 0.3f;
 	public float activationDistanceRadio = 0.6f;
-	public float activationDistanceLeave = 0.6f;
+	public float activationDistanceLeave = -0.1f;
 	public Hand activeHand = Hand.Right;
 }
 
@@ -86,6 +86,7 @@ public class ExitModeGesture : GestureAction
 		} else {
 			gestureActive = false;
 		}
+		
 		return gestureActive;
 	}
 }
