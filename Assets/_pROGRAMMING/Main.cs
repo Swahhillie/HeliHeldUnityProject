@@ -69,7 +69,10 @@ public class Main : TriggeredObject {
 	}
 
 	public void NextLevel(){
-		currentLevel++;
+		if(currentLevel<levels.Count)
+		{
+			currentLevel++;
+		}
 		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
 	}
 	public void LastLevel(){

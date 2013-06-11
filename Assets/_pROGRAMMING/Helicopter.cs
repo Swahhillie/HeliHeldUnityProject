@@ -404,7 +404,6 @@ public class Helicopter : MonoBehaviour
 			
 			//saveReticle.localPosition = dif;
 			saveReticle.rotation = Quaternion.LookRotation(dif);
-			saveReticle.rotation *= GameObject.Find("Infrared").transform.rotation;
 		}
 	}
 	
