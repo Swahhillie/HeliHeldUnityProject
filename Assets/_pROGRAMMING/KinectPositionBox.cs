@@ -36,14 +36,14 @@ public class KinectPositionBox : MonoBehaviour
 		kinPosBGTex = Resources.Load ("KinectPositionBG", typeof(Texture2D)) as Texture2D;
 		kinPosPlayerTex = Resources.Load ("KinectPositionPlayer", typeof(Texture2D)) as Texture2D;
 		
-		boxSize = new Vector2 (Screen.width-boxPos.x*2, Screen.height-boxPos.y*15);
+		boxSize = new Vector2 (Screen.width-boxPos.x*2, Screen.height-boxPos.y*2);
 		idealKinectPosition = new Vector2(Screen.width/2, Screen.height/4);
 	}
 	
 	void Update()
 	{
 		playerPos = kg.GetPlayerPosition();
-
+		
 		//limits
 		if (playerPos.x > 1) {
 			playerPos.x = 1;
@@ -52,7 +52,7 @@ public class KinectPositionBox : MonoBehaviour
 			playerPos.x = -1;
 		}
 		if (playerPos.z > 1) {
-			playerPos.z = -1;
+			playerPos.z = 1;
 		}
 		if (playerPos.z < -1) {
 			playerPos.z = -1;
@@ -62,7 +62,13 @@ public class KinectPositionBox : MonoBehaviour
 		playerOnScreen += idealKinectPosition;
 		playerOnScreen.y = Screen.height - playerOnScreen.y;
 		
-		if(playerPos.x > sidesLimit || playerPos.x < -sidesLimit || playerPos.z > proximityLimit || playerPos.z < distanceLimit)
+		if( 
+			playerPos.x > sidesLimit || 
+			playerPos.x < -sidesLimit || 
+			playerPos.z > proximityLimit || 
+			playerPos.z < distanceLimit ||
+			playerPos == Vector3.zero
+		   )
 		{
 			Activated = true;
 			labelString = OutTheBoxText;
@@ -84,7 +90,7 @@ public class KinectPositionBox : MonoBehaviour
 		if(Activated)
 		{
 			GUI.DrawTexture (new Rect (boxPos.x, boxPos.y, boxSize.x, boxSize.y), kinPosBGTex);
-			GUI.Label(new Rect( 100, 150, 600, 100 ), labelString, labelStyle);
+			GUI.Label(new Rect( Screen.width/4, 10, 600, 100 ), labelString, labelStyle);
 			GUI.DrawTexture (new Rect(playerOnScreen.x-kinPosPlayerTex.width/2, playerOnScreen.y-kinPosPlayerTex.height/2, kinPosPlayerTex.width, kinPosPlayerTex.height), kinPosPlayerTex);
 		}
 	}

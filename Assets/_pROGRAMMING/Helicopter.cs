@@ -91,7 +91,7 @@ public class Helicopter : MonoBehaviour
 		
 		rescuePointer = GetComponentInChildren<RescuePointer> ();
 		rescueNearbyIndicator = GetComponentInChildren<RescueNearbyIndicator> ();
-		radio = GetComponentInChildren<Radio> ();
+		radio = (Radio)FindObjectOfType(typeof(Radio));
 		InitializeControls ();
 		
 		if (heliSettings.rescueRadius < heliSettings.avoidRadius)
@@ -106,17 +106,17 @@ public class Helicopter : MonoBehaviour
 		SetState(Helistate.Fly);
 		
 		// disable the keyboard if connect is there and vice versa
-		if (skelWrap.devOrEmu.device.connected)
-		{
+//		if (skelWrap.devOrEmu.device.connected)
+//		{
 			controlType = ControlType.Kinect;
 			gameObject.GetComponent<ControlKeyboard> ().enabled = false;
-				
-		}
-		else
-		{
-			controlType = ControlType.Keyboard;
-			gameObject.GetComponent<ControlKinect> ().enabled = false;
-		}
+//				
+//		}
+//		else
+//		{
+//			controlType = ControlType.Keyboard;
+//			gameObject.GetComponent<ControlKinect> ().enabled = false;
+//		}
 	}
 	
 	public float closestPoint = 0;
@@ -496,7 +496,6 @@ public class Helicopter : MonoBehaviour
 	
 	public void ToggleRadio ()
 	{
-		//for use by keyboard
 		radio.ToggleHud ();
 	}
 	/// <summary>
