@@ -87,6 +87,8 @@ public class Main : TriggeredObject {
 	public void ExitToMainMenu()
 	{
 		currentLevel = -1;
-		Application.LoadLevel(menuScene);
+		
+		if(Application.loadedLevelName != menuScene)
+			Application.LoadLevel(menuScene);
 	}
 }

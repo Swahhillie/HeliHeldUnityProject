@@ -5,11 +5,13 @@ public class KinectPositionBox : MonoBehaviour
 {
 	public bool Activated = false;
 	
-	public float DeactivationTime = 5.0f;
+	public float DeactivationTime = 4.0f;
+	public float ExitTime = 30.0f;
 	public string OutTheBoxText = "Ga bij de groene stip staan.";
 	private string labelString;
 	public GUIStyle labelStyle;
 	private float timeSpend = 0.0f;
+	private float exitTime = 0.0f;
 	
 	public SkeletonWrapper skelWrap;
 	
@@ -74,9 +76,18 @@ public class KinectPositionBox : MonoBehaviour
 			Activated = true;
 			labelString = OutTheBoxText;
 			timeSpend = 0.0f;
+			exitTime += Time.deltaTime;
+			if(exitTime > ExitTime)
+			{
+				Debug.Log("No-one found for a while. Exit to menu");
+				Main main = (Main)FindObjectOfType(typeof(Main));
+				main.ExitToMainMenu();
+				exitTime = 0.0f;
+			}
 		}
 		else
 		{
+			exitTime = 0.0f;
 			timeSpend += Time.deltaTime;
 			if(timeSpend > DeactivationTime)
 			{
@@ -88,7 +99,7 @@ public class KinectPositionBox : MonoBehaviour
 	
 	void OnGUI()
 	{
-		if(Activated)
+		if(Activated && skelWrap.devOrEmu.device.connected)
 		{
 			GUI.DrawTexture (new Rect (boxPos.x, boxPos.y, boxSize.x, boxSize.y), kinPosBGTex);
 			GUI.Label(new Rect( Screen.width/4, 10, 600, 100 ), labelString, labelStyle);
