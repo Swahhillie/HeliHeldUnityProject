@@ -265,7 +265,7 @@ public class XmlVisitor : Visitor
 		CreateAddNode (_writeTarget, "Pos", evrXml).InnerText = evr.pos.ToString ();
 		CreateAddNode (_writeTarget, "MessageName", evrXml).InnerText = evr.messageName;		
 		CreateAddNode (_writeTarget, "SpecialScore", evrXml).InnerText = evr.specialScore.ToString ();
-		
+		CreateAddNode (_writeTarget, "Time", evrXml).InnerText = evr.time.ToString(System.Globalization.CultureInfo.InvariantCulture);
 		XmlNode listenersXml = CreateAddNode (_writeTarget, "Listeners", evrXml);
 		
 		foreach (TriggeredObject listener in evr.listeners)

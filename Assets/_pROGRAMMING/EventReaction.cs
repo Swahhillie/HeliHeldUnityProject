@@ -28,6 +28,7 @@ public class EventReaction
 	public string messageName;
 	public Vector3 pos;
 	public int specialScore;
+	public float time;
 	public List<TriggeredObject> listeners;
 	
 	public EventReaction(XmlNode node)
@@ -44,6 +45,12 @@ public class EventReaction
 		messageName = node["MessageName"].InnerText;
 		type = typeHelper[node["Type"].InnerText];
 		specialScore = int.Parse(node["SpecialScore"].InnerText, System.Globalization.CultureInfo.InvariantCulture);
+		
+		XmlNode timeNode = node["Time"];
+		if(timeNode != null)
+		{
+			time = float.Parse(timeNode.InnerText, System.Globalization.CultureInfo.InvariantCulture);
+		}
 	}
 	public void Activate(){
 		foreach(TriggeredObject obj in listeners){

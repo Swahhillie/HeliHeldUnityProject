@@ -3,21 +3,31 @@ using System.Collections;
 
 public class Radio : TriggeredObject  
 {
-	private float _width;	
-	private Message _message;
-	private Message _tempMessage;
-	private bool _active=false;
-	private TextMesh tMesh;
-    private RadioMessageIndicator rmi;
-	private AudioSource _audioSource;
-	
-	private float startTime;
+	public Font radioFont;
+	public Color radioTextcolor= Color.white;
+	public int radioTextSize = 10;
+	public Texture2D backgroundImage;
 	public float closeDuration=1.0f;
 	public float writeDuration = 5.0f;
 	
-	public Vector3 openedScale = new Vector3(1,1,0);
-	public Vector3 closedScale = new Vector3(0,0,0);
+	public Vector2 openedScale = new Vector2(200,200);
+	private Vector2 closedScale = new Vector2(0,0);
+	public Vector4 textOffset = new Vector4(0,0,0,0);
+	
+	
+	private float _width;	
+	private Message _message;
+	private Message _tempMessage;
+	private float messagePercent;
+	private bool _active=false;
+    private RadioMessageIndicator rmi;
+	private AudioSource _audioSource;
+	private float startTime;
+	private Vector2 _currentScale=new Vector2(0,0);
+	private GUIStyle style;
     
+	
+
 	
 	public float width
 	{
@@ -30,9 +40,16 @@ public class Radio : TriggeredObject
 	/// </summary>
 	void Start()
 	{
-		tMesh = this.GetComponent<TextMesh>();
-        rmi = this.transform.parent.parent.GetComponentInChildren<RadioMessageIndicator>();
+		rmi = this.transform.GetComponentInChildren<RadioMessageIndicator>();
 		_audioSource = Camera.main.GetComponent<AudioSource>();
+		style = new GUIStyle();
+		style.wordWrap=true;
+		if(radioFont!=null)
+		{
+			style.font = radioFont;
+		}
+		style.normal.textColor = radioTextcolor;
+		style.fontSize = radioTextSize;
 	}
 	
 	/// <summary>
@@ -41,6 +58,29 @@ public class Radio : TriggeredObject
 	public void Update()
 	{
 		DrawRadio();
+	}
+	
+	/// <summary>
+	/// Draws the Radio in GUI space if neccessary
+	/// </summary>
+	public void OnGUI()
+	{
+		if(_currentScale.x>0)
+		{
+			Vector4 radioscreen = new Vector4(Screen.width/2-_currentScale.x/2,Screen.height/2-_currentScale.y/2,_currentScale.x,_currentScale.y);
+			
+			GUI.Label(
+				new Rect(radioscreen.x,radioscreen.y,radioscreen.z,radioscreen.w),
+				new GUIContent(backgroundImage));
+			
+			if(messagePercent>0)
+			{
+				Vector4 textfield = radioscreen-textOffset;
+				GUI.Label(
+					new Rect(textfield.x,textfield.y,textfield.z,textfield.w),
+					new GUIContent(_message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length))),style);
+			}
+		}
 	}
 	
 	/// <summary>
@@ -85,11 +125,14 @@ public class Radio : TriggeredObject
 		if(_active)
 		{
 			rmi.setActive=false;
-			if(_message.audio!=null&&!_audioSource.isPlaying)
+			if(_message!=null)
 			{
-				if(_message.audio!=null)
+				if(_message.audio!=null&&!_audioSource.isPlaying)
 				{
-					_audioSource.PlayOneShot(_message.audio);
+					if(_message.audio!=null)
+					{
+						_audioSource.PlayOneShot(_message.audio);
+					}
 				}
 			}
 			
@@ -122,19 +165,15 @@ public class Radio : TriggeredObject
 			
 			if(_active)
 			{
-				transform.localScale = Vector3.Lerp(closedScale, openedScale, percent);
+				_currentScale = Vector3.Lerp(_currentScale, openedScale, percent);
 			}
 			else
 			{
-				transform.localScale = Vector3.Lerp(openedScale, closedScale, percent);
+				_currentScale = Vector3.Lerp(_currentScale, closedScale, percent);
 			}
 			
 			float elapsedSinceOpen = Time.time - startTime - closeDuration;
-			
-			float messagePercent = elapsedSinceOpen / writeDuration;
-			messagePercent = Mathf.Clamp (messagePercent, 0, 1);
-			//Debug.Log (string.Format ("{0},{1},{2}", elapsed, elapsedSinceOpen, messagePercent));
-			tMesh.text = _message.text.Substring(0,Mathf.FloorToInt(messagePercent * _message.text.Length));
+			messagePercent = Mathf.Clamp (elapsedSinceOpen / writeDuration, 0, 1);
 		}
 	}
 	/// <summary>
@@ -154,7 +193,6 @@ public class Radio : TriggeredObject
 			_message = message;
 			if(!_message.isWarning)
 			{
-			
 				if(message.text!=null)
 				{
 					SetRadio(true);
@@ -180,51 +218,4 @@ public class Radio : TriggeredObject
 	{
 		get{return _active;}
 	}
-	/*private IEnumerator ActivateHud()
-	{
-		_active=true;
-		for(int i=(int)(this.transform.localScale.x*step);i<=step;++i)
-		{
-			this.transform.localScale=new Vector3((float)i/step,this.transform.localScale.y,0.0f);
-			yield return new WaitForSeconds(delay);
-		}
-		for(int i=(int)(this.transform.localScale.y*step);i<=step;++i)
-		{
-			this.transform.localScale=new Vector3(this.transform.localScale.x,(float)i/step,0.0f);
-			yield return new WaitForSeconds(delay);
-		}
-		StartCoroutine("DisplayText");
-	}
-	
-	private IEnumerator DisplayText()
-	{
-		TextMesh tMesh = this.GetComponent<TextMesh>();
-		tMesh.font.material.color=Color.green;
-		tMesh.text="";
-		for(int i = 0; i < _message.Length; i++)
-		{
-			tMesh.text+= _message[i];
-			yield return new WaitForSeconds(delay);
-		}
-	}
-	
-	private IEnumerator DeactivateHud()
-	{
-		_active=false;
-		TextMesh tMesh = this.GetComponent<TextMesh>();
-		tMesh.text="";
-		for(int i=(int)(this.transform.localScale.y*step);i>0;--i)
-		{
-			this.transform.localScale=new Vector3(this.transform.localScale.x,(float)i/10,0);
-			yield return new WaitForSeconds(delay);
-		}	
-		for(int i=(int)(this.transform.localScale.x*step);i>=0;--i)
-		{
-			this.transform.localScale=new Vector3((float)i/step,this.transform.localScale.y,0.0f);
-			yield return new WaitForSeconds(delay);
-		}
-				
-	}*/
-	
-	
 }
