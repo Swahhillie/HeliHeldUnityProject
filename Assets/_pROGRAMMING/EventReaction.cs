@@ -18,7 +18,8 @@ public class EventReaction
 		Highlight_Activate,
 		Highlight_Deactivate,
 		EndLevel,
-		SpecialScore
+		SpecialScore,
+		LineGuide
 	}
 	
 	private static Dictionary<string,Type> typeHelper= new Dictionary<string, Type>();
