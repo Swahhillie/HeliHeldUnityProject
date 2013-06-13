@@ -215,6 +215,8 @@ public class ControlKinect : ControlBase
 	
 	void KinectFlying ()
 	{
+		showHand = false;
+		
 		//calculate flying variables
 		Vector3 dir = Vector3.zero;
 		handR = skelWrap.bonePos [0, (int)Kinect.NuiSkeletonPositionIndex.HandRight];

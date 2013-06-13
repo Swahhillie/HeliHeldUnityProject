@@ -103,17 +103,17 @@ public class Helicopter : MonoBehaviour
 		SetState(Helistate.Fly);
 		
 		// disable the keyboard if connect is there and vice versa
-		if (skelWrap.devOrEmu.device.connected)
-		{
+//		if (skelWrap.devOrEmu.device.connected)
+//		{
 			controlType = ControlType.Kinect;
 			gameObject.GetComponent<ControlKeyboard> ().enabled = false;
-				
-		}
-		else
-		{
-			controlType = ControlType.Keyboard;
-			gameObject.GetComponent<ControlKinect> ().enabled = false;
-		}
+//				
+//		}
+//		else
+//		{
+//			controlType = ControlType.Keyboard;
+//			gameObject.GetComponent<ControlKinect> ().enabled = false;
+//		}
 	}
 	
 	public float closestPoint = 0;
@@ -378,10 +378,10 @@ public class Helicopter : MonoBehaviour
 		{
 			Vector3 dirToRescuable = nearestRescuable.transform.position - transform.position;
 			
-			if(dotToNearest > heliSettings.hoverPrecision)
+			/*if(dotToNearest > heliSettings.hoverPrecision)
 				saveReticle.renderer.enabled = false;
 			else
-				saveReticle.renderer.enabled = true;
+				saveReticle.renderer.enabled = true;*/
 			
 			Vector3 dir = Vector3.Normalize (dirToRescuable);
 			
@@ -398,6 +398,7 @@ public class Helicopter : MonoBehaviour
 			
 			//saveReticle.localPosition = dif;
 			saveReticle.rotation = Quaternion.LookRotation(dif);
+			saveReticle.Rotate(new Vector3(270, 180, 0));
 		}
 	}
 	
