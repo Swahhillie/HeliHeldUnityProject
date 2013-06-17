@@ -500,7 +500,7 @@ public class Helicopter : MonoBehaviour
 	
 	public void GiveExitWarning()
 	{
-		radio.Warning(new Message("Weet je zeker dat je wilt stoppen?", ""));
+		radio.Warning(true,"Weet je zeker dat je wilt stoppen?");
 	}
 	
 	/// <summary>

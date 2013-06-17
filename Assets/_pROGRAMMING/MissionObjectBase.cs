@@ -18,6 +18,7 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 	public SpawnType spawn = SpawnType.Start;
 	protected MissionObject _type;
 	public GameObject prefab;
+	
 	protected bool _rescuable = false;
 	//protected Dictionary<string,Reaction> evt = new Dictionary<string,Reaction>();
 	//protected Dictionary<int,List<string>> action = new Dictionary<int, List<string>>();
@@ -74,7 +75,7 @@ public abstract class MissionObjectBase : TriggeredObject, IVisitable
 		}
 	}
 
-	public bool AttemptRescue ()
+	virtual public bool AttemptRescue ()
 	{
 		//Attempt rescue is called by the helicopter if it is in position and the player makes a rescue attempt.
 		
