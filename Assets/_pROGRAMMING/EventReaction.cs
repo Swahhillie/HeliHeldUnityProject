@@ -30,8 +30,9 @@ public class EventReaction
 	public Vector3 pos;
 	public int specialScore;
 	public float time;
+	public GameObject go;
 	public List<TriggeredObject> listeners;
-	
+	private string gameObjectName = "";
 	public EventReaction(XmlNode node)
 	{
 		if(!init)
@@ -52,8 +53,19 @@ public class EventReaction
 		{
 			time = float.Parse(timeNode.InnerText, System.Globalization.CultureInfo.InvariantCulture);
 		}
+		XmlNode gameObjectNode = node["GameObject"];
+		if(gameObjectNode != null)
+		{
+			gameObjectName = gameObjectNode.InnerText;
+		}
 	}
 	public void Activate(){
+		if(gameObjectName != ""){
+			go = GameObject.Find(gameObjectName);
+			if(go == null){
+				Debug.LogError("Could not find gameObject " + gameObjectName);
+			}	
+		}
 		foreach(TriggeredObject obj in listeners){
 			Debug.Log("Fired eventreaction: " + type + " --> " + obj.name);
 			obj.OnTriggered(this);

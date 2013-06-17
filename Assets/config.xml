@@ -2140,6 +2140,480 @@
         </Object>
       </Objects>
     </Level>
+    <Level name="lineGuideTest">
+      <Score>
+        <GoldScoreMinimum>2</GoldScoreMinimum>
+        <SilverScoreMinimum>1</SilverScoreMinimum>
+        <BronzeScoreMinimum>0</BronzeScoreMinimum>
+      </Score>
+      <Objects>
+        <Object>
+          <Name>Castaway_000_</Name>
+          <Pos>(2999, 34.79, 1279)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>Castaway_000_</PrefabName>
+            <ScoreValue>125</ScoreValue>
+          </Castaway>
+        </Object>
+        <Object>
+          <Name>Beacon5_011__001_</Name>
+          <Pos>(2439, 42.9, 3959)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Beacon>
+            <Spawn>Later</Spawn>
+            <PrefabName>beaconPrefab</PrefabName>
+          </Beacon>
+        </Object>
+        <Object>
+          <Name>TrainingStart_003__002_</Name>
+          <Pos>(2829, 42.9, 400.8)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>FlyForwardBeacon</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon1_001__010_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Fly</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>Beacon1_001__010_</GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>TimerEndGame_000__003_</Name>
+          <Pos>(1785, 967.2, 3005)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>EndLevel</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>6</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>Beacon3_006__004_</Name>
+          <Pos>(2556, 42.9, 1660)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Beacon>
+            <Spawn>Later</Spawn>
+            <PrefabName>beaconPrefab</PrefabName>
+          </Beacon>
+        </Object>
+        <Object>
+          <Name>TrainingFlyHoop_005__005_</Name>
+          <Pos>(2556, 42.9, 1660)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>ForwardUnderArch</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon3_006__004_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon4_010__006_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>Beacon4_010__006_</Name>
+          <Pos>(2478, 42.9, 2602)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Beacon>
+            <Spawn>Later</Spawn>
+            <PrefabName>beaconPrefab</PrefabName>
+          </Beacon>
+        </Object>
+        <Object>
+          <Name>beaconPrefab_016__007_</Name>
+          <Pos>(2797, 1.042, 626.4)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
+        <Object>
+          <Name>TrainingReachLighthouse_007__008_</Name>
+          <Pos>(2439, 42.9, 3959)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>CompleteBackToMenu</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon5_011__001_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>TimerEndGame_000__003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>TrainingForward_002__009_</Name>
+          <Pos>(2823, 42.9, 836.1)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>SteerRightToBeacon</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon1_001__010_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon2_009__011_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Move</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>Beacon2_009__011_</GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>Beacon1_001__010_</Name>
+          <Pos>(2823, 42.9, 836.1)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Beacon>
+            <Spawn>Start</Spawn>
+            <PrefabName>beaconPrefab</PrefabName>
+          </Beacon>
+        </Object>
+        <Object>
+          <Name>Beacon2_009__011_</Name>
+          <Pos>(3118, 42.9, 1173)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Beacon>
+            <Spawn>Later</Spawn>
+            <PrefabName>beaconPrefab</PrefabName>
+          </Beacon>
+        </Object>
+        <Object>
+          <Name>TrainingFlyHoop2_008__012_</Name>
+          <Pos>(2478, 42.9, 2602)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>FlyToLighthouse</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon4_010__006_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon5_011__001_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>CARGOSHIP2_013_</Name>
+          <Pos>(2549, 44.05, 1685)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Ship>
+            <Spawn>Start</Spawn>
+            <PrefabName>CARGOSHIP2_013_</PrefabName>
+          </Ship>
+        </Object>
+        <Object>
+          <Name>TrainingRadioAwake_003__014_</Name>
+          <Pos>(2829, 42.9, 579.7)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>HideRadio</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>AnswerRadio</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>TrainingSteer_004__015_</Name>
+          <Pos>(3118, 42.9, 1173)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>SteerLeftToBeacon</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon2_009__011_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Beacon3_006__004_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>148.6</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+      </Objects>
+    </Level>
   </Levels>
   <Settings>
     <Setting name="flightHeight" value="150">

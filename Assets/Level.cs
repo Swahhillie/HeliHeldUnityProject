@@ -234,7 +234,16 @@ public class Level
 		
 		string prefabName = baseNode ["PrefabName"].InnerText;
 		mib.prefab = Resources.Load(prefabName) as GameObject;
-		GameObject model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;
+		GameObject model =null;
+		try{
+			model = GameObject.Instantiate (Resources.Load (prefabName)) as GameObject;	
+		}
+		catch(ArgumentException e){
+			
+			model = new GameObject("PLACEHOLDER");
+			Debug.LogError("prefabname " + prefabName + " is not in the resource folder, creating PlaceHolder" , model);
+			Debug.LogException(e);
+		}
 		model.transform.parent = go.transform;
 		model.transform.localPosition = Vector3.zero;
 		model.transform.localEulerAngles = Vector3.zero;

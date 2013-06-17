@@ -43,26 +43,39 @@ public class LineGuide : TriggeredObject {
 		}
 		
 	}
-	
+	Vector3 p0;
+	Vector3 p1;
+	Vector3 p2;
+	Vector3 p3;
+
 	private void DrawLineToRescuable()
 	{
 		
 		lineRenderer.SetVertexCount(segments);
-		Vector3 p0 = transform.position + transform.forward * startForward;
+		lineRenderer.material.mainTextureOffset = new Vector2(1  - Time.time - Mathf.Floor(Time.time), 0 );
+		p0 = transform.position + transform.forward * startForward;
 		
 		//Vector3 p2 = helicopter.nearestRescuable.transform.position;
-		Vector3 p1 = p0 + transform.forward * p1Forward;
-		Vector3 p2 = GetTargetPosition();
+		p1 = p0 + transform.forward * p1Forward;
+		p2 = GetTargetPosition();
 		
 		float segSize = 1.0f / segments;
 		for(int i = 0 ; i < segments; i++)
 		{
 			float t = segSize * i;
 			if(bezier == Bezier.Quadratic)lineRenderer.SetPosition(i, BezierCurveQuadratic(t, p0, p1, p2));
+			if(bezier == Bezier.Cubic)
+			{
+				p3 = GetTargetPosition();
+				p2 = new Vector3(p3.x, p0.y, p3.z);
+				lineRenderer.SetPosition(i, BezierCurveCubic(t, p0, p1, p2, p3));	
+			}
 			//else if(Bezier.Cubic)lineRenderer.SetPosition(i, BezierCurveCubic(t, , ));
 			
 		}
 		float a = Time.time * objectSpeed - (int) (Time.time * objectSpeed);
+		if(a < 0.1f)movedObject.time = 0;
+		else movedObject.time = 1.5f;
 		movedObject.transform.position = BezierCurveQuadratic(a, p0, p1, p2);
 		
 	}
@@ -92,7 +105,7 @@ public class LineGuide : TriggeredObject {
 	{
 		if(eventReaction.type == EventReaction.Type.LineGuide)
 		{
-			target = eventReaction.pos;
+			targetObject = eventReaction.go;
 		}
 		
 	}
@@ -103,6 +116,11 @@ public class LineGuide : TriggeredObject {
 			Gizmos.color = Color.cyan;
 			Gizmos.DrawWireSphere(target, 1.0f);
 		}
+		Gizmos.color = Color.magenta;
+		Gizmos.DrawWireSphere(p0, 1.0f);
+		Gizmos.DrawWireSphere(p1, 1.0f);
+		Gizmos.DrawWireSphere(p2, 1.0f);
+		Gizmos.DrawWireSphere(p3, 1.0f);
 	}
 	private Vector3 BezierCurveQuadratic(float t, Vector3 p0, Vector3 p1, Vector3 p2)
 	{
