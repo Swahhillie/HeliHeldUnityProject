@@ -122,6 +122,8 @@ public class Helicopter : MonoBehaviour
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer (float x)
 	{
+		if(camAnimation.isPlaying) return;
+		
 		if (state == Helistate.Fly)
 		{
 			transform.Rotate (Vector3.up, x * heliSettings.rotationSpeed * Time.deltaTime); //rotate over the y axis
@@ -156,6 +158,8 @@ public class Helicopter : MonoBehaviour
 	/// </param>
 	public void Accelerate (Vector3 direction)
 	{
+		if(camAnimation.isPlaying) return;
+		
 		direction = transform.TransformDirection (direction); // make the direction in local space
 		AddAvoidForce (ref direction);
 		

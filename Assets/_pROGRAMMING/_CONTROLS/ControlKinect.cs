@@ -22,6 +22,10 @@ public class ControlKinect : ControlBase
 	public float ExitTime = 5.0f;
 	private float exitTimer = 0.0f;
 	
+	
+	public float savingAcceleration = 0.005f;
+	private float savingSpeed = 0.0f;
+	
 	private List<GestureAction> gestures;
 	
 	public List<GestureAction> Gestures
@@ -255,8 +259,15 @@ public class ControlKinect : ControlBase
 		if (saveZ > -0.25f && saveZ < 0.0f) {
 			saveZ = 0;
 		}
-				
-		heli.Accelerate (new Vector3 (saveX * saveSensitvity, 0, saveZ * saveSensitvity));
+		
+		//check if moving
+		if(saveX > 0 || saveZ > 0)
+		{
+			if(savingSpeed < 1)
+				savingSpeed += savingAcceleration;
+		}
+		
+		heli.Accelerate (new Vector3 ((saveX * saveSensitvity)*savingSpeed, 0, (saveZ * saveSensitvity)*savingSpeed));
 				
 		showHand = true;
 	}
