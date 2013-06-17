@@ -103,17 +103,17 @@ public class Helicopter : MonoBehaviour
 		SetState(Helistate.Fly);
 		
 		// disable the keyboard if connect is there and vice versa
-//		if (skelWrap.devOrEmu.device.connected)
-//		{
+		if (skelWrap.devOrEmu.device.connected)
+		{
 			controlType = ControlType.Kinect;
 			gameObject.GetComponent<ControlKeyboard> ().enabled = false;
-//				
-//		}
-//		else
-//		{
-//			controlType = ControlType.Keyboard;
-//			gameObject.GetComponent<ControlKinect> ().enabled = false;
-//		}
+				
+		}
+		else
+		{
+			controlType = ControlType.Keyboard;
+			gameObject.GetComponent<ControlKinect> ().enabled = false;
+		}
 	}
 	
 	public float closestPoint = 0;
