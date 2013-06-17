@@ -46,6 +46,7 @@ public class Menu2D : MonoBehaviour {
 	private GameStats gameStats;
 	public KinectMouse kinectMouse;
 	private Main main;
+	public GameObject stopMenu;
 	private void Start()
 	{
 		
@@ -88,7 +89,6 @@ public class Menu2D : MonoBehaviour {
 			b.ButtonActivated += ButtonActivateListener;
 			this.MouseMoved += b.MouseMoveListener;
 		}
-		
 	}
 	private void ButtonActivateListener(Button2D sender, ButtonActivateEventArgs e)
 	{
@@ -99,14 +99,7 @@ public class Menu2D : MonoBehaviour {
 	{
 		Debug.LogWarning("Default button was called because a button does not have a properly set activate event");
 	}
-	public void OpenShop(ButtonActivateEventArgs e){
-		Debug.Log("Opening shop");
-	}
-	public void CloseShop(ButtonActivateEventArgs e)
-	{
-		Debug.Log("Closing shop");
-	}
-
+	
 	public void StartOver(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Starting over");
@@ -119,10 +112,54 @@ public class Menu2D : MonoBehaviour {
 	}
 	public void StopPlaying(ButtonActivateEventArgs e)
 	{
+		//return to masterMenu
+		main.ReturnToMaster();
 		//Debug.Log("Probably shouldnt do this");
 		//Application.Quit();
 	}
-	
+	/// <summary>
+	/// Opens the menu.
+	/// </summary>
+	/// <param name='e'>
+	/// E.
+	/// </param>
+	public void OpenMenu(ButtonActivateEventArgs e)
+	{
+		//go to the main menu, used from the master scene
+		main.LoadMenu();
+	}
+	/// <summary>
+	/// Loads the first mission.
+	/// </summary>
+	/// <param name='e'>
+	/// E.
+	/// </param>
+	public void LoadFirstMission(ButtonActivateEventArgs e)
+	{
+		main.LoadFirstLevel();
+	}
+	/// <summary>
+	/// Opens the stop menu.
+	/// </summary>
+	/// <param name='e'>
+	/// E.
+	/// </param>
+	public void OpenStopMenu(ButtonActivateEventArgs e)
+	{
+		//stopMenu.SetActive(true);	
+		stopMenu.transform.position = new Vector3(.5f, 0.5f, 5.0f);
+	}
+	/// <summary>
+	/// Closes the stop menu.
+	/// </summary>
+	/// <param name='e'>
+	/// E.
+	/// </param>
+	public void CloseStopMenu(ButtonActivateEventArgs e)
+	{
+		//stopMenu.SetActive(false);
+		stopMenu.transform.position = new Vector3(-500.0f, 0, 5.0f);
+	}
 	
 	
 }

@@ -25,8 +25,17 @@ public class Button2D : MonoBehaviour
 	/// <summary>
 	/// Awake this instance, warn if there are unset variables.
 	/// </summary>
-	public void Awake()
+	public void Start()
 	{
+		InitializeTextures();
+	}
+	public void OnEnable()
+	{
+		InitializeTextures();
+	}
+	private void InitializeTextures()
+	{
+		
 		if(defaultTexture == null)Debug.LogError("There is no default texture set");
 		if(hoverTexture == null)Debug.LogError("There is no hover texture set");
 		if(ActivateFunction == null){
@@ -36,7 +45,6 @@ public class Button2D : MonoBehaviour
 		//update the texture so it displays the correct one from the start.
 		SwapTexture();
 	}
-
 	public void MouseMoveListener (Menu2D sender, MouseClickEventArgs e)
 	{
 		if (guiTexture.GetScreenRect ().Contains (e.position)) {

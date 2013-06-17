@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 public class Main : TriggeredObject {
-	
+	public string masterScene = "MasterScene";
 	public string menuScene = "MenuSceneDavid";
 	private enum State{Menu, Game};
 	private State state;
@@ -41,30 +41,11 @@ public class Main : TriggeredObject {
 		
 		if(eventReaction.type == EventReaction.Type.EndLevel)
 		{
-			state = State.Menu;
-			scoreManager.LevelComplete(ConfigLoader.Instance.activeLevel);
-			Application.LoadLevel(menuScene);	
+			LoadMenu();	
 			
 		}
 		if(eventReaction.type == EventReaction.Type.SpecialScore){
 			scoreManager.AddSpecialScore(eventReaction.specialScore);
-		}
-	}
-	/// <summary>
-	/// Gets the next level.
-	/// </summary>
-	/// <value>
-	/// The next level.
-	/// </value>
-	private string nextLevel{
-		get{
-			if(currentLevel < levels.Count)
-				return levels[currentLevel];
-			else
-			{
-				currentLevel = 0;
-				return levels[currentLevel];
-			}
 		}
 	}
 
@@ -93,5 +74,26 @@ public class Main : TriggeredObject {
 		
 		if(Application.loadedLevelName != menuScene)
 			Application.LoadLevel(menuScene);
+	}
+	public void ReturnToMaster()
+	{
+		Application.LoadLevel(masterScene);
+	}
+	/// <summary>
+	/// Loads the menu.
+	/// </summary>
+	public void LoadMenu()
+	{
+		state = State.Menu;
+		scoreManager.LevelComplete(ConfigLoader.Instance.activeLevel);
+		Application.LoadLevel(menuScene);
+	}
+	/// <summary>
+	/// Loads the first level.
+	/// </summary>
+	public void LoadFirstLevel()
+	{
+		currentLevel = 0;
+		LastLevel();
 	}
 }
