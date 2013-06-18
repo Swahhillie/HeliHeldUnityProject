@@ -24,7 +24,7 @@ public class ControlKinect : ControlBase
 	
 	
 	public float savingAcceleration = 0.2f;
-	public float maxSavingSpeed = 1.2f;
+	public float maxSavingSpeed = 1.0f;
 	private float savingSpeed = 0.0f;
 	
 	private List<GestureAction> gestures;
@@ -110,7 +110,7 @@ public class ControlKinect : ControlBase
 				if(exitTimer > ExitTime)
 				{
 					Main main = (Main)FindObjectOfType(typeof(Main));
-					main.ExitToMainMenu();
+					main.ReturnToMaster();
 				}
 				break;
 			

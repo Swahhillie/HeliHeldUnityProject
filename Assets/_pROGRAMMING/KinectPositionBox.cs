@@ -83,7 +83,7 @@ public class KinectPositionBox : MonoBehaviour
 			{
 				Debug.Log("No-one found for a while. Exit to menu");
 				Main main = (Main)FindObjectOfType(typeof(Main));
-				main.ExitToMainMenu();
+				main.ReturnToMaster();
 				exitTime = 0.0f;
 			}
 		}

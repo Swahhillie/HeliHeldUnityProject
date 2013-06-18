@@ -61,7 +61,6 @@ public class FlyingModeGesture : GestureAction
 		Vector3 distLeft = GetVectorBetween (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.ShoulderLeft);
 		Vector3 distRight = GetVectorBetween (Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.ShoulderRight);
 		
-		Debug.Log(distRight.y);
 		if (dist < settings.activationDistanceFlying && distLeft.y > 0 && distRight.y > 0){
 			gestureActive = true;
 		} else {
@@ -94,7 +93,9 @@ public class ExitModeGesture : GestureAction
 	}
 }
 [System.Serializable]
-public class RadioGesture : GestureAction{
+public class RadioGesture : GestureAction
+{
+	public float activationTime = 0.2f;
 	
 	public override GestureType Type {
 		get {

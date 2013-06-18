@@ -22,8 +22,8 @@ public class LineGuide : TriggeredObject {
 	public float objectSpeed = 1.0f;
 	
 	void Start () {
-		targetObject = new GameObject("lineGuideTarget");
-		targetObject.transform.position = transform.position;
+		//targetObject = new GameObject("lineGuideTarget");
+		//targetObject.transform.position = transform.position;
 		lineRenderer = GetComponent<LineRenderer>();
 		helicopter = transform.parent.GetComponent<Helicopter>();
 		if(helicopter == null)

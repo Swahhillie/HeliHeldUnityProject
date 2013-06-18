@@ -25,10 +25,10 @@ public class RescuePointer : MonoBehaviour {
 			Vector3 dirToRescuable = target.position - helicopter.transform.position;
 			dirToRescuable = helicopter.transform.InverseTransformDirection(dirToRescuable);
 			
-			/*if(dotToNearest > heliSettings.hoverPrecision)
-				saveReticle.renderer.enabled = false;
+			if(helicopter.dotToNearest > helicopter.heliSettings.hoverPrecision)
+				this.renderer.enabled = false;
 			else
-				saveReticle.renderer.enabled = true;*/
+				this.renderer.enabled = true;
 			
 			Vector3 dir = Vector3.Normalize (dirToRescuable);
 			

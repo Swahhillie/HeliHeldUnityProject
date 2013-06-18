@@ -2,12 +2,12 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 public class Main : TriggeredObject {
-	public string masterScene = "MasterScene";
-	public string menuScene = "MenuSceneDavid";
+	public string masterScene = "DennisMasterScene";
+	public string menuScene = "DennisMenuScene";
 	private enum State{Menu, Game};
 	private State state;
 	// Use this for initialization
-	public string gameScene = "LevelDesignDaniel";
+	public string gameScene = "Playtest";
 	public List<string> levels;
 	private int currentLevel = -1;
 	
@@ -70,14 +70,14 @@ public class Main : TriggeredObject {
 	
 	public void ExitToMainMenu()
 	{
-		currentLevel = -1;
-		
-		if(Application.loadedLevelName != menuScene)
-			Application.LoadLevel(menuScene);
+		Application.LoadLevel(menuScene);
 	}
 	public void ReturnToMaster()
 	{
-		Application.LoadLevel(masterScene);
+		currentLevel = -1;
+		
+		if(Application.loadedLevelName != masterScene)
+			Application.LoadLevel(masterScene);
 	}
 	/// <summary>
 	/// Loads the menu.
