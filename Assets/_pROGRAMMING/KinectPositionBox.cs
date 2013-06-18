@@ -45,6 +45,8 @@ public class KinectPositionBox : MonoBehaviour
 	
 	void Update()
 	{
+		if(!skelWrap.devOrEmu.device.connected) return;
+		
 		playerPos = kg.GetPlayerPosition();
 		
 		//limits

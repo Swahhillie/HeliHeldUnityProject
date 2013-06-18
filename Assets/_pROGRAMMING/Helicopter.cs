@@ -81,15 +81,12 @@ public class Helicopter : MonoBehaviour
 	private ControlType controlType = ControlType.None;
 	public string toSavePosition;
 	public string toPilotPosition;
-	private RescuePointer rescuePointer;
 	private RescueNearbyIndicator rescueNearbyIndicator;
 	public Transform joystick;
 	public Transform saveReticle;
 	
 	public void Start ()
 	{
-		
-		rescuePointer = GetComponentInChildren<RescuePointer> ();
 		rescueNearbyIndicator = GetComponentInChildren<RescueNearbyIndicator> ();
 		radio = (Radio)FindObjectOfType(typeof(Radio));
 		InitializeControls ();
@@ -125,6 +122,8 @@ public class Helicopter : MonoBehaviour
 	//should work now. try it, so long as poll skelleton is false
 	public void Steer (float x)
 	{
+		if(camAnimation.isPlaying) return;
+		
 		if (state == Helistate.Fly)
 		{
 			transform.Rotate (Vector3.up, x * heliSettings.rotationSpeed * Time.deltaTime); //rotate over the y axis
@@ -159,6 +158,8 @@ public class Helicopter : MonoBehaviour
 	/// </param>
 	public void Accelerate (Vector3 direction)
 	{
+		if(camAnimation.isPlaying) return;
+		
 		direction = transform.TransformDirection (direction); // make the direction in local space
 		AddAvoidForce (ref direction);
 		
@@ -363,9 +364,6 @@ public class Helicopter : MonoBehaviour
 		if (state == Helistate.Save)
 		{
 			
-			rescuePointer.alpha = dotToNearest;
-		
-			
 			if (!rescueing)
 			{
 				StartCoroutine (RescueRoutine ());
@@ -384,10 +382,10 @@ public class Helicopter : MonoBehaviour
 		{
 			Vector3 dirToRescuable = nearestRescuable.transform.position - transform.position;
 			
-			if(dotToNearest > heliSettings.hoverPrecision)
+			/*if(dotToNearest > heliSettings.hoverPrecision)
 				saveReticle.renderer.enabled = false;
 			else
-				saveReticle.renderer.enabled = true;
+				saveReticle.renderer.enabled = true;*/
 			
 			Vector3 dir = Vector3.Normalize (dirToRescuable);
 			
@@ -404,6 +402,7 @@ public class Helicopter : MonoBehaviour
 			
 			//saveReticle.localPosition = dif;
 			saveReticle.rotation = Quaternion.LookRotation(dif);
+			saveReticle.Rotate(new Vector3(270, 180, 0));
 		}
 	}
 	
@@ -501,7 +500,7 @@ public class Helicopter : MonoBehaviour
 	
 	public void GiveExitWarning()
 	{
-		radio.Warning(new Message("Weet je zeker dat je wilt stoppen?", ""));
+		radio.Warning(true,"Weet je zeker dat je wilt stoppen?");
 	}
 	
 	/// <summary>

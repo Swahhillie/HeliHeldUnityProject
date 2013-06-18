@@ -6,6 +6,8 @@ public class Castaway : MissionObjectBase
 {
 	
 	public int scoreValue = 0;
+	public GameObject ScoreText;
+
 	
 	override protected void AwakeConcrete(){
 		_type = MissionObject.Castaway;
@@ -13,6 +15,21 @@ public class Castaway : MissionObjectBase
 	}
 	override protected void UpdateConcrete(){
 		//update for mission object base must be implemented here. not in Update()	
+	}
+	
+	public override bool AttemptRescue ()
+	{
+		bool success  = base.AttemptRescue ();
+		if(success)
+		{
+			
+			ScoreText = (GameObject)Instantiate(Resources.Load("ScoreText"), this.transform.position, Quaternion.identity);
+			if(ScoreText!=null)
+			{
+				ScoreText.GetComponent<Point>().points = scoreValue;
+			}
+		}
+		return (success);
 	}
 	
 	override public void AcceptVisitor(Visitor v){

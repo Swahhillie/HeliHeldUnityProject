@@ -9,8 +9,8 @@ public class Radio : TriggeredObject
 	public Texture2D radioBackgroundImage;
 	public Texture2D warningBackgroundImage;
 	public float closeDuration=1.0f;
-	public float writeDuration = 5.0f;
-	
+	public float writeDuration = 1.0f;
+	public float timeOnScreen;
 	public Vector2 openedScale = new Vector2(200,200);
 	private Vector2 closedScale = new Vector2(0,0);
 	public Vector4 textOffset = new Vector4(0,0,0,0);
@@ -27,6 +27,7 @@ public class Radio : TriggeredObject
 	private Vector2 _currentScale=new Vector2(0,0);
 	private GUIStyle style;
     private Vector2 position;
+	private Warning warning;
 	
 
 	
@@ -51,6 +52,11 @@ public class Radio : TriggeredObject
 		}
 		style.normal.textColor = radioTextcolor;
 		style.fontSize = radioTextSize;
+		warning = this.transform.GetComponentInChildren<Warning>();
+		if(timeOnScreen<closeDuration+writeDuration)
+		{
+			timeOnScreen=closeDuration+writeDuration;
+		}
 	}
 	
 	/// <summary>
@@ -139,15 +145,8 @@ public class Radio : TriggeredObject
 				return;
 			}
 			rmi.setActive=false;
-			if(_message!=null)
+			if(_message.audio!=null)
 			{
-				if(_message.audio!=null&&!_audioSource.isPlaying)
-				{
-					if(_message.audio!=null)
-					{
-						_audioSource.PlayOneShot(_message.audio);
-					}
-				}
 				_audioSource.PlayOneShot(_message.audio);
 			}
 			
@@ -176,6 +175,24 @@ public class Radio : TriggeredObject
 		if(_message!=null)
 		{
 			float elapsed = Time.time - startTime;
+			//deactivate if elapsed time is bigger than the time on screen!
+			if(_message.audio==null)
+			{
+				if(elapsed>timeOnScreen)
+				{
+					_active=false;
+					startTime = Time.time;
+					elapsed=0;
+				}
+			}
+			else
+			{
+				//deactivate if message audio file is done!
+				if(!_audioSource.isPlaying)
+				{
+					_active=false;	
+				}
+			}
 			float percent = elapsed / closeDuration;
 			
 			if(_active)
@@ -234,13 +251,8 @@ public class Radio : TriggeredObject
 		get{return _active;}
 	}
 	
-	public void Warning(Message msg)
+	public void Warning(bool status,string text)
 	{
-		Debug.Log("Displaying warning " + msg.text);
-		if(msg.text!=null)
-		{
-			_message = msg;
-			SetRadio(true);
-		}
+		warning.setWarning(status,text);
 	}
 }
