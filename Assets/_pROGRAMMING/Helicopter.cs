@@ -378,32 +378,7 @@ public class Helicopter : MonoBehaviour
 	/// </summary>
 	public void UpdateSaveRecticule ()
 	{
-		if (nearestRescuable != null)
-		{
-			Vector3 dirToRescuable = nearestRescuable.transform.position - transform.position;
-			
-			/*if(dotToNearest > heliSettings.hoverPrecision)
-				saveReticle.renderer.enabled = false;
-			else
-				saveReticle.renderer.enabled = true;*/
-			
-			Vector3 dir = Vector3.Normalize (dirToRescuable);
-			
-			// forward component
-			Vector3 difForward = Vector3.Dot (dir, Vector3.forward) * Vector3.forward;
-			// right component
-			Vector3 difSideways = Vector3.Dot (dir, Vector3.right) * Vector3.right;
-			//combine components
-			Vector3 dif = (difForward + difSideways);
-			
-			//dif *= heliSettings.saveReticuleRange;
-			
-			Debug.DrawRay (transform.position, dif * 5, Color.yellow);
-			
-			//saveReticle.localPosition = dif;
-			saveReticle.rotation = Quaternion.LookRotation(dif);
-			saveReticle.Rotate(new Vector3(270, 180, 0));
-		}
+		
 	}
 	
 	/// <summary>
