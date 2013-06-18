@@ -402,7 +402,6 @@ public class Helicopter : MonoBehaviour
 			
 			//saveReticle.localPosition = dif;
 			saveReticle.rotation = Quaternion.LookRotation(dif);
-			saveReticle.Rotate(new Vector3(270, 180, 0));
 		}
 	}
 	
