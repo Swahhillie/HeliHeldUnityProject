@@ -378,7 +378,7 @@ public class Helicopter : MonoBehaviour
 	/// </summary>
 	public void UpdateSaveRecticule ()
 	{
-		
+
 	}
 	
 	/// <summary>

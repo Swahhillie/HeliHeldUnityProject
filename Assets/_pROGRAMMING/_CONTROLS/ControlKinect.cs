@@ -23,7 +23,8 @@ public class ControlKinect : ControlBase
 	private float exitTimer = 0.0f;
 	
 	
-	public float savingAcceleration = 0.005f;
+	public float savingAcceleration = 0.2f;
+	public float maxSavingSpeed = 1.2f;
 	private float savingSpeed = 0.0f;
 	
 	private List<GestureAction> gestures;
@@ -213,7 +214,7 @@ public class ControlKinect : ControlBase
 		if(debug){DebugGUI();}
 		
 		if (showHand) {
-			GUI.DrawTexture (new Rect (cursorPosition.x - handTex.width * 0.5f, Screen.height - cursorPosition.y - handTex.height * 0.5f, handTex.width, handTex.height), handTex);
+			//GUI.DrawTexture (new Rect (cursorPosition.x - handTex.width * 0.5f, Screen.height - cursorPosition.y - handTex.height * 0.5f, handTex.width, handTex.height), handTex);
 		}
 	}
 	
@@ -232,7 +233,7 @@ public class ControlKinect : ControlBase
 		
 		float steer = diff.x * steerSensitivity; //add sensitivity value
 		
-		dir.z = 0.5f - diff.y; //prevent backwards flying
+		dir.z = 1.0f;
 		
 		dir = dir.magnitude > forceThresshold ? Vector3.Normalize (dir) : Vector3.zero; //get direction
 		
@@ -261,11 +262,13 @@ public class ControlKinect : ControlBase
 		}
 		
 		//check if moving
-		if(saveX > 0 || saveZ > 0)
+		if(saveX != 0 || saveZ != 0)
 		{
-			if(savingSpeed < 1)
-				savingSpeed += savingAcceleration;
+			if(savingSpeed < maxSavingSpeed)
+				savingSpeed += savingAcceleration * Time.deltaTime;
 		}
+		else
+			savingSpeed = 0.0f;
 		
 		heli.Accelerate (new Vector3 ((saveX * saveSensitvity)*savingSpeed, 0, (saveZ * saveSensitvity)*savingSpeed));
 				

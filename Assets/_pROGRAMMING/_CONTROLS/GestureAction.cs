@@ -58,8 +58,11 @@ public class FlyingModeGesture : GestureAction
 	{
 		bool gestureActive = false;
 		float dist = GetDistanceBetweenBones (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.HandRight);
+		Vector3 distLeft = GetVectorBetween (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.ShoulderLeft);
+		Vector3 distRight = GetVectorBetween (Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.ShoulderRight);
 		
-		if (dist < settings.activationDistanceFlying) {
+		Debug.Log(distRight.y);
+		if (dist < settings.activationDistanceFlying && distLeft.y > 0 && distRight.y > 0){
 			gestureActive = true;
 		} else {
 			gestureActive = false;

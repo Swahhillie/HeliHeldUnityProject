@@ -22,8 +22,7 @@ public class Castaway : MissionObjectBase
 		bool success  = base.AttemptRescue ();
 		if(success)
 		{
-			
-			ScoreText = (GameObject)Instantiate(Resources.Load("ScoreText"), this.transform.position, Quaternion.identity);
+			ScoreText = (GameObject)Instantiate(Resources.Load("ScoreText"), this.transform.position, GameObject.Find("InfraredCam").transform.rotation);
 			if(ScoreText!=null)
 			{
 				ScoreText.GetComponent<Point>().points = scoreValue;
