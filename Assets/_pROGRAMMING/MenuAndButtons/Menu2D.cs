@@ -42,6 +42,8 @@ public class Menu2D : MonoBehaviour {
 	
 	private Vector2 lastMousePosition;
 	
+	private bool popupOn = false;
+	
 	
 	private GameStats gameStats;
 	public KinectMouse kinectMouse;
@@ -103,11 +105,13 @@ public class Menu2D : MonoBehaviour {
 	public void StartOver(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Starting over");
+		if(popupOn) return;
 		main.LastLevel();
 	}
 	public void StartNew(ButtonActivateEventArgs e)
 	{
 		Debug.Log("Starting new");
+		if(popupOn) return;
 		main.NextLevel();
 	}
 	public void StopPlaying(ButtonActivateEventArgs e)
@@ -148,6 +152,7 @@ public class Menu2D : MonoBehaviour {
 	{
 		//stopMenu.SetActive(true);	
 		stopMenu.transform.position = new Vector3(.5f, 0.5f, 5.0f);
+		popupOn = true;
 	}
 	/// <summary>
 	/// Closes the stop menu.
@@ -159,6 +164,7 @@ public class Menu2D : MonoBehaviour {
 	{
 		//stopMenu.SetActive(false);
 		stopMenu.transform.position = new Vector3(-500.0f, 0, 5.0f);
+		popupOn = false;
 	}
 	
 	
