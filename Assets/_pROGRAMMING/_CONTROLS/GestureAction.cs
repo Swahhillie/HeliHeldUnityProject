@@ -95,7 +95,6 @@ public class ExitModeGesture : GestureAction
 [System.Serializable]
 public class RadioGesture : GestureAction
 {
-	public float activationTime = 0.2f;
 	
 	public override GestureType Type {
 		get {
