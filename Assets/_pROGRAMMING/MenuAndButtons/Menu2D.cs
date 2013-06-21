@@ -48,6 +48,7 @@ public class Menu2D : MonoBehaviour {
 	private Main main;
 	public GameObject stopMenu;
 	public GameObject instructionsObject;
+	public float instructionsUpDuration = 20.0f;
 	private void Start()
 	{
 		
@@ -139,8 +140,7 @@ public class Menu2D : MonoBehaviour {
 	/// </param>
 	public void LoadFirstMission(ButtonActivateEventArgs e)
 	{
-		OpenInstruction(null);
-		StartCoroutine(NextFrame(main.LoadFirstLevel));
+		main.LoadFirstLevel();
 	}
 	/// <summary>
 	/// Opens the stop menu.
@@ -170,7 +170,8 @@ public class Menu2D : MonoBehaviour {
 	public void OpenInstruction(ButtonActivateEventArgs e)
 	{
 		instructionsOpen = true;
-		instructionsObject.transform.position = new Vector3(0.5f, 0.5f, 1.0f);
+		instructionsObject.transform.position = new Vector3(0.5f, 1.0f, 1.0f);
+		StartCoroutine(WaitAndExecute(() => CloseInstructions(null), instructionsUpDuration));
 	 	
 	}
 	public void CloseInstructions(ButtonActivateEventArgs e)
@@ -178,9 +179,9 @@ public class Menu2D : MonoBehaviour {
 		instructionsOpen = false;
 		instructionsObject.transform.position = new Vector3(-500.0f, 0, 1.0f);
 	}
-	private IEnumerator NextFrame(System.Action action)
-	{
-		yield return null;
+	
+	private IEnumerator WaitAndExecute(System.Action action, float seconds){
+		yield return new WaitForSeconds(seconds);
 		action();
-	}	
+	}
 }
