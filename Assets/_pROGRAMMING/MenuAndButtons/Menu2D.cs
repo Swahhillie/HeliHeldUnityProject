@@ -41,14 +41,13 @@ public class Menu2D : MonoBehaviour {
 	private event OnMouseMove MouseMoved;
 	
 	private Vector2 lastMousePosition;
-	
+		
 	private bool popupOn = false;
-	
-	
 	private GameStats gameStats;
 	public KinectMouse kinectMouse;
 	private Main main;
 	public GameObject stopMenu;
+	public GameObject instructionsObject;
 	private void Start()
 	{
 		
@@ -140,7 +139,8 @@ public class Menu2D : MonoBehaviour {
 	/// </param>
 	public void LoadFirstMission(ButtonActivateEventArgs e)
 	{
-		main.LoadFirstLevel();
+		OpenInstruction(null);
+		StartCoroutine(NextFrame(main.LoadFirstLevel));
 	}
 	/// <summary>
 	/// Opens the stop menu.
@@ -163,9 +163,24 @@ public class Menu2D : MonoBehaviour {
 	public void CloseStopMenu(ButtonActivateEventArgs e)
 	{
 		//stopMenu.SetActive(false);
-		stopMenu.transform.position = new Vector3(-500.0f, 0, 5.0f);
 		popupOn = false;
+		stopMenu.transform.position = new Vector3(-500.0f, 0, 5.0f);
 	}
-	
-	
+	bool instructionsOpen = false;
+	public void OpenInstruction(ButtonActivateEventArgs e)
+	{
+		instructionsOpen = true;
+		instructionsObject.transform.position = new Vector3(0.5f, 0.5f, 1.0f);
+	 	
+	}
+	public void CloseInstructions(ButtonActivateEventArgs e)
+	{
+		instructionsOpen = false;
+		instructionsObject.transform.position = new Vector3(-500.0f, 0, 1.0f);
+	}
+	private IEnumerator NextFrame(System.Action action)
+	{
+		yield return null;
+		action();
+	}	
 }
