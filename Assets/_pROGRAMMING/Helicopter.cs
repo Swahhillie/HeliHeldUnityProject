@@ -84,6 +84,8 @@ public class Helicopter : MonoBehaviour
 	private RescueNearbyIndicator rescueNearbyIndicator;
 	public Transform joystick;
 	public Transform saveReticle;
+	public Transform centerOfLevel;
+	public float maxDistanceFromCenter = 1500.0f;
 	
 	public void Start ()
 	{
@@ -149,7 +151,15 @@ public class Helicopter : MonoBehaviour
 		
 		
 	}
-	
+	private Vector3 lastPostion;
+	private void LateUpdate()
+	{
+		if(Vector3.SqrMagnitude(transform.position - centerOfLevel.position) > maxDistanceFromCenter * maxDistanceFromCenter)
+		{
+			transform.position = lastPostion;
+		}
+		lastPostion = transform.position;
+	}
 	/// <summary>
 	/// Accelerate the specified direction.
 	/// </summary>
@@ -222,6 +232,11 @@ public class Helicopter : MonoBehaviour
 		if (debugLines)
 		{
 			Gizmos.DrawWireSphere (transform.position, heliSettings.rescueRadius);
+			if(centerOfLevel != null){
+				Gizmos.color = Color.red;
+				Gizmos.DrawWireSphere(centerOfLevel.position, maxDistanceFromCenter);	
+			}
+			
 		}
 	}
 	

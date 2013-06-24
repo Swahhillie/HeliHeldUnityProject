@@ -10,6 +10,7 @@ public class Main : TriggeredObject {
 	// Use this for initialization
 	public string gameScene = "Playtest";
 	public List<string> levels;
+	public List<string> scenes;
 	private int currentLevel = -1;
 	
 	public ScoreManager scoreManager;
@@ -33,9 +34,15 @@ public class Main : TriggeredObject {
 			{
 				System.Array.ForEach(levelsString.Split(','), (obj) =>  levels.Add(obj));
 			}
+			
+			string scenesString = "";
+			if(ConfigLoader.GetValue("scenes", ref scenesString))
+			{
+				System.Array.ForEach(scenesString.Split(','), (obj) => scenes.Add(obj));
+			}
 			StringBuilder levelsToPlay = new StringBuilder();
-			foreach(var s in levels) levelsToPlay.Append(s + ", ");
-			Debug.Log("Playing levels: [" + levelsToPlay.ToString() + "]");
+			for(var i = 0; i < levels.Count; i++) levelsToPlay.Append(levels[i] + ":" + scenes[i] + ", ");
+			Debug.Log("Playing Levels: [" + levelsToPlay.ToString() + "]");
 		}
 		
 		
