@@ -15,6 +15,7 @@ public class Warning : MonoBehaviour {
 	private string _text;
     private bool _active=false;
 	private float _startTime=0;
+	
 	public bool setActive
 	{
 		get{return _active;}
@@ -26,11 +27,10 @@ public class Warning : MonoBehaviour {
 			}
 		}
 	}
-	void Start()
-	{
-		//setWarning(true,"test ajksdhfha kajsdhfklja skjashdfkjla kjdfahklsjd fkaj sdfkjah sdkljfhalksdjhfalkjsd fkjla sdklfjhaslkdjfhalkjsdhflkajsd kjah lskdjfakljsdh f");	
-	}
-	// Update is called once per frame
+
+	/// <summary>
+	/// Update this instance.
+	/// </summary>
 	void Update () 
 	{
 		if(_active)
@@ -39,7 +39,9 @@ public class Warning : MonoBehaviour {
 			style.normal.textColor = new Color(style.normal.textColor.r,style.normal.textColor.g,style.normal.textColor.b,alpha);
 		}
 	}
-	
+	/// <summary>
+	/// Raises the OnGUI event.
+	/// </summary>
 	void OnGUI()
 	{
 		if(_active)
@@ -48,7 +50,15 @@ public class Warning : MonoBehaviour {
 		}
 	}
 	
-	
+	/// <summary>
+	/// Sets the warning.
+	/// </summary>
+	/// <param name='status'>
+	/// Status.
+	/// </param>
+	/// <param name='text'>
+	/// Text.
+	/// </param>
 	public void setWarning(bool status, string text)
 	{
 		setActive = status;

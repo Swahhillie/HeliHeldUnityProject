@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-
+/// <summary>
+/// Helmet animation.
+/// </summary>
 [System.Serializable]
 public class HelmetAnimation : System.Object
 {
 	public GestureAction.GestureType gesture; // listenerfunction kinect
 	public MovieTexture _image;
-	
+	public bool loopAnimation=false;
 
 	
 	public MovieTexture image
@@ -102,7 +104,7 @@ public class HelmetAnimationHandler : TriggeredObject
 		if(activate)
 		{
 			_activeAnimation = animations[animNr];
-			_activeAnimation.image.loop=true;
+			_activeAnimation.image.loop=_activeAnimation.loopAnimation;
 			_activeAnimation.image.Play();
 			_animation.texture = _activeAnimation.image;
 			_active=true;
@@ -112,7 +114,15 @@ public class HelmetAnimationHandler : TriggeredObject
 			_active = false;	
 		}
 	}
-	
+	/// <summary>
+	/// If a gesture is made it checks if the animation should stop
+	/// </summary>
+	/// <param name='gesture'>
+	/// Gesture.
+	/// </param>
+	/// <param name='e'>
+	/// E.
+	/// </param>
 	private void AlertGesture(GestureAction gesture, System.EventArgs e)
 	{
 		if(_active)
