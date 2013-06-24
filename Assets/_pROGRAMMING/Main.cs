@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 public class Main : TriggeredObject {
 	public string masterScene = "DennisMasterScene";
 	public string menuScene = "DennisMenuScene";
@@ -26,6 +27,15 @@ public class Main : TriggeredObject {
 			if(levels.Count == 0)Debug.LogError ("Specify Levels!");
 			scoreManager = ScoreManager.Instance;
 			scoreManager.main = this;
+			levels = new List<string>();
+			string levelsString = "";
+			if(ConfigLoader.GetValue("levels", ref levelsString))
+			{
+				System.Array.ForEach(levelsString.Split(','), (obj) =>  levels.Add(obj));
+			}
+			StringBuilder levelsToPlay = new StringBuilder();
+			foreach(var s in levels) levelsToPlay.Append(s + ", ");
+			Debug.Log("Playing levels: [" + levelsToPlay.ToString() + "]");
 		}
 		
 		
