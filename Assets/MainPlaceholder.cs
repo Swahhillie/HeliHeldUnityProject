@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MainPlaceholder : TriggeredObject {
+public class MainPlaceholder : Main {
 	public void Awake(){
 		name = "Main Placeholder";
 		Destroy(this.gameObject);
