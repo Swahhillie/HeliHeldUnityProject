@@ -22,7 +22,7 @@ public class HudScore : MonoBehaviour
 	void Update () 
 	{
 		GameStats _gamestats = ScoreManager.Instance.gameStats;
-		Score.text = _gamestats.totalScore.ToString();
+		Score.text = _gamestats.castawayScore.ToString();
 		CastawayCounter.text = _gamestats.savedCastaways.ToString();
 		GameStats.Award award = ScoreManager.Instance.MedalCalculate();
 		

@@ -170,7 +170,14 @@ public class Menu2D : MonoBehaviour {
 	public void OpenInstruction(ButtonActivateEventArgs e)
 	{
 		instructionsOpen = true;
+<<<<<<< HEAD
+		instructionsObject.transform.position = new Vector3(0.5f, 1.0f, 1.0f);
+=======
 		instructionsObject.transform.position = new Vector3(0.5f, 0.5f, 1.0f);
+<<<<<<< HEAD
+=======
+>>>>>>> origin/SinkingGerman-1806
+>>>>>>> origin/FlyingDutchman1806
 		StartCoroutine(WaitAndExecute(() => CloseInstructions(null), instructionsUpDuration));
 	 	
 	}
