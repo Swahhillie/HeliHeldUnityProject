@@ -16,7 +16,6 @@ public class LineGuide : TriggeredObject {
 	
 	public int segments = 50;
 	public GameObject targetObject;
-	private Vector3 target;
 	
 	public TrailRenderer movedObject;
 	public float objectSpeed = 1.0f;
@@ -81,9 +80,9 @@ public class LineGuide : TriggeredObject {
 	}
 	private Vector3 GetTargetPosition()
 	{
-		if(targetObject != null) target = targetObject.transform.position;
+		if(targetObject != null) return targetObject.transform.position;
 		
-		return target;
+		return Vector3.zero;
 		
 	}
 	private Vector3 BezierCurveCubic(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
@@ -111,10 +110,10 @@ public class LineGuide : TriggeredObject {
 	}
 	public void OnDrawGizmos()
 	{
-		if(target != Vector3.zero)
+		if(targetObject != null)
 		{
 			Gizmos.color = Color.cyan;
-			Gizmos.DrawWireSphere(target, 1.0f);
+			Gizmos.DrawWireSphere(targetObject.transform.position, 1.0f);
 		}
 		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere(p0, 1.0f);

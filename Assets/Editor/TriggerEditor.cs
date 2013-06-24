@@ -30,10 +30,11 @@ public class TriggerEditor : Editor
 				
 			CreateOpenStates ();
 		}
-		EditorGUILayout.BeginVertical ("Box");
+		EditorGUILayout.BeginVertical ();
 		{
 			
 			for (var i = trigger.triggers.Count -1; i >= 0; i--) {
+				EditorGUILayout.BeginVertical("Box");
 				EditorGUILayout.LabelField("TriggerValue", EditorStyles.boldLabel);
 				EditorGUI.indentLevel ++;
 				var tv = trigger.triggers [i];
@@ -43,6 +44,7 @@ public class TriggerEditor : Editor
 					CreateOpenStates ();
 				}
 				EditorGUI.indentLevel--;
+				EditorGUILayout.EndVertical();
 				GUILayout.Space (20);
 
 			}
