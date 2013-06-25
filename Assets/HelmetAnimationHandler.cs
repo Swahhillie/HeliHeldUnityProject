@@ -48,6 +48,7 @@ public class HelmetAnimationHandler : TriggeredObject
 	private Vector2 _currentScale = new Vector2(0,0);
 	private Vector2 _position;
 	public KeyCode hideAniKey = KeyCode.Alpha3;
+	public float stopTime=10;
 	
 	
 	/// <summary>
@@ -156,8 +157,13 @@ public class HelmetAnimationHandler : TriggeredObject
 		}
 		_animation.pixelInset = new Rect(_position.x,_position.y,_currentScale.x,_currentScale.y);
 		
+		if(elapsed>stopTime)
+		{
+			setAnimation(false,0);
+		}
 		
-		if( Input.GetKeyDown(hideAniKey)){
+		if( Input.GetKeyDown(hideAniKey))
+		{
 			setAnimation(false, 0);
 		}
 	}
