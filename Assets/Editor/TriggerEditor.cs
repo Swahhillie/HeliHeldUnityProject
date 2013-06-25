@@ -24,24 +24,29 @@ public class TriggerEditor : Editor
 
 	override public void OnInspectorGUI ()
 	{
-		if (GUILayout.Button ("Add")) {
+		if (EditorGUILayout.Toggle ("Add", false)) {
 			trigger.triggers.Add (new TriggerValue (
 					new List<EventReaction> (), TriggerType.None, 0, 0, 0, 1));
 				
 			CreateOpenStates ();
 		}
-		EditorGUILayout.BeginVertical ("Box");
+		EditorGUILayout.BeginVertical ();
 		{
-			EditorGUILayout.LabelField("TriggerValue", EditorStyles.boldLabel);
+			
 			for (var i = trigger.triggers.Count -1; i >= 0; i--) {
-				
+				EditorGUILayout.BeginVertical("Box");
+				EditorGUILayout.LabelField("TriggerValue", EditorStyles.boldLabel);
+				EditorGUI.indentLevel ++;
 				var tv = trigger.triggers [i];
 				TriggerValueInspector (tv, i);
-				if (GUILayout.Button ("Remove Trigger", GUILayout.MaxWidth (90))) {
+				if (EditorGUILayout.Toggle ("Remove Trigger", false)) {
 					trigger.triggers.RemoveAt (i);
 					CreateOpenStates ();
 				}
+				EditorGUI.indentLevel--;
+				EditorGUILayout.EndVertical();
 				GUILayout.Space (20);
+
 			}
 		}
 		EditorGUILayout.EndVertical ();
@@ -95,22 +100,24 @@ public class TriggerEditor : Editor
 			EditorGUILayout.EndHorizontal ();
 			break;
 		}
-		if (GUILayout.Button ("Add Reaction")) {
+		if (EditorGUILayout.Toggle ( "Add Reaction", false)) {
 			tv.eventReactions.Add (new EventReaction ());
 			CreateOpenStates ();
 		}
 		for (var i = tv.eventReactions.Count -1; i >= 0; i--) {
+			
+			
 			openStates [tvIndex] [i] = EditorGUILayout.Foldout (openStates [tvIndex] [i], "EventReaction");
+			EditorGUI.indentLevel ++;
 			if (openStates [tvIndex] [i]) {
 				var evr = tv.eventReactions [i];
 				EventReactionInspector (evr);
-				if (GUILayout.Button ("Remove Reaction", GUILayout.MaxWidth (90))) {
+				if (EditorGUILayout.Toggle ( "Remove Reaction", false)) {
 					tv.eventReactions.RemoveAt (i);
 					CreateOpenStates ();
 				}
-				GUILayout.Space (20);
 			}
-			
+			EditorGUI.indentLevel --;
 		}
 		EditorGUILayout.EndVertical ();
 		
@@ -123,7 +130,7 @@ public class TriggerEditor : Editor
 		System.Type allowedListenerType = typeof(TriggeredObject);
 		switch (evr.type) {
 		case EventReaction.Type.Animate:
-			LabeledField ("MessageName", () => evr.messageName = GUILayout.TextField (evr.messageName));
+			LabeledField ("MessageName", () => evr.messageName = EditorGUILayout.TextField (evr.messageName));
 			allowedListenerType = typeof(HelmetAnimationHandler);
 			break;
 		case EventReaction.Type.Count:
@@ -136,7 +143,7 @@ public class TriggerEditor : Editor
 			allowedListenerType = typeof(LineGuide);
 			break;
 		case EventReaction.Type.Say:
-			LabeledField ("MessageName", () => evr.messageName = GUILayout.TextField (evr.messageName));
+			LabeledField ("MessageName", () => evr.messageName = EditorGUILayout.TextField (evr.messageName));
 			allowedListenerType = typeof(Radio);
 			break;
 		case EventReaction.Type.Spawn:
@@ -152,21 +159,22 @@ public class TriggerEditor : Editor
 			break;
 		}
 		
-		if (GUILayout.Button ("Add Listener", GUILayout.MaxWidth (70))) {
+		if (EditorGUILayout.Toggle ("Add Listener", false)) {
 			evr.listeners.Add (null);
 		}
 		
-		EditorGUILayout.BeginHorizontal ();
-		GUILayout.Space (20);
 		EditorGUILayout.BeginVertical ("label");
+		//EditorGUILayout.PropertyField(evr.listeners, true);
+		
 		for (int i = evr.listeners.Count -1; i>= 0; i--) {
+			
 			evr.listeners [i] = (TriggeredObject)EditorGUILayout.ObjectField (evr.listeners [i], allowedListenerType, true);
-			if (GUILayout.Button ("Remove Listener", GUILayout.MaxWidth (90))) {
+			if (EditorGUILayout.Toggle ("Remove Listener",false)) {
 				evr.listeners.RemoveAt (i);
 			}
+			
 		}
 		EditorGUILayout.EndVertical ();
-		EditorGUILayout.EndHorizontal ();
 	}
 
 	private void LabeledField (string label, System.Action action)

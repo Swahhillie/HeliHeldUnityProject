@@ -233,7 +233,6 @@ public class Helicopter : MonoBehaviour
 	/// </returns>
 	private IEnumerator RescueRoutine ()
 	{
-		
 		if (rescueing == true)
 		{
 			Debug.LogError ("Multiple rescue routines are running at the same time! Respect the guard!");
@@ -386,6 +385,7 @@ public class Helicopter : MonoBehaviour
 	/// </summary>
 	public void MakeRescue ()
 	{
+		if(camAnimation.isPlaying) return;
 		nearestRescuable.AttemptRescue ();
 	}
 	

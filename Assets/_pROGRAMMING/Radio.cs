@@ -118,9 +118,9 @@ public class Radio : TriggeredObject
 	public void SetRadio(bool active)
 	{
 	    //Debug.LogError("should not be called");
+		startTime = Time.time;
 		if(active!=_active)
 		{
-			startTime = Time.time;
 			_active = active;
 			StateChanged();
 		}

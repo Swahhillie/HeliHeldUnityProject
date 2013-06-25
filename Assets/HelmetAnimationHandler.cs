@@ -102,7 +102,7 @@ public class HelmetAnimationHandler : TriggeredObject
 		if(activate)
 		{
 			_activeAnimation = animations[animNr];
-			_activeAnimation.image.loop=true;
+			_activeAnimation.image.loop=false;
 			_activeAnimation.image.Play();
 			_animation.texture = _activeAnimation.image;
 			_active=true;
