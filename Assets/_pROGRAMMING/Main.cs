@@ -2,6 +2,25 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+
+[System.Serializable]
+public class LevelScene
+{
+	public string level;
+	public string scene;
+	
+	
+	public LevelScene(string scene, string level)
+	{
+		this.scene = scene;
+		this.level = level;
+	}
+	public override string ToString ()
+	{
+		return string.Format("{0} + {1}", scene, level);
+	}
+}
+
 public class Main : TriggeredObject {
 	public string masterScene = "DennisMasterScene";
 	public string menuScene = "DennisMenuScene";
@@ -9,8 +28,7 @@ public class Main : TriggeredObject {
 	private State state;
 	// Use this for initialization
 	public string gameScene = "Playtest";
-	public List<string> levels;
-	public List<string> scenes;
+	private List<LevelScene> levels;
 	private int currentLevel = -1;
 	
 	public ScoreManager scoreManager;
@@ -25,24 +43,30 @@ public class Main : TriggeredObject {
 		else{
 			state = State.Game;
 			DontDestroyOnLoad(this.gameObject);
-			if(levels.Count == 0)Debug.LogError ("Specify Levels!");
 			scoreManager = ScoreManager.Instance;
 			scoreManager.main = this;
-			levels = new List<string>();
-			string levelsString = "";
-			if(ConfigLoader.GetValue("levels", ref levelsString))
-			{
-				System.Array.ForEach(levelsString.Split(','), (obj) =>  levels.Add(obj));
-			}
 			
+			
+			string levelsString = "";
 			string scenesString = "";
-			if(ConfigLoader.GetValue("scenes", ref scenesString))
+			
+			if(ConfigLoader.GetValue("levels", ref levelsString) && ConfigLoader.GetValue("scenes", ref scenesString))
 			{
-				System.Array.ForEach(scenesString.Split(','), (obj) => scenes.Add(obj));
+				levels = new List<LevelScene>();
+				var levelsToCombine = levelsString.Split(',');
+				var scenesToCombine = scenesString.Split(',');
+				
+				if(levelsToCombine.Length != scenesToCombine.Length) Debug.LogError("Levels do not match scenes");
+				for(int i =0 ; i< levelsToCombine.Length; i++)
+				{
+					levels.Add(new LevelScene(levelsToCombine[i], scenesToCombine[i]));
+					
+				}
 			}
-			StringBuilder levelsToPlay = new StringBuilder();
-			for(var i = 0; i < levels.Count; i++) levelsToPlay.Append(levels[i] + ":" + scenes[i] + ", ");
-			Debug.Log("Playing Levels: [" + levelsToPlay.ToString() + "]");
+			else
+			{
+				Debug.LogError("There are no levels and scenes defined in Config.xml");
+			}
 		}
 		
 		
@@ -71,10 +95,10 @@ public class Main : TriggeredObject {
 		{
 			currentLevel++;
 		}
-		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
+		StartCoroutine(SwitchSceneAndLoad(levels[currentLevel].scene, levels[currentLevel].level));
 	}
 	public void LastLevel(){
-		StartCoroutine(SwitchSceneAndLoad(gameScene, levels[currentLevel]));
+		StartCoroutine(SwitchSceneAndLoad(levels[currentLevel].scene, levels[currentLevel].level));
 	}
 		
 	public IEnumerator SwitchSceneAndLoad(string scene, string level){

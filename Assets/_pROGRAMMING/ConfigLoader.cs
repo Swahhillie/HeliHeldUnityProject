@@ -216,6 +216,27 @@ public class ConfigLoader : System.Object
 		xml.LoadXml (config);
 		return xml;
 	}
+	
+	/// <summary>
+	/// Saves over the config document.
+	/// </summary>
+	/// <returns>
+	/// The path to the document.
+	/// </returns>
+	/// <param name='doc'>
+	/// Document.
+	/// </param>
+	public string SaveDocument(XmlDocument doc)
+	{
+		//wrint to the output file. note that the asset database does not update automatically, minimize / reload unity first
+		XmlTextWriter writer = new XmlTextWriter (Application.dataPath + "\\" + configFilePath, System.Text.Encoding.ASCII);
+		writer.Formatting = Formatting.Indented;
+		//doc.Save(Application.dataPath + "\\" +outputFile);
+		doc.Save (writer);
+		writer.Close ();
+		Initialize();
+		return Application.dataPath + "\\" + configFilePath;
+	}
 	public void LoadLevel (string name)
 	{
 		if (activeLevel != null) {
