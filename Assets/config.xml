@@ -3300,18 +3300,6 @@
       </Objects>
     </Level>
   </Levels>
-  <Settings>
-    <Setting name="flightHeight" value="150">
-    </Setting>
-    <Setting name="buttonTime" value="2">
-    </Setting>
-    <Setting name="rainStrength" value="10">
-    </Setting>
-    <Setting name="heliSpeed" value="100">
-    </Setting>
-    <Setting name="capsuleHeight" value="100">
-    </Setting>
-  </Settings>
   <Messages>
     <Message>
       <Name>Intro</Name>
@@ -3430,4 +3418,8 @@
       <IsWarning>True</IsWarning>
     </Message>
   </Messages>
+  <Settings>
+    <Setting name="levels" value="savingTraining" />
+    <Setting name="scenes" value="playtest" />
+  </Settings>
 </HeliHeld>
