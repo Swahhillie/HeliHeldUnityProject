@@ -10,7 +10,9 @@ public class HudTime : MonoBehaviour
 		_guiText = this.gameObject.GetComponent<GUIText>();
 	}
 	
-	// Update is called once per frame
+	/// <summary>
+	/// Update the Time displayed in the Hud
+	/// </summary>
 	void Update () 
 	{
 		int minutes = (int)Time.timeSinceLevelLoad / 60;

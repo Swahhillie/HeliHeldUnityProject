@@ -251,6 +251,16 @@ public class Radio : TriggeredObject
 		get{return _active;}
 	}
 	
+	
+	/// <summary>
+	/// Used for important system warnings.
+	/// </summary>
+	/// <param name='status'>
+	/// Status.
+	/// </param>
+	/// <param name='text'>
+	/// Text.
+	/// </param>
 	public void Warning(bool status,string text)
 	{
 		warning.setWarning(status,text);

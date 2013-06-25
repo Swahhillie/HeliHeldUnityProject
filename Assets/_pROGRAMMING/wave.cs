@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Temporary class to store the information for the wavebehavior.
+/// Contains Information about the waves in this level
 /// </summary>
 
 public class Wave : MonoBehaviour {

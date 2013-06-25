@@ -10,7 +10,9 @@ public class HudScore : MonoBehaviour
 	public GUITexture silver;
 	public GUITexture gold;
 		
-	// Use this for initialization
+	/// <summary>
+	/// Resets the awards.
+	/// </summary>
 	void Start () 
 	{
 		bronze.enabled = false;
@@ -18,7 +20,9 @@ public class HudScore : MonoBehaviour
 		gold.enabled = false;
 	}
 	
-	// Update is called once per frame
+	/// <summary>
+	/// Calls the Scoremanager and asks for the current score and award to display it in the hud.
+	/// </summary>
 	void Update () 
 	{
 		GameStats _gamestats = ScoreManager.Instance.gameStats;
