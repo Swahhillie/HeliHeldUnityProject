@@ -29,7 +29,15 @@ public class GameStats : System.Object{
 	public int silverAwards;
 	public int bronzeAwards;
 
-	
+	public void AddAward(Award award)
+	{
+		switch(award)
+		{
+		case Award.Gold: goldAwards++; break;
+		case Award.Silver: silverAwards++;break;
+		case Award.Bronze: bronzeAwards++;break;
+		}
+	}
 
 	
 }
@@ -48,6 +56,7 @@ public class Menu2D : MonoBehaviour {
 	private Main main;
 	public GameObject stopMenu;
 	public GameObject instructionsObject;
+	public GameObject totalScoreObject;
 	public float instructionsUpDuration = 20.0f;
 	private void Start()
 	{
@@ -185,5 +194,14 @@ public class Menu2D : MonoBehaviour {
 	private IEnumerator WaitAndExecute(System.Action action, float seconds){
 		yield return new WaitForSeconds(seconds);
 		action();
+	}
+	public void OpenTotalScore(ButtonActivateEventArgs e)
+	{
+		totalScoreObject.transform.position = new Vector3(0.5f, 0.5f, 1.0f);
+		StartCoroutine(WaitAndExecute(() => HideTotalScore(null), 10.0f));
+	}
+	public void HideTotalScore(ButtonActivateEventArgs e)
+	{
+		totalScoreObject.transform.position = new Vector3(-10.0f, .5f, 1.0f);
 	}
 }

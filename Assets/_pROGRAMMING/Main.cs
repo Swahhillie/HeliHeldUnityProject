@@ -10,7 +10,7 @@ public class LevelScene
 	public string scene;
 	
 	
-	public LevelScene(string scene, string level)
+	public LevelScene(string level, string scene)
 	{
 		this.scene = scene;
 		this.level = level;
@@ -27,7 +27,6 @@ public class Main : TriggeredObject {
 	private enum State{Menu, Game};
 	private State state;
 	// Use this for initialization
-	public string gameScene = "Playtest";
 	private List<LevelScene> levels;
 	private int currentLevel = -1;
 	
@@ -71,6 +70,17 @@ public class Main : TriggeredObject {
 		
 		
 	}
+	private void OnLevelWasLoaded()
+	{
+		if(Application.loadedLevelName == masterScene)
+		{
+			if(scoreManager.gameStats.totalScore > 0)
+			{
+				var menu = FindObjectOfType(typeof(Menu2D)) as Menu2D;
+				menu.OpenTotalScore(null);
+			}
+		}
+	}
 	/// <summary>
 	/// Raises the triggered event.
 	/// </summary>
@@ -91,11 +101,16 @@ public class Main : TriggeredObject {
 	}
 
 	public void NextLevel(){
+		currentLevel++;
 		if(currentLevel<levels.Count)
 		{
-			currentLevel++;
+			StartCoroutine(SwitchSceneAndLoad(levels[currentLevel].scene, levels[currentLevel].level));
 		}
-		StartCoroutine(SwitchSceneAndLoad(levels[currentLevel].scene, levels[currentLevel].level));
+		else
+		{
+
+			Application.LoadLevel(masterScene);
+		}
 	}
 	public void LastLevel(){
 		StartCoroutine(SwitchSceneAndLoad(levels[currentLevel].scene, levels[currentLevel].level));
@@ -136,5 +151,6 @@ public class Main : TriggeredObject {
 	{
 		currentLevel = 0;
 		LastLevel();
+		scoreManager.WipeTotal();
 	}
 }

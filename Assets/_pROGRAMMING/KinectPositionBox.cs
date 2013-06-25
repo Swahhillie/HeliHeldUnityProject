@@ -71,8 +71,8 @@ public class KinectPositionBox : MonoBehaviour
 			playerPos.x > sidesLimit || 
 			playerPos.x < -sidesLimit || 
 			playerPos.z > proximityLimit || 
-			playerPos.z < distanceLimit ||
-			playerPos == Vector3.zero
+			playerPos.z < distanceLimit
+			//|| playerPos == Vector3.zero
 		   )
 		{
 			Activated = true;

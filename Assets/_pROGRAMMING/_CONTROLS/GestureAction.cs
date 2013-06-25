@@ -110,7 +110,9 @@ public class RadioGesture : GestureAction
 		else
 			dist = GetDistanceBetweenBones(Kinect.NuiSkeletonPositionIndex.HandRight, Kinect.NuiSkeletonPositionIndex.Head);
 		
-		if(dist < settings.activationDistanceRadio)
+		float distHands = GetDistanceBetweenBones (Kinect.NuiSkeletonPositionIndex.HandLeft, Kinect.NuiSkeletonPositionIndex.HandRight);
+			
+		if(dist < settings.activationDistanceRadio && distHands > settings.activationDistanceFlying)
 		{
 			gestureActive = true;
 		}
@@ -137,6 +139,10 @@ public abstract class GestureAction : System.Object
 	public event KinectEventActive WhileActivated;
 	public event KinectEventActive BecomeDeactived;
 	
+	public float TimeSinceStart 
+	{
+		get{return timeSinceStart;}
+	}
 	public abstract GestureType Type{
 		get;
 	}

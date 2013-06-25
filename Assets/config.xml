@@ -3451,9 +3451,228 @@
       </Score>
     </Level>
     <Level name="Mission1">
+      <Score>
+        <GoldScoreMinimum>200</GoldScoreMinimum>
+        <SilverScoreMinimum>100</SilverScoreMinimum>
+        <BronzeScoreMinimum>0</BronzeScoreMinimum>
+      </Score>
       <Objects>
         <Object>
-          <Name>2CounterEndGame_000_</Name>
+          <Name>2Castaway1_000_</Name>
+          <Pos>(1807, 35.43, 2630)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Later</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>2CounterEndGame_005_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Boat_001_</Name>
+          <Pos>(3546, 37.45, 1349)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>StartSaving</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>OpenIRmode</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>140</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Ship>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_FishingShip</PrefabName>
+          </Ship>
+        </Object>
+        <Object>
+          <Name>StartMission_002_</Name>
+          <Pos>(2812, 59.75, 363.9)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>StartSaveRescue</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>1Boat_001_</GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1Castaway1_003_</Listener>
+                <Listener>1Castaway3_009_</Listener>
+                <Listener>1Castaway2_011_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>150</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Castaway1_003_</Name>
+          <Pos>(3563, 34.44, 1327)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1ToLateTrigger_007_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>65</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1CountSaveSuccess_012_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>2Castaway2_004_</Name>
+          <Pos>(1807, 34.68, 2690)</Pos>
+          <Rot>(0, 275, 0)</Rot>
+          <Castaway>
+            <Spawn>Later</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>2CounterEndGame_005_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>2CounterEndGame_005_</Name>
           <Pos>(3610, 40.34, 1389)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
@@ -3470,7 +3689,7 @@
               </Listeners>
             </EventReaction>
             <EventReaction>
-              <Type>LineGuide</Type>
+              <Type>StopTimer</Type>
               <Pos>(0.0, 0.0, 0.0)</Pos>
               <MessageName>
               </MessageName>
@@ -3492,7 +3711,7 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>2CounterEndGame_000_</Listener>
+                <Listener>2CounterEndGame_005_</Listener>
               </Listeners>
             </EventReaction>
             <Radius>0</Radius>
@@ -3523,57 +3742,12 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>1Castaway3_001_</Name>
-          <Pos>(3609, 33.24, 1389)</Pos>
-          <Rot>(0, 278.4, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1ToLateTrigger_002_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Timer</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>65</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1CountSaveSuccess_003_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
+          <Name>Castaway_006_</Name>
+          <Pos>(2999, 34.79, 1279)</Pos>
+          <Rot>(0, 0, 0)</Rot>
         </Object>
         <Object>
-          <Name>1ToLateTrigger_002_</Name>
+          <Name>1ToLateTrigger_007_</Name>
           <Pos>(3610, 69.57, 1200)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
@@ -3599,9 +3773,9 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>1Castaway1_010_</Listener>
-                <Listener>1Castaway3_001_</Listener>
-                <Listener>1Castaway2_008_</Listener>
+                <Listener>1Castaway1_003_</Listener>
+                <Listener>1Castaway3_009_</Listener>
+                <Listener>1Castaway2_011_</Listener>
               </Listeners>
             </EventReaction>
             <EventReaction>
@@ -3615,8 +3789,8 @@
               </GameObject>
               <Listeners>
                 <Listener>2Castaway2_004_</Listener>
-                <Listener>2Castaway1_006_</Listener>
-                <Listener>2Boat_005_</Listener>
+                <Listener>2Castaway1_000_</Listener>
+                <Listener>2Boat_010_</Listener>
               </Listeners>
             </EventReaction>
             <EventReaction>
@@ -3626,7 +3800,7 @@
               </MessageName>
               <SpecialScore>0</SpecialScore>
               <Time>0</Time>
-              <GameObject>2Boat_005_</GameObject>
+              <GameObject>2Boat_010_</GameObject>
               <Listeners>
                 <Listener>lineGuide</Listener>
               </Listeners>
@@ -3639,75 +3813,16 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>1CountSaveSuccess_003_</Name>
-          <Pos>(3546, 37.45, 1349)</Pos>
+          <Name>beaconPrefab_008_</Name>
+          <Pos>(2797, 1.042, 626.4)</Pos>
           <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>AllSaved</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>LineGuide</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>2Boat_005_</GameObject>
-              <Listeners>
-                <Listener>lineGuide</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Enable</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>2Boat_005_</Listener>
-                <Listener>2Castaway2_004_</Listener>
-                <Listener>2Castaway1_006_</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>SpecialScore</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>500</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Main</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Counting</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>3</CountToTrigger>
-          </Trigger>
         </Object>
         <Object>
-          <Name>2Castaway2_004_</Name>
-          <Pos>(1807, 34.68, 2690)</Pos>
-          <Rot>(0, 275, 0)</Rot>
+          <Name>1Castaway3_009_</Name>
+          <Pos>(3609, 33.24, 1389)</Pos>
+          <Rot>(0, 278.4, 0)</Rot>
           <Castaway>
-            <Spawn>Later</Spawn>
+            <Spawn>Start</Spawn>
             <PrefabName>1_AnimationCastaway</PrefabName>
             <ScoreValue>50</ScoreValue>
           </Castaway>
@@ -3722,7 +3837,27 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>2CounterEndGame_000_</Listener>
+                <Listener>1ToLateTrigger_007_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>65</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1CountSaveSuccess_012_</Listener>
               </Listeners>
             </EventReaction>
             <Radius>0</Radius>
@@ -3733,7 +3868,7 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>2Boat_005_</Name>
+          <Name>2Boat_010_</Name>
           <Pos>(1807, 40.17, 2649)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Ship>
@@ -3773,88 +3908,7 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>2Castaway1_006_</Name>
-          <Pos>(1807, 35.43, 2630)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Later</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>2CounterEndGame_000_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>StartMission_007_</Name>
-          <Pos>(2812, 59.75, 363.9)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>StartSaveRescue</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>LineGuide</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>1Boat_009_</GameObject>
-              <Listeners>
-                <Listener>lineGuide</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>StartTimer</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1Castaway1_010_</Listener>
-                <Listener>1Castaway3_001_</Listener>
-                <Listener>1Castaway2_008_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>150</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway2_008_</Name>
+          <Name>1Castaway2_011_</Name>
           <Pos>(3536, 33.24, 1383)</Pos>
           <Rot>(0, 219.2, 0)</Rot>
           <Castaway>
@@ -3873,7 +3927,7 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>1ToLateTrigger_002_</Listener>
+                <Listener>1ToLateTrigger_007_</Listener>
               </Listeners>
             </EventReaction>
             <Radius>0</Radius>
@@ -3893,7 +3947,7 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>1CountSaveSuccess_003_</Listener>
+                <Listener>1CountSaveSuccess_012_</Listener>
               </Listeners>
             </EventReaction>
             <Radius>0</Radius>
@@ -3904,468 +3958,14 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>1Boat_009_</Name>
+          <Name>1CountSaveSuccess_012_</Name>
           <Pos>(3546, 37.45, 1349)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
             <EventReaction>
-              <Type>LineGuide</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>lineGuide</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
               <Type>Say</Type>
               <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>StartSaving</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Animate</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>OpenIRmode</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Animation</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>120</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Ship>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_FishingShip</PrefabName>
-          </Ship>
-        </Object>
-        <Object>
-          <Name>1Castaway1_010_</Name>
-          <Pos>(3563, 34.44, 1327)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1ToLateTrigger_002_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Timer</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>65</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1CountSaveSuccess_003_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-      </Objects>
-      <Score>
-        <GoldScoreMinimum>200</GoldScoreMinimum>
-        <SilverScoreMinimum>100</SilverScoreMinimum>
-        <BronzeScoreMinimum>0</BronzeScoreMinimum>
-      </Score>
-    </Level>
-    <Level name="Mission3">
-      <Objects>
-        <Object>
-          <Name>Castaway_000_</Name>
-          <Pos>(2999, 34.79, 1279)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-        </Object>
-        <Object>
-          <Name>T_EnterCrash_001_</Name>
-          <Pos>(2111, 105.9, 1632)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>StartTimer</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3SavePeople</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_EnterCrash_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3SavePeople</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>200</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3AllSaved</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>LineGuide</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>T_Land_010_</GameObject>
-              <Listeners>
-                <Listener>lineGuide</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Counting</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>4</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3NotSaved</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>LineGuide</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>T_Land_010_</GameObject>
-              <Listeners>
-                <Listener>lineGuide</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Disable</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1Castaway4_006_</Listener>
-                <Listener>1Castaway3_004_</Listener>
-                <Listener>1Castaway2_007_</Listener>
-                <Listener>1Castaway1_002_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Timer</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>40</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway1_002_</Name>
-          <Pos>(1995, 36.35, 1539)</Pos>
-          <Rot>(0.4601, 323.2, 0.09766)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>75</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_EnterCrash_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>beaconPrefab_003_</Name>
-          <Pos>(2797, 1.042, 626.4)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-        </Object>
-        <Object>
-          <Name>1Castaway3_004_</Name>
-          <Pos>(1987, 41.36, 1598)</Pos>
-          <Rot>(359.5, 129.7, 0.01242)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>75</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_EnterCrash_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>StartMission_005_</Name>
-          <Pos>(2812, 59.75, 363.9)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3Start</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>LineGuide</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>1Sailboat_012_</GameObject>
-              <Listeners>
-                <Listener>lineGuide</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Animate</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>IncomingSpecialMission</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Animation</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>150</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway4_006_</Name>
-          <Pos>(2044, 37.55, 1578)</Pos>
-          <Rot>(359.5, 121.8, 0.07753)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>75</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_EnterCrash_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway2_007_</Name>
-          <Pos>(1991, 38.03, 1541)</Pos>
-          <Rot>(359.9, 57.6, 0.4513)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>75</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_EnterCrash_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>2FishingShip1_008_</Name>
-          <Pos>(3816, 39.3, 2723)</Pos>
-          <Rot>(0, 198.9, 0)</Rot>
-          <Ship>
-            <Spawn>Later</Spawn>
-            <PrefabName>1_FishingShip</PrefabName>
-          </Ship>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3BoatSpotted</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_BoatCount_014_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>100</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1CargoShip_009_</Name>
-          <Pos>(2091, 34.05, 1658)</Pos>
-          <Rot>(0, 155.7, 0)</Rot>
-          <Ship>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_CARGOSHIP</PrefabName>
-          </Ship>
-        </Object>
-        <Object>
-          <Name>T_Land_010_</Name>
-          <Pos>(3732, 102.2, 1855)</Pos>
-          <Rot>(17.12, 222.6, 0.0003431)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3Land</MessageName>
+              <MessageName>AllSaved</MessageName>
               <SpecialScore>0</SpecialScore>
               <Time>0</Time>
               <GameObject>
@@ -4384,9 +3984,22 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>2FishingShip1_008_</Listener>
-                <Listener>2FishingShip3_011_</Listener>
-                <Listener>2FishingShip2_013_</Listener>
+                <Listener>2Boat_010_</Listener>
+                <Listener>2Castaway2_004_</Listener>
+                <Listener>2Castaway1_000_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>SpecialScore</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>500</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Main</Listener>
               </Listeners>
             </EventReaction>
             <EventReaction>
@@ -4396,126 +4009,29 @@
               </MessageName>
               <SpecialScore>0</SpecialScore>
               <Time>0</Time>
-              <GameObject>
-              </GameObject>
+              <GameObject>2Boat_010_</GameObject>
               <Listeners>
                 <Listener>lineGuide</Listener>
               </Listeners>
             </EventReaction>
-            <EventReaction>
-              <Type>Disable</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1CargoShip_009_</Listener>
-                <Listener>1Sailboat_012_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>130</Radius>
-            <Type>OnTriggerEnter</Type>
+            <Radius>0</Radius>
+            <Type>Counting</Type>
             <RepeatCount>1</RepeatCount>
             <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
+            <CountToTrigger>3</CountToTrigger>
           </Trigger>
         </Object>
+      </Objects>
+    </Level>
+    <Level name="Mission3">
+      <Score>
+        <GoldScoreMinimum>400</GoldScoreMinimum>
+        <SilverScoreMinimum>250</SilverScoreMinimum>
+        <BronzeScoreMinimum>0</BronzeScoreMinimum>
+      </Score>
+      <Objects>
         <Object>
-          <Name>2FishingShip3_011_</Name>
-          <Pos>(2795, 39.3, 2724)</Pos>
-          <Rot>(0, 161.9, 0)</Rot>
-          <Ship>
-            <Spawn>Later</Spawn>
-            <PrefabName>1_FishingShip</PrefabName>
-          </Ship>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3BoatSpotted</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_BoatCount_014_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>100</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Sailboat_012_</Name>
-          <Pos>(2012, 42.83, 1603)</Pos>
-          <Rot>(289.3, 347.5, 17.17)</Rot>
-          <Ship>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_SailBoatFinalVer2.2</PrefabName>
-          </Ship>
-        </Object>
-        <Object>
-          <Name>2FishingShip2_013_</Name>
-          <Pos>(2708, 39.3, 3788)</Pos>
-          <Rot>(0, 198.9, 0)</Rot>
-          <Ship>
-            <Spawn>Later</Spawn>
-            <PrefabName>1_FishingShip</PrefabName>
-          </Ship>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level3BoatSpotted</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>T_BoatCount_014_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>100</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>T_BoatCount_014_</Name>
+          <Name>T_BoatCount_000_</Name>
           <Pos>(4068, 71.52, 2677)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
@@ -4541,7 +4057,7 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>T_BoatCount_014_</Listener>
+                <Listener>T_BoatCount_000_</Listener>
               </Listeners>
             </EventReaction>
             <EventReaction>
@@ -4584,21 +4100,697 @@
             <CountToTrigger>0</CountToTrigger>
           </Trigger>
         </Object>
+        <Object>
+          <Name>2FishingShip1_001_</Name>
+          <Pos>(3816, 39.3, 2723)</Pos>
+          <Rot>(0, 198.9, 0)</Rot>
+          <Ship>
+            <Spawn>Later</Spawn>
+            <PrefabName>1_FishingShip</PrefabName>
+          </Ship>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3BoatSpotted</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_BoatCount_000_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>140</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>T_Land_002_</Name>
+          <Pos>(3732, 102.2, 1855)</Pos>
+          <Rot>(17.12, 222.6, 0.0003431)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3Land</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>2FishingShip1_001_</Listener>
+                <Listener>2FishingShip3_004_</Listener>
+                <Listener>2FishingShip2_006_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1CargoShip_007_</Listener>
+                <Listener>1Sailboat_005_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>130</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>T_EnterCrash_003_</Name>
+          <Pos>(2111, 105.9, 1632)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3SavePeople</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_EnterCrash_003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3SavePeople</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>200</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3AllSaved</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>T_Land_002_</GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>StopTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_EnterCrash_003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Counting</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>4</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3NotSaved</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>T_Land_002_</GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1Castaway4_012_</Listener>
+                <Listener>1Castaway3_010_</Listener>
+                <Listener>1Castaway2_011_</Listener>
+                <Listener>1Castaway1_013_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>40</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>2FishingShip3_004_</Name>
+          <Pos>(2795, 39.3, 2724)</Pos>
+          <Rot>(0, 161.9, 0)</Rot>
+          <Ship>
+            <Spawn>Later</Spawn>
+            <PrefabName>1_FishingShip</PrefabName>
+          </Ship>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3BoatSpotted</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_BoatCount_000_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>140</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Sailboat_005_</Name>
+          <Pos>(2012, 42.83, 1603)</Pos>
+          <Rot>(289.3, 347.5, 17.17)</Rot>
+          <Ship>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_SailBoatFinalVer2.2</PrefabName>
+          </Ship>
+        </Object>
+        <Object>
+          <Name>2FishingShip2_006_</Name>
+          <Pos>(2708, 39.3, 3788)</Pos>
+          <Rot>(0, 198.9, 0)</Rot>
+          <Ship>
+            <Spawn>Later</Spawn>
+            <PrefabName>1_FishingShip</PrefabName>
+          </Ship>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3BoatSpotted</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_BoatCount_000_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>140</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1CargoShip_007_</Name>
+          <Pos>(2091, 34.05, 1658)</Pos>
+          <Rot>(0, 155.7, 0)</Rot>
+          <Ship>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_CARGOSHIP</PrefabName>
+          </Ship>
+        </Object>
+        <Object>
+          <Name>StartMission_008_</Name>
+          <Pos>(2812, 59.75, 363.9)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level3Start</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>1Sailboat_005_</GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>IncomingSpecialMission</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>150</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>Castaway_009_</Name>
+          <Pos>(2999, 34.79, 1279)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
+        <Object>
+          <Name>1Castaway3_010_</Name>
+          <Pos>(1987, 41.36, 1598)</Pos>
+          <Rot>(359.5, 129.7, 0.01242)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>75</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_EnterCrash_003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Castaway2_011_</Name>
+          <Pos>(1991, 38.03, 1541)</Pos>
+          <Rot>(359.9, 57.6, 0.4513)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>75</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_EnterCrash_003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Castaway4_012_</Name>
+          <Pos>(2044, 37.55, 1578)</Pos>
+          <Rot>(359.5, 121.8, 0.07753)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>75</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_EnterCrash_003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Castaway1_013_</Name>
+          <Pos>(1995, 36.35, 1539)</Pos>
+          <Rot>(0.4601, 323.2, 0.09766)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>75</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>T_EnterCrash_003_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>beaconPrefab_014_</Name>
+          <Pos>(2797, 1.042, 626.4)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
       </Objects>
-      <Score>
-        <GoldScoreMinimum>400</GoldScoreMinimum>
-        <SilverScoreMinimum>250</SilverScoreMinimum>
-        <BronzeScoreMinimum>0</BronzeScoreMinimum>
-      </Score>
     </Level>
     <Level name="Mission2">
+      <Score>
+        <GoldScoreMinimum>150</GoldScoreMinimum>
+        <SilverScoreMinimum>100</SilverScoreMinimum>
+        <BronzeScoreMinimum>0</BronzeScoreMinimum>
+      </Score>
       <Objects>
         <Object>
-          <Name>2SpecialCastaway3_000_</Name>
-          <Pos>(1785, 78.76, 3360)</Pos>
-          <Rot>(0, 134.4, 0)</Rot>
+          <Name>Castaway_000_</Name>
+          <Pos>(2999, 34.79, 1279)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
+        <Object>
+          <Name>3TimerCastaways_001_</Name>
+          <Pos>(2395, 66.79, 3766)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3TimerCastaways_001_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>300</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Disable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3Castaway3_010_</Listener>
+                <Listener>3Castaway2_018_</Listener>
+                <Listener>3Castaway1_007_</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level2EndMessage</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3EndGame_002_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>40</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>3EndGame_002_</Name>
+          <Pos>(2284, 291.3, 3377)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>EndLevel</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>10</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>Level2EndMessage</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3EndGame_002_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Counting</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>3</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Castaway1_003_</Name>
+          <Pos>(1584, 49.49, 1648)</Pos>
+          <Rot>(17.6, 194.3, 2.649)</Rot>
           <Castaway>
-            <Spawn>Later</Spawn>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1StartMission_009_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>2SpecialCastaway1_004_</Name>
+          <Pos>(1760, 87.67, 3404)</Pos>
+          <Rot>(0, 177, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
             <PrefabName>1_AnimationCastaway</PrefabName>
             <ScoreValue>50</ScoreValue>
           </Castaway>
@@ -4626,7 +4818,7 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>2SpecialMissionTrigger_004_</Listener>
+                <Listener>2SpecialMissionTrigger_008_</Listener>
               </Listeners>
             </EventReaction>
             <Radius>0</Radius>
@@ -4637,7 +4829,200 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>1StartMission_001_</Name>
+          <Name>2SpecialCastaway2_005_</Name>
+          <Pos>(1740, 91.5, 3380)</Pos>
+          <Rot>(0, 142.8, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>SpecialScore</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>100</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Main</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>2SpecialMissionTrigger_008_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Castaway>
+            <Spawn>Later</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+        </Object>
+        <Object>
+          <Name>1Castaway2_006_</Name>
+          <Pos>(1582, 34.9, 1519)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1StartMission_009_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>3Castaway1_007_</Name>
+          <Pos>(2424, 34.81, 3773)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3EndGame_002_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>2SpecialMissionTrigger_008_</Name>
+          <Pos>(2823, 66.99, 409.3)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>SpecialMission</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>IncomingSpecialMission</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Enable</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>2SpecialCastaway1_004_</Listener>
+                <Listener>2SpecialCastaway2_005_</Listener>
+                <Listener>2SpecialCastaway3_013_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Timer</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>60</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>StartTimer</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>2SpecialMissionTrigger_008_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>200</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>SpecialMissionSaved</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>Counting</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>3</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1StartMission_009_</Name>
           <Pos>(2822, 63.23, 363.6)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
@@ -4672,7 +5057,7 @@
               </MessageName>
               <SpecialScore>0</SpecialScore>
               <Time>0</Time>
-              <GameObject>1Boat1_002_</GameObject>
+              <GameObject>1Boat1_012_</GameObject>
               <Listeners>
                 <Listener>lineGuide</Listener>
               </Listeners>
@@ -4691,7 +5076,7 @@
               </MessageName>
               <SpecialScore>0</SpecialScore>
               <Time>0</Time>
-              <GameObject>3Boat2_006_</GameObject>
+              <GameObject>3Boat2_011_</GameObject>
               <Listeners>
                 <Listener>lineGuide</Listener>
               </Listeners>
@@ -4704,7 +5089,90 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>1Boat1_002_</Name>
+          <Name>3Castaway3_010_</Name>
+          <Pos>(2374, 34.93, 3812)</Pos>
+          <Rot>(0, 156.9, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3EndGame_002_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>3Boat2_011_</Name>
+          <Pos>(2424, 36.9, 3812)</Pos>
+          <Rot>(346.1, -0.00112, 353.7)</Rot>
+          <Ship>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_FishingShip</PrefabName>
+          </Ship>
+          <Trigger>
+            <EventReaction>
+              <Type>Say</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>StartSaving</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>RadioObject</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>Animate</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>OpenIRmode</MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>Animation</Listener>
+              </Listeners>
+            </EventReaction>
+            <EventReaction>
+              <Type>LineGuide</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>lineGuide</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>200</Radius>
+            <Type>OnTriggerEnter</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Boat1_012_</Name>
           <Pos>(1557, 32.23, 1556)</Pos>
           <Rot>(345.1, 359.9, 1.506)</Rot>
           <Ship>
@@ -4757,526 +5225,14 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>3Castaway1_003_</Name>
-          <Pos>(2424, 34.81, 3773)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3EndGame_011_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>2SpecialMissionTrigger_004_</Name>
-          <Pos>(2823, 66.99, 409.3)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>SpecialMission</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Animate</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>IncomingSpecialMission</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Animation</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Enable</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>2SpecialCastaway1_015_</Listener>
-                <Listener>2SpecialCastaway2_008_</Listener>
-                <Listener>2SpecialCastaway3_000_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Timer</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>60</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>StartTimer</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>2SpecialMissionTrigger_004_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>200</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>SpecialMissionSaved</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Counting</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>3</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>3Castaway3_005_</Name>
-          <Pos>(2374, 34.93, 3812)</Pos>
-          <Rot>(0, 156.9, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3EndGame_011_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>3Boat2_006_</Name>
-          <Pos>(2424, 36.9, 3812)</Pos>
-          <Rot>(346.1, -0.00112, 353.7)</Rot>
-          <Ship>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_FishingShip</PrefabName>
-          </Ship>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>StartSaving</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Animate</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>OpenIRmode</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Animation</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>200</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway4_007_</Name>
-          <Pos>(1681, 35.44, 1576)</Pos>
-          <Rot>(0, 191.5, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1StartMission_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>2SpecialCastaway2_008_</Name>
-          <Pos>(1740, 91.5, 3380)</Pos>
-          <Rot>(0, 142.8, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>SpecialScore</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>100</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Main</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>2SpecialMissionTrigger_004_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
+          <Name>2SpecialCastaway3_013_</Name>
+          <Pos>(1785, 78.76, 3360)</Pos>
+          <Rot>(0, 134.4, 0)</Rot>
           <Castaway>
             <Spawn>Later</Spawn>
             <PrefabName>1_AnimationCastaway</PrefabName>
             <ScoreValue>50</ScoreValue>
           </Castaway>
-        </Object>
-        <Object>
-          <Name>1Castaway3_009_</Name>
-          <Pos>(1582, 53.78, 1579)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1StartMission_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>3TimerCastaways_010_</Name>
-          <Pos>(2395, 66.79, 3766)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>StartTimer</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3TimerCastaways_010_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>300</Radius>
-            <Type>OnTriggerEnter</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Disable</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3Castaway3_005_</Listener>
-                <Listener>3Castaway2_012_</Listener>
-                <Listener>3Castaway1_003_</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level2EndMessage</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>StartTimer</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3EndGame_011_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Timer</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>40</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>3EndGame_011_</Name>
-          <Pos>(2284, 291.3, 3377)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Trigger>
-            <EventReaction>
-              <Type>EndLevel</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>Main</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Timer</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>10</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-          <Trigger>
-            <EventReaction>
-              <Type>Say</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>Level2EndMessage</MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>RadioObject</Listener>
-              </Listeners>
-            </EventReaction>
-            <EventReaction>
-              <Type>StartTimer</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3EndGame_011_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>Counting</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>3</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>3Castaway2_012_</Name>
-          <Pos>(2424, 34.32, 3841)</Pos>
-          <Rot>(0, 220.7, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>3EndGame_011_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway2_013_</Name>
-          <Pos>(1582, 34.9, 1519)</Pos>
-          <Rot>(0, 0, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1StartMission_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>1Castaway1_014_</Name>
-          <Pos>(1584, 49.49, 1648)</Pos>
-          <Rot>(17.6, 194.3, 2.649)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
-          <Trigger>
-            <EventReaction>
-              <Type>Count</Type>
-              <Pos>(0.0, 0.0, 0.0)</Pos>
-              <MessageName>
-              </MessageName>
-              <SpecialScore>0</SpecialScore>
-              <Time>0</Time>
-              <GameObject>
-              </GameObject>
-              <Listeners>
-                <Listener>1StartMission_001_</Listener>
-              </Listeners>
-            </EventReaction>
-            <Radius>0</Radius>
-            <Type>OnRescued</Type>
-            <RepeatCount>1</RepeatCount>
-            <TimeToTrigger>0</TimeToTrigger>
-            <CountToTrigger>0</CountToTrigger>
-          </Trigger>
-        </Object>
-        <Object>
-          <Name>2SpecialCastaway1_015_</Name>
-          <Pos>(1760, 87.67, 3404)</Pos>
-          <Rot>(0, 177, 0)</Rot>
-          <Castaway>
-            <Spawn>Start</Spawn>
-            <PrefabName>1_AnimationCastaway</PrefabName>
-            <ScoreValue>50</ScoreValue>
-          </Castaway>
           <Trigger>
             <EventReaction>
               <Type>SpecialScore</Type>
@@ -5301,7 +5257,7 @@
               <GameObject>
               </GameObject>
               <Listeners>
-                <Listener>2SpecialMissionTrigger_004_</Listener>
+                <Listener>2SpecialMissionTrigger_008_</Listener>
               </Listeners>
             </EventReaction>
             <Radius>0</Radius>
@@ -5312,7 +5268,7 @@
           </Trigger>
         </Object>
         <Object>
-          <Name>2TriggerSpecial_016_</Name>
+          <Name>2TriggerSpecial_014_</Name>
           <Pos>(1836, 110.5, 3426)</Pos>
           <Rot>(0, 0, 0)</Rot>
           <Trigger>
@@ -5347,12 +5303,102 @@
             <CountToTrigger>0</CountToTrigger>
           </Trigger>
         </Object>
+        <Object>
+          <Name>1Castaway4_015_</Name>
+          <Pos>(1681, 35.44, 1576)</Pos>
+          <Rot>(0, 191.5, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1StartMission_009_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>1Castaway3_016_</Name>
+          <Pos>(1582, 53.78, 1579)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>1StartMission_009_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
+        <Object>
+          <Name>beaconPrefab_017_</Name>
+          <Pos>(2797, 1.042, 626.4)</Pos>
+          <Rot>(0, 0, 0)</Rot>
+        </Object>
+        <Object>
+          <Name>3Castaway2_018_</Name>
+          <Pos>(2424, 34.32, 3841)</Pos>
+          <Rot>(0, 220.7, 0)</Rot>
+          <Castaway>
+            <Spawn>Start</Spawn>
+            <PrefabName>1_AnimationCastaway</PrefabName>
+            <ScoreValue>50</ScoreValue>
+          </Castaway>
+          <Trigger>
+            <EventReaction>
+              <Type>Count</Type>
+              <Pos>(0.0, 0.0, 0.0)</Pos>
+              <MessageName>
+              </MessageName>
+              <SpecialScore>0</SpecialScore>
+              <Time>0</Time>
+              <GameObject>
+              </GameObject>
+              <Listeners>
+                <Listener>3EndGame_002_</Listener>
+              </Listeners>
+            </EventReaction>
+            <Radius>0</Radius>
+            <Type>OnRescued</Type>
+            <RepeatCount>1</RepeatCount>
+            <TimeToTrigger>0</TimeToTrigger>
+            <CountToTrigger>0</CountToTrigger>
+          </Trigger>
+        </Object>
       </Objects>
-      <Score>
-        <GoldScoreMinimum>150</GoldScoreMinimum>
-        <SilverScoreMinimum>100</SilverScoreMinimum>
-        <BronzeScoreMinimum>0</BronzeScoreMinimum>
-      </Score>
     </Level>
     <Level name="Level4">
       <Score>
@@ -6330,18 +6376,6 @@
       </Objects>
     </Level>
   </Levels>
-  <Settings>
-    <Setting name="flightHeight" value="150">
-    </Setting>
-    <Setting name="buttonTime" value="2">
-    </Setting>
-    <Setting name="rainStrength" value="10">
-    </Setting>
-    <Setting name="heliSpeed" value="100">
-    </Setting>
-    <Setting name="capsuleHeight" value="100">
-    </Setting>
-  </Settings>
   <Messages>
     <Message>
       <Name>Hallo</Name>
@@ -6554,4 +6588,13 @@
       <IsWarning>True</IsWarning>
     </Message>
   </Messages>
+  <Settings>
+    <Setting name="flightHeight" value="150" />
+    <Setting name="buttonTime" value="2" />
+    <Setting name="rainStrength" value="10" />
+    <Setting name="heliSpeed" value="100" />
+    <Setting name="capsuleHeight" value="100" />
+    <Setting name="levels" value="Tutorial1,Mission1,Mission2,Mission3,Level4" />
+    <Setting name="scenes" value="PlaytestDay,Playtest,Playtest,Playtest,Playtest" />
+  </Settings>
 </HeliHeld>

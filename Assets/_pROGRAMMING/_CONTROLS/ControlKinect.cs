@@ -20,7 +20,6 @@ public class ControlKinect : ControlBase
 	public FlyingModeGesture flyingModeGesture = new FlyingModeGesture();
 	public ExitModeGesture exitModeGesture = new ExitModeGesture();
 	public float ExitTime = 5.0f;
-	private float exitTimer = 0.0f;
 	
 	
 	public float savingAcceleration = 0.2f;
@@ -106,8 +105,7 @@ public class ControlKinect : ControlBase
 				break;
 			
 			case GestureAction.GestureType.ExitModeGesture:
-				exitTimer += Time.deltaTime;
-				if(exitTimer > ExitTime)
+				if(sender.TimeSinceStart > ExitTime)
 				{
 					Main main = (Main)FindObjectOfType(typeof(Main));
 					main.ReturnToMaster();
@@ -134,7 +132,6 @@ public class ControlKinect : ControlBase
 				break;
 			
 			case GestureAction.GestureType.ExitModeGesture:
-				exitTimer = 0.0f;
 				heli.DeactivateRadio();
 				break;
 			
