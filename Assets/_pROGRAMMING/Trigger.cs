@@ -229,7 +229,9 @@ public class Trigger : TriggeredObject, IVisitable
 		case EventReaction.Type.StartTimer:
 			triggers.FindAll(t=> t.type == TriggerType.Timer).ForEach(x => x.StartTimer());
 			break;
-			
+		case EventReaction.Type.StopTimer:
+			triggers.FindAll((obj) => obj.type == TriggerType.Timer).ForEach((obj) => obj.StopTimer());
+			break;
 		default:
 			Debug.Log ("Trigger cannot handle eventtype " + evr.type);
 			break;	

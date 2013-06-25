@@ -19,6 +19,7 @@ public class EventReaction
 		Highlight_Deactivate,
 		EndLevel,
 		SpecialScore,
+		StopTimer,
 		LineGuide
 	}
 	
