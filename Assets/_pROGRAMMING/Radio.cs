@@ -119,10 +119,7 @@ public class Radio : TriggeredObject
 	{
 	    //Debug.LogError("should not be called");
 		startTime = Time.time;
-<<<<<<< HEAD
-=======
-		
->>>>>>> a275f900d6270364271350816437d14127d703ae
+
 		if(active!=_active)
 		{
 			_active = active;
