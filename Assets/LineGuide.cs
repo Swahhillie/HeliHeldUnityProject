@@ -39,7 +39,10 @@ public class LineGuide : TriggeredObject {
 	void LateUpdate () {
 		if(targetObject != null){
 			DrawLineToRescuable();
+			lineRenderer.enabled = true;
 		}
+		else
+			lineRenderer.enabled = false;
 		
 	}
 	Vector3 p0;
@@ -49,7 +52,6 @@ public class LineGuide : TriggeredObject {
 
 	private void DrawLineToRescuable()
 	{
-		
 		lineRenderer.SetVertexCount(segments);
 		lineRenderer.material.mainTextureOffset = new Vector2(1  - Time.time - Mathf.Floor(Time.time), 0 );
 		p0 = transform.position + transform.forward * startForward;

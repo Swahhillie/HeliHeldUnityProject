@@ -70,6 +70,7 @@ public class EventReaction
 			}	
 		}
 		foreach(TriggeredObject obj in listeners){
+			if(obj == null) continue;
 			Debug.Log("Fired eventreaction: " + type + " --> " + obj.name);
 			obj.OnTriggered(this);
 		}

@@ -130,7 +130,7 @@ public class TriggerEditor : Editor
 		System.Type allowedListenerType = typeof(TriggeredObject);
 		switch (evr.type) {
 		case EventReaction.Type.Animate:
-			LabeledField ("MessageName", () => evr.messageName = GUILayout.TextField (evr.messageName));
+			LabeledField ("MessageName", () => evr.messageName = EditorGUILayout.TextField (evr.messageName));
 			allowedListenerType = typeof(HelmetAnimationHandler);
 			break;
 		case EventReaction.Type.Count:
