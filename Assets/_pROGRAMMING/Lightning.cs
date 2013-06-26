@@ -6,6 +6,7 @@ public class Lightning : MonoBehaviour {
 
 	private GameObject cloudeff;
 	private GameObject env;
+	private AudioClip thunderSound;
 	public float radius = 7;
 	public int maxElements = 150;
 	
@@ -20,13 +21,9 @@ public class Lightning : MonoBehaviour {
 	{
 
 		this.cloudeff = CreateLightObject("cloudeff",LightType.Spot,4,200,150,new Vector3(0,200/5,0),new Vector3(90,0,0));
-
 		this.env = CreateLightObject("enveff",LightType.Point,6,1000,6,new Vector3(0,-200/2,0),new Vector3(0,0,0));
-		
 		mat = (Material)Resources.Load("lightning_material",typeof(Material));
-		
 		GenerateLightning();
-		
 		StartCoroutine("CreateLightning");
 	}
 	
@@ -64,6 +61,8 @@ public class Lightning : MonoBehaviour {
 		line.SetVertexCount(maxElements);
 		line.SetWidth(startWidth,endWidth);
 		
+		thunderSound = (AudioClip)Resources.Load("Lightning.ogg");
+		
 		Vector3 tempPos = transform.position;
 		for(int i = 0;i<maxElements;++i)
 		{	
@@ -79,11 +78,7 @@ public class Lightning : MonoBehaviour {
 			this.lightning.Add(line);
 		}
 	}
-	
 
-	
-	
-	
 	
 	IEnumerator CreateLightning()
 	{
@@ -142,8 +137,10 @@ public class Lightning : MonoBehaviour {
 		{
 			for(int x = lightning.Count-1;x>=0;--x)
 			{
-				lightning[x].renderer.enabled=true;	
+				lightning[x].renderer.enabled=true;
 			}
+			AudioSource audio = this.gameObject.GetOrAddComponent<AudioSource>();
+			audio.PlayOneShot(thunderSound);
 		}
 	}
 }
